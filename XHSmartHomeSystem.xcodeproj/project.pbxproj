@@ -1,0 +1,433 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5B9E1AD780B700DC9FA0 /* main.m */; };
+		78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5BA11AD780B700DC9FA0 /* AppDelegate.m */; };
+		78DD5BA51AD780B700DC9FA0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5BA41AD780B700DC9FA0 /* ViewController.m */; };
+		78DD5BA81AD780B700DC9FA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78DD5BA61AD780B700DC9FA0 /* Main.storyboard */; };
+		78DD5BAA1AD780B700DC9FA0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78DD5BA91AD780B700DC9FA0 /* Images.xcassets */; };
+		78DD5BAD1AD780B700DC9FA0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DD5BAB1AD780B700DC9FA0 /* LaunchScreen.xib */; };
+		78DD5BB91AD780B700DC9FA0 /* XHSmartHomeSystemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5BB81AD780B700DC9FA0 /* XHSmartHomeSystemTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		78DD5BB31AD780B700DC9FA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78DD5B911AD780B700DC9FA0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 78DD5B981AD780B700DC9FA0;
+			remoteInfo = XHSmartHomeSystem;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		78DD5B991AD780B700DC9FA0 /* XHSmartHomeSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XHSmartHomeSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78DD5B9D1AD780B700DC9FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78DD5B9E1AD780B700DC9FA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		78DD5BA01AD780B700DC9FA0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		78DD5BA11AD780B700DC9FA0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		78DD5BA31AD780B700DC9FA0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		78DD5BA41AD780B700DC9FA0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		78DD5BA71AD780B700DC9FA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		78DD5BA91AD780B700DC9FA0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		78DD5BAC1AD780B700DC9FA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		78DD5BB21AD780B700DC9FA0 /* XHSmartHomeSystemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XHSmartHomeSystemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		78DD5BB71AD780B700DC9FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78DD5BB81AD780B700DC9FA0 /* XHSmartHomeSystemTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XHSmartHomeSystemTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		78DD5B961AD780B700DC9FA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78DD5BAF1AD780B700DC9FA0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		78DD5B901AD780B700DC9FA0 = {
+			isa = PBXGroup;
+			children = (
+				78DD5B9B1AD780B700DC9FA0 /* XHSmartHomeSystem */,
+				78DD5BB51AD780B700DC9FA0 /* XHSmartHomeSystemTests */,
+				78DD5B9A1AD780B700DC9FA0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		78DD5B9A1AD780B700DC9FA0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				78DD5B991AD780B700DC9FA0 /* XHSmartHomeSystem.app */,
+				78DD5BB21AD780B700DC9FA0 /* XHSmartHomeSystemTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		78DD5B9B1AD780B700DC9FA0 /* XHSmartHomeSystem */ = {
+			isa = PBXGroup;
+			children = (
+				78DD5BA01AD780B700DC9FA0 /* AppDelegate.h */,
+				78DD5BA11AD780B700DC9FA0 /* AppDelegate.m */,
+				78DD5BA31AD780B700DC9FA0 /* ViewController.h */,
+				78DD5BA41AD780B700DC9FA0 /* ViewController.m */,
+				78DD5BA61AD780B700DC9FA0 /* Main.storyboard */,
+				78DD5BA91AD780B700DC9FA0 /* Images.xcassets */,
+				78DD5BAB1AD780B700DC9FA0 /* LaunchScreen.xib */,
+				78DD5B9C1AD780B700DC9FA0 /* Supporting Files */,
+			);
+			path = XHSmartHomeSystem;
+			sourceTree = "<group>";
+		};
+		78DD5B9C1AD780B700DC9FA0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				78DD5B9D1AD780B700DC9FA0 /* Info.plist */,
+				78DD5B9E1AD780B700DC9FA0 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		78DD5BB51AD780B700DC9FA0 /* XHSmartHomeSystemTests */ = {
+			isa = PBXGroup;
+			children = (
+				78DD5BB81AD780B700DC9FA0 /* XHSmartHomeSystemTests.m */,
+				78DD5BB61AD780B700DC9FA0 /* Supporting Files */,
+			);
+			path = XHSmartHomeSystemTests;
+			sourceTree = "<group>";
+		};
+		78DD5BB61AD780B700DC9FA0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				78DD5BB71AD780B700DC9FA0 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		78DD5B981AD780B700DC9FA0 /* XHSmartHomeSystem */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 78DD5BBC1AD780B700DC9FA0 /* Build configuration list for PBXNativeTarget "XHSmartHomeSystem" */;
+			buildPhases = (
+				78DD5B951AD780B700DC9FA0 /* Sources */,
+				78DD5B961AD780B700DC9FA0 /* Frameworks */,
+				78DD5B971AD780B700DC9FA0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XHSmartHomeSystem;
+			productName = XHSmartHomeSystem;
+			productReference = 78DD5B991AD780B700DC9FA0 /* XHSmartHomeSystem.app */;
+			productType = "com.apple.product-type.application";
+		};
+		78DD5BB11AD780B700DC9FA0 /* XHSmartHomeSystemTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 78DD5BBF1AD780B700DC9FA0 /* Build configuration list for PBXNativeTarget "XHSmartHomeSystemTests" */;
+			buildPhases = (
+				78DD5BAE1AD780B700DC9FA0 /* Sources */,
+				78DD5BAF1AD780B700DC9FA0 /* Frameworks */,
+				78DD5BB01AD780B700DC9FA0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				78DD5BB41AD780B700DC9FA0 /* PBXTargetDependency */,
+			);
+			name = XHSmartHomeSystemTests;
+			productName = XHSmartHomeSystemTests;
+			productReference = 78DD5BB21AD780B700DC9FA0 /* XHSmartHomeSystemTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		78DD5B911AD780B700DC9FA0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = bl4ckra1sond3tre;
+				TargetAttributes = {
+					78DD5B981AD780B700DC9FA0 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					78DD5BB11AD780B700DC9FA0 = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = 78DD5B981AD780B700DC9FA0;
+					};
+				};
+			};
+			buildConfigurationList = 78DD5B941AD780B700DC9FA0 /* Build configuration list for PBXProject "XHSmartHomeSystem" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 78DD5B901AD780B700DC9FA0;
+			productRefGroup = 78DD5B9A1AD780B700DC9FA0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				78DD5B981AD780B700DC9FA0 /* XHSmartHomeSystem */,
+				78DD5BB11AD780B700DC9FA0 /* XHSmartHomeSystemTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		78DD5B971AD780B700DC9FA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78DD5BA81AD780B700DC9FA0 /* Main.storyboard in Resources */,
+				78DD5BAD1AD780B700DC9FA0 /* LaunchScreen.xib in Resources */,
+				78DD5BAA1AD780B700DC9FA0 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78DD5BB01AD780B700DC9FA0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		78DD5B951AD780B700DC9FA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78DD5BA51AD780B700DC9FA0 /* ViewController.m in Sources */,
+				78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */,
+				78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78DD5BAE1AD780B700DC9FA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78DD5BB91AD780B700DC9FA0 /* XHSmartHomeSystemTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		78DD5BB41AD780B700DC9FA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 78DD5B981AD780B700DC9FA0 /* XHSmartHomeSystem */;
+			targetProxy = 78DD5BB31AD780B700DC9FA0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		78DD5BA61AD780B700DC9FA0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				78DD5BA71AD780B700DC9FA0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		78DD5BAB1AD780B700DC9FA0 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				78DD5BAC1AD780B700DC9FA0 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		78DD5BBA1AD780B700DC9FA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		78DD5BBB1AD780B700DC9FA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		78DD5BBD1AD780B700DC9FA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = XHSmartHomeSystem/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		78DD5BBE1AD780B700DC9FA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = XHSmartHomeSystem/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		78DD5BC01AD780B700DC9FA0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = XHSmartHomeSystemTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XHSmartHomeSystem.app/XHSmartHomeSystem";
+			};
+			name = Debug;
+		};
+		78DD5BC11AD780B700DC9FA0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = XHSmartHomeSystemTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XHSmartHomeSystem.app/XHSmartHomeSystem";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		78DD5B941AD780B700DC9FA0 /* Build configuration list for PBXProject "XHSmartHomeSystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78DD5BBA1AD780B700DC9FA0 /* Debug */,
+				78DD5BBB1AD780B700DC9FA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		78DD5BBC1AD780B700DC9FA0 /* Build configuration list for PBXNativeTarget "XHSmartHomeSystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78DD5BBD1AD780B700DC9FA0 /* Debug */,
+				78DD5BBE1AD780B700DC9FA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		78DD5BBF1AD780B700DC9FA0 /* Build configuration list for PBXNativeTarget "XHSmartHomeSystemTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78DD5BC01AD780B700DC9FA0 /* Debug */,
+				78DD5BC11AD780B700DC9FA0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 78DD5B911AD780B700DC9FA0 /* Project object */;
+}
