@@ -10,4 +10,14 @@
 
 @implementation XHHomeDataModel
 
+- (NSString *)temperature
+{
+    return [NSString stringWithFormat:@"temp: %@°C", _temperature];
+}
+
+- (NSString *)humidity
+{
+    return [NSString stringWithFormat:@"humi: %@%%RH", _humidity];
+}
+
 @end

@@ -10,4 +10,6 @@
 
 @interface XHNavigationViewController : UINavigationController
 
++ (void)initialize;
+
 @end

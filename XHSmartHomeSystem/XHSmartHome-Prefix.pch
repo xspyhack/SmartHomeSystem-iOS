@@ -12,4 +12,17 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
+#ifdef DEBUG
+#define XHLog(...) NSLog(__VA_ARGS__)
+#else
+#define XHLog(...)
+#endif
+
+
+#define IOS_7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+#define XHOrangeColor [UIColor colorWithRed:255.0/255 green:185.0/255 blue:0.0/255 alpha:1.0f];
+
+#define XHNewFeatureImageCount 4
+#define XHTokenExpiresTime 1000
+
 #endif

@@ -17,6 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"settings" style:UIBarButtonItemStyleDone target:self action:@selector(settings)];
+}
+
+- (void)settings
+{
+    XHLog(@"settings");
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XHImageView : UIView
+@interface XHImageView : UIView {
+    CAShapeLayer *arcLayer;
+    UIBezierPath *path;
+}
+
+@property (nonatomic) NSString *imageName;
+@property (nonatomic) UIColor *color;
+@property (nonatomic) CGFloat progress;
+@property (nonatomic) CGFloat lineWidth;
 
 @end

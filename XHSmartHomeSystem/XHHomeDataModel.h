@@ -10,4 +10,10 @@
 
 @interface XHHomeDataModel : NSObject
 
+@property (nonatomic, copy) NSString *icon;
+@property (nonatomic, copy) NSString *roomName;
+@property (nonatomic, copy) NSString *updateTime;
+@property (nonatomic, copy) NSString *temperature;
+@property (nonatomic, copy) NSString *humidity;
+
 @end

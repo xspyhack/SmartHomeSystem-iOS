@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class XHRoomView;
+@class XHRoomModel;
 
 @interface XHTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) XHRoomModel *roomModel;
+@property (nonatomic, strong) XHRoomView *roomView;
+@property (nonatomic, assign) CGFloat height;
 
 @end

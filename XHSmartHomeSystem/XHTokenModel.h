@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface XHTokenModel : NSObject
+@interface XHTokenModel : NSObject <NSCoding>
+
+@property (nonatomic, copy) NSString *gateway;
+@property (nonatomic, copy) NSString *password;
+@property (nonatomic, copy) NSDate *expires_time;
+
++ (instancetype)tokenModelWithDict:(NSDictionary *)dict;
 
 @end

@@ -10,4 +10,32 @@
 
 @implementation XHRoomModel
 
++ (instancetype)roomModelWithDict:(NSDictionary *)dict
+{
+    XHRoomModel *roomModel = [[XHRoomModel alloc] initWithDict:dict];
+    return roomModel;
+}
+
+- (XHRoomModel *)initWithDict:(NSDictionary *)dict
+{
+    if (self = [super init]) {
+        self.iconName = dict[@"iconName"];
+        self.name = dict[@"name"];
+        self.temperature = dict[@"temperature"];
+        self.humidity = dict[@"humidity"];
+    }
+    
+    return self;
+}
+
+- (NSString *)temperature
+{
+    return [NSString stringWithFormat:@"temp: %@°C", _temperature];
+}
+
+- (NSString *)humidity
+{
+    return [NSString stringWithFormat:@"humi: %@%%RH", _humidity];
+}
+
 @end

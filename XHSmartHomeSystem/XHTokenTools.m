@@ -7,7 +7,28 @@
 //
 
 #import "XHTokenTools.h"
+#import "XHTokenModel.h"
+
+#define XHTokenFilePath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"token.data"]
 
 @implementation XHTokenTools
+
++ (void)save:(XHTokenModel *)tokenModel
+{
+    // use archiver
+    [NSKeyedArchiver archiveRootObject:tokenModel toFile:XHTokenFilePath];
+}
+
++ (XHTokenModel *)tokenModel
+{
+    XHTokenModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:XHTokenFilePath];
+    NSDate *now = [NSDate date];
+    
+    // expiration time
+    if ([now compare:model.expires_time] == NSOrderedDescending) {
+        model = nil;
+    }
+    return model;
+}
 
 @end

@@ -10,4 +10,12 @@
 
 @interface XHRoomModel : NSObject
 
+@property (nonatomic, copy) NSString *iconName;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *temperature;
+@property (nonatomic, copy) NSString *humidity;
+
++ (instancetype)roomModelWithDict:(NSDictionary *)dict;
+- (XHRoomModel *)initWithDict:(NSDictionary *)dict;
+
 @end

@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+@class XHTokenModel;
 
 @interface XHTokenTools : NSObject
+
+// setter
++ (void)save:(XHTokenModel *)tokenModel;
+
+// getter
++ (XHTokenModel *)tokenModel;
 
 @end

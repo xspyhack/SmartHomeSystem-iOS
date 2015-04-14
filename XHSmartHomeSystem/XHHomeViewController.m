@@ -7,6 +7,8 @@
 //
 
 #import "XHHomeViewController.h"
+#import "XHTableViewCell.h"
+#import "XHRoomModel.h"
 
 @interface XHHomeViewController ()
 
@@ -17,6 +19,93 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // set navigationbar button
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_chart"] style:UIBarButtonItemStyleDone target:self action:@selector(chart)];
+    [self setupData];
+    [self setupTabelView];
+}
+
+- (void)chart
+{
+    XHLog(@"chart");
+}
+
+#pragma mark - initialization
+
+- (void)setupTabelView
+{
+    // create Plain style UITableView
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.autoresizesSubviews = UIViewAutoresizingFlexibleWidth;
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.tableView.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
+
+}
+
+- (void)setupData
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"data" ofType:@"plist"];
+    NSArray *array = [[NSArray alloc] initWithContentsOfFile:path];
+    _model = [[NSMutableArray alloc] init];
+    _modelCells = [[NSMutableArray alloc] init];
+    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [_model addObject:[XHRoomModel roomModelWithDict:obj]];
+        XHTableViewCell *cell = [[XHTableViewCell alloc] init];
+        [_modelCells addObject:cell];
+    }];
+}
+
+#pragma mark - tableview delegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSLog(@"count: %lu", _model.count);
+    return _model.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"UITableViewCellIdenfifierKey";
+    XHTableViewCell *cell;
+    cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[XHTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    cell.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:0.8];
+    
+    XHRoomModel *model = _model[indexPath.row];
+    cell.roomModel = model;
+
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    XHTableViewCell *cell = _modelCells[indexPath.row];
+    cell.roomModel = _model[indexPath.row];
+    return cell.height;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //[self performSelector:@selector(deselect) withObject:nil afterDelay:0.1f];
+}
+
+// deselect alter 0.5s
+- (void)deselect
+{
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

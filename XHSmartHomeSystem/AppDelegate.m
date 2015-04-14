@@ -7,6 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "XHTabBarViewController.h"
+#import "XHNewFeatureViewController.h"
+#import "XHLinkinViewController.h"
+#import "XHTokenModel.h"
+#import "XHTokenTools.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +22,54 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // create window
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // set rootViewController
+    /*
+    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *filePath = [doc stringByAppendingPathComponent:@"token.plist"];
+    NSLog(@"%@", filePath);
+    //
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"token" ofType:@"plist"];
+    NSLog(@"%@", filePath);
+    NSDictionary *token = [NSDictionary dictionaryWithContentsOfFile:filePath];
+    NSLog(@"%@", token);
+     */
+    
+    // use archiver
+    XHTokenModel *token = [XHTokenTools tokenModel];
+    
+    // if exists token
+    if (NO) {
+        XHLog(@"%@", token.password);
+        // first, if it is first time using the version, it will show the new version's feature.
+        NSString *versionKey = @"CFBundleVersion";
+        versionKey = (__bridge NSString *)kCFBundleVersionKey;
+        
+        // get last time save version key
+        NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
+        NSString *lastVersion = [defaults objectForKey:versionKey];
+        
+        // get current version key
+        NSString *currentVersion = [NSBundle mainBundle].infoDictionary[versionKey];
+        if ([currentVersion isEqualToString:lastVersion]) {
+            self.window.rootViewController = [[XHTabBarViewController alloc] init];
+        } else {
+            self.window.rootViewController = [[XHNewFeatureViewController alloc] init];
+            // save this version key
+            [defaults setObject:currentVersion forKey:versionKey];
+            // write now
+            [defaults synchronize];
+        }
+    } else {
+        self.window.rootViewController = [[XHLinkinViewController alloc] init];
+    }
+    
+    // show window
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
