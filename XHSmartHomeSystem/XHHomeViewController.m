@@ -69,7 +69,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"count: %lu", _model.count);
     return _model.count;
 }
 

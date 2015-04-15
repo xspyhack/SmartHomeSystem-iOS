@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class XHMessageModel;
 
-@interface XHMessagesViewController : UIViewController
+@interface XHMessagesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) XHMessageModel *msgModel;
 
 @end

@@ -40,8 +40,6 @@
     _roomView.roomModel = roomModel;
     _roomView.updateTime = [NSDate date];
     
-    NSLog(@"height: %f", CGRectGetMaxY(_roomView.frame));
-
     _height = CGRectGetMaxY(_roomView.frame) + XHTableViewCellControlSpaceing;
 }
 

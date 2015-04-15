@@ -36,8 +36,8 @@
         //self.layer.borderColor = [UIColor lightGrayColor].CGColor;
         self.layer.shadowOffset = CGSizeMake(0, 1);
         self.layer.shadowColor = [UIColor lightGrayColor].CGColor;
-        self.layer.shadowOpacity = 0.8;
-        self.layer.shadowRadius = 2;
+        self.layer.shadowOpacity = 0.3;
+        self.layer.shadowRadius = 1;
         [self setupSubView];
     }
     return self;

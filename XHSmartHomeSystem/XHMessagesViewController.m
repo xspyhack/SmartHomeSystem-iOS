@@ -7,8 +7,12 @@
 //
 
 #import "XHMessagesViewController.h"
+#import "UUMessage.h"
+#import "UUMessageCell.h"
+#import "UUMessageFrame.h"
+#import "XHMessageModel.h"
 
-@interface XHMessagesViewController ()
+@interface XHMessagesViewController () <UUMessageCellDelegate>
 
 @end
 
@@ -17,6 +21,92 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self setupTabelView];    
+    [self setupViewsAndData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    //add notification
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(tableViewScrollToBottom) name:UIKeyboardDidShowNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+- (void)setupTabelView
+{
+    // create Plain style UITableView
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.autoresizesSubviews = UIViewAutoresizingFlexibleWidth;
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.tableView.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
+    
+}
+
+- (void)setupViewsAndData
+{
+    self.msgModel = [[XHMessageModel alloc] init];
+    [self.msgModel populateRandomDataSource];
+    
+    [self.tableView reloadData];
+    [self tableViewScrollToBottom];
+}
+
+//tableView Scroll to bottom
+- (void)tableViewScrollToBottom
+{
+    if (self.msgModel.dataSource.count == 0)
+        return;
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.msgModel.dataSource.count-1 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+#pragma mark - tableView delegate & datasource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.msgModel.dataSource.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UUMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"XHCellID"];
+    if (cell == nil) {
+        cell = [[UUMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XHCellID"];
+        cell.delegate = self;
+    }
+    [cell setMessageFrame:self.msgModel.dataSource[indexPath.row]];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [self.msgModel.dataSource[indexPath.row] cellHeight];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.view endEditing:YES];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
+}
+
+#pragma mark - cellDelegate
+
+- (void)headImageDidClick:(UUMessageCell *)cell userId:(NSString *)userId{
+    // headIamgeIcon is clicked
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:cell.messageFrame.message.strName message:@"headImage clicked" delegate:nil cancelButtonTitle:@"sure" otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)didReceiveMemoryWarning {

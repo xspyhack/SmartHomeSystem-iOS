@@ -7,6 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		786E90321ADB966500A93675 /* XHRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E90311ADB966500A93675 /* XHRoomModel.m */; };
+		786E90341ADBAD0A00A93675 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 786E90331ADBAD0A00A93675 /* data.plist */; };
+		786E903A1ADBB50800A93675 /* XHRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E90391ADBB50800A93675 /* XHRoomView.m */; };
+		786E903D1ADBB54E00A93675 /* XHTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E903C1ADBB54E00A93675 /* XHTableViewCell.m */; };
+		786E904E1ADCBBAE00A93675 /* UUMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E90491ADCBBAE00A93675 /* UUMessage.m */; };
+		786E904F1ADCBBAE00A93675 /* UUMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E904B1ADCBBAE00A93675 /* UUMessageCell.m */; };
+		786E90501ADCBBAE00A93675 /* UUMessageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E904D1ADCBBAE00A93675 /* UUMessageFrame.m */; };
+		786E90531ADCBBBC00A93675 /* NSDate+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E90521ADCBBBC00A93675 /* NSDate+Utils.m */; };
+		786E90571ADCBD6000A93675 /* UUMessageContentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E90561ADCBD6000A93675 /* UUMessageContentButton.m */; };
+		786E905A1ADCBE4700A93675 /* UUImageAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E90591ADCBE4700A93675 /* UUImageAvatarBrowser.m */; };
+		786E90601ADCC3F000A93675 /* XHMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E905F1ADCC3F000A93675 /* XHMessageModel.m */; };
+		787DECE81AD93FF70081ECEE /* XHNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787DECE71AD93FF70081ECEE /* XHNewFeatureViewController.m */; };
+		787DECEA1AD96AFC0081ECEE /* token.plist in Resources */ = {isa = PBXBuildFile; fileRef = 787DECE91AD96AFC0081ECEE /* token.plist */; };
+		787FBB501AD8E5A200316651 /* XHSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB4F1AD8E5A200316651 /* XHSettingsViewController.m */; };
+		787FBB561AD8E64100316651 /* XHHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB551AD8E64100316651 /* XHHomeViewController.m */; };
+		787FBB591AD8E67D00316651 /* XHMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB581AD8E67D00316651 /* XHMessagesViewController.m */; };
+		787FBB5D1AD8E99800316651 /* XHLinkinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB5C1AD8E99800316651 /* XHLinkinViewController.m */; };
+		787FBB641AD8EB7100316651 /* XHHomeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB631AD8EB7100316651 /* XHHomeDataModel.m */; };
+		787FBB681AD8F46F00316651 /* XHTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB671AD8F46F00316651 /* XHTabBarViewController.m */; };
+		787FBB6B1AD9026900316651 /* XHNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB6A1AD9026900316651 /* XHNavigationViewController.m */; };
+		78C13B941ADA0EF90020AAFA /* XHTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B931ADA0EF90020AAFA /* XHTokenModel.m */; };
+		78C13B971ADA101C0020AAFA /* XHTokenTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B961ADA101C0020AAFA /* XHTokenTools.m */; };
+		78C13B9C1ADA6D370020AAFA /* XHImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B9B1ADA6D370020AAFA /* XHImageView.m */; };
 		78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5B9E1AD780B700DC9FA0 /* main.m */; };
 		78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5BA11AD780B700DC9FA0 /* AppDelegate.m */; };
 		78DD5BA51AD780B700DC9FA0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5BA41AD780B700DC9FA0 /* ViewController.m */; };
@@ -27,6 +50,51 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		786E90301ADB966500A93675 /* XHRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHRoomModel.h; sourceTree = "<group>"; };
+		786E90311ADB966500A93675 /* XHRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHRoomModel.m; sourceTree = "<group>"; };
+		786E90331ADBAD0A00A93675 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
+		786E90381ADBB50800A93675 /* XHRoomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHRoomView.h; sourceTree = "<group>"; };
+		786E90391ADBB50800A93675 /* XHRoomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHRoomView.m; sourceTree = "<group>"; };
+		786E903B1ADBB54E00A93675 /* XHTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTableViewCell.h; sourceTree = "<group>"; };
+		786E903C1ADBB54E00A93675 /* XHTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTableViewCell.m; sourceTree = "<group>"; };
+		786E90481ADCBBAE00A93675 /* UUMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUMessage.h; sourceTree = "<group>"; };
+		786E90491ADCBBAE00A93675 /* UUMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUMessage.m; sourceTree = "<group>"; };
+		786E904A1ADCBBAE00A93675 /* UUMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUMessageCell.h; sourceTree = "<group>"; };
+		786E904B1ADCBBAE00A93675 /* UUMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUMessageCell.m; sourceTree = "<group>"; };
+		786E904C1ADCBBAE00A93675 /* UUMessageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUMessageFrame.h; sourceTree = "<group>"; };
+		786E904D1ADCBBAE00A93675 /* UUMessageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUMessageFrame.m; sourceTree = "<group>"; };
+		786E90511ADCBBBC00A93675 /* NSDate+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utils.h"; sourceTree = "<group>"; };
+		786E90521ADCBBBC00A93675 /* NSDate+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utils.m"; sourceTree = "<group>"; };
+		786E90551ADCBD6000A93675 /* UUMessageContentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUMessageContentButton.h; sourceTree = "<group>"; };
+		786E90561ADCBD6000A93675 /* UUMessageContentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUMessageContentButton.m; sourceTree = "<group>"; };
+		786E90581ADCBE4700A93675 /* UUImageAvatarBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUImageAvatarBrowser.h; sourceTree = "<group>"; };
+		786E90591ADCBE4700A93675 /* UUImageAvatarBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUImageAvatarBrowser.m; sourceTree = "<group>"; };
+		786E905E1ADCC3F000A93675 /* XHMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHMessageModel.h; sourceTree = "<group>"; };
+		786E905F1ADCC3F000A93675 /* XHMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHMessageModel.m; sourceTree = "<group>"; };
+		787DECE61AD93FF70081ECEE /* XHNewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHNewFeatureViewController.h; sourceTree = "<group>"; };
+		787DECE71AD93FF70081ECEE /* XHNewFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHNewFeatureViewController.m; sourceTree = "<group>"; };
+		787DECE91AD96AFC0081ECEE /* token.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = token.plist; sourceTree = "<group>"; };
+		787FBB4E1AD8E5A200316651 /* XHSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSettingsViewController.h; sourceTree = "<group>"; };
+		787FBB4F1AD8E5A200316651 /* XHSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHSettingsViewController.m; sourceTree = "<group>"; };
+		787FBB541AD8E64100316651 /* XHHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHHomeViewController.h; sourceTree = "<group>"; };
+		787FBB551AD8E64100316651 /* XHHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHHomeViewController.m; sourceTree = "<group>"; };
+		787FBB571AD8E67D00316651 /* XHMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHMessagesViewController.h; sourceTree = "<group>"; };
+		787FBB581AD8E67D00316651 /* XHMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHMessagesViewController.m; sourceTree = "<group>"; };
+		787FBB5B1AD8E99800316651 /* XHLinkinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHLinkinViewController.h; sourceTree = "<group>"; };
+		787FBB5C1AD8E99800316651 /* XHLinkinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLinkinViewController.m; sourceTree = "<group>"; };
+		787FBB621AD8EB7100316651 /* XHHomeDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHHomeDataModel.h; sourceTree = "<group>"; };
+		787FBB631AD8EB7100316651 /* XHHomeDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHHomeDataModel.m; sourceTree = "<group>"; };
+		787FBB661AD8F46F00316651 /* XHTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTabBarViewController.h; sourceTree = "<group>"; };
+		787FBB671AD8F46F00316651 /* XHTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTabBarViewController.m; sourceTree = "<group>"; };
+		787FBB691AD9026900316651 /* XHNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHNavigationViewController.h; sourceTree = "<group>"; };
+		787FBB6A1AD9026900316651 /* XHNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHNavigationViewController.m; sourceTree = "<group>"; };
+		787FBB6C1AD90CD200316651 /* XHSmartHome-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XHSmartHome-Prefix.pch"; sourceTree = "<group>"; };
+		78C13B921ADA0EF90020AAFA /* XHTokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTokenModel.h; sourceTree = "<group>"; };
+		78C13B931ADA0EF90020AAFA /* XHTokenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTokenModel.m; sourceTree = "<group>"; };
+		78C13B951ADA101C0020AAFA /* XHTokenTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTokenTools.h; sourceTree = "<group>"; };
+		78C13B961ADA101C0020AAFA /* XHTokenTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTokenTools.m; sourceTree = "<group>"; };
+		78C13B9A1ADA6D370020AAFA /* XHImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHImageView.h; sourceTree = "<group>"; };
+		78C13B9B1ADA6D370020AAFA /* XHImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHImageView.m; sourceTree = "<group>"; };
 		78DD5B991AD780B700DC9FA0 /* XHSmartHomeSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XHSmartHomeSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DD5B9D1AD780B700DC9FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78DD5B9E1AD780B700DC9FA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -35,7 +103,7 @@
 		78DD5BA31AD780B700DC9FA0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		78DD5BA41AD780B700DC9FA0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		78DD5BA71AD780B700DC9FA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		78DD5BA91AD780B700DC9FA0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		78DD5BA91AD780B700DC9FA0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = XHSmartHomeSystem/Images.xcassets; sourceTree = "<group>"; };
 		78DD5BAC1AD780B700DC9FA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		78DD5BB21AD780B700DC9FA0 /* XHSmartHomeSystemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XHSmartHomeSystemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DD5BB71AD780B700DC9FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,10 +128,105 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		786E90541ADCBBC100A93675 /* UUChat */ = {
+			isa = PBXGroup;
+			children = (
+				786E90581ADCBE4700A93675 /* UUImageAvatarBrowser.h */,
+				786E90591ADCBE4700A93675 /* UUImageAvatarBrowser.m */,
+				786E90511ADCBBBC00A93675 /* NSDate+Utils.h */,
+				786E90521ADCBBBC00A93675 /* NSDate+Utils.m */,
+				786E90481ADCBBAE00A93675 /* UUMessage.h */,
+				786E90491ADCBBAE00A93675 /* UUMessage.m */,
+				786E904A1ADCBBAE00A93675 /* UUMessageCell.h */,
+				786E904B1ADCBBAE00A93675 /* UUMessageCell.m */,
+				786E904C1ADCBBAE00A93675 /* UUMessageFrame.h */,
+				786E904D1ADCBBAE00A93675 /* UUMessageFrame.m */,
+				786E90551ADCBD6000A93675 /* UUMessageContentButton.h */,
+				786E90561ADCBD6000A93675 /* UUMessageContentButton.m */,
+			);
+			name = UUChat;
+			sourceTree = "<group>";
+		};
+		787FBB5A1AD8E6BF00316651 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				787FBB661AD8F46F00316651 /* XHTabBarViewController.h */,
+				787FBB671AD8F46F00316651 /* XHTabBarViewController.m */,
+				787FBB691AD9026900316651 /* XHNavigationViewController.h */,
+				787FBB6A1AD9026900316651 /* XHNavigationViewController.m */,
+				78DD5BA31AD780B700DC9FA0 /* ViewController.h */,
+				78DD5BA41AD780B700DC9FA0 /* ViewController.m */,
+				787FBB571AD8E67D00316651 /* XHMessagesViewController.h */,
+				787FBB581AD8E67D00316651 /* XHMessagesViewController.m */,
+				787FBB4E1AD8E5A200316651 /* XHSettingsViewController.h */,
+				787FBB4F1AD8E5A200316651 /* XHSettingsViewController.m */,
+				787FBB541AD8E64100316651 /* XHHomeViewController.h */,
+				787FBB551AD8E64100316651 /* XHHomeViewController.m */,
+				787FBB5B1AD8E99800316651 /* XHLinkinViewController.h */,
+				787FBB5C1AD8E99800316651 /* XHLinkinViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		787FBB611AD8EA9F00316651 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				786E903B1ADBB54E00A93675 /* XHTableViewCell.h */,
+				786E903C1ADBB54E00A93675 /* XHTableViewCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		787FBB651AD8EB7C00316651 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				786E90301ADB966500A93675 /* XHRoomModel.h */,
+				786E90311ADB966500A93675 /* XHRoomModel.m */,
+				787FBB621AD8EB7100316651 /* XHHomeDataModel.h */,
+				787FBB631AD8EB7100316651 /* XHHomeDataModel.m */,
+				78C13B921ADA0EF90020AAFA /* XHTokenModel.h */,
+				78C13B931ADA0EF90020AAFA /* XHTokenModel.m */,
+				786E905E1ADCC3F000A93675 /* XHMessageModel.h */,
+				786E905F1ADCC3F000A93675 /* XHMessageModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		78C13B981ADA37DC0020AAFA /* New Feature */ = {
+			isa = PBXGroup;
+			children = (
+				787DECE61AD93FF70081ECEE /* XHNewFeatureViewController.h */,
+				787DECE71AD93FF70081ECEE /* XHNewFeatureViewController.m */,
+			);
+			name = "New Feature";
+			sourceTree = "<group>";
+		};
+		78C13B991ADA380D0020AAFA /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				78C13B951ADA101C0020AAFA /* XHTokenTools.h */,
+				78C13B961ADA101C0020AAFA /* XHTokenTools.m */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
+		78C13B9D1ADA6D430020AAFA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				786E90381ADBB50800A93675 /* XHRoomView.h */,
+				786E90391ADBB50800A93675 /* XHRoomView.m */,
+				78C13B9A1ADA6D370020AAFA /* XHImageView.h */,
+				78C13B9B1ADA6D370020AAFA /* XHImageView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		78DD5B901AD780B700DC9FA0 = {
 			isa = PBXGroup;
 			children = (
 				78DD5B9B1AD780B700DC9FA0 /* XHSmartHomeSystem */,
+				78DD5BA91AD780B700DC9FA0 /* Images.xcassets */,
+				78DD5BAB1AD780B700DC9FA0 /* LaunchScreen.xib */,
 				78DD5BB51AD780B700DC9FA0 /* XHSmartHomeSystemTests */,
 				78DD5B9A1AD780B700DC9FA0 /* Products */,
 			);
@@ -81,14 +244,14 @@
 		78DD5B9B1AD780B700DC9FA0 /* XHSmartHomeSystem */ = {
 			isa = PBXGroup;
 			children = (
-				78DD5BA01AD780B700DC9FA0 /* AppDelegate.h */,
-				78DD5BA11AD780B700DC9FA0 /* AppDelegate.m */,
-				78DD5BA31AD780B700DC9FA0 /* ViewController.h */,
-				78DD5BA41AD780B700DC9FA0 /* ViewController.m */,
-				78DD5BA61AD780B700DC9FA0 /* Main.storyboard */,
-				78DD5BA91AD780B700DC9FA0 /* Images.xcassets */,
-				78DD5BAB1AD780B700DC9FA0 /* LaunchScreen.xib */,
+				786E90541ADCBBC100A93675 /* UUChat */,
+				78C13B9D1ADA6D430020AAFA /* Views */,
+				78C13B991ADA380D0020AAFA /* Tools */,
+				787FBB651AD8EB7C00316651 /* Models */,
+				787FBB611AD8EA9F00316651 /* Cells */,
+				787FBB5A1AD8E6BF00316651 /* Controllers */,
 				78DD5B9C1AD780B700DC9FA0 /* Supporting Files */,
+				78C13B981ADA37DC0020AAFA /* New Feature */,
 			);
 			path = XHSmartHomeSystem;
 			sourceTree = "<group>";
@@ -96,8 +259,14 @@
 		78DD5B9C1AD780B700DC9FA0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				786E90331ADBAD0A00A93675 /* data.plist */,
+				787FBB6C1AD90CD200316651 /* XHSmartHome-Prefix.pch */,
+				78DD5BA01AD780B700DC9FA0 /* AppDelegate.h */,
+				78DD5BA11AD780B700DC9FA0 /* AppDelegate.m */,
+				78DD5BA61AD780B700DC9FA0 /* Main.storyboard */,
 				78DD5B9D1AD780B700DC9FA0 /* Info.plist */,
 				78DD5B9E1AD780B700DC9FA0 /* main.m */,
+				787DECE91AD96AFC0081ECEE /* token.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -199,8 +368,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				786E90341ADBAD0A00A93675 /* data.plist in Resources */,
 				78DD5BA81AD780B700DC9FA0 /* Main.storyboard in Resources */,
 				78DD5BAD1AD780B700DC9FA0 /* LaunchScreen.xib in Resources */,
+				787DECEA1AD96AFC0081ECEE /* token.plist in Resources */,
 				78DD5BAA1AD780B700DC9FA0 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,9 +390,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787FBB591AD8E67D00316651 /* XHMessagesViewController.m in Sources */,
+				786E90601ADCC3F000A93675 /* XHMessageModel.m in Sources */,
+				786E90531ADCBBBC00A93675 /* NSDate+Utils.m in Sources */,
+				787FBB561AD8E64100316651 /* XHHomeViewController.m in Sources */,
+				787FBB681AD8F46F00316651 /* XHTabBarViewController.m in Sources */,
+				786E903A1ADBB50800A93675 /* XHRoomView.m in Sources */,
+				787FBB501AD8E5A200316651 /* XHSettingsViewController.m in Sources */,
+				786E90501ADCBBAE00A93675 /* UUMessageFrame.m in Sources */,
+				786E903D1ADBB54E00A93675 /* XHTableViewCell.m in Sources */,
+				787FBB6B1AD9026900316651 /* XHNavigationViewController.m in Sources */,
 				78DD5BA51AD780B700DC9FA0 /* ViewController.m in Sources */,
+				786E90321ADB966500A93675 /* XHRoomModel.m in Sources */,
+				786E904F1ADCBBAE00A93675 /* UUMessageCell.m in Sources */,
+				786E904E1ADCBBAE00A93675 /* UUMessage.m in Sources */,
+				787FBB5D1AD8E99800316651 /* XHLinkinViewController.m in Sources */,
+				78C13B971ADA101C0020AAFA /* XHTokenTools.m in Sources */,
+				787FBB641AD8EB7100316651 /* XHHomeDataModel.m in Sources */,
+				786E905A1ADCBE4700A93675 /* UUImageAvatarBrowser.m in Sources */,
+				78C13B941ADA0EF90020AAFA /* XHTokenModel.m in Sources */,
+				787DECE81AD93FF70081ECEE /* XHNewFeatureViewController.m in Sources */,
 				78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */,
 				78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */,
+				78C13B9C1ADA6D370020AAFA /* XHImageView.m in Sources */,
+				786E90571ADCBD6000A93675 /* UUMessageContentButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +450,7 @@
 				78DD5BAC1AD780B700DC9FA0 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			path = XHSmartHomeSystem;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -349,7 +542,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/XHSmartHomeSystem/XHSmartHome-Prefix.pch";
 				INFOPLIST_FILE = XHSmartHomeSystem/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -359,7 +555,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/XHSmartHomeSystem/XHSmartHome-Prefix.pch";
 				INFOPLIST_FILE = XHSmartHomeSystem/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -418,6 +617,7 @@
 				78DD5BBE1AD780B700DC9FA0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		78DD5BBF1AD780B700DC9FA0 /* Build configuration list for PBXNativeTarget "XHSmartHomeSystemTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +626,7 @@
 				78DD5BC11AD780B700DC9FA0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
