@@ -9,7 +9,6 @@
 #import "XHRoomView.h"
 #import "XHRoomModel.h"
 
-#define XHColor(r, g, b) [UIColor colorWithHue:r/255.0 saturation:g/255.0 brightness:b/255.0 alpha:1]
 #define xhTableViewCellControlSpaceing 15 // widget space
 #define xhTableViewCellBackgroundColor XHColor(240, 240, 240)
 #define xhTableViewCellHeight 100 // cell height

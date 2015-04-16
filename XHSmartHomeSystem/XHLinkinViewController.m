@@ -77,8 +77,8 @@
     self.gatewayTextField.placeholder = @"Gateway IP";
     self.gatewayTextField.textAlignment = NSTextAlignmentCenter;
     self.gatewayTextField.textColor = XHOrangeColor;
-    //self.gatewayTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    self.gatewayTextField.keyboardType = UIKeyboardTypeNumberPad;
+    self.gatewayTextField.keyboardType = UIKeyboardTypeDecimalPad;
+    //self.gatewayTextField.keyboardType = UIKeyboardTypeNumberPad;
     self.gatewayTextField.returnKeyType = UIReturnKeyNext;
     //self.gatewayTextField.leftView = gatewayView;
     //self.gatewayTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -130,7 +130,6 @@
 - (void)linkIn
 {
     // save token to archiver data
-    //NSDictionary *token = [NSDictionary dictionaryWithObjectsAndKeys:@"111", @"token", nil];
     NSMutableDictionary *tokenDict = [NSMutableDictionary dictionary];
     [tokenDict setObject:self.gatewayTextField.text forKey:@"gateway"];
     [tokenDict setObject:self.passwordTextField.text forKey:@"password"];

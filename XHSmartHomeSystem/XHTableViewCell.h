@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-@class XHRoomView;
-@class XHRoomModel;
+@class XHTableViewCellItem;
 
 @interface XHTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) XHRoomModel *roomModel;
-@property (nonatomic, strong) XHRoomView *roomView;
-@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, strong) XHTableViewCellItem *item;
+@property (nonatomic, strong) UISwitch *rightSwitch;
+@property (nonatomic, strong) UILabel *rightLabel;
+
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+
+//- (void)setIndexPath:(NSIndexPath *)indexPath rowsInSection:(NSInteger)rows;
 
 @end

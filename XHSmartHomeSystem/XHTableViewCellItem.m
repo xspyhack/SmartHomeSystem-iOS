@@ -10,4 +10,19 @@
 
 @implementation XHTableViewCellItem
 
++ (instancetype)itemWithTitle:(NSString *)title iconName:(NSString *)iconName
+{
+    XHTableViewCellItem *item = [[self alloc] init];
+    item.title = title;
+    item.iconName = iconName;
+    return item;
+}
+
++ (instancetype)itemWithTitle:(NSString *)title
+{
+    //XHTableViewCellItem *item = [[XHTableViewCellItem alloc] init];
+    //item.title = title;
+    return [self itemWithTitle:title iconName:nil];
+}
+
 @end

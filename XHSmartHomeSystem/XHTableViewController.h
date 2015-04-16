@@ -10,4 +10,6 @@
 
 @interface XHTableViewController : UITableViewController
 
+@property (nonatomic, strong) NSMutableArray *groups;
+
 @end

@@ -7,57 +7,71 @@
 //
 
 #import "XHTableViewCell.h"
-#import "XHRoomModel.h"
-#import "XHRoomView.h"
-
-#define XHTableViewCellControlSpaceing 2
+#import "XHTableViewCellItem.h"
+#import "XHTableViewCellArrowItem.h"
+#import "XHTableViewCellSwitchItem.h"
+#import "XHTableViewCellLabelItem.h"
 
 @implementation XHTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
++ (instancetype)cellWithTableView:(UITableView *)tableView
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        [self setupSubView];
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
+    static NSString *cellIdentifier = @"XHTabelViewCellIdentifier";
+    XHTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[XHTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell.backgroundColor = XHColor(245, 245, 245);
     }
     
-    return self;
+    return cell;
 }
 
-#pragma mark - setup view
-
-- (void)setupSubView
+// getter
+- (UISwitch *)rightSwitch
 {
-    CGRect rect = CGRectMake(0, 0, self.frame.size.width, 0);
-    _roomView = [[XHRoomView alloc] initWithFrame:rect];
-    _roomView.backgroundColor = [UIColor whiteColor];
-    [self addSubview:_roomView];
+    if (!_rightSwitch) {
+        _rightSwitch = [[UISwitch alloc] init];
+        [_rightSwitch setOnTintColor:[UIColor redColor]];
+        _rightSwitch.on = YES;
+    }
+    return _rightSwitch;
 }
 
-- (void)setRoomModel:(XHRoomModel *)roomModel
+- (UILabel *)rightLabel
 {
-    _roomView.roomModel = roomModel;
-    _roomView.updateTime = [NSDate date];
+    if (!_rightLabel) {
+        _rightLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _rightLabel.textColor = XHOrangeColor;
+    }
+    return _rightLabel;
+}
+
+- (void)setItem:(XHTableViewCellItem *)item
+{
+    _item = item;
+    self.imageView.image = [UIImage imageNamed:item.iconName];
+    self.textLabel.text = item.title;
+    self.detailTextLabel.text = item.detail;
     
-    _height = CGRectGetMaxY(_roomView.frame) + XHTableViewCellControlSpaceing;
-}
-
-// over write
-- (void)setFrame:(CGRect)frame
-{
-    frame.size.width = [[UIScreen mainScreen] applicationFrame].size.width;
-    [super setFrame:frame];
-}
-
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    // this method call very busy, so it should not write like this.
+    /*
+    if ([item isKindOfClass:[XHTableViewCellArrowItem class]]) {
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if ([item isKindOfClass:[XHTableViewCellSwitchItem class]]) {
+        self.accessoryView = [[UISwitch alloc] init];
+    } else {
+        self.accessoryView = nil;
+    }
+     */
+    if ([item isKindOfClass:[XHTableViewCellArrowItem class]]) {
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if ([item isKindOfClass:[XHTableViewCellSwitchItem class]]) {
+        self.accessoryView = self.rightSwitch;
+    } else if ([item isKindOfClass:[XHTableViewCellLabelItem class]]) {
+        self.accessoryView = self.rightLabel;
+    } else {
+        self.accessoryView = nil;
+    }
 }
 
 @end

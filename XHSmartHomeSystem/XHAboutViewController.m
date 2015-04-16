@@ -10,4 +10,9 @@
 
 @implementation XHAboutViewController
 
+- (void)viewDidLoad
+{
+    self.view.backgroundColor = XHOrangeColor;
+}
+
 @end

@@ -22,7 +22,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setupTabelView];    
+    // set navigation bar button item
+    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_chart"] style:UIBarButtonItemStyleDone target:self action:@selector(edit)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_msg_edit_highLighted" target:self action:@selector(edit)];
+    
+    [self setupTabelView];
     [self setupViewsAndData];
 }
 
@@ -39,6 +43,8 @@
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
+
+#pragma mark - setup Method
 
 - (void)setupTabelView
 {
@@ -73,6 +79,13 @@
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
+#pragma mark - Event
+
+- (void)edit
+{
+    XHLog(@"edit.");
+}
+
 #pragma mark - tableView delegate & datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -80,9 +93,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UUMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"XHCellID"];
+    UUMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"XHMsgCellID"];
     if (cell == nil) {
-        cell = [[UUMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XHCellID"];
+        cell = [[UUMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XHMsgCellID"];
         cell.delegate = self;
     }
     [cell setMessageFrame:self.msgModel.dataSource[indexPath.row]];

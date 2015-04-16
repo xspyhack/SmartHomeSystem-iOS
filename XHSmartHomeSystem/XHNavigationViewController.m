@@ -34,6 +34,7 @@
         [appearance setBackgroundImage:[UIImage imageNamed:@"nav_background"] forBarMetrics:UIBarMetricsDefault];
     }
     
+    
     // set text attribute
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
     textAttrs[NSForegroundColorAttributeName] = XHOrangeColor;
@@ -75,6 +76,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+
+#pragma mark - rewrite mothod
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {

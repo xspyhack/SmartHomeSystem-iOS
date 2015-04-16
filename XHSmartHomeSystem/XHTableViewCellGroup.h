@@ -10,4 +10,11 @@
 
 @interface XHTableViewCellGroup : NSObject
 
+@property (nonatomic, copy) NSString *groupHeader;
+@property (nonatomic, copy) NSString *groupFooter;
+
+@property (nonatomic, strong) NSArray *items; // all group item
+
++ (instancetype)group;
+
 @end

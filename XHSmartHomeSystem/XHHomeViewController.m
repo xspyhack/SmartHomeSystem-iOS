@@ -7,7 +7,7 @@
 //
 
 #import "XHHomeViewController.h"
-#import "XHTableViewCell.h"
+#import "XHRoomTableViewCell.h"
 #import "XHRoomModel.h"
 
 @interface XHHomeViewController ()
@@ -21,10 +21,15 @@
     // Do any additional setup after loading the view.
     
     // set navigationbar button
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_chart"] style:UIBarButtonItemStyleDone target:self action:@selector(chart)];
+    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_chart"] style:UIBarButtonItemStyleDone target:self action:@selector(chart)];
+    // use category
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_chart_highLighted" target:self action:@selector(chart)];
+    
     [self setupData];
     [self setupTabelView];
 }
+
+#pragma mark - Event
 
 - (void)chart
 {
@@ -55,7 +60,7 @@
     _modelCells = [[NSMutableArray alloc] init];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [_model addObject:[XHRoomModel roomModelWithDict:obj]];
-        XHTableViewCell *cell = [[XHTableViewCell alloc] init];
+        XHRoomTableViewCell *cell = [[XHRoomTableViewCell alloc] init];
         [_modelCells addObject:cell];
     }];
 }
@@ -75,10 +80,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"UITableViewCellIdenfifierKey";
-    XHTableViewCell *cell;
+    XHRoomTableViewCell *cell;
     cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[XHTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[XHRoomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     cell.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:0.8];
@@ -91,7 +96,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    XHTableViewCell *cell = _modelCells[indexPath.row];
+    XHRoomTableViewCell *cell = _modelCells[indexPath.row];
     cell.roomModel = _model[indexPath.row];
     return cell.height;
 }

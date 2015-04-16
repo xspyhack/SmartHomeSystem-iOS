@@ -137,9 +137,17 @@
 
 #pragma mark - Initialization
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setUp];
+    }
+    return self;
+}
+
 - (void)setUp
 {
-    self.backgroundColor = nil;
+    self.backgroundColor = [UIColor clearColor];
     self.opaque = NO;
     self.contentMode = UIViewContentModeRedraw;
 }

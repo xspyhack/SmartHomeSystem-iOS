@@ -12,9 +12,9 @@
     CAShapeLayer *arcLayer;
     UIBezierPath *path;
 }
-
+/* the backgroundColor must clear */
 @property (nonatomic) NSString *imageName;
-@property (nonatomic) UIColor *color;
+@property (nonatomic) UIColor *color;  //progress color
 @property (nonatomic) CGFloat progress;
 @property (nonatomic) CGFloat lineWidth;
 

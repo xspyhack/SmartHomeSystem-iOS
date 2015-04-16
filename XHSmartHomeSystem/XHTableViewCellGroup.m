@@ -10,4 +10,9 @@
 
 @implementation XHTableViewCellGroup
 
++ (instancetype)group
+{
+    return [[self alloc] init];
+}
+
 @end
