@@ -22,7 +22,7 @@
 
 #define IOS_7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
 #define XHColor(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0f]
-#define XHOrangeColor ([UIColor colorWithRed:255.0/255 green:185.0/255 blue:0.0/255 alpha:1.0f]);
+#define XHOrangeColor ([UIColor colorWithRed:255.0/255 green:185.0/255 blue:0.0/255 alpha:1.0f])
 
 #define XHNewFeatureImageCount 4
 #define XHTokenExpiresTime 1000

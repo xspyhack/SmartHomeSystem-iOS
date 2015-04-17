@@ -19,6 +19,7 @@
 - (XHRoomModel *)initWithDict:(NSDictionary *)dict
 {
     if (self = [super init]) {
+        self.Id = [dict[@"Id"] integerValue];
         self.iconName = dict[@"iconName"];
         self.name = dict[@"name"];
         self.temperature = dict[@"temperature"];

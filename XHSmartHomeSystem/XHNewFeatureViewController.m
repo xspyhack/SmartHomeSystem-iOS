@@ -127,7 +127,6 @@
     CGRect bounds = self.scrollView.bounds;
     bounds.origin.x = CGRectGetWidth(bounds) * self.pageControl.currentPage;
     bounds.origin.y = 0;
-    NSLog(@"xxx%f", bounds.origin.x);
     [self.scrollView scrollRectToVisible:bounds animated:YES];
 }
 

@@ -10,6 +10,7 @@
 
 @interface XHRoomModel : NSObject
 
+@property (nonatomic, assign) NSInteger Id;
 @property (nonatomic, copy) NSString *iconName;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *temperature;

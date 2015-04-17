@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		781F1FE71AE0AC7D00ACEACC /* ARLineChartCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FE21AE0AC7D00ACEACC /* ARLineChartCommon.m */; };
+		781F1FE81AE0AC7D00ACEACC /* ARLineChartContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FE41AE0AC7D00ACEACC /* ARLineChartContentView.m */; };
+		781F1FE91AE0AC7D00ACEACC /* ARLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FE61AE0AC7D00ACEACC /* ARLineChartView.m */; };
+		781F1FED1AE0C10600ACEACC /* XHChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FEC1AE0C10600ACEACC /* XHChartView.m */; };
+		781F1FF01AE0C97600ACEACC /* XHChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FEF1AE0C97600ACEACC /* XHChartViewController.m */; };
 		785531421ADE583B00080703 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531411ADE583B00080703 /* UIBarButtonItem+Extension.m */; };
 		785531461ADF501600080703 /* XHTableViewCellGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531451ADF501600080703 /* XHTableViewCellGroup.m */; };
 		785531491ADF50BE00080703 /* XHTableViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531481ADF50BE00080703 /* XHTableViewCellItem.m */; };
@@ -56,6 +61,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		781F1FE11AE0AC7D00ACEACC /* ARLineChartCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLineChartCommon.h; sourceTree = "<group>"; };
+		781F1FE21AE0AC7D00ACEACC /* ARLineChartCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLineChartCommon.m; sourceTree = "<group>"; };
+		781F1FE31AE0AC7D00ACEACC /* ARLineChartContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLineChartContentView.h; sourceTree = "<group>"; };
+		781F1FE41AE0AC7D00ACEACC /* ARLineChartContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLineChartContentView.m; sourceTree = "<group>"; };
+		781F1FE51AE0AC7D00ACEACC /* ARLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLineChartView.h; sourceTree = "<group>"; };
+		781F1FE61AE0AC7D00ACEACC /* ARLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLineChartView.m; sourceTree = "<group>"; };
+		781F1FEB1AE0C10600ACEACC /* XHChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHChartView.h; sourceTree = "<group>"; };
+		781F1FEC1AE0C10600ACEACC /* XHChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHChartView.m; sourceTree = "<group>"; };
+		781F1FEE1AE0C97600ACEACC /* XHChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHChartViewController.h; sourceTree = "<group>"; };
+		781F1FEF1AE0C97600ACEACC /* XHChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHChartViewController.m; sourceTree = "<group>"; };
 		785531401ADE583B00080703 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		785531411ADE583B00080703 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		785531441ADF501600080703 /* XHTableViewCellGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTableViewCellGroup.h; sourceTree = "<group>"; };
@@ -148,6 +163,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		781F1FEA1AE0AC8400ACEACC /* ARLineChart */ = {
+			isa = PBXGroup;
+			children = (
+				781F1FE11AE0AC7D00ACEACC /* ARLineChartCommon.h */,
+				781F1FE21AE0AC7D00ACEACC /* ARLineChartCommon.m */,
+				781F1FE31AE0AC7D00ACEACC /* ARLineChartContentView.h */,
+				781F1FE41AE0AC7D00ACEACC /* ARLineChartContentView.m */,
+				781F1FE51AE0AC7D00ACEACC /* ARLineChartView.h */,
+				781F1FE61AE0AC7D00ACEACC /* ARLineChartView.m */,
+			);
+			name = ARLineChart;
+			sourceTree = "<group>";
+		};
+		781F1FF11AE0E4F300ACEACC /* Home ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				787FBB541AD8E64100316651 /* XHHomeViewController.h */,
+				787FBB551AD8E64100316651 /* XHHomeViewController.m */,
+				781F1FEE1AE0C97600ACEACC /* XHChartViewController.h */,
+				781F1FEF1AE0C97600ACEACC /* XHChartViewController.m */,
+			);
+			name = "Home ViewControllers";
+			sourceTree = "<group>";
+		};
+		781F1FF21AE0E51800ACEACC /* Message ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				787FBB571AD8E67D00316651 /* XHMessagesViewController.h */,
+				787FBB581AD8E67D00316651 /* XHMessagesViewController.m */,
+			);
+			name = "Message ViewControllers";
+			sourceTree = "<group>";
+		};
 		785531431ADE5EE800080703 /* Categorys */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,10 +248,8 @@
 				787FBB6A1AD9026900316651 /* XHNavigationViewController.m */,
 				787FBB5B1AD8E99800316651 /* XHLinkinViewController.h */,
 				787FBB5C1AD8E99800316651 /* XHLinkinViewController.m */,
-				787FBB541AD8E64100316651 /* XHHomeViewController.h */,
-				787FBB551AD8E64100316651 /* XHHomeViewController.m */,
-				787FBB571AD8E67D00316651 /* XHMessagesViewController.h */,
-				787FBB581AD8E67D00316651 /* XHMessagesViewController.m */,
+				781F1FF11AE0E4F300ACEACC /* Home ViewControllers */,
+				781F1FF21AE0E51800ACEACC /* Message ViewControllers */,
 				7855315F1ADF941100080703 /* Settings ViewControllers */,
 			);
 			name = Controllers;
@@ -268,6 +314,8 @@
 				786E90391ADBB50800A93675 /* XHRoomView.m */,
 				78C13B9A1ADA6D370020AAFA /* XHImageView.h */,
 				78C13B9B1ADA6D370020AAFA /* XHImageView.m */,
+				781F1FEB1AE0C10600ACEACC /* XHChartView.h */,
+				781F1FEC1AE0C10600ACEACC /* XHChartView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -295,15 +343,16 @@
 		78DD5B9B1AD780B700DC9FA0 /* XHSmartHomeSystem */ = {
 			isa = PBXGroup;
 			children = (
+				781F1FEA1AE0AC8400ACEACC /* ARLineChart */,
 				786E90541ADCBBC100A93675 /* UUChat */,
 				78C13B9D1ADA6D430020AAFA /* Views */,
 				78C13B991ADA380D0020AAFA /* Tools */,
 				787FBB651AD8EB7C00316651 /* Models */,
 				787FBB611AD8EA9F00316651 /* Cells */,
 				787FBB5A1AD8E6BF00316651 /* Controllers */,
-				78DD5B9C1AD780B700DC9FA0 /* Supporting Files */,
 				78C13B981ADA37DC0020AAFA /* New Feature */,
 				785531431ADE5EE800080703 /* Categorys */,
+				78DD5B9C1AD780B700DC9FA0 /* Supporting Files */,
 			);
 			path = XHSmartHomeSystem;
 			sourceTree = "<group>";
@@ -441,6 +490,8 @@
 				785531581ADF85AB00080703 /* XHAboutViewController.m in Sources */,
 				787FBB591AD8E67D00316651 /* XHMessagesViewController.m in Sources */,
 				786E90601ADCC3F000A93675 /* XHMessageModel.m in Sources */,
+				781F1FE91AE0AC7D00ACEACC /* ARLineChartView.m in Sources */,
+				781F1FF01AE0C97600ACEACC /* XHChartViewController.m in Sources */,
 				786E90531ADCBBBC00A93675 /* NSDate+Utils.m in Sources */,
 				787FBB561AD8E64100316651 /* XHHomeViewController.m in Sources */,
 				787FBB681AD8F46F00316651 /* XHTabBarViewController.m in Sources */,
@@ -464,11 +515,14 @@
 				7855314F1ADF58C800080703 /* XHTableViewCellArrowItem.m in Sources */,
 				7855314C1ADF528E00080703 /* XHRoomTableViewCell.m in Sources */,
 				787DECE81AD93FF70081ECEE /* XHNewFeatureViewController.m in Sources */,
+				781F1FE81AE0AC7D00ACEACC /* ARLineChartContentView.m in Sources */,
 				78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */,
+				781F1FED1AE0C10600ACEACC /* XHChartView.m in Sources */,
 				785531551ADF5C1F00080703 /* XHTableViewCellLabelItem.m in Sources */,
 				78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */,
 				78C13B9C1ADA6D370020AAFA /* XHImageView.m in Sources */,
 				7855315E1ADF907300080703 /* XHGeneralSettingsViewController.m in Sources */,
+				781F1FE71AE0AC7D00ACEACC /* ARLineChartCommon.m in Sources */,
 				786E90571ADCBD6000A93675 /* UUMessageContentButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

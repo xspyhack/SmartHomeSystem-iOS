@@ -9,6 +9,7 @@
 #import "XHHomeViewController.h"
 #import "XHRoomTableViewCell.h"
 #import "XHRoomModel.h"
+#import "XHChartViewController.h"
 
 @interface XHHomeViewController ()
 
@@ -33,7 +34,11 @@
 
 - (void)chart
 {
+    XHRoomModel *model = _model[0];
     XHLog(@"chart");
+    XHChartViewController *chartVC = [[XHChartViewController alloc] init];
+    chartVC.roomId = model.Id;
+    [self.navigationController pushViewController:chartVC animated:YES];
 }
 
 #pragma mark - initialization
@@ -103,7 +108,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //[self performSelector:@selector(deselect) withObject:nil afterDelay:0.1f];
+    XHRoomModel *model = _model[indexPath.row];
+    XHChartViewController *chartVC = [[XHChartViewController alloc] init];
+    chartVC.roomId = model.Id;
+    [self.navigationController pushViewController:chartVC animated:YES];
 }
 
 // deselect alter 0.5s
