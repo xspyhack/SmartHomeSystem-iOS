@@ -399,7 +399,6 @@ typedef enum {
                 [ARLineChartCommon drawLine:context startPoint:startPoint2 endPoint:endPoint2 lineColor:line2Color];
             //}
             
-            NSLog(@"%ld", i);
         }
     }
     

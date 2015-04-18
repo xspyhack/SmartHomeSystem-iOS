@@ -40,6 +40,7 @@
 		787FBB5D1AD8E99800316651 /* XHLinkinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB5C1AD8E99800316651 /* XHLinkinViewController.m */; };
 		787FBB681AD8F46F00316651 /* XHTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB671AD8F46F00316651 /* XHTabBarViewController.m */; };
 		787FBB6B1AD9026900316651 /* XHNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB6A1AD9026900316651 /* XHNavigationViewController.m */; };
+		78B08F381AE20B4C00A26C53 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B08F371AE20B4C00A26C53 /* MBProgressHUD.m */; };
 		78C13B941ADA0EF90020AAFA /* XHTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B931ADA0EF90020AAFA /* XHTokenModel.m */; };
 		78C13B971ADA101C0020AAFA /* XHTokenTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B961ADA101C0020AAFA /* XHTokenTools.m */; };
 		78C13B9C1ADA6D370020AAFA /* XHImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B9B1ADA6D370020AAFA /* XHImageView.m */; };
@@ -127,6 +128,8 @@
 		787FBB691AD9026900316651 /* XHNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHNavigationViewController.h; sourceTree = "<group>"; };
 		787FBB6A1AD9026900316651 /* XHNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHNavigationViewController.m; sourceTree = "<group>"; };
 		787FBB6C1AD90CD200316651 /* XHSmartHome-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XHSmartHome-Prefix.pch"; sourceTree = "<group>"; };
+		78B08F361AE20B4C00A26C53 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		78B08F371AE20B4C00A26C53 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		78C13B921ADA0EF90020AAFA /* XHTokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTokenModel.h; sourceTree = "<group>"; };
 		78C13B931ADA0EF90020AAFA /* XHTokenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTokenModel.m; sourceTree = "<group>"; };
 		78C13B951ADA101C0020AAFA /* XHTokenTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTokenTools.h; sourceTree = "<group>"; };
@@ -289,6 +292,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		78B08F391AE20B5400A26C53 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				78B08F361AE20B4C00A26C53 /* MBProgressHUD.h */,
+				78B08F371AE20B4C00A26C53 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		78C13B981ADA37DC0020AAFA /* New Feature */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +355,7 @@
 		78DD5B9B1AD780B700DC9FA0 /* XHSmartHomeSystem */ = {
 			isa = PBXGroup;
 			children = (
+				78B08F391AE20B5400A26C53 /* MBProgressHUD */,
 				781F1FEA1AE0AC8400ACEACC /* ARLineChart */,
 				786E90541ADCBBC100A93675 /* UUChat */,
 				78C13B9D1ADA6D430020AAFA /* Views */,
@@ -494,6 +507,7 @@
 				781F1FF01AE0C97600ACEACC /* XHChartViewController.m in Sources */,
 				786E90531ADCBBBC00A93675 /* NSDate+Utils.m in Sources */,
 				787FBB561AD8E64100316651 /* XHHomeViewController.m in Sources */,
+				78B08F381AE20B4C00A26C53 /* MBProgressHUD.m in Sources */,
 				787FBB681AD8F46F00316651 /* XHTabBarViewController.m in Sources */,
 				786E903A1ADBB50800A93675 /* XHRoomView.m in Sources */,
 				785531521ADF58E500080703 /* XHTableViewCellSwitchItem.m in Sources */,

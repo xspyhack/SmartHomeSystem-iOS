@@ -131,7 +131,7 @@
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellLabelItem *generalItem = [XHTableViewCellLabelItem itemWithTitle:@"General" iconName:@"general"];
+    XHTableViewCellLabelItem *generalItem = [XHTableViewCellLabelItem itemWithTitle:@"Settings" iconName:@"general"];
     XHTableViewCellItem *linkOutItem = [XHTableViewCellItem itemWithTitle:@"Link out"];
     linkOutItem.operation = ^ {
         [self alert];
@@ -168,12 +168,12 @@
     XHTableViewCellGroup *group = self.groups[section];
     return group.items.count;
 }
-
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 50;
 }
-
+*/
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) return 193;

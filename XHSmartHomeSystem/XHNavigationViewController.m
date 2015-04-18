@@ -29,17 +29,19 @@
 {
     // it can setup all project's navigationbar by setting appearance
     UINavigationBar *appearance = [UINavigationBar appearance];
-    
+    /*
     if (!IOS_7) {
         [appearance setBackgroundImage:[UIImage imageNamed:@"nav_background"] forBarMetrics:UIBarMetricsDefault];
     }
-    
+    */
     
     // set text attribute
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
     textAttrs[NSForegroundColorAttributeName] = XHOrangeColor;
     //textAttrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:20];
-    //textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero];
+    //textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero]; // shadow
+    [appearance setTintColor:XHOrangeColor]; // set tint color
+    //[appearance setBarTintColor:XHOrangeColor]; // set bar background color
     
     [appearance setTitleTextAttributes:textAttrs];
 }
@@ -69,7 +71,7 @@
     [appearance setTitleTextAttributes:disableTextAttrs forState:UIControlStateDisabled];
 
     // set background image
-    [appearance setBackButtonBackgroundImage:[UIImage imageNamed:@"nav_btn_background"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    //[appearance setBackButtonBackgroundImage:[UIImage imageNamed:@"nav_btn_background"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 }
 
 - (void)viewDidLoad {
@@ -90,7 +92,8 @@
         
         // intercept push operate, and set navigation leftbarbutton
         //viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(back)];
-        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_back" highLightedImageName:@"nav_back_highLighted" target:self action:@selector(back)];
+        //viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_back" highLightedImageName:@"nav_back_highLighted" target:self action:@selector(back)];
+        
     }
     [super pushViewController:viewController animated:YES];
 }
