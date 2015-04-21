@@ -50,6 +50,7 @@
 		78E614991AE5ED4800191132 /* XHLineChartContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E614981AE5ED4800191132 /* XHLineChartContentView.m */; };
 		78E6149C1AE5ED7800191132 /* XHChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6149B1AE5ED7800191132 /* XHChart.m */; };
 		78E6149F1AE5EDCF00191132 /* XHLineChartItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6149E1AE5EDCF00191132 /* XHLineChartItem.m */; };
+		78E614D71AE6447100191132 /* XHGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E614D61AE6447100191132 /* XHGaugeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,8 @@
 		78E6149B1AE5ED7800191132 /* XHChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHChart.m; sourceTree = "<group>"; };
 		78E6149D1AE5EDCF00191132 /* XHLineChartItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHLineChartItem.h; sourceTree = "<group>"; };
 		78E6149E1AE5EDCF00191132 /* XHLineChartItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLineChartItem.m; sourceTree = "<group>"; };
+		78E614D51AE6447100191132 /* XHGaugeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHGaugeView.h; sourceTree = "<group>"; };
+		78E614D61AE6447100191132 /* XHGaugeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHGaugeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +321,8 @@
 				78C13B9B1ADA6D370020AAFA /* XHImageView.m */,
 				781F1FEB1AE0C10600ACEACC /* XHChartView.h */,
 				781F1FEC1AE0C10600ACEACC /* XHChartView.m */,
+				78E614D51AE6447100191132 /* XHGaugeView.h */,
+				78E614D61AE6447100191132 /* XHGaugeView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -517,6 +522,7 @@
 				785531521ADF58E500080703 /* XHTableViewCellSwitchItem.m in Sources */,
 				787FBB501AD8E5A200316651 /* XHSettingsViewController.m in Sources */,
 				786E90501ADCBBAE00A93675 /* UUMessageFrame.m in Sources */,
+				78E614D71AE6447100191132 /* XHGaugeView.m in Sources */,
 				78E614951AE5ECE600191132 /* XHLineChartView.m in Sources */,
 				786E903D1ADBB54E00A93675 /* XHTableViewCell.m in Sources */,
 				787FBB6B1AD9026900316651 /* XHNavigationViewController.m in Sources */,
