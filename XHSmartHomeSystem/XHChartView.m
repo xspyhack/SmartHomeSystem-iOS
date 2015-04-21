@@ -7,8 +7,8 @@
 //
 
 #import "XHChartView.h"
-#import "ARLineChartCommon.h"
-#import "ARLineChartView.h"
+#import "XHLineChartItem.h"
+#import "XHLineChartView.h"
 #import "XHRoomModel.h"
 
 @interface XHChartView ()
@@ -23,6 +23,7 @@ typedef enum {
     XHKitchen = 2,
     XHBathroom = 3
 }XHRoomId;
+
 
 @implementation XHChartView
 
@@ -58,11 +59,13 @@ typedef enum {
     double distanceMin = 0, distanceMax = 100;
     double altitudeMin = 5.0, altitudeMax = 50;
     double speedMin = 0.5, speedMax = 15;
-    
+    if (self.dataSource) {
+        [self.dataSource removeAllObjects];
+    }
     srand(time(NULL)); //Random seed
     for (int i = 0; i < 8; i++) {
         //srand(time(i)); //Random seed
-        RLLineChartItem *item = [[RLLineChartItem alloc] init];
+        XHLineChartItem *item = [[XHLineChartItem alloc] init];
         double randVal;
         
         randVal = rand() /((double)(RAND_MAX)/distanceMax) + distanceMin;
@@ -74,7 +77,6 @@ typedef enum {
         randVal = rand() /((double)(RAND_MAX)/speedMax) + speedMin;
         item.y2Value = randVal;
         
-        NSLog(@"Random: item.xValue=%.2lf, item.y1Value=%.2lf, item.y2Value=%.2lf", item.xValue, item.y1Value, item.y2Value);
         [self.dataSource addObject:item];
     }
 }
@@ -96,14 +98,35 @@ typedef enum {
 - (void)setupChartView
 {
     CGRect rect = CGRectMake(5, 30, self.frame.size.width - 10, 350);
-    self.lineChartView = [[ARLineChartView alloc] initWithFrame:rect dataSource:self.dataSource xTitle:@"date" y1Title:@"temperature" y2Title:@"humidity" desc1:@"TEMP" desc2:@"HUMI"];
+    self.lineChartView = [[XHLineChartView alloc] initWithFrame:rect xTitle:@"date" y1Title:@"temperature" y2Title:@"humidity" describe1:@"TEMP" describe2:@"HUMI"];
+    self.lineChartView.lineWidth = 1.f;
+    self.lineChartView.inflexionPointWidth = 3.f;
+    self.lineChartView.y1LineColor = [UIColor colorWithRed:(float)249/255 green:(float)176/255 blue:(float)47/255 alpha:1.0];
+    self.lineChartView.y2LineColor = [UIColor colorWithRed:(float)73/255 green:(float)146/255 blue:(float)187/255 alpha:1.0];
+    self.lineChartView.alpha = 1.f;
+    
+    self.lineChartView.dataSource = self.dataSource;
+    
+    [self.lineChartView strokeChartView];
     [self addSubview:self.lineChartView];
     
-    CGRect roomRect = CGRectMake(10, CGRectGetMaxY(rect), self.frame.size.width, 100);
+    CGRect roomRect = CGRectMake(10, CGRectGetMaxY(rect), self.frame.size.width - 20, 100);
     _roomNameLabel = [[UILabel alloc] initWithFrame:roomRect];
     _roomNameLabel.textAlignment = NSTextAlignmentCenter;
     _roomNameLabel.textColor = XHOrangeColor;
     [self addSubview:_roomNameLabel];
+    
+    UIButton *refresh = [[UIButton alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(roomRect), self.frame.size.width - 20, 30)];
+    [refresh setTitle:@"refresh" forState:UIControlStateNormal];
+    refresh.backgroundColor = XHOrangeColor;
+    [refresh addTarget:self action:@selector(refresh) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:refresh];
+}
+
+- (void)refresh
+{
+    [self setupDataSource];
+    [self.lineChartView refreshChartWithData:self.dataSource];
 }
 
 @end

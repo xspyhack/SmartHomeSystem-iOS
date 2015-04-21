@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ARLineChartView;
+@class XHLineChartView;
 
 @interface XHChartView : UIView
 
-@property (nonatomic, strong) ARLineChartView *lineChartView;
+@property (nonatomic, strong) XHLineChartView *lineChartView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
-@property (nonatomic, assign) NSInteger roomId;
+@property (nonatomic) NSInteger roomId;
 
 @end

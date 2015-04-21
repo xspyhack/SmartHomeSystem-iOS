@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		781F1FE71AE0AC7D00ACEACC /* ARLineChartCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FE21AE0AC7D00ACEACC /* ARLineChartCommon.m */; };
-		781F1FE81AE0AC7D00ACEACC /* ARLineChartContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FE41AE0AC7D00ACEACC /* ARLineChartContentView.m */; };
-		781F1FE91AE0AC7D00ACEACC /* ARLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FE61AE0AC7D00ACEACC /* ARLineChartView.m */; };
 		781F1FED1AE0C10600ACEACC /* XHChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FEC1AE0C10600ACEACC /* XHChartView.m */; };
 		781F1FF01AE0C97600ACEACC /* XHChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FEF1AE0C97600ACEACC /* XHChartViewController.m */; };
 		785531421ADE583B00080703 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531411ADE583B00080703 /* UIBarButtonItem+Extension.m */; };
@@ -49,6 +46,10 @@
 		78DD5BAA1AD780B700DC9FA0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78DD5BA91AD780B700DC9FA0 /* Images.xcassets */; };
 		78DD5BAD1AD780B700DC9FA0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DD5BAB1AD780B700DC9FA0 /* LaunchScreen.xib */; };
 		78DD5BB91AD780B700DC9FA0 /* XHSmartHomeSystemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5BB81AD780B700DC9FA0 /* XHSmartHomeSystemTests.m */; };
+		78E614951AE5ECE600191132 /* XHLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E614941AE5ECE600191132 /* XHLineChartView.m */; };
+		78E614991AE5ED4800191132 /* XHLineChartContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E614981AE5ED4800191132 /* XHLineChartContentView.m */; };
+		78E6149C1AE5ED7800191132 /* XHChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6149B1AE5ED7800191132 /* XHChart.m */; };
+		78E6149F1AE5EDCF00191132 /* XHLineChartItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6149E1AE5EDCF00191132 /* XHLineChartItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,12 +63,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		781F1FE11AE0AC7D00ACEACC /* ARLineChartCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLineChartCommon.h; sourceTree = "<group>"; };
-		781F1FE21AE0AC7D00ACEACC /* ARLineChartCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLineChartCommon.m; sourceTree = "<group>"; };
-		781F1FE31AE0AC7D00ACEACC /* ARLineChartContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLineChartContentView.h; sourceTree = "<group>"; };
-		781F1FE41AE0AC7D00ACEACC /* ARLineChartContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLineChartContentView.m; sourceTree = "<group>"; };
-		781F1FE51AE0AC7D00ACEACC /* ARLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLineChartView.h; sourceTree = "<group>"; };
-		781F1FE61AE0AC7D00ACEACC /* ARLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLineChartView.m; sourceTree = "<group>"; };
 		781F1FEB1AE0C10600ACEACC /* XHChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHChartView.h; sourceTree = "<group>"; };
 		781F1FEC1AE0C10600ACEACC /* XHChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHChartView.m; sourceTree = "<group>"; };
 		781F1FEE1AE0C97600ACEACC /* XHChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHChartViewController.h; sourceTree = "<group>"; };
@@ -146,6 +141,14 @@
 		78DD5BB21AD780B700DC9FA0 /* XHSmartHomeSystemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XHSmartHomeSystemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DD5BB71AD780B700DC9FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78DD5BB81AD780B700DC9FA0 /* XHSmartHomeSystemTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XHSmartHomeSystemTests.m; sourceTree = "<group>"; };
+		78E614931AE5ECE600191132 /* XHLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHLineChartView.h; sourceTree = "<group>"; };
+		78E614941AE5ECE600191132 /* XHLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLineChartView.m; sourceTree = "<group>"; };
+		78E614971AE5ED4800191132 /* XHLineChartContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHLineChartContentView.h; sourceTree = "<group>"; };
+		78E614981AE5ED4800191132 /* XHLineChartContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLineChartContentView.m; sourceTree = "<group>"; };
+		78E6149A1AE5ED7800191132 /* XHChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHChart.h; sourceTree = "<group>"; };
+		78E6149B1AE5ED7800191132 /* XHChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHChart.m; sourceTree = "<group>"; };
+		78E6149D1AE5EDCF00191132 /* XHLineChartItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHLineChartItem.h; sourceTree = "<group>"; };
+		78E6149E1AE5EDCF00191132 /* XHLineChartItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLineChartItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,19 +169,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		781F1FEA1AE0AC8400ACEACC /* ARLineChart */ = {
-			isa = PBXGroup;
-			children = (
-				781F1FE11AE0AC7D00ACEACC /* ARLineChartCommon.h */,
-				781F1FE21AE0AC7D00ACEACC /* ARLineChartCommon.m */,
-				781F1FE31AE0AC7D00ACEACC /* ARLineChartContentView.h */,
-				781F1FE41AE0AC7D00ACEACC /* ARLineChartContentView.m */,
-				781F1FE51AE0AC7D00ACEACC /* ARLineChartView.h */,
-				781F1FE61AE0AC7D00ACEACC /* ARLineChartView.m */,
-			);
-			name = ARLineChart;
-			sourceTree = "<group>";
-		};
 		781F1FF11AE0E4F300ACEACC /* Home ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,7 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				78B08F391AE20B5400A26C53 /* MBProgressHUD */,
-				781F1FEA1AE0AC8400ACEACC /* ARLineChart */,
+				78E614961AE5ECFE00191132 /* Chart */,
 				786E90541ADCBBC100A93675 /* UUChat */,
 				78C13B9D1ADA6D430020AAFA /* Views */,
 				78C13B991ADA380D0020AAFA /* Tools */,
@@ -398,6 +388,21 @@
 				78DD5BB71AD780B700DC9FA0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		78E614961AE5ECFE00191132 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				78E6149A1AE5ED7800191132 /* XHChart.h */,
+				78E6149B1AE5ED7800191132 /* XHChart.m */,
+				78E6149D1AE5EDCF00191132 /* XHLineChartItem.h */,
+				78E6149E1AE5EDCF00191132 /* XHLineChartItem.m */,
+				78E614931AE5ECE600191132 /* XHLineChartView.h */,
+				78E614941AE5ECE600191132 /* XHLineChartView.m */,
+				78E614971AE5ED4800191132 /* XHLineChartContentView.h */,
+				78E614981AE5ED4800191132 /* XHLineChartContentView.m */,
+			);
+			name = Chart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,7 +508,6 @@
 				785531581ADF85AB00080703 /* XHAboutViewController.m in Sources */,
 				787FBB591AD8E67D00316651 /* XHMessagesViewController.m in Sources */,
 				786E90601ADCC3F000A93675 /* XHMessageModel.m in Sources */,
-				781F1FE91AE0AC7D00ACEACC /* ARLineChartView.m in Sources */,
 				781F1FF01AE0C97600ACEACC /* XHChartViewController.m in Sources */,
 				786E90531ADCBBBC00A93675 /* NSDate+Utils.m in Sources */,
 				787FBB561AD8E64100316651 /* XHHomeViewController.m in Sources */,
@@ -513,10 +517,12 @@
 				785531521ADF58E500080703 /* XHTableViewCellSwitchItem.m in Sources */,
 				787FBB501AD8E5A200316651 /* XHSettingsViewController.m in Sources */,
 				786E90501ADCBBAE00A93675 /* UUMessageFrame.m in Sources */,
+				78E614951AE5ECE600191132 /* XHLineChartView.m in Sources */,
 				786E903D1ADBB54E00A93675 /* XHTableViewCell.m in Sources */,
 				787FBB6B1AD9026900316651 /* XHNavigationViewController.m in Sources */,
 				786E90321ADB966500A93675 /* XHRoomModel.m in Sources */,
 				786E904F1ADCBBAE00A93675 /* UUMessageCell.m in Sources */,
+				78E6149C1AE5ED7800191132 /* XHChart.m in Sources */,
 				786E904E1ADCBBAE00A93675 /* UUMessage.m in Sources */,
 				7855315B1ADF8CEB00080703 /* XHTableViewController.m in Sources */,
 				785531421ADE583B00080703 /* UIBarButtonItem+Extension.m in Sources */,
@@ -526,17 +532,17 @@
 				785531491ADF50BE00080703 /* XHTableViewCellItem.m in Sources */,
 				785531461ADF501600080703 /* XHTableViewCellGroup.m in Sources */,
 				78C13B941ADA0EF90020AAFA /* XHTokenModel.m in Sources */,
+				78E614991AE5ED4800191132 /* XHLineChartContentView.m in Sources */,
 				7855314F1ADF58C800080703 /* XHTableViewCellArrowItem.m in Sources */,
 				7855314C1ADF528E00080703 /* XHRoomTableViewCell.m in Sources */,
+				78E6149F1AE5EDCF00191132 /* XHLineChartItem.m in Sources */,
 				787DECE81AD93FF70081ECEE /* XHNewFeatureViewController.m in Sources */,
-				781F1FE81AE0AC7D00ACEACC /* ARLineChartContentView.m in Sources */,
 				78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */,
 				781F1FED1AE0C10600ACEACC /* XHChartView.m in Sources */,
 				785531551ADF5C1F00080703 /* XHTableViewCellLabelItem.m in Sources */,
 				78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */,
 				78C13B9C1ADA6D370020AAFA /* XHImageView.m in Sources */,
 				7855315E1ADF907300080703 /* XHGeneralSettingsViewController.m in Sources */,
-				781F1FE71AE0AC7D00ACEACC /* ARLineChartCommon.m in Sources */,
 				786E90571ADCBD6000A93675 /* UUMessageContentButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

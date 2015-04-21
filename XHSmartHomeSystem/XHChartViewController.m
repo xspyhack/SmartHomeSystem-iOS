@@ -74,7 +74,6 @@
     
     self.pageControl = pageControl;
     self.pageControl.currentPage = self.roomId; // set currentPage
-    NSLog(@"current Page: %ld", self.roomId);
     [self setPage];
     
     [self.view addSubview:pageControl];

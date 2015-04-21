@@ -19,7 +19,7 @@
 @synthesize imageScaleFactor = _imageScaleFactor;
 @synthesize lineWidth = _lineWidth;
 
-#define DEFAULT_USER_IMAGE_SCALE_FACTOR 1
+#define DEFAULT_USER_IMAGE_SCALE_FACTOR 0.97
 
 - (CGFloat)imageScaleFactor
 {
@@ -78,18 +78,30 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
 
+    // method 1 - use stroke, no use sublayer
     
-    path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.width/2) radius:self.bounds.size.width/2-1 startAngle:- M_PI_2 endAngle:(M_PI * 2) * _progress - M_PI_2 clockwise:YES];;
+    UIColor *color = self.color;
+    [color set];
+    path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.width/2) radius:self.bounds.size.width/2-1.5f startAngle:- M_PI_2 endAngle:(M_PI * 2) * _progress - M_PI_2 clockwise:YES];
     
+    //path.lineCapStyle = kCGLineCapRound;
+    path.lineCapStyle = kCGLineCapButt; // butt
+    path.lineJoinStyle = kCGLineCapButt;
+    path.lineWidth = self.lineWidth;
+    [path stroke];
+    /*
+    // method 2 - use sublayer
+    path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.width/2) radius:self.bounds.size.width/2-1.5f startAngle:- M_PI_2 endAngle:(M_PI * 2) * _progress - M_PI_2 clockwise:YES];
     arcLayer = [CAShapeLayer layer];
+    arcLayer.allowsEdgeAntialiasing = YES; // antialiasing
+    arcLayer.edgeAntialiasingMask = YES;
     arcLayer.path = path.CGPath;//46,169,230
     
     arcLayer.fillColor = [UIColor colorWithWhite:1 alpha:0].CGColor;
     arcLayer.strokeColor = self.color.CGColor;
     arcLayer.lineWidth = self.lineWidth;
-    //arcLayer.frame = self.frame;
     [self.layer addSublayer:arcLayer];
-
+*/
     UIImage *faceImage = [UIImage imageNamed:self.imageName];
     if (faceImage) {
         CGRect imageRect = CGRectInset(self.bounds,

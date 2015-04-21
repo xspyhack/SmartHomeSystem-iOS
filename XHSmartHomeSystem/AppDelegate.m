@@ -70,6 +70,13 @@
     // show window
     [self.window makeKeyAndVisible];
     
+    if ([[UIApplication sharedApplication] currentUserNotificationSettings].types != UIUserNotificationTypeNone) {
+        //
+        [self addLocalNotification];
+    } else {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    }
+    
     return YES;
 }
 
@@ -93,6 +100,26 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)addLocalNotification
+{
+    // define local notification object
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:100];
+    notification.repeatInterval = 2;
+    notification.alertBody = @"your sex services has been called, hava a good time.";
+    notification.applicationIconBadgeNumber = 1;
+    notification.alertAction = @"open";
+    notification.alertLaunchImage = @"1";
+    notification.soundName = @"msg.caf";
+    notification.userInfo = @{@"id":@1,@"user":@"b233"};
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
+- (void)removeLocalNotification
+{
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
 @end

@@ -186,7 +186,7 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
         view.backgroundColor = [UIColor whiteColor];
         
-        UIView *subView = [[UIView alloc] initWithFrame:CGRectMake(0, 63, self.view.frame.size.width, 100)];
+        UIView *subView = [[UIView alloc] initWithFrame:CGRectMake(0, 62.6, self.view.frame.size.width, 100)];
         subView.backgroundColor = XHOrangeColor;
         
         UILabel *lbBio = [[UILabel alloc] initWithFrame:CGRectMake((subView.bounds.size.width-300)/2, 30, 300, 30)];
