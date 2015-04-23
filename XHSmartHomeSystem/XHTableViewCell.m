@@ -11,6 +11,7 @@
 #import "XHTableViewCellArrowItem.h"
 #import "XHTableViewCellSwitchItem.h"
 #import "XHTableViewCellLabelItem.h"
+#import "XHTableViewCellCheckmarkItem.h"
 
 @implementation XHTableViewCell
 
@@ -19,8 +20,8 @@
     static NSString *cellIdentifier = @"XHTabelViewCellIdentifier";
     XHTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[XHTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-        cell.backgroundColor = XHColor(245, 245, 245);
+        cell = [[XHTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.backgroundColor = XHColor(245, 245, 245, 1);
     }
     
     return cell;
@@ -31,8 +32,9 @@
 {
     if (!_rightSwitch) {
         _rightSwitch = [[UISwitch alloc] init];
-        [_rightSwitch setOnTintColor:[UIColor redColor]];
-        _rightSwitch.on = YES;
+        [_rightSwitch setOnTintColor:XHOrangeColor];
+        //_rightSwitch.on = YES;
+        [_rightSwitch addTarget:self action:@selector(switchAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightSwitch;
 }
@@ -49,7 +51,9 @@
 - (void)setItem:(XHTableViewCellItem *)item
 {
     _item = item;
-    self.imageView.image = [UIImage imageNamed:item.iconName];
+    if (item.iconName) {
+        self.imageView.image = [UIImage imageNamed:item.iconName];
+    }
     self.textLabel.text = item.title;
     self.detailTextLabel.text = item.detail;
     
@@ -66,11 +70,27 @@
     if ([item isKindOfClass:[XHTableViewCellArrowItem class]]) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else if ([item isKindOfClass:[XHTableViewCellSwitchItem class]]) {
+        XHTableViewCellSwitchItem *switchItem = (XHTableViewCellSwitchItem *)item; // cover
+        self.rightSwitch.on = switchItem.on;
         self.accessoryView = self.rightSwitch;
     } else if ([item isKindOfClass:[XHTableViewCellLabelItem class]]) {
+        XHTableViewCellLabelItem *labelItem = (XHTableViewCellLabelItem *)item; // cover to labelItem
+        self.rightLabel.text = labelItem.text;
+        [self.rightLabel sizeToFit];
         self.accessoryView = self.rightLabel;
+    } else if ([item isKindOfClass:[XHTableViewCellCheckmarkItem class]]) {
+        XHTableViewCellCheckmarkItem *checkmarkItem = (XHTableViewCellCheckmarkItem *)item;
+        self.accessoryType = checkmarkItem.type;
     } else {
         self.accessoryView = nil;
+        self.textLabel.textAlignment = NSTextAlignmentCenter;
+    }
+}
+
+- (void)switchAction
+{
+    if (self.item.tapSwitch) {
+        self.item.tapSwitch();
     }
 }
 

@@ -33,7 +33,7 @@
 
 - (void)setup
 {
-    self.view.backgroundColor = [UIColor colorWithRed:0.12 green:0.12 blue:0.12 alpha:1];
+    self.view.backgroundColor = XHBlackColor;
     
     CGFloat viewWidth = self.view.frame.size.width;
     CGFloat textFieldWidth = viewWidth - controlSpace;
@@ -148,6 +148,7 @@
 - (void)start
 {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    window.backgroundColor = [UIColor whiteColor];
     NSString *versionKey = @"CFBundleVersion";
     versionKey = (__bridge NSString *)kCFBundleVersionKey;
     

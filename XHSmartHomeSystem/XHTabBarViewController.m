@@ -50,7 +50,7 @@
     subVC.tabBarItem.image = [UIImage imageNamed:imageName];
     
     UIImage *selectedImage = [UIImage imageNamed:selectedImageName];
-    if (IOS_7) {
+    if (IOS_7_OR_LATER) {
         selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     subVC.tabBarItem.selectedImage = selectedImage;

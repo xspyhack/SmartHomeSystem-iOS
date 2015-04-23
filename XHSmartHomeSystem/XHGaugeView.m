@@ -105,7 +105,7 @@
     
     int numberOfMinorTicks = (self.maxNumber - self.minNumber) / self.minorTickIncrement;
     
-    CGPoint *points = (CGPoint*)malloc(sizeof(CGPoint) * numberOfMinorTicks * 2 + 2);
+    CGPoint *points = (CGPoint*)malloc(sizeof(CGPoint) * (numberOfMinorTicks * 2 + 2));
     
     CGContextSetShouldAntialias(ctx, YES );
     CGContextSetFillColorWithColor(ctx, self.backgroundColor.CGColor);
@@ -118,9 +118,10 @@
     CGContextBeginPath(ctx);
     
     CGContextSetTextDrawingMode(ctx, kCGTextFill);
-    CGContextSelectFont(ctx, [self.textLabel.font.fontName UTF8String], self.textLabel.font.pointSize, kCGEncodingMacRoman);
+
     CGAffineTransform transform = CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0);
     CGContextSetTextMatrix(ctx, transform);
+    UIGraphicsPushContext(ctx);
     
     float minorTickAngleIncrement = self.arcLength / (float)numberOfMinorTicks;
     
@@ -139,7 +140,10 @@
             NSString *string = [[NSString alloc] initWithFormat:@"%1.0f", f];
             
             float textWidth = textHeight * [string length] / 2;
-            CGContextShowTextAtPoint(ctx, centerX + cos(angle) * (radius - textInset) - textWidth / 2.0, centerY + sin(angle) * (radius - textInset) + textHeight / 4.0, [string UTF8String], [string length]);
+        
+            CGPoint point = CGPointMake(centerX + cos(angle) * (radius - textInset) - textWidth / 2.0, centerY + sin(angle) * (radius - textInset) - textHeight / 2.0);
+            [string drawAtPoint:point withAttributes:@{NSFontAttributeName:self.textLabel.font,
+                                                       NSForegroundColorAttributeName:self.textLabel.textColor}];
         } else {
             myTickLength = self.minorTickLength;
         }
@@ -156,6 +160,7 @@
     float epsilon = self.lineWidth / (radius * M_PI * 2);
     CGContextAddArc(ctx, centerX, centerY, radius - self.tickInset, self.startAngle - epsilon, self.startAngle + self.arcLength + epsilon, NO);
     CGContextStrokePath(ctx);
+    UIGraphicsPopContext();
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -163,7 +168,7 @@
 
 - (void)initialize {
     CGFloat span = fmin(self.frame.size.width, self.frame.size.height);
-    
+
     self.minNumber = 0.0;
     self.maxNumber = 100.0;
     self.startAngle = M_PI;

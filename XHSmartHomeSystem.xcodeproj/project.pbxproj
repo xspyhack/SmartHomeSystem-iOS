@@ -19,6 +19,13 @@
 		785531581ADF85AB00080703 /* XHAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531571ADF85AB00080703 /* XHAboutViewController.m */; };
 		7855315B1ADF8CEB00080703 /* XHTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7855315A1ADF8CEB00080703 /* XHTableViewController.m */; };
 		7855315E1ADF907300080703 /* XHGeneralSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7855315D1ADF907300080703 /* XHGeneralSettingsViewController.m */; };
+		7866FABF1AE783C800250478 /* XHGaugeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7866FABE1AE783C800250478 /* XHGaugeViewController.m */; };
+		7866FAD21AE8C4FB00250478 /* XHSecurityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7866FAD11AE8C4FB00250478 /* XHSecurityViewController.m */; };
+		7866FAD81AE8C5AC00250478 /* XHDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7866FAD71AE8C5AC00250478 /* XHDisplayViewController.m */; };
+		7866FADB1AE8C6A100250478 /* XHFeaturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7866FADA1AE8C6A100250478 /* XHFeaturesViewController.m */; };
+		7866FADE1AE8C6F900250478 /* XHNotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7866FADD1AE8C6F900250478 /* XHNotificationsViewController.m */; };
+		7866FAE11AE936DD00250478 /* XHLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7866FAE01AE936DD00250478 /* XHLanguageViewController.m */; };
+		7866FAE41AE937A500250478 /* XHTableViewCellCheckmarkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7866FAE31AE937A500250478 /* XHTableViewCellCheckmarkItem.m */; };
 		786E90321ADB966500A93675 /* XHRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E90311ADB966500A93675 /* XHRoomModel.m */; };
 		786E90341ADBAD0A00A93675 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 786E90331ADBAD0A00A93675 /* data.plist */; };
 		786E903A1ADBB50800A93675 /* XHRoomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E90391ADBB50800A93675 /* XHRoomView.m */; };
@@ -88,6 +95,20 @@
 		7855315A1ADF8CEB00080703 /* XHTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTableViewController.m; sourceTree = "<group>"; };
 		7855315C1ADF907300080703 /* XHGeneralSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHGeneralSettingsViewController.h; sourceTree = "<group>"; };
 		7855315D1ADF907300080703 /* XHGeneralSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHGeneralSettingsViewController.m; sourceTree = "<group>"; };
+		7866FABD1AE783C800250478 /* XHGaugeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHGaugeViewController.h; sourceTree = "<group>"; };
+		7866FABE1AE783C800250478 /* XHGaugeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHGaugeViewController.m; sourceTree = "<group>"; };
+		7866FAD01AE8C4FB00250478 /* XHSecurityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSecurityViewController.h; sourceTree = "<group>"; };
+		7866FAD11AE8C4FB00250478 /* XHSecurityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHSecurityViewController.m; sourceTree = "<group>"; };
+		7866FAD61AE8C5AC00250478 /* XHDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHDisplayViewController.h; sourceTree = "<group>"; };
+		7866FAD71AE8C5AC00250478 /* XHDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHDisplayViewController.m; sourceTree = "<group>"; };
+		7866FAD91AE8C6A100250478 /* XHFeaturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHFeaturesViewController.h; sourceTree = "<group>"; };
+		7866FADA1AE8C6A100250478 /* XHFeaturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHFeaturesViewController.m; sourceTree = "<group>"; };
+		7866FADC1AE8C6F900250478 /* XHNotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHNotificationsViewController.h; sourceTree = "<group>"; };
+		7866FADD1AE8C6F900250478 /* XHNotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHNotificationsViewController.m; sourceTree = "<group>"; };
+		7866FADF1AE936DD00250478 /* XHLanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHLanguageViewController.h; sourceTree = "<group>"; };
+		7866FAE01AE936DD00250478 /* XHLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLanguageViewController.m; sourceTree = "<group>"; };
+		7866FAE21AE937A500250478 /* XHTableViewCellCheckmarkItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTableViewCellCheckmarkItem.h; sourceTree = "<group>"; };
+		7866FAE31AE937A500250478 /* XHTableViewCellCheckmarkItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTableViewCellCheckmarkItem.m; sourceTree = "<group>"; };
 		786E90301ADB966500A93675 /* XHRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHRoomModel.h; sourceTree = "<group>"; };
 		786E90311ADB966500A93675 /* XHRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHRoomModel.m; sourceTree = "<group>"; };
 		786E90331ADBAD0A00A93675 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
@@ -179,6 +200,8 @@
 				787FBB551AD8E64100316651 /* XHHomeViewController.m */,
 				781F1FEE1AE0C97600ACEACC /* XHChartViewController.h */,
 				781F1FEF1AE0C97600ACEACC /* XHChartViewController.m */,
+				7866FABD1AE783C800250478 /* XHGaugeViewController.h */,
+				7866FABE1AE783C800250478 /* XHGaugeViewController.m */,
 			);
 			name = "Home ViewControllers";
 			sourceTree = "<group>";
@@ -208,10 +231,28 @@
 				787FBB4F1AD8E5A200316651 /* XHSettingsViewController.m */,
 				785531561ADF85AB00080703 /* XHAboutViewController.h */,
 				785531571ADF85AB00080703 /* XHAboutViewController.m */,
-				7855315C1ADF907300080703 /* XHGeneralSettingsViewController.h */,
-				7855315D1ADF907300080703 /* XHGeneralSettingsViewController.m */,
+				7866FAC61AE7B70D00250478 /* General */,
+				7866FADC1AE8C6F900250478 /* XHNotificationsViewController.h */,
+				7866FADD1AE8C6F900250478 /* XHNotificationsViewController.m */,
+				7866FAD01AE8C4FB00250478 /* XHSecurityViewController.h */,
+				7866FAD11AE8C4FB00250478 /* XHSecurityViewController.m */,
 			);
 			name = "Settings ViewControllers";
+			sourceTree = "<group>";
+		};
+		7866FAC61AE7B70D00250478 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				7855315C1ADF907300080703 /* XHGeneralSettingsViewController.h */,
+				7855315D1ADF907300080703 /* XHGeneralSettingsViewController.m */,
+				7866FAD61AE8C5AC00250478 /* XHDisplayViewController.h */,
+				7866FAD71AE8C5AC00250478 /* XHDisplayViewController.m */,
+				7866FAD91AE8C6A100250478 /* XHFeaturesViewController.h */,
+				7866FADA1AE8C6A100250478 /* XHFeaturesViewController.m */,
+				7866FADF1AE936DD00250478 /* XHLanguageViewController.h */,
+				7866FAE01AE936DD00250478 /* XHLanguageViewController.m */,
+			);
+			name = General;
 			sourceTree = "<group>";
 		};
 		786E90541ADCBBC100A93675 /* UUChat */ = {
@@ -268,6 +309,8 @@
 				785531511ADF58E500080703 /* XHTableViewCellSwitchItem.m */,
 				785531531ADF5C1F00080703 /* XHTableViewCellLabelItem.h */,
 				785531541ADF5C1F00080703 /* XHTableViewCellLabelItem.m */,
+				7866FAE21AE937A500250478 /* XHTableViewCellCheckmarkItem.h */,
+				7866FAE31AE937A500250478 /* XHTableViewCellCheckmarkItem.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -512,20 +555,26 @@
 			files = (
 				785531581ADF85AB00080703 /* XHAboutViewController.m in Sources */,
 				787FBB591AD8E67D00316651 /* XHMessagesViewController.m in Sources */,
+				7866FADE1AE8C6F900250478 /* XHNotificationsViewController.m in Sources */,
 				786E90601ADCC3F000A93675 /* XHMessageModel.m in Sources */,
 				781F1FF01AE0C97600ACEACC /* XHChartViewController.m in Sources */,
+				7866FABF1AE783C800250478 /* XHGaugeViewController.m in Sources */,
 				786E90531ADCBBBC00A93675 /* NSDate+Utils.m in Sources */,
 				787FBB561AD8E64100316651 /* XHHomeViewController.m in Sources */,
 				78B08F381AE20B4C00A26C53 /* MBProgressHUD.m in Sources */,
 				787FBB681AD8F46F00316651 /* XHTabBarViewController.m in Sources */,
+				7866FAD81AE8C5AC00250478 /* XHDisplayViewController.m in Sources */,
 				786E903A1ADBB50800A93675 /* XHRoomView.m in Sources */,
 				785531521ADF58E500080703 /* XHTableViewCellSwitchItem.m in Sources */,
+				7866FAD21AE8C4FB00250478 /* XHSecurityViewController.m in Sources */,
 				787FBB501AD8E5A200316651 /* XHSettingsViewController.m in Sources */,
 				786E90501ADCBBAE00A93675 /* UUMessageFrame.m in Sources */,
 				78E614D71AE6447100191132 /* XHGaugeView.m in Sources */,
+				7866FAE41AE937A500250478 /* XHTableViewCellCheckmarkItem.m in Sources */,
 				78E614951AE5ECE600191132 /* XHLineChartView.m in Sources */,
 				786E903D1ADBB54E00A93675 /* XHTableViewCell.m in Sources */,
 				787FBB6B1AD9026900316651 /* XHNavigationViewController.m in Sources */,
+				7866FAE11AE936DD00250478 /* XHLanguageViewController.m in Sources */,
 				786E90321ADB966500A93675 /* XHRoomModel.m in Sources */,
 				786E904F1ADCBBAE00A93675 /* UUMessageCell.m in Sources */,
 				78E6149C1AE5ED7800191132 /* XHChart.m in Sources */,
@@ -546,6 +595,7 @@
 				78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */,
 				781F1FED1AE0C10600ACEACC /* XHChartView.m in Sources */,
 				785531551ADF5C1F00080703 /* XHTableViewCellLabelItem.m in Sources */,
+				7866FADB1AE8C6A100250478 /* XHFeaturesViewController.m in Sources */,
 				78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */,
 				78C13B9C1ADA6D370020AAFA /* XHImageView.m in Sources */,
 				7855315E1ADF907300080703 /* XHGeneralSettingsViewController.m in Sources */,

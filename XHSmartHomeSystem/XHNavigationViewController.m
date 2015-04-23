@@ -93,7 +93,7 @@
         // intercept push operate, and set navigation leftbarbutton
         //viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(back)];
         //viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_back" highLightedImageName:@"nav_back_highLighted" target:self action:@selector(back)];
-        
+        //viewController.navigationController.interactivePopGestureRecognizer.delegate = viewController;
     }
     [super pushViewController:viewController animated:YES];
 }

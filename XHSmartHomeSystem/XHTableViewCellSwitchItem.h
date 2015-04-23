@@ -10,4 +10,6 @@
 
 @interface XHTableViewCellSwitchItem : XHTableViewCellItem
 
+@property (nonatomic, assign) BOOL on;
+
 @end

@@ -16,7 +16,8 @@
 @property (nonatomic, assign) Class destViewContorller;
 
 // method of click this cell
-@property (nonatomic, copy) void (^operation) (); //block must use copy property
+@property (nonatomic, copy) void (^operation) (); // block must use copy property, tap cell
+@property (nonatomic, copy) void (^tapSwitch) (); // block, tap UISwitch
 
 + (instancetype)itemWithTitle:(NSString *)title iconName:(NSString *)iconName;
 + (instancetype)itemWithTitle:(NSString *)title;

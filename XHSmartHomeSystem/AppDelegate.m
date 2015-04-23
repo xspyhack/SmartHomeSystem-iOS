@@ -25,6 +25,7 @@
     
     // create window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
     
     // set rootViewController
     /*
@@ -41,6 +42,7 @@
     // use archiver
     XHTokenModel *token = [XHTokenTools tokenModel];
     
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
     // if exists token
     if (NO) {
         XHLog(@"%@", token.password);
@@ -49,7 +51,6 @@
         versionKey = (__bridge NSString *)kCFBundleVersionKey;
         
         // get last time save version key
-        NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
         NSString *lastVersion = [defaults objectForKey:versionKey];
         
         // get current version key
@@ -72,9 +73,11 @@
     
     if ([[UIApplication sharedApplication] currentUserNotificationSettings].types != UIUserNotificationTypeNone) {
         //
+        [defaults setObject:@"Enabled" forKey:@"NotificationEnabled"];
         [self addLocalNotification];
     } else {
         [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+        [defaults setObject:@"Disabled" forKey:@"NotificationEnabled"];
     }
     
     return YES;

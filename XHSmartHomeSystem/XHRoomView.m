@@ -12,8 +12,8 @@
 #define xhTableViewCellControlSpaceing 15 // widget space
 #define xhTableViewCellBackgroundColor XHColor(240, 240, 240)
 #define xhTableViewCellHeight 100 // cell height
-#define xhGrayColor XHColor(50, 50, 50)
-#define xhLightGrayColor XHColor(120, 120, 120)
+#define xhGrayColor XHColor(50, 50, 50, 1)
+#define xhLightGrayColor XHColor(120, 120, 120, 1)
 #define xhTableViewCellIconWidth 60 // icon width
 #define xhTableViewCellIconHeight xhTableViewCellIconWidth //icon height
 #define xhTableViewCellLabelWidth 100

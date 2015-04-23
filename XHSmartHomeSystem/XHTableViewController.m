@@ -10,6 +10,13 @@
 #import "XHTableViewCell.h"
 #import "XHTableViewCellGroup.h"
 #import "XHTableViewCellItem.h"
+#import "XHTableViewCellCheckmarkItem.h"
+
+@interface XHTableViewController ()
+
+@property (nonatomic, copy) NSIndexPath *checkIndexPath;
+
+@end
 
 @implementation XHTableViewController
 
@@ -38,6 +45,8 @@
     
     // no dispaly vertical scroll idicator
     self.tableView.showsVerticalScrollIndicator = NO;
+    
+    
 }
 
 #pragma mark - tableView delegate & datasource
@@ -58,9 +67,34 @@
     XHTableViewCell *cell = [XHTableViewCell cellWithTableView:tableView];
     XHTableViewCellGroup *group = self.groups[indexPath.section];
     XHTableViewCellItem *item = group.items[indexPath.row];
-    cell.item = item;
     
+    // this is very important.
+    // it will read user default setting first, and then get last time which item had been checkmark.
+    // it will alloc tableview cell by call this method when this view didLoad.
+    // so, we can set _checkIndexPath with last checkmark item before did select item.
+    // if not, the _checkIndexPath is nil because it is a private variable.
+    // and it will cause problem in didSelect method.
+    if ([item isKindOfClass:[XHTableViewCellCheckmarkItem class]]) {
+        XHTableViewCellCheckmarkItem *checkItem = (XHTableViewCellCheckmarkItem *)item;
+        if (checkItem.type == UITableViewCellAccessoryCheckmark) {
+            self.checkIndexPath = indexPath;
+        }
+    }
+    cell.item = item;
+
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    XHTableViewCellGroup *group = self.groups[section];
+    return group.groupHeader;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    XHTableViewCellGroup *group = self.groups[section];
+    return group.groupFooter;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,11 +107,27 @@
         [self.navigationController pushViewController:destVC animated:YES];
     }
     
-    // has it method that needs to be call.
+    // does this item have operation block method that needs to be call.
     if (item.operation) {
         item.operation();
     }
-    [self performSelector:@selector(deselect) withObject:nil afterDelay:0.1f];
+    
+    // deal checkmark
+    // it must set _checkIndexPath when alloc cell.
+    if ([item isKindOfClass:[XHTableViewCellCheckmarkItem class]]) {
+        if (self.checkIndexPath) {
+            if ([self.checkIndexPath isEqual:indexPath]) {
+                return;
+            }
+            XHTableViewCell *uncheckCell = (XHTableViewCell *)[tableView cellForRowAtIndexPath:self.checkIndexPath];
+            uncheckCell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        XHTableViewCell *cell = (XHTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        self.checkIndexPath = indexPath;
+    }
+    
+    [self performSelector:@selector(deselect) withObject:nil afterDelay:0.1f]; // delay to deselect
 }
 
 // deselect alter 0.5s

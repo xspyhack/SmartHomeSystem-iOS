@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     CGFloat widht = self.view.frame.size.width;
     CGRect speedRect = CGRectMake((widht - 250)/2, 100, 250, 250);
     
@@ -41,7 +43,6 @@
     
     self.voltmeterView.startAngle = -3.0 * M_PI / 4.0;
     self.voltmeterView.arcLength = M_PI / 2.0;
-    //self.voltmeterView.value = 0.0;
     self.voltmeterView.textLabel.text = @"Volts";
     self.voltmeterView.minNumber = 5.0;
     self.voltmeterView.maxNumber = 20.0;

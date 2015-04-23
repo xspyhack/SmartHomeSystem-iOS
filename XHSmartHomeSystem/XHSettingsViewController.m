@@ -17,6 +17,9 @@
 #import "XHTableViewCellArrowItem.h"
 #import "XHTableViewCellSwitchItem.h"
 #import "XHGeneralSettingsViewController.h"
+#import "XHNotificationsViewController.h"
+#import "XHSecurityViewController.h"
+#import "XHAboutViewController.h"
 
 @interface XHSettingsViewController ()
 
@@ -64,7 +67,6 @@
         [_tableView setSeparatorInset:UIEdgeInsetsZero];
     }
     
-    //[_tableView setSeparatorColor:[UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1.0f]];
     [_tableView setSeparatorColor:[UIColor whiteColor]];
     _tableView.showsVerticalScrollIndicator = NO; // don't show vertical scroll
     _tableView.backgroundColor = [UIColor whiteColor];
@@ -72,7 +74,6 @@
     _tableView.dataSource = self;
     
     [self.view addSubview:_tableView];
-    
 }
 
 - (void)setupData
@@ -90,6 +91,10 @@
     _logoView.color = XHOrangeColor;
     _logoView.progress = 0.7f;
     _logoView.imageName = @"logo";
+    _logoView.userInteractionEnabled = YES; // must set user interaction enable
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLogoView:)];
+    [_logoView addGestureRecognizer:tapGesture];
     
     [superView addSubview:_logoView];
 }
@@ -108,11 +113,13 @@
     [UIView commitAnimations];
 }
 
+#pragma mark - set group cell
+
 - (void)setupTableViewCellGroup
 {
     // create group
-    [self setupGeneralGroup];
-    [self setupLinkOutGroup];
+    [self setupGeneralGroup]; // general, notification, security
+    [self setupAboutGroup]; // about
 }
 
 - (void)setupGeneralGroup
@@ -122,22 +129,32 @@
     
     XHTableViewCellArrowItem *generalItem = [XHTableViewCellArrowItem itemWithTitle:@"General" iconName:@"general"];
     generalItem.destViewContorller = [XHGeneralSettingsViewController class];
-    XHTableViewCellArrowItem *displayItem = [XHTableViewCellArrowItem itemWithTitle:@"Display" iconName:@"display"];
-    group.items = @[generalItem, displayItem];
+    
+    XHTableViewCellArrowItem *notificationItem = [XHTableViewCellArrowItem itemWithTitle:@"Notifications" iconName:@"notification"];
+    notificationItem.destViewContorller = [XHNotificationsViewController class];
+    
+    XHTableViewCellArrowItem *securityItem = [XHTableViewCellArrowItem itemWithTitle:@"Security" iconName:@"security"];
+    securityItem.destViewContorller = [XHSecurityViewController class];
+    
+    group.items = @[generalItem, notificationItem, securityItem];
 }
 
-- (void)setupLinkOutGroup
+- (void)setupAboutGroup
 {
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellLabelItem *generalItem = [XHTableViewCellLabelItem itemWithTitle:@"Settings" iconName:@"general"];
-    XHTableViewCellItem *linkOutItem = [XHTableViewCellItem itemWithTitle:@"Link out"];
-    linkOutItem.operation = ^ {
-        [self alert];
-    };
+    XHTableViewCellArrowItem *aboutItem = [XHTableViewCellArrowItem itemWithTitle:@"About" iconName:@"about"];
+    aboutItem.destViewContorller = [XHAboutViewController class];
     
-    group.items = @[generalItem, linkOutItem];
+    group.items = @[aboutItem];
+}
+
+#pragma mark - private methods
+
+- (void)tapLogoView:(UITapGestureRecognizer *)gesture
+{
+    XHLog(@"tap");
 }
 
 - (void)alert

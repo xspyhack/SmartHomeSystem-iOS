@@ -10,6 +10,7 @@
 #import "XHRoomTableViewCell.h"
 #import "XHRoomModel.h"
 #import "XHChartViewController.h"
+#import "XHGaugeViewController.h"
 
 @interface XHHomeViewController ()
 
@@ -26,19 +27,10 @@
     // use category
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_chart_highLighted" target:self action:@selector(chart)];
     
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_gauge" highLightedImageName:@"nav_gauge_hightLighted" target:self action:@selector(gauge)];
+    
     [self setupData];
     [self setupTabelView];
-}
-
-#pragma mark - Event
-
-- (void)chart
-{
-    XHRoomModel *model = _model[0];
-    XHLog(@"chart");
-    XHChartViewController *chartVC = [[XHChartViewController alloc] init];
-    chartVC.roomId = model.Id;
-    [self.navigationController pushViewController:chartVC animated:YES];
 }
 
 #pragma mark - initialization
@@ -69,6 +61,25 @@
         [_modelCells addObject:cell];
     }];
 }
+
+#pragma mark - Event
+
+- (void)gauge
+{
+    XHGaugeViewController *gVC = [[XHGaugeViewController alloc] init];
+    [self.navigationController pushViewController:gVC animated:YES];
+}
+
+- (void)chart
+{
+    XHRoomModel *model = _model[0];
+    XHLog(@"chart");
+    XHChartViewController *chartVC = [[XHChartViewController alloc] init];
+    chartVC.roomId = model.Id;
+    chartVC.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:chartVC animated:YES];
+}
+
 
 #pragma mark - tableview delegate
 
