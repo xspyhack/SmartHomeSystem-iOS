@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		781F1FED1AE0C10600ACEACC /* XHChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FEC1AE0C10600ACEACC /* XHChartView.m */; };
 		781F1FF01AE0C97600ACEACC /* XHChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FEF1AE0C97600ACEACC /* XHChartViewController.m */; };
+		783AF3A91AEB730F0090A81B /* XHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783AF3A81AEB730F0090A81B /* XHTabBarController.m */; };
+		783AF3AC1AEB735D0090A81B /* XHNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783AF3AB1AEB735D0090A81B /* XHNavigationController.m */; };
 		785531421ADE583B00080703 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531411ADE583B00080703 /* UIBarButtonItem+Extension.m */; };
 		785531461ADF501600080703 /* XHTableViewCellGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531451ADF501600080703 /* XHTableViewCellGroup.m */; };
 		785531491ADF50BE00080703 /* XHTableViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531481ADF50BE00080703 /* XHTableViewCellItem.m */; };
@@ -45,8 +47,6 @@
 		787FBB561AD8E64100316651 /* XHHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB551AD8E64100316651 /* XHHomeViewController.m */; };
 		787FBB591AD8E67D00316651 /* XHMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB581AD8E67D00316651 /* XHMessagesViewController.m */; };
 		787FBB5D1AD8E99800316651 /* XHLinkinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB5C1AD8E99800316651 /* XHLinkinViewController.m */; };
-		787FBB681AD8F46F00316651 /* XHTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB671AD8F46F00316651 /* XHTabBarViewController.m */; };
-		787FBB6B1AD9026900316651 /* XHNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB6A1AD9026900316651 /* XHNavigationViewController.m */; };
 		78B08F381AE20B4C00A26C53 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B08F371AE20B4C00A26C53 /* MBProgressHUD.m */; };
 		78C13B941ADA0EF90020AAFA /* XHTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B931ADA0EF90020AAFA /* XHTokenModel.m */; };
 		78C13B971ADA101C0020AAFA /* XHTokenTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B961ADA101C0020AAFA /* XHTokenTools.m */; };
@@ -56,6 +56,7 @@
 		78DD5BAA1AD780B700DC9FA0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78DD5BA91AD780B700DC9FA0 /* Images.xcassets */; };
 		78DD5BAD1AD780B700DC9FA0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DD5BAB1AD780B700DC9FA0 /* LaunchScreen.xib */; };
 		78DD5BB91AD780B700DC9FA0 /* XHSmartHomeSystemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5BB81AD780B700DC9FA0 /* XHSmartHomeSystemTests.m */; };
+		78E1BA7D1AEB8FA9006A777F /* XHColorTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E1BA7C1AEB8FA9006A777F /* XHColorTools.m */; };
 		78E614951AE5ECE600191132 /* XHLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E614941AE5ECE600191132 /* XHLineChartView.m */; };
 		78E614991AE5ED4800191132 /* XHLineChartContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E614981AE5ED4800191132 /* XHLineChartContentView.m */; };
 		78E6149C1AE5ED7800191132 /* XHChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6149B1AE5ED7800191132 /* XHChart.m */; };
@@ -78,6 +79,10 @@
 		781F1FEC1AE0C10600ACEACC /* XHChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHChartView.m; sourceTree = "<group>"; };
 		781F1FEE1AE0C97600ACEACC /* XHChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHChartViewController.h; sourceTree = "<group>"; };
 		781F1FEF1AE0C97600ACEACC /* XHChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHChartViewController.m; sourceTree = "<group>"; };
+		783AF3A71AEB730F0090A81B /* XHTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTabBarController.h; sourceTree = "<group>"; };
+		783AF3A81AEB730F0090A81B /* XHTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTabBarController.m; sourceTree = "<group>"; };
+		783AF3AA1AEB735D0090A81B /* XHNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHNavigationController.h; sourceTree = "<group>"; };
+		783AF3AB1AEB735D0090A81B /* XHNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHNavigationController.m; sourceTree = "<group>"; };
 		785531401ADE583B00080703 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		785531411ADE583B00080703 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		785531441ADF501600080703 /* XHTableViewCellGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTableViewCellGroup.h; sourceTree = "<group>"; };
@@ -149,10 +154,6 @@
 		787FBB581AD8E67D00316651 /* XHMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHMessagesViewController.m; sourceTree = "<group>"; };
 		787FBB5B1AD8E99800316651 /* XHLinkinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHLinkinViewController.h; sourceTree = "<group>"; };
 		787FBB5C1AD8E99800316651 /* XHLinkinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLinkinViewController.m; sourceTree = "<group>"; };
-		787FBB661AD8F46F00316651 /* XHTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTabBarViewController.h; sourceTree = "<group>"; };
-		787FBB671AD8F46F00316651 /* XHTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTabBarViewController.m; sourceTree = "<group>"; };
-		787FBB691AD9026900316651 /* XHNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHNavigationViewController.h; sourceTree = "<group>"; };
-		787FBB6A1AD9026900316651 /* XHNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHNavigationViewController.m; sourceTree = "<group>"; };
 		787FBB6C1AD90CD200316651 /* XHSmartHome-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XHSmartHome-Prefix.pch"; sourceTree = "<group>"; };
 		78B08F361AE20B4C00A26C53 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		78B08F371AE20B4C00A26C53 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
@@ -172,6 +173,8 @@
 		78DD5BB21AD780B700DC9FA0 /* XHSmartHomeSystemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XHSmartHomeSystemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DD5BB71AD780B700DC9FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78DD5BB81AD780B700DC9FA0 /* XHSmartHomeSystemTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XHSmartHomeSystemTests.m; sourceTree = "<group>"; };
+		78E1BA7B1AEB8FA9006A777F /* XHColorTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHColorTools.h; sourceTree = "<group>"; };
+		78E1BA7C1AEB8FA9006A777F /* XHColorTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHColorTools.m; sourceTree = "<group>"; };
 		78E614931AE5ECE600191132 /* XHLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHLineChartView.h; sourceTree = "<group>"; };
 		78E614941AE5ECE600191132 /* XHLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLineChartView.m; sourceTree = "<group>"; };
 		78E614971AE5ED4800191132 /* XHLineChartContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHLineChartContentView.h; sourceTree = "<group>"; };
@@ -290,10 +293,10 @@
 			children = (
 				785531591ADF8CEB00080703 /* XHTableViewController.h */,
 				7855315A1ADF8CEB00080703 /* XHTableViewController.m */,
-				787FBB661AD8F46F00316651 /* XHTabBarViewController.h */,
-				787FBB671AD8F46F00316651 /* XHTabBarViewController.m */,
-				787FBB691AD9026900316651 /* XHNavigationViewController.h */,
-				787FBB6A1AD9026900316651 /* XHNavigationViewController.m */,
+				783AF3A71AEB730F0090A81B /* XHTabBarController.h */,
+				783AF3A81AEB730F0090A81B /* XHTabBarController.m */,
+				783AF3AA1AEB735D0090A81B /* XHNavigationController.h */,
+				783AF3AB1AEB735D0090A81B /* XHNavigationController.m */,
 				787FBB5B1AD8E99800316651 /* XHLinkinViewController.h */,
 				787FBB5C1AD8E99800316651 /* XHLinkinViewController.m */,
 				781F1FF11AE0E4F300ACEACC /* Home ViewControllers */,
@@ -364,6 +367,8 @@
 			children = (
 				78C13B951ADA101C0020AAFA /* XHTokenTools.h */,
 				78C13B961ADA101C0020AAFA /* XHTokenTools.m */,
+				78E1BA7B1AEB8FA9006A777F /* XHColorTools.h */,
+				78E1BA7C1AEB8FA9006A777F /* XHColorTools.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -570,15 +575,17 @@
 			files = (
 				785531581ADF85AB00080703 /* XHAboutViewController.m in Sources */,
 				787FBB591AD8E67D00316651 /* XHMessagesViewController.m in Sources */,
+				783AF3A91AEB730F0090A81B /* XHTabBarController.m in Sources */,
 				7866FADE1AE8C6F900250478 /* XHNotificationsViewController.m in Sources */,
 				786E90601ADCC3F000A93675 /* XHMessageModel.m in Sources */,
 				781F1FF01AE0C97600ACEACC /* XHChartViewController.m in Sources */,
 				7866FABF1AE783C800250478 /* XHGaugeViewController.m in Sources */,
 				786E90531ADCBBBC00A93675 /* NSDate+Utils.m in Sources */,
+				78E1BA7D1AEB8FA9006A777F /* XHColorTools.m in Sources */,
 				787FBB561AD8E64100316651 /* XHHomeViewController.m in Sources */,
 				78B08F381AE20B4C00A26C53 /* MBProgressHUD.m in Sources */,
 				787F17301AEA11C3002B9DCD /* XHColorModel.m in Sources */,
-				787FBB681AD8F46F00316651 /* XHTabBarViewController.m in Sources */,
+				783AF3AC1AEB735D0090A81B /* XHNavigationController.m in Sources */,
 				7866FAD81AE8C5AC00250478 /* XHDisplayViewController.m in Sources */,
 				786E903A1ADBB50800A93675 /* XHRoomView.m in Sources */,
 				785531521ADF58E500080703 /* XHTableViewCellSwitchItem.m in Sources */,
@@ -589,7 +596,6 @@
 				7866FAE41AE937A500250478 /* XHTableViewCellCheckmarkItem.m in Sources */,
 				78E614951AE5ECE600191132 /* XHLineChartView.m in Sources */,
 				786E903D1ADBB54E00A93675 /* XHTableViewCell.m in Sources */,
-				787FBB6B1AD9026900316651 /* XHNavigationViewController.m in Sources */,
 				7866FAE11AE936DD00250478 /* XHLanguageViewController.m in Sources */,
 				786E90321ADB966500A93675 /* XHRoomModel.m in Sources */,
 				786E904F1ADCBBAE00A93675 /* UUMessageCell.m in Sources */,

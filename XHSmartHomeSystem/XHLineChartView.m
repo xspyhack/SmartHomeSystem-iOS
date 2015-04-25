@@ -9,6 +9,7 @@
 #import "XHLineChartView.h"
 #import "XHLineChartContentView.h"
 #import "XHChart.h"
+#import "XHColorTools.h"
 
 @interface XHLineChartView ()
 
@@ -97,6 +98,9 @@
 
 - (void)setLineWidth:(CGFloat)lineWidth
 {
+    if (lineWidth < 1) {
+        lineWidth = 1;
+    }
     _lineWidth = lineWidth;
     self.lineChartContentView.lineWidth = lineWidth;
 }
@@ -151,7 +155,7 @@
                                     y1TtleSize.height);
     UILabel *y1TitleLabel = [[UILabel alloc] initWithFrame:y1TitleRect];
     y1TitleLabel.text = self.y1Title;
-    y1TitleLabel.textColor = self.y1LineColor;
+    y1TitleLabel.textColor = [XHColorTools temperatureColor];
     y1TitleLabel.font = font;
     [self addSubview:y1TitleLabel];
     
@@ -164,7 +168,7 @@
                                     y2TitleSize.height);
     UILabel *y2TitleLabel = [[UILabel alloc] initWithFrame:y2TitleRect];
     y2TitleLabel.text = self.y2Title;
-    y2TitleLabel.textColor = self.y2LineColor;
+    y2TitleLabel.textColor = [XHColorTools humidityColor];
     y2TitleLabel.font = font;
     [self addSubview:y2TitleLabel];
     
@@ -236,7 +240,7 @@
     paragraph2.alignment = NSTextAlignmentCenter;
     
     [self.xTitle drawInRect:titleXRect withAttributes:@{NSFontAttributeName:titleXFont,
-                                                        NSForegroundColorAttributeName:XHOrangeColor,
+                                                        NSForegroundColorAttributeName:[XHColorTools themeColor],
                                                         NSParagraphStyleAttributeName:paragraph2}];
 }
 

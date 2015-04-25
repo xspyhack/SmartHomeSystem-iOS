@@ -9,6 +9,7 @@
 #import "XHSettingsViewController.h"
 #import "XHImageView.h"
 #import "XHTokenModel.h"
+#import "XHColorTools.h"
 #import "XHTokenTools.h"
 #import "XHTableViewCell.h"
 #import "XHTableViewCellGroup.h"
@@ -23,7 +24,7 @@
 #import "XHThemeViewController.h"
 
 @interface XHSettingsViewController ()
-
+@property (nonatomic) UIColor *themeColor;
 @end
 
 #define XHLogoViewWidthAndHeight 80
@@ -48,6 +49,8 @@
     //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"settings" style:UIBarButtonItemStyleDone target:self action:@selector(settings)];
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"settings" highLightedImageName:@"nav_setting_highLighted" target:self action:@selector(settings)];
     
+    _themeColor = [XHColorTools themeColor];
+    
     [self setupData];
     [self setupTableViewCellGroup];
     [self setupTableView];
@@ -57,6 +60,8 @@
 {
     [self moveLogoView];
 }
+
+#pragma mark - setup
 
 - (void)setupTableView
 {
@@ -89,7 +94,7 @@
 
     CGRect logoRect = CGRectMake((viewWidth - XHLogoViewWidthAndHeight)/2, 10, XHLogoViewWidthAndHeight, XHLogoViewWidthAndHeight);
     _logoView = [[XHImageView alloc] initWithFrame:logoRect];
-    _logoView.color = XHOrangeColor;
+    _logoView.color = _themeColor;
     _logoView.progress = 0.7f;
     _logoView.imageName = @"logo";
     _logoView.userInteractionEnabled = YES; // must set user interaction enable
@@ -212,7 +217,7 @@
         view.backgroundColor = [UIColor whiteColor];
         
         UIView *subView = [[UIView alloc] initWithFrame:CGRectMake(0, 62.6, self.view.frame.size.width, 100)];
-        subView.backgroundColor = XHOrangeColor;
+        subView.backgroundColor = _themeColor;
         
         UILabel *lbBio = [[UILabel alloc] initWithFrame:CGRectMake((subView.bounds.size.width-300)/2, 30, 300, 30)];
         lbBio.text = _gateway;

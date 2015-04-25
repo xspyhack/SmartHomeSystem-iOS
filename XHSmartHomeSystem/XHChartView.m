@@ -10,7 +10,7 @@
 #import "XHLineChartItem.h"
 #import "XHLineChartView.h"
 #import "XHRoomModel.h"
-#import "XHColorModel.h"
+#import "XHColorTools.h"
 
 @interface XHChartView ()
 
@@ -100,17 +100,17 @@ typedef enum {
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     CGFloat lineWidth = [defaults floatForKey:@"LineWidth"];
-    NSInteger tempIndex = [defaults integerForKey:@"TempColor"];
-    NSInteger humiIndex = [defaults integerForKey:@"HumiColor"];
-    UIColor *tempColor = [XHColorModel colorModelWithIndex:tempIndex];
-    UIColor *humiColor = [XHColorModel colorModelWithIndex:humiIndex];
+    //NSInteger tempIndex = [defaults integerForKey:@"TempColor"];
+    //NSInteger humiIndex = [defaults integerForKey:@"HumiColor"];
+    //UIColor *tempColor = [XHColorModel colorModelWithIndex:tempIndex];
+    //UIColor *humiColor = [XHColorModel colorModelWithIndex:humiIndex];
     
     CGRect rect = CGRectMake(5, 30, self.frame.size.width - 10, 350);
     self.lineChartView = [[XHLineChartView alloc] initWithFrame:rect xTitle:@"date" y1Title:@"temperature" y2Title:@"humidity" describe1:@"TEMP" describe2:@"HUMI"];
     self.lineChartView.lineWidth = lineWidth;
     self.lineChartView.inflexionPointWidth = 3.f;
-    self.lineChartView.y1LineColor = tempColor;
-    self.lineChartView.y2LineColor = humiColor;
+    self.lineChartView.y1LineColor = [XHColorTools temperatureColor];
+    self.lineChartView.y2LineColor = [XHColorTools humidityColor];
     self.lineChartView.alpha = 1.f;
     self.lineChartView.dataSource = self.dataSource;
     
@@ -120,12 +120,12 @@ typedef enum {
     CGRect roomRect = CGRectMake(10, CGRectGetMaxY(rect), self.frame.size.width - 20, 100);
     _roomNameLabel = [[UILabel alloc] initWithFrame:roomRect];
     _roomNameLabel.textAlignment = NSTextAlignmentCenter;
-    _roomNameLabel.textColor = XHOrangeColor;
+    _roomNameLabel.textColor = [XHColorTools themeColor];
     [self addSubview:_roomNameLabel];
     
     UIButton *refresh = [[UIButton alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(roomRect), self.frame.size.width - 20, 30)];
     [refresh setTitle:@"refresh" forState:UIControlStateNormal];
-    refresh.backgroundColor = XHOrangeColor;
+    refresh.backgroundColor = [XHColorTools themeColor];
     [refresh addTarget:self action:@selector(refresh) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:refresh];
 }

@@ -14,6 +14,7 @@
 #import "XHDisplayViewController.h"
 #import "XHFeaturesViewController.h"
 #import "XHLanguageViewController.h"
+#import "XHColorTools.h"
 
 @implementation XHGeneralSettingsViewController
 
@@ -60,7 +61,7 @@
 {
     CGRect rect = CGRectMake(0, 15, self.view.frame.size.width, 45);
     UIButton *linkout = [[UIButton alloc] initWithFrame:rect];
-    linkout.backgroundColor = XHOrangeColor;
+    linkout.backgroundColor = [XHColorTools themeColor];
     [linkout setTitle:@"Link out" forState:UIControlStateNormal];
     [linkout setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [linkout addTarget:self action:@selector(linkout) forControlEvents:UIControlEventTouchUpInside];

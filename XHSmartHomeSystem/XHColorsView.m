@@ -36,7 +36,7 @@
     _master = master;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSInteger index = [defaults integerForKey:_master];
-    self.backgroundColor = [[XHColorModel colorModelWithIndex:index] colorWithAlphaComponent:0.8];
+    self.backgroundColor = [[XHColorModel colorModelWithIndex:index] colorWithAlphaComponent:0.9];
 }
 
 - (void)setupColors
@@ -84,9 +84,11 @@
     self.lastButton = btn;
     
     UIColor *color = [self.colorsArray objectAtIndex:index];
-    self.backgroundColor = [color colorWithAlphaComponent:0.8];
+    self.backgroundColor = [color colorWithAlphaComponent:0.9];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:index forKey:self.master];
+    
     if (!self.timer) {
         self.timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(pullUp) userInfo:nil repeats:NO];
     } else {

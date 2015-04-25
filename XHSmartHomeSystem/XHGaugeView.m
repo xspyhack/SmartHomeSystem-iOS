@@ -111,8 +111,8 @@
     CGContextSetFillColorWithColor(ctx, self.backgroundColor.CGColor);
     CGContextFillRect(ctx, layer.bounds);
     
-    CGContextSetStrokeColorWithColor(ctx, self.textLabel.textColor.CGColor);
-    CGContextSetFillColorWithColor(ctx, self.textLabel.textColor.CGColor);
+    CGContextSetStrokeColorWithColor(ctx, _tintColor.CGColor);
+    CGContextSetFillColorWithColor(ctx, _tintColor.CGColor);
     
     CGContextSetLineWidth(ctx, self.lineWidth);
     CGContextBeginPath(ctx);
@@ -143,7 +143,7 @@
         
             CGPoint point = CGPointMake(centerX + cos(angle) * (radius - textInset) - textWidth / 2.0, centerY + sin(angle) * (radius - textInset) - textHeight / 2.0);
             [string drawAtPoint:point withAttributes:@{NSFontAttributeName:self.textLabel.font,
-                                                       NSForegroundColorAttributeName:self.textLabel.textColor}];
+                                                       NSForegroundColorAttributeName:_tintColor}];
         } else {
             myTickLength = self.minorTickLength;
         }
@@ -169,6 +169,8 @@
 - (void)initialize {
     CGFloat span = fmin(self.frame.size.width, self.frame.size.height);
 
+    
+    _tintColor = [UIColor colorWithRed:0.7 green:1.0 blue:1.0 alpha:1.0];
     self.minNumber = 0.0;
     self.maxNumber = 100.0;
     self.startAngle = M_PI;

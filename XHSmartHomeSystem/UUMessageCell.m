@@ -10,6 +10,7 @@
 #import "UUMessage.h"
 #import "UUMessageFrame.h"
 #import "UUImageAvatarBrowser.h"
+#import "XHColorTools.h"
 
 @interface UUMessageCell () {
     NSString *voiceURL;
@@ -40,7 +41,7 @@
         headImageBackView = [[UIView alloc]init];
         headImageBackView.layer.cornerRadius = 22;
         headImageBackView.layer.masksToBounds = YES;
-        headImageBackView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.4];
+        headImageBackView.backgroundColor = [XHColorTools themeColor];
         [self.contentView addSubview:headImageBackView];
         self.btnHeadImage = [UIButton buttonWithType:UIButtonTypeCustom];
         self.btnHeadImage.layer.cornerRadius = 20;

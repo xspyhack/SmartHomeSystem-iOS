@@ -8,6 +8,7 @@
 
 #import "XHRoomView.h"
 #import "XHRoomModel.h"
+#import "XHColorTools.h"
 
 #define xhTableViewCellControlSpaceing 15 // widget space
 #define xhTableViewCellBackgroundColor XHColor(240, 240, 240)
@@ -62,7 +63,7 @@
     CGRect roomNameLabelRect = CGRectMake(roomNameLabelX, roomNameLabelY, xhTableViewCellLabelWidth, xhTableViewCellLabelHeight);
     self.roomNameLabel = [[UILabel alloc] initWithFrame:roomNameLabelRect];
     self.roomNameLabel.font = [UIFont systemFontOfSize:xhTableViewCellRoomNameFontSize];
-    self.roomNameLabel.textColor = xhLightGrayColor;
+    self.roomNameLabel.textColor = [XHColorTools themeColor];
     [self addSubview:self.roomNameLabel];
     
     CGFloat updateTimeLabelX = roomNameLabelX;
@@ -77,7 +78,7 @@
     CGFloat temperatureLabelY = roomNameLabelY;
     CGRect temperatureLabelRect = CGRectMake(temperatureLabelX, temperatureLabelY, xhTableViewCellValueWidth, xhTableViewCellValueHeight);
     self.temperatureLabel = [[UILabel alloc] initWithFrame:temperatureLabelRect];
-    self.temperatureLabel.textColor = xhLightGrayColor;
+    self.temperatureLabel.textColor = [XHColorTools temperatureColor];
     self.temperatureLabel.textAlignment = NSTextAlignmentRight;
     self.temperatureLabel.font = [UIFont systemFontOfSize:xhTableViewCellValueFontSize];
     [self addSubview:self.temperatureLabel];
@@ -86,7 +87,7 @@
     CGFloat humidityLabelY = updateTimeLabelY;
     CGRect humidityLabelRect = CGRectMake(humidityLabelX, humidityLabelY, xhTableViewCellValueWidth, xhTableViewCellValueHeight);
     self.humidityLabel = [[UILabel alloc] initWithFrame:humidityLabelRect];
-    self.humidityLabel.textColor = xhLightGrayColor;
+    self.humidityLabel.textColor = [XHColorTools humidityColor];
     self.humidityLabel.textAlignment = NSTextAlignmentRight;
     self.humidityLabel.font = [UIFont systemFontOfSize:xhTableViewCellValueFontSize];
     [self addSubview:self.humidityLabel];

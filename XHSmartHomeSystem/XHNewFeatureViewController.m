@@ -7,7 +7,8 @@
 //
 
 #import "XHNewFeatureViewController.h"
-#import "XHTabBarViewController.h"
+#import "XHTabBarController.h"
+#import "XHColorTools.h"
 
 @interface XHNewFeatureViewController ()
 
@@ -102,16 +103,18 @@
     UIButton *startButtn = [[UIButton alloc] init];
     
     // set background image
-    [startButtn setBackgroundImage:[UIImage imageNamed:@"new_feature_finish_button"] forState:UIControlStateNormal];
-    [startButtn setBackgroundImage:[UIImage imageNamed:@"new_feature_finish_button_highlighted"] forState:UIControlStateHighlighted];
+    //[startButtn setBackgroundImage:[UIImage imageNamed:@"new_feature_finish_button"] forState:UIControlStateNormal];
+    //[startButtn setBackgroundImage:[UIImage imageNamed:@"new_feature_finish_button_highlighted"] forState:UIControlStateHighlighted];
     
     // set button frame
-    CGFloat width = startButtn.currentBackgroundImage.size.width;
-    CGFloat height = startButtn.currentBackgroundImage.size.height;
+    CGFloat width = 50;
+    CGFloat height = width;
     CGPoint center = CGPointMake(self.view.center.x, self.view.frame.size.height * 0.8);
     
     startButtn.frame = CGRectMake(0, 0, width, height);
     [startButtn setCenter:center];
+    startButtn.layer.cornerRadius = width;
+    startButtn.backgroundColor = [XHColorTools themeColor];
     
     [startButtn setTitle:@"Go!" forState:UIControlStateNormal];
     
@@ -133,7 +136,7 @@
 - (void)start
 {
     // show main controller, tabbar viewController
-    XHTabBarViewController *tabbarVC = [[XHTabBarViewController alloc] init];
+    XHTabBarController *tabbarVC = [[XHTabBarController alloc] init];
     
     // three method to switch viewController
     // push

@@ -1,30 +1,30 @@
 //
-//  XHTabBarViewController.m
+//  XHTabBarController.m
 //  XHSmartHomeSystem
 //
 //  Created by bl4ckra1sond3tre on 4/11/15.
 //  Copyright (c) 2015 bl4ckra1sond3tre. All rights reserved.
 //
 
-#import "XHTabBarViewController.h"
-#import "XHNavigationViewController.h"
+#import "XHTabBarController.h"
+#import "XHNavigationController.h"
 #import "XHHomeViewController.h"
 #import "XHMessagesViewController.h"
 #import "XHSettingsViewController.h"
-#import "XHColorModel.h"
+#import "XHColorTools.h"
 
 
-@interface XHTabBarViewController ()
+@interface XHTabBarController ()
 
 @end
 
-@implementation XHTabBarViewController
+@implementation XHTabBarController
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-   
+    
     [self setupSubViewController];
 }
 
@@ -43,14 +43,10 @@
 
 - (void)addSubViewController:(UIViewController *)subVC title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSInteger index = [defaults integerForKey:@"XHSystemColor"];
-    UIColor *color = [XHColorModel colorModelWithIndex:index];
-    
     // set selected text attribute text color
     NSMutableDictionary *selectedtextAttrs = [NSMutableDictionary dictionary];
-    selectedtextAttrs[NSForegroundColorAttributeName] = color;
-
+    selectedtextAttrs[NSForegroundColorAttributeName] = [XHColorTools themeColor];
+    
     subVC.view.backgroundColor = [UIColor whiteColor];
     
     // set title
@@ -66,8 +62,7 @@
     }
     subVC.tabBarItem.selectedImage = selectedImage;
     
-    //[self addChildViewController:subVC];
-    XHNavigationViewController *navVC = [[XHNavigationViewController alloc] initWithRootViewController:subVC];
+    XHNavigationController *navVC = [[XHNavigationController alloc] initWithRootViewController:subVC];
     
     [self addChildViewController:navVC];
 }
@@ -78,13 +73,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

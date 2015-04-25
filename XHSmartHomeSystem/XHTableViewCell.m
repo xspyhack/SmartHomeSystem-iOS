@@ -12,6 +12,7 @@
 #import "XHTableViewCellSwitchItem.h"
 #import "XHTableViewCellLabelItem.h"
 #import "XHTableViewCellCheckmarkItem.h"
+#import "XHColorTools.h"
 
 @implementation XHTableViewCell
 
@@ -21,7 +22,7 @@
     XHTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[XHTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.backgroundColor = XHColor(245, 245, 245, 1);
+        cell.backgroundColor = XHCellBackgroundColor;
     }
     
     return cell;
@@ -32,7 +33,7 @@
 {
     if (!_rightSwitch) {
         _rightSwitch = [[UISwitch alloc] init];
-        [_rightSwitch setOnTintColor:XHOrangeColor];
+        [_rightSwitch setOnTintColor:[XHColorTools themeColor]];
         //_rightSwitch.on = YES;
         [_rightSwitch addTarget:self action:@selector(switchAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -43,7 +44,7 @@
 {
     if (!_rightLabel) {
         _rightLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _rightLabel.textColor = XHOrangeColor;
+        _rightLabel.textColor = [XHColorTools themeColor];
     }
     return _rightLabel;
 }

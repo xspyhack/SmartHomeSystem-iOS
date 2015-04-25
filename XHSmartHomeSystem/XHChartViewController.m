@@ -8,7 +8,7 @@
 
 #import "XHChartViewController.h"
 #import "XHChartView.h"
-
+#import "XHColorTools.h"
 
 #define XHChartViewCount 4
 
@@ -17,6 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Line Chart";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"settings" style:UIBarButtonItemStylePlain target:self action:@selector(setChart)];
     
@@ -72,8 +73,8 @@
     [pageControl setCenter:CGPointMake(self.view.frame.size.width * 0.5, self.view.frame.size.height - 30)];
     
     // set color
-    pageControl.currentPageIndicatorTintColor = XHOrangeColor;
-    pageControl.pageIndicatorTintColor = [UIColor redColor];
+    pageControl.currentPageIndicatorTintColor = [XHColorTools themeColor];
+    pageControl.pageIndicatorTintColor = [XHColorTools defaultColor];
     //[pageControl addTarget:self action:@selector(pageChange) forControlEvents:UIControlEventTouchUpInside];
     
     self.pageControl = pageControl;

@@ -33,6 +33,7 @@
 @property (nonatomic, assign) float value;
 
 @property (nonatomic, strong) UILabel *textLabel;
+@property (nonatomic, strong) UIColor *tintColor;
 @property (nonatomic, strong) Needle *needle;
 
 @property (nonatomic, strong) CALayer *needleLayer;

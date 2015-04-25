@@ -7,9 +7,10 @@
 //
 
 #import "XHLinkinViewController.h"
-#import "XHTabBarViewController.h"
+#import "XHTabBarController.h"
 #import "XHNewFeatureViewController.h"
 #import "XHTokenModel.h"
+#import "XHColorTools.h"
 #import "XHTokenTools.h"
 #import "XHImageView.h"
 
@@ -35,6 +36,8 @@
 {
     self.view.backgroundColor = XHBlackColor;
     
+    UIColor *color = [XHColorTools themeColor];
+    
     CGFloat viewWidth = self.view.frame.size.width;
     CGFloat textFieldWidth = viewWidth - controlSpace;
     CGFloat textFieldHeight = 50;
@@ -49,7 +52,7 @@
     logoView.backgroundColor = [UIColor clearColor];
     logoView.progress = 0.7;
     logoView.imageName = @"logo";
-    logoView.color = XHOrangeColor;
+    logoView.color = color;
     [self.view addSubview:logoView];
     
     CGRect titleRect = CGRectMake(widgetX, CGRectGetMaxY(logoRect) + controlSpace/5, textFieldWidth, textFieldHeight);
@@ -57,14 +60,14 @@
     title.text = @"Smart Home System";
     title.textAlignment = NSTextAlignmentCenter;
     title.font = [UIFont systemFontOfSize:25];
-    title.textColor = XHOrangeColor;
+    title.textColor = color;
     [self.view addSubview:title];
     
     CGRect headerLineFrame = CGRectMake(widgetX, CGRectGetMaxY(titleRect) + controlSpace/6, textFieldWidth, 30);
     UILabel *headerLine = [[UILabel alloc] initWithFrame:headerLineFrame];
     headerLine.text = @"------------------------------------";
     headerLine.textAlignment = NSTextAlignmentCenter;
-    headerLine.textColor = XHOrangeColor;
+    headerLine.textColor = color;
     //headerLine.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:headerLine];
     
@@ -76,7 +79,7 @@
     self.gatewayTextField.borderStyle = UITextBorderStyleRoundedRect;
     self.gatewayTextField.placeholder = @"Gateway IP";
     self.gatewayTextField.textAlignment = NSTextAlignmentCenter;
-    self.gatewayTextField.textColor = XHOrangeColor;
+    self.gatewayTextField.textColor = color;
     self.gatewayTextField.keyboardType = UIKeyboardTypeDecimalPad;
     //self.gatewayTextField.keyboardType = UIKeyboardTypeNumberPad;
     self.gatewayTextField.returnKeyType = UIReturnKeyNext;
@@ -90,7 +93,7 @@
 
     self.passwordTextField.placeholder = @"Password";
     self.passwordTextField.textAlignment = NSTextAlignmentCenter;
-    self.passwordTextField.textColor = XHOrangeColor;
+    self.passwordTextField.textColor = color;
     self.passwordTextField.keyboardType = UIKeyboardTypeASCIICapable;
     self.passwordTextField.secureTextEntry = YES;
     self.passwordTextField.clearsOnBeginEditing = YES;
@@ -103,7 +106,7 @@
     
     CGRect linkInFrame = CGRectMake(widgetX, CGRectGetMaxY(passwordFrame) + controlSpace/2, textFieldWidth, textFieldHeight);
     UIButton *linkInButton = [[UIButton alloc] initWithFrame:linkInFrame];
-    linkInButton.backgroundColor = XHOrangeColor;
+    linkInButton.backgroundColor = color;
     [linkInButton setTitle:@"Link In" forState:UIControlStateNormal];
     linkInButton.layer.cornerRadius = 5;
     
@@ -114,14 +117,14 @@
     UILabel *footerLine = [[UILabel alloc] initWithFrame:footerLineFrame];
     footerLine.text = @"------------------------------------";
     footerLine.textAlignment = NSTextAlignmentCenter;
-    footerLine.textColor = XHOrangeColor;
+    footerLine.textColor = color;
     [self.view addSubview:footerLine];
     
     CGRect footerFrame = CGRectMake(widgetX, self.view.frame.size.height - controlSpace, textFieldWidth, 30);
     UILabel *footer = [[UILabel alloc] initWithFrame:footerFrame];
     footer.text = @"Copyleft (c) bl4ckra1sond3tre@gmail.com";
     footer.textAlignment = NSTextAlignmentCenter;
-    footer.textColor = XHOrangeColor;
+    footer.textColor = color;
     footer.font = [UIFont systemFontOfSize:11];
     
     [self.view addSubview:footer];
@@ -159,7 +162,7 @@
     // get current version key
     NSString *currentVersion = [NSBundle mainBundle].infoDictionary[versionKey];
     if ([currentVersion isEqualToString:lastVersion]) {
-        window.rootViewController = [[XHTabBarViewController alloc] init];
+        window.rootViewController = [[XHTabBarController alloc] init];
     } else {
         window.rootViewController = [[XHNewFeatureViewController alloc] init];
         // save this version key

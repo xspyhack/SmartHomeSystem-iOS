@@ -8,6 +8,7 @@
 
 #import "XHGaugeViewController.h"
 #import "XHGaugeView.h"
+#import "XHColorTools.h"
 
 @interface XHGaugeViewController ()
 
@@ -35,7 +36,8 @@
     self.temperatureView.lineWidth = 1.5;
     self.temperatureView.minorTickLength = 15.0;
     self.temperatureView.needle.width = 2.0;
-    self.temperatureView.textLabel.textColor = [UIColor colorWithRed:0.7 green:1.0 blue:1.0 alpha:1.0];
+    self.temperatureView.needle.tintColor = [XHColorTools temperatureColor];
+    self.temperatureView.textLabel.textColor = [XHColorTools temperatureColor];
     
     self.temperatureView.value = 0.0;
     [self.view addSubview:self.temperatureView];
@@ -49,8 +51,9 @@
     self.humidityView.minNumber = 20.0;
     self.humidityView.maxNumber = 80.0;
     self.humidityView.textLabel.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:15.0];
-    self.humidityView.textLabel.textColor = [UIColor whiteColor];
-    self.humidityView.needle.tintColor = [UIColor greenColor];
+    self.humidityView.textLabel.textColor = [XHColorTools humidityColor];
+    self.humidityView.tintColor = [UIColor colorWithRed:0.88 green:1 blue:1 alpha:1];
+    self.humidityView.needle.tintColor = [XHColorTools humidityColor];
     self.humidityView.needle.width = 1.0;
     
     self.humidityView.value = 64.4;
@@ -65,8 +68,9 @@
     self.smokeView.minNumber = 5.0;
     self.smokeView.maxNumber = 20.0;
     self.smokeView.textLabel.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:15.0];
-    self.smokeView.textLabel.textColor = XHOrangeColor;
-    self.smokeView.needle.tintColor = [UIColor redColor];
+    self.smokeView.textLabel.textColor = [XHColorTools smokeColor];
+    self.smokeView.tintColor = [UIColor colorWithRed:0.52 green:0.46 blue:0.98 alpha:1];
+    self.smokeView.needle.tintColor = [XHColorTools smokeColor];
     self.smokeView.needle.width = 1.0;
     
     self.smokeView.value = 9.4;
@@ -74,8 +78,7 @@
     
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(135, 600, 100, 30)];
     [btn setTitle:@"change" forState:UIControlStateNormal];
-    //btn.backgroundColor = [UIColor lightGrayColor];
-    [btn setTitleColor:XHOrangeColor forState:UIControlStateNormal];
+    [btn setTitleColor:[XHColorTools themeColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(change) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
 }

@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "XHTabBarViewController.h"
+#import "XHTabBarController.h"
 #import "XHNewFeatureViewController.h"
 #import "XHLinkinViewController.h"
 #import "XHTokenModel.h"
@@ -56,7 +56,7 @@
         // get current version key
         NSString *currentVersion = [NSBundle mainBundle].infoDictionary[versionKey];
         if ([currentVersion isEqualToString:lastVersion]) {
-            self.window.rootViewController = [[XHTabBarViewController alloc] init];
+            self.window.rootViewController = [[XHTabBarController alloc] init];
         } else {
             self.window.rootViewController = [[XHNewFeatureViewController alloc] init];
             // save this version key
@@ -111,7 +111,7 @@
 - (void)onNotificationReceived:(NSNotification *)notification
 {
     if ([notification.name isEqualToString:XHThemeDidChangeNotification]) {
-        XHTabBarViewController *tabBarVC = [[XHTabBarViewController alloc] init]; // alloc a new tabBarViewController
+        XHTabBarController *tabBarVC = [[XHTabBarController alloc] init]; // alloc a new tabBarViewController
         
         tabBarVC.selectedIndex = 2; // go to settings view
         self.window.rootViewController = nil;

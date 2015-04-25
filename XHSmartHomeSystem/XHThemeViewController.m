@@ -8,7 +8,6 @@
 
 #import "XHThemeViewController.h"
 #import "XHColorsView.h"
-#import "XHTabBarViewController.h"
 
 #define XHColorsViewHeight 309
 
@@ -38,7 +37,7 @@
 {
     CGRect rect = CGRectMake(0, 200, self.view.frame.size.width, XHColorsViewHeight);
     self.colorsView = [[XHColorsView alloc] initWithFrame:rect];
-    self.colorsView.master = @"XHSystemColor";
+    self.colorsView.master = @"XHThemeColor";
     //[self.colorsView pullDown:1.0];
 
     [self.view addSubview:self.colorsView];

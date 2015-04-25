@@ -80,19 +80,19 @@ typedef enum {
     
     XHTableViewCellArrowItem *tempColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Temperature color"];
     tempColorItem.operation = ^ {
-        self.colorsView.master = @"TempColor";
+        self.colorsView.master = @"XHTemperatureColor";
         [self.colorsView pullDown:0.5f];
     };
     
     XHTableViewCellArrowItem *humiColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Humidity color"];
     humiColorItem.operation = ^ {
-        self.colorsView.master = @"HumiColor";
+        self.colorsView.master = @"XHHumidityColor";
         [self.colorsView pullDown:0.5f];
     };
     
     XHTableViewCellArrowItem *smokeColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Smoke color"];
     smokeColorItem.operation = ^ {
-        self.colorsView.master = @"SmokeColor";
+        self.colorsView.master = @"XHSmokeColor";
         [self.colorsView pullDown:0.5f];
     };
     
