@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>64B899CB-58EC-4E31-BF60-16F2F520FE8C</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>XHSmartHomeSystem</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>79800A52BFD4CF4CB1CDC609CCC5CDE55B8DFBEF</key>
 		<string>github.com:xspyhack/SmartHomeSystem-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>XHSmartHomeSystem.xcodeproj/project.xcworkspace</string>
+	<string>XHSmartHomeSystem.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>79800A52BFD4CF4CB1CDC609CCC5CDE55B8DFBEF</key>

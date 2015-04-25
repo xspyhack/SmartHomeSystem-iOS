@@ -10,6 +10,7 @@
 #import "XHLineChartItem.h"
 #import "XHLineChartView.h"
 #import "XHRoomModel.h"
+#import "XHColorModel.h"
 
 @interface XHChartView ()
 
@@ -97,14 +98,20 @@ typedef enum {
 
 - (void)setupChartView
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    CGFloat lineWidth = [defaults floatForKey:@"LineWidth"];
+    NSInteger tempIndex = [defaults integerForKey:@"TempColor"];
+    NSInteger humiIndex = [defaults integerForKey:@"HumiColor"];
+    UIColor *tempColor = [XHColorModel colorModelWithIndex:tempIndex];
+    UIColor *humiColor = [XHColorModel colorModelWithIndex:humiIndex];
+    
     CGRect rect = CGRectMake(5, 30, self.frame.size.width - 10, 350);
     self.lineChartView = [[XHLineChartView alloc] initWithFrame:rect xTitle:@"date" y1Title:@"temperature" y2Title:@"humidity" describe1:@"TEMP" describe2:@"HUMI"];
-    self.lineChartView.lineWidth = 1.f;
+    self.lineChartView.lineWidth = lineWidth;
     self.lineChartView.inflexionPointWidth = 3.f;
-    self.lineChartView.y1LineColor = [UIColor colorWithRed:(float)249/255 green:(float)176/255 blue:(float)47/255 alpha:1.0];
-    self.lineChartView.y2LineColor = [UIColor colorWithRed:(float)73/255 green:(float)146/255 blue:(float)187/255 alpha:1.0];
+    self.lineChartView.y1LineColor = tempColor;
+    self.lineChartView.y2LineColor = humiColor;
     self.lineChartView.alpha = 1.f;
-    
     self.lineChartView.dataSource = self.dataSource;
     
     [self.lineChartView strokeChartView];

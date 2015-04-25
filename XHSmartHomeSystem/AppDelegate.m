@@ -79,7 +79,10 @@
         [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
         [defaults setObject:@"Disabled" forKey:@"NotificationEnabled"];
     }
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onNotificationReceived:)
+                                                 name:XHThemeDidChangeNotification
+                                               object:nil];
     return YES;
 }
 
@@ -103,6 +106,17 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)onNotificationReceived:(NSNotification *)notification
+{
+    if ([notification.name isEqualToString:XHThemeDidChangeNotification]) {
+        XHTabBarViewController *tabBarVC = [[XHTabBarViewController alloc] init]; // alloc a new tabBarViewController
+        
+        tabBarVC.selectedIndex = 2; // go to settings view
+        self.window.rootViewController = nil;
+        self.window.rootViewController = tabBarVC;
+    }
 }
 
 - (void)addLocalNotification

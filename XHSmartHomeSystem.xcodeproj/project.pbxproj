@@ -38,6 +38,9 @@
 		786E905A1ADCBE4700A93675 /* UUImageAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E90591ADCBE4700A93675 /* UUImageAvatarBrowser.m */; };
 		786E90601ADCC3F000A93675 /* XHMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E905F1ADCC3F000A93675 /* XHMessageModel.m */; };
 		787DECE81AD93FF70081ECEE /* XHNewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787DECE71AD93FF70081ECEE /* XHNewFeatureViewController.m */; };
+		787F172D1AE9E578002B9DCD /* XHColorsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 787F172C1AE9E578002B9DCD /* XHColorsView.m */; };
+		787F17301AEA11C3002B9DCD /* XHColorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 787F172F1AEA11C3002B9DCD /* XHColorModel.m */; };
+		787F17361AEA6949002B9DCD /* XHThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787F17351AEA6949002B9DCD /* XHThemeViewController.m */; };
 		787FBB501AD8E5A200316651 /* XHSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB4F1AD8E5A200316651 /* XHSettingsViewController.m */; };
 		787FBB561AD8E64100316651 /* XHHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB551AD8E64100316651 /* XHHomeViewController.m */; };
 		787FBB591AD8E67D00316651 /* XHMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB581AD8E67D00316651 /* XHMessagesViewController.m */; };
@@ -132,6 +135,12 @@
 		786E905F1ADCC3F000A93675 /* XHMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHMessageModel.m; sourceTree = "<group>"; };
 		787DECE61AD93FF70081ECEE /* XHNewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHNewFeatureViewController.h; sourceTree = "<group>"; };
 		787DECE71AD93FF70081ECEE /* XHNewFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHNewFeatureViewController.m; sourceTree = "<group>"; };
+		787F172B1AE9E578002B9DCD /* XHColorsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHColorsView.h; sourceTree = "<group>"; };
+		787F172C1AE9E578002B9DCD /* XHColorsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHColorsView.m; sourceTree = "<group>"; };
+		787F172E1AEA11C3002B9DCD /* XHColorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHColorModel.h; sourceTree = "<group>"; };
+		787F172F1AEA11C3002B9DCD /* XHColorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHColorModel.m; sourceTree = "<group>"; };
+		787F17341AEA6949002B9DCD /* XHThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHThemeViewController.h; sourceTree = "<group>"; };
+		787F17351AEA6949002B9DCD /* XHThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHThemeViewController.m; sourceTree = "<group>"; };
 		787FBB4E1AD8E5A200316651 /* XHSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSettingsViewController.h; sourceTree = "<group>"; };
 		787FBB4F1AD8E5A200316651 /* XHSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHSettingsViewController.m; sourceTree = "<group>"; };
 		787FBB541AD8E64100316651 /* XHHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHHomeViewController.h; sourceTree = "<group>"; };
@@ -232,6 +241,8 @@
 				785531561ADF85AB00080703 /* XHAboutViewController.h */,
 				785531571ADF85AB00080703 /* XHAboutViewController.m */,
 				7866FAC61AE7B70D00250478 /* General */,
+				787F17341AEA6949002B9DCD /* XHThemeViewController.h */,
+				787F17351AEA6949002B9DCD /* XHThemeViewController.m */,
 				7866FADC1AE8C6F900250478 /* XHNotificationsViewController.h */,
 				7866FADD1AE8C6F900250478 /* XHNotificationsViewController.m */,
 				7866FAD01AE8C4FB00250478 /* XHSecurityViewController.h */,
@@ -324,6 +335,8 @@
 				78C13B931ADA0EF90020AAFA /* XHTokenModel.m */,
 				786E905E1ADCC3F000A93675 /* XHMessageModel.h */,
 				786E905F1ADCC3F000A93675 /* XHMessageModel.m */,
+				787F172E1AEA11C3002B9DCD /* XHColorModel.h */,
+				787F172F1AEA11C3002B9DCD /* XHColorModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -366,6 +379,8 @@
 				781F1FEC1AE0C10600ACEACC /* XHChartView.m */,
 				78E614D51AE6447100191132 /* XHGaugeView.h */,
 				78E614D61AE6447100191132 /* XHGaugeView.m */,
+				787F172B1AE9E578002B9DCD /* XHColorsView.h */,
+				787F172C1AE9E578002B9DCD /* XHColorsView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -396,8 +411,8 @@
 				78B08F391AE20B5400A26C53 /* MBProgressHUD */,
 				78E614961AE5ECFE00191132 /* Chart */,
 				786E90541ADCBBC100A93675 /* UUChat */,
-				78C13B9D1ADA6D430020AAFA /* Views */,
 				78C13B991ADA380D0020AAFA /* Tools */,
+				78C13B9D1ADA6D430020AAFA /* Views */,
 				787FBB651AD8EB7C00316651 /* Models */,
 				787FBB611AD8EA9F00316651 /* Cells */,
 				787FBB5A1AD8E6BF00316651 /* Controllers */,
@@ -562,6 +577,7 @@
 				786E90531ADCBBBC00A93675 /* NSDate+Utils.m in Sources */,
 				787FBB561AD8E64100316651 /* XHHomeViewController.m in Sources */,
 				78B08F381AE20B4C00A26C53 /* MBProgressHUD.m in Sources */,
+				787F17301AEA11C3002B9DCD /* XHColorModel.m in Sources */,
 				787FBB681AD8F46F00316651 /* XHTabBarViewController.m in Sources */,
 				7866FAD81AE8C5AC00250478 /* XHDisplayViewController.m in Sources */,
 				786E903A1ADBB50800A93675 /* XHRoomView.m in Sources */,
@@ -580,6 +596,7 @@
 				78E6149C1AE5ED7800191132 /* XHChart.m in Sources */,
 				786E904E1ADCBBAE00A93675 /* UUMessage.m in Sources */,
 				7855315B1ADF8CEB00080703 /* XHTableViewController.m in Sources */,
+				787F17361AEA6949002B9DCD /* XHThemeViewController.m in Sources */,
 				785531421ADE583B00080703 /* UIBarButtonItem+Extension.m in Sources */,
 				787FBB5D1AD8E99800316651 /* XHLinkinViewController.m in Sources */,
 				78C13B971ADA101C0020AAFA /* XHTokenTools.m in Sources */,
@@ -591,6 +608,7 @@
 				7855314F1ADF58C800080703 /* XHTableViewCellArrowItem.m in Sources */,
 				7855314C1ADF528E00080703 /* XHRoomTableViewCell.m in Sources */,
 				78E6149F1AE5EDCF00191132 /* XHLineChartItem.m in Sources */,
+				787F172D1AE9E578002B9DCD /* XHColorsView.m in Sources */,
 				787DECE81AD93FF70081ECEE /* XHNewFeatureViewController.m in Sources */,
 				78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */,
 				781F1FED1AE0C10600ACEACC /* XHChartView.m in Sources */,

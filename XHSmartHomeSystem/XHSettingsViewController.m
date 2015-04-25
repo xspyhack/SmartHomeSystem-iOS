@@ -20,6 +20,7 @@
 #import "XHNotificationsViewController.h"
 #import "XHSecurityViewController.h"
 #import "XHAboutViewController.h"
+#import "XHThemeViewController.h"
 
 @interface XHSettingsViewController ()
 
@@ -130,13 +131,20 @@
     XHTableViewCellArrowItem *generalItem = [XHTableViewCellArrowItem itemWithTitle:@"General" iconName:@"general"];
     generalItem.destViewContorller = [XHGeneralSettingsViewController class];
     
+    XHTableViewCellArrowItem *themeItem = [XHTableViewCellArrowItem itemWithTitle:@"Theme" iconName:@"general"];
+    /**themeItem.operation = ^ {
+        XHThemeViewController *tVC = [[XHThemeViewController alloc] init];
+        [self presentViewController:tVC animated:YES completion:nil];
+    };*/
+    themeItem.destViewContorller = [XHThemeViewController class];
+    
     XHTableViewCellArrowItem *notificationItem = [XHTableViewCellArrowItem itemWithTitle:@"Notifications" iconName:@"notification"];
     notificationItem.destViewContorller = [XHNotificationsViewController class];
     
     XHTableViewCellArrowItem *securityItem = [XHTableViewCellArrowItem itemWithTitle:@"Security" iconName:@"security"];
     securityItem.destViewContorller = [XHSecurityViewController class];
     
-    group.items = @[generalItem, notificationItem, securityItem];
+    group.items = @[generalItem, themeItem, notificationItem, securityItem];
 }
 
 - (void)setupAboutGroup

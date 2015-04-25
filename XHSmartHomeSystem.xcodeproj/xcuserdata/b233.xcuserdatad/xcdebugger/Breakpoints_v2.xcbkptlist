@@ -41,13 +41,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XHSmartHomeSystem/XHTableViewController.m"
-            timestampString = "451497769.805616"
+            filePath = "XHSmartHomeSystem/XHTabBarViewController.m"
+            timestampString = "451632492.897186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-addSubViewController:title:imageName:selectedImageName:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XHSmartHomeSystem/XHTabBarViewController.m"
+            timestampString = "451632492.897186"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "-setupSubViewController"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

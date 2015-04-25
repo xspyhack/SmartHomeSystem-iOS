@@ -58,18 +58,6 @@
 
 - (void)setupLinkOutGroup
 {
-    /*
-    XHTableViewCellGroup *group = [XHTableViewCellGroup group];
-    [self.groups addObject:group];
-    
-    XHTableViewCellItem *linkOutItem = [XHTableViewCellItem itemWithTitle:@"Link out"];
-    linkOutItem.operation = ^ {
-        [self linkout];
-    };
-    
-    group.items = @[linkOutItem];
-    */
-    
     CGRect rect = CGRectMake(0, 15, self.view.frame.size.width, 45);
     UIButton *linkout = [[UIButton alloc] initWithFrame:rect];
     linkout.backgroundColor = XHOrangeColor;

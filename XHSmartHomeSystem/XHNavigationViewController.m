@@ -7,6 +7,7 @@
 //
 
 #import "XHNavigationViewController.h"
+#import "XHColorModel.h"
 
 @interface XHNavigationViewController ()
 
@@ -27,6 +28,10 @@
 // setup UINavigationBar theme
 + (void)setupNavigationBarTheme
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger index = [defaults integerForKey:@"XHSystemColor"];
+    UIColor *color = [XHColorModel colorModelWithIndex:index];
+    
     // it can setup all project's navigationbar by setting appearance
     UINavigationBar *appearance = [UINavigationBar appearance];
     /*
@@ -37,10 +42,10 @@
     
     // set text attribute
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    textAttrs[NSForegroundColorAttributeName] = XHOrangeColor;
+    textAttrs[NSForegroundColorAttributeName] = color;
     //textAttrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:20];
     //textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero]; // shadow
-    [appearance setTintColor:XHOrangeColor]; // set tint color
+    [appearance setTintColor:color]; // set tint color
     //[appearance setBarTintColor:XHOrangeColor]; // set bar background color
     
     [appearance setTitleTextAttributes:textAttrs];
@@ -49,16 +54,21 @@
 // setup  UIBarButtonItem theme
 + (void)setupBarButtonItemTheme
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger index = [defaults integerForKey:@"XHSystemColor"];
+    UIColor *color = [XHColorModel colorModelWithIndex:index];
+    
     // it can setup all project's navigationbar by setting appearance
     UIBarButtonItem *appearance = [UIBarButtonItem appearance];
     
     // set text attributes
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    textAttrs[NSForegroundColorAttributeName] = XHOrangeColor;
+    textAttrs[NSForegroundColorAttributeName] = color;
     textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:15];
     //textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero];
     
     [appearance setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
+    [appearance setTintColor:color];
     
     // set high lighted text attributes
     NSMutableDictionary *highLightedTextAttrs = [NSMutableDictionary dictionary];
@@ -74,9 +84,47 @@
     //[appearance setBackButtonBackgroundImage:[UIImage imageNamed:@"nav_btn_background"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
 }
 
+- (void)setNavigationBarTheme
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger index = [defaults integerForKey:@"XHSystemColor"];
+    UIColor *color = [XHColorModel colorModelWithIndex:index];
+
+    
+    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
+    textAttrs[NSForegroundColorAttributeName] = color;
+    //textAttrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:20];
+    //textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero]; // shadow
+    [self.navigationBar setTintColor:color]; // set tint color
+    
+    [self.navigationBar setTitleTextAttributes:textAttrs];
+}
+
+- (void)setBarButtonItemTheme
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger index = [defaults integerForKey:@"XHSystemColor"];
+    UIColor *color = [XHColorModel colorModelWithIndex:index];
+    
+    // it can setup all project's navigationbar by setting appearance
+    UIBarButtonItem *appearance = [UIBarButtonItem appearance];
+
+    // set text attributes
+    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
+    textAttrs[NSForegroundColorAttributeName] = color;
+    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:15];
+    //textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero];
+    
+    [appearance setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view.
+    
+    [self setNavigationBarTheme];
+    [self setBarButtonItemTheme];
 }
 
 #pragma mark - rewrite mothod

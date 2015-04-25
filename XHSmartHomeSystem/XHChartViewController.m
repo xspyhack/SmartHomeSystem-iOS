@@ -18,12 +18,16 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"settings" style:UIBarButtonItemStylePlain target:self action:@selector(setChart)];
+    
     // add UIScrollView
     [self setupScrollView];
     
     // add PageControl
     [self setupPageControl];
 }
+
+#pragma mark - set up methods
 
 - (void)setupScrollView
 {
@@ -79,12 +83,17 @@
     [self.view addSubview:pageControl];
 }
 
+#pragma mark - private methods
+
+- (void)setChart
+{
+    XHLog(@"settings");
+}
 
 - (void)setPage
 {
     [self.scrollView setContentOffset:CGPointMake(self.view.bounds.size.width * self.pageControl.currentPage, self.scrollView.bounds.origin.y) animated:YES];
 }
-
 
 #pragma  mark - UIScrollViewDelegate
 

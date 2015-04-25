@@ -11,19 +11,25 @@
 #import "XHHomeViewController.h"
 #import "XHMessagesViewController.h"
 #import "XHSettingsViewController.h"
+#import "XHColorModel.h"
 
 
 @interface XHTabBarViewController ()
 
 @end
 
-
 @implementation XHTabBarViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+   
+    [self setupSubViewController];
+}
+
+- (void)setupSubViewController
+{
     // add sub viewController
     XHHomeViewController *hVC = [[XHHomeViewController alloc] init];
     [self addSubViewController:hVC title:@"Home" imageName:@"tabbar_home" selectedImageName:@"tabbar_home_highlighted"];
@@ -37,11 +43,16 @@
 
 - (void)addSubViewController:(UIViewController *)subVC title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger index = [defaults integerForKey:@"XHSystemColor"];
+    UIColor *color = [XHColorModel colorModelWithIndex:index];
+    
     // set selected text attribute text color
     NSMutableDictionary *selectedtextAttrs = [NSMutableDictionary dictionary];
-    selectedtextAttrs[NSForegroundColorAttributeName] = XHOrangeColor;
+    selectedtextAttrs[NSForegroundColorAttributeName] = color;
 
     subVC.view.backgroundColor = [UIColor whiteColor];
+    
     // set title
     //subVC.tabBarItem.title = title;
     //subVC.navigationItem.title = title;
@@ -57,6 +68,7 @@
     
     //[self addChildViewController:subVC];
     XHNavigationViewController *navVC = [[XHNavigationViewController alloc] initWithRootViewController:subVC];
+    
     [self addChildViewController:navVC];
 }
 
