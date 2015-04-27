@@ -70,15 +70,15 @@
     
     [self calculateChartPath:_chartPath andPointsPath:_pointPath andPathKeyPoints:_pathPoints];
     
-    // Draw each line
+    // Draw each lines
     for (NSUInteger i = 0; i < 2; i++) {
         CAShapeLayer *chartLine = (CAShapeLayer *)self.chartLineArray[i];
         CAShapeLayer *pointLayer = (CAShapeLayer *)self.chartPointArray[i];
         UIGraphicsBeginImageContext(self.frame.size);
-        UIBezierPath *progressline = [_chartPath objectAtIndex:i];
+        UIBezierPath *progressLine = [_chartPath objectAtIndex:i];
         UIBezierPath *pointPath = [_pointPath objectAtIndex:i];
         
-        chartLine.path = progressline.CGPath;
+        chartLine.path = progressLine.CGPath;
         pointLayer.path = pointPath.CGPath;
         
         [CATransaction begin];
@@ -113,13 +113,13 @@
     for (NSUInteger i = 0; i < 2; i++) {
         CAShapeLayer *chartLine = (CAShapeLayer *)self.chartLineArray[i];
         CAShapeLayer *pointLayer = (CAShapeLayer *)self.chartPointArray[i];
-        
-        UIBezierPath *progressline = [_chartPath objectAtIndex:i];
+
+        UIBezierPath *progressLine = [_chartPath objectAtIndex:i];
         UIBezierPath *pointPath = [_pointPath objectAtIndex:i];
         
         CABasicAnimation * pathAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
         pathAnimation.fromValue = (id)chartLine.path;
-        pathAnimation.toValue = (id)[progressline CGPath];
+        pathAnimation.toValue = (id)[progressLine CGPath];
         pathAnimation.duration = 0.5f;
         pathAnimation.autoreverses = NO;
         pathAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -134,7 +134,7 @@
         pointPathAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         [pointLayer addAnimation:pointPathAnimation forKey:@"animationKey"];
         
-        chartLine.path = progressline.CGPath;
+        chartLine.path = progressLine.CGPath;
         pointLayer.path = pointPath.CGPath;
     }
 }
@@ -197,7 +197,7 @@
     }
 }
 
-#pragma mark - private method
+#pragma mark - setup
 
 - (void)setupDefaultValues
 {
@@ -320,6 +320,89 @@
     }
     [self setNeedsDisplay];
 }
+
+#pragma mark - private methods
+
+- (void)calculateChartPath:(NSMutableArray *)chartPath andPointsPath:(NSMutableArray *)pointsPath andPathKeyPoints:(NSMutableArray *)pathPoints
+{
+    UIBezierPath *progressLine1 = [UIBezierPath bezierPath];
+    UIBezierPath *progressLine2 = [UIBezierPath bezierPath];
+    
+    UIBezierPath *pointPath1 = [UIBezierPath bezierPath];
+    UIBezierPath *pointPath2 = [UIBezierPath bezierPath];
+    
+    
+    [chartPath insertObject:progressLine1 atIndex:0];
+    [pointsPath insertObject:pointPath1 atIndex:0];
+    
+    [chartPath insertObject:progressLine2 atIndex:1];
+    [pointsPath insertObject:pointPath2 atIndex:1];
+    
+    NSMutableArray *line1PointsArray = [[NSMutableArray alloc] init];
+    NSMutableArray *line2PointsArray = [[NSMutableArray alloc] init];
+    
+    float last_xPos = 0;
+    float last_yPos1 = 0;
+    float last_yPos2 = 0;
+    
+    for (NSInteger i = 0; i < self.dataSource.count; i++) {
+        XHLineChartItem *item = (XHLineChartItem *)[self.dataSource objectAtIndex:i];
+        
+        float xPerStepVal = [(NSNumber*)[self.xArray objectAtIndex:0] floatValue];
+        float xPosition = self.originPoint.x + ((self.xPerStepWidth * item.xValue) / xPerStepVal) + self.contentScroll.x;
+        
+        float y1PerStepVal = [(NSNumber*)[self.y1Array objectAtIndex:0] floatValue];
+        float y1Position = self.originPoint.y - fabs(((self.yPerStepHeight * item.y1Value) / y1PerStepVal )) + self.contentScroll.y;
+        
+        float y2PerStepVal = [(NSNumber*)[self.y2Array objectAtIndex:0] floatValue];
+        float y2Position = self.originPoint.y - fabs(((self.yPerStepHeight * item.y2Value) / y2PerStepVal )) + self.contentScroll.y;
+        
+        CGRect circleRect1 = CGRectMake(xPosition - _inflexionPointWidth / 2, y1Position - _inflexionPointWidth / 2, _inflexionPointWidth, _inflexionPointWidth);
+        CGPoint circleCenter1 = CGPointMake(circleRect1.origin.x + (circleRect1.size.width / 2), circleRect1.origin.y + (circleRect1.size.height / 2));
+        
+        [pointPath1 moveToPoint:CGPointMake(circleCenter1.x + (_inflexionPointWidth / 2), circleCenter1.y)];
+        [pointPath1 addArcWithCenter:circleCenter1 radius:_inflexionPointWidth / 2 startAngle:0 endAngle:2 * M_PI clockwise:YES];
+        
+        CGRect circleRect2 = CGRectMake(xPosition - _inflexionPointWidth / 2, y2Position - _inflexionPointWidth / 2, _inflexionPointWidth, _inflexionPointWidth);
+        CGPoint circleCenter2 = CGPointMake(circleRect2.origin.x + (circleRect2.size.width / 2), circleRect2.origin.y + (circleRect2.size.height / 2));
+        
+        [pointPath2 moveToPoint:CGPointMake(circleCenter2.x + (_inflexionPointWidth / 2), circleCenter2.y)];
+        [pointPath2 addArcWithCenter:circleCenter2 radius:_inflexionPointWidth / 2 startAngle:0 endAngle:2 * M_PI clockwise:YES];
+        
+        
+        if ( i != 0 ) {
+            // calculate the point for line
+            float distance1 = sqrt(pow(xPosition - last_xPos, 2) + pow(y1Position - last_yPos1, 2) );
+            float last_x = last_xPos + (_inflexionPointWidth / 2) / distance1 * (xPosition - last_xPos);
+            float last_y1 = last_yPos1 + (_inflexionPointWidth / 2) / distance1 * (y1Position - last_yPos1);
+            float x = xPosition - (_inflexionPointWidth / 2) / distance1 * (xPosition - last_xPos);
+            float y1 = y1Position - (_inflexionPointWidth / 2) / distance1 * (y1Position - last_yPos1);
+            
+            [progressLine1 moveToPoint:CGPointMake(last_x, last_y1)];
+            [progressLine1 addLineToPoint:CGPointMake(x, y1)];
+            
+            float distance2 = sqrt(pow(xPosition - last_xPos, 2) + pow(y2Position - last_yPos2, 2) );
+            float last_y2 = last_yPos2 + (_inflexionPointWidth / 2) / distance2 * (y2Position - last_yPos2);
+            
+            float y2 = y2Position - (_inflexionPointWidth / 2) / distance2 * (y2Position - last_yPos2);
+            
+            [progressLine2 moveToPoint:CGPointMake(last_x, last_y2)];
+            [progressLine2 addLineToPoint:CGPointMake(x, y2)];
+            
+        }
+        last_xPos = xPosition;
+        last_yPos1 = y1Position;
+        last_yPos2 = y2Position;
+        [line1PointsArray addObject:[NSValue valueWithCGPoint:CGPointMake(xPosition, y1Position)]];
+        [line2PointsArray addObject:[NSValue valueWithCGPoint:CGPointMake(xPosition, y2Position)]];
+    }
+    
+    [pathPoints addObject:[line1PointsArray copy]];
+    [pathPoints addObject:[line2PointsArray copy]];
+    
+}
+
+#pragma mark draw coordinate axis
 
 -(void)prepareXYLabels
 {
@@ -473,85 +556,6 @@
                               lineColor:dataLineColor];
         }
     }
-}
-
-- (void)calculateChartPath:(NSMutableArray *)chartPath andPointsPath:(NSMutableArray *)pointsPath andPathKeyPoints:(NSMutableArray *)pathPoints
-{
-    UIBezierPath *progressLine1 = [UIBezierPath bezierPath];
-    UIBezierPath *progressLine2 = [UIBezierPath bezierPath];
-    
-    UIBezierPath *pointPath1 = [UIBezierPath bezierPath];
-    UIBezierPath *pointPath2 = [UIBezierPath bezierPath];
-    
-    
-    [chartPath insertObject:progressLine1 atIndex:0];
-    [pointsPath insertObject:pointPath1 atIndex:0];
-    
-    [chartPath insertObject:progressLine2 atIndex:1];
-    [pointsPath insertObject:pointPath2 atIndex:1];
-    
-    NSMutableArray *line1PointsArray = [[NSMutableArray alloc] init];
-    NSMutableArray *line2PointsArray = [[NSMutableArray alloc] init];
-    
-    float last_xPos = 0;
-    float last_yPos1 = 0;
-    float last_yPos2 = 0;
-    
-    for (NSInteger i = 0; i < self.dataSource.count; i++) {
-        XHLineChartItem *item = (XHLineChartItem *)[self.dataSource objectAtIndex:i];
-        
-        float xPerStepVal = [(NSNumber*)[self.xArray objectAtIndex:0] floatValue];
-        float xPosition = self.originPoint.x + ((self.xPerStepWidth * item.xValue) / xPerStepVal) + self.contentScroll.x;
-
-        float y1PerStepVal = [(NSNumber*)[self.y1Array objectAtIndex:0] floatValue];
-        float y1Position = self.originPoint.y - fabs(((self.yPerStepHeight * item.y1Value) / y1PerStepVal )) + self.contentScroll.y;
-        
-        float y2PerStepVal = [(NSNumber*)[self.y2Array objectAtIndex:0] floatValue];
-        float y2Position = self.originPoint.y - fabs(((self.yPerStepHeight * item.y2Value) / y2PerStepVal )) + self.contentScroll.y;
-        
-        CGRect circleRect1 = CGRectMake(xPosition - _inflexionPointWidth / 2, y1Position - _inflexionPointWidth / 2, _inflexionPointWidth, _inflexionPointWidth);
-        CGPoint circleCenter1 = CGPointMake(circleRect1.origin.x + (circleRect1.size.width / 2), circleRect1.origin.y + (circleRect1.size.height / 2));
-        
-        [pointPath1 moveToPoint:CGPointMake(circleCenter1.x + (_inflexionPointWidth / 2), circleCenter1.y)];
-        [pointPath1 addArcWithCenter:circleCenter1 radius:_inflexionPointWidth / 2 startAngle:0 endAngle:2 * M_PI clockwise:YES];
-        
-        CGRect circleRect2 = CGRectMake(xPosition - _inflexionPointWidth / 2, y2Position - _inflexionPointWidth / 2, _inflexionPointWidth, _inflexionPointWidth);
-        CGPoint circleCenter2 = CGPointMake(circleRect2.origin.x + (circleRect2.size.width / 2), circleRect2.origin.y + (circleRect2.size.height / 2));
-        
-        [pointPath2 moveToPoint:CGPointMake(circleCenter2.x + (_inflexionPointWidth / 2), circleCenter2.y)];
-        [pointPath2 addArcWithCenter:circleCenter2 radius:_inflexionPointWidth / 2 startAngle:0 endAngle:2 * M_PI clockwise:YES];
-        
-        
-        if ( i != 0 ) {
-            // calculate the point for line
-            float distance1 = sqrt(pow(xPosition - last_xPos, 2) + pow(y1Position - last_yPos1, 2) );
-            float last_x = last_xPos + (_inflexionPointWidth / 2) / distance1 * (xPosition - last_xPos);
-            float last_y1 = last_yPos1 + (_inflexionPointWidth / 2) / distance1 * (y1Position - last_yPos1);
-            float x = xPosition - (_inflexionPointWidth / 2) / distance1 * (xPosition - last_xPos);
-            float y1 = y1Position - (_inflexionPointWidth / 2) / distance1 * (y1Position - last_yPos1);
-            
-            [progressLine1 moveToPoint:CGPointMake(last_x, last_y1)];
-            [progressLine1 addLineToPoint:CGPointMake(x, y1)];
-            
-            float distance2 = sqrt(pow(xPosition - last_xPos, 2) + pow(y2Position - last_yPos2, 2) );
-            float last_y2 = last_yPos2 + (_inflexionPointWidth / 2) / distance2 * (y2Position - last_yPos2);
-            
-            float y2 = y2Position - (_inflexionPointWidth / 2) / distance2 * (y2Position - last_yPos2);
-            
-            [progressLine2 moveToPoint:CGPointMake(last_x, last_y2)];
-            [progressLine2 addLineToPoint:CGPointMake(x, y2)];
-            
-        }
-        last_xPos = xPosition;
-        last_yPos1 = y1Position;
-        last_yPos2 = y2Position;
-        [line1PointsArray addObject:[NSValue valueWithCGPoint:CGPointMake(xPosition, y1Position)]];
-        [line2PointsArray addObject:[NSValue valueWithCGPoint:CGPointMake(xPosition, y2Position)]];
-    }
-    
-    [pathPoints addObject:[line1PointsArray copy]];
-    [pathPoints addObject:[line2PointsArray copy]];
-    
 }
 
 - (void)drawRect:(CGRect)rect

@@ -99,16 +99,12 @@ typedef enum {
 - (void)setupChartView
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    CGFloat lineWidth = [defaults floatForKey:@"LineWidth"];
-    //NSInteger tempIndex = [defaults integerForKey:@"TempColor"];
-    //NSInteger humiIndex = [defaults integerForKey:@"HumiColor"];
-    //UIColor *tempColor = [XHColorModel colorModelWithIndex:tempIndex];
-    //UIColor *humiColor = [XHColorModel colorModelWithIndex:humiIndex];
+    CGFloat lineWidth = [defaults floatForKey:@"XHLineWidth"];
     
     CGRect rect = CGRectMake(5, 30, self.frame.size.width - 10, 350);
     self.lineChartView = [[XHLineChartView alloc] initWithFrame:rect xTitle:@"date" y1Title:@"temperature" y2Title:@"humidity" describe1:@"TEMP" describe2:@"HUMI"];
     self.lineChartView.lineWidth = lineWidth;
-    self.lineChartView.inflexionPointWidth = 3.f;
+    self.lineChartView.inflexionPointWidth = lineWidth * 3;
     self.lineChartView.y1LineColor = [XHColorTools temperatureColor];
     self.lineChartView.y2LineColor = [XHColorTools humidityColor];
     self.lineChartView.alpha = 1.f;

@@ -10,7 +10,7 @@
 #import "XHColorModel.h"
 
 #define XHColorBtnWidth 44
-#define XHColorsViewHeight 309
+#define XHColorsViewHeight 370
 
 @interface XHColorsView ()
 @property (nonatomic, strong) NSArray *btnArray;
@@ -58,6 +58,12 @@
         [self setupColorsWithColor:color frame:rect tap:index];
         //[self.btnArray objectAtIndex:index];
     }
+    
+    CGRect btnRect = CGRectMake((self.frame.size.width - 50)/2, self.frame.size.height - 50, 50, 50);
+    UIButton *saveBtn = [[UIButton alloc] initWithFrame:btnRect];
+    [saveBtn addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
+    [saveBtn setTitle:@"Save" forState:UIControlStateNormal];
+    [self addSubview:saveBtn];
 }
 
 - (void)setupColorsWithColor:(UIColor *)color frame:(CGRect)frame tap:(NSInteger)index
@@ -104,7 +110,7 @@
 {
     [UIView beginAnimations:@"PullDownLogoView" context:nil];
     [UIView setAnimationDuration:animationDuration];
-    self.frame = CGRectMake(0, 133.5, self.frame.size.width, XHColorsViewHeight);
+    self.frame = CGRectMake(0, 90, self.frame.size.width, XHColorsViewHeight);
     //self.colorsView.center = self.view.center;
     
     [UIView commitAnimations];
@@ -126,6 +132,11 @@
         
         [UIView commitAnimations];
     }
+}
+
+- (void)save
+{
+    [self pullUp];
 }
 
 @end

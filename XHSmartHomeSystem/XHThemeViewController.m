@@ -9,7 +9,7 @@
 #import "XHThemeViewController.h"
 #import "XHColorsView.h"
 
-#define XHColorsViewHeight 309
+#define XHColorsViewHeight 370
 
 @interface XHThemeViewController ()
 
@@ -35,7 +35,7 @@
 
 - (void)setupColorsView
 {
-    CGRect rect = CGRectMake(0, 200, self.view.frame.size.width, XHColorsViewHeight);
+    CGRect rect = CGRectMake(0, 140, self.view.frame.size.width, XHColorsViewHeight);
     self.colorsView = [[XHColorsView alloc] initWithFrame:rect];
     self.colorsView.master = @"XHThemeColor";
     //[self.colorsView pullDown:1.0];

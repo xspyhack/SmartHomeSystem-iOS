@@ -59,7 +59,7 @@
 
 - (void)setupLinkOutGroup
 {
-    CGRect rect = CGRectMake(0, 15, self.view.frame.size.width, 45);
+    CGRect rect = CGRectMake(0, 45, self.view.frame.size.width, 40);
     UIButton *linkout = [[UIButton alloc] initWithFrame:rect];
     linkout.backgroundColor = [XHColorTools themeColor];
     [linkout setTitle:@"Link out" forState:UIControlStateNormal];

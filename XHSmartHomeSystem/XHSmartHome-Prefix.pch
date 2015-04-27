@@ -29,6 +29,8 @@
 #define XHBlackColor ([UIColor colorWithRed:26/255.0f green:26/255.0f blue:26/255.0f alpha:1])
 #define XHCellBackgroundColor ([UIColor colorWithRed:245/255.0f green:245/255.0f blue:245/255.0f alpha:1])
 
+#define XHBlueColor [UIColor colorWithRed:0.08 green:0.57 blue:0.59 alpha:1]
+
 #define XHColorCount (20)
 #define XHPomegranateColor ([UIColor colorWithRed:0.75 green:0.23 blue:0.19 alpha:1])
 #define XHAlizarinColor ([UIColor colorWithRed:0.9 green:0.3 blue:0.26 alpha:1])

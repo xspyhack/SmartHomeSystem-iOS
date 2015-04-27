@@ -10,15 +10,17 @@
 #import "XHTableViewCellGroup.h"
 #import "XHTableViewCellSwitchItem.h"
 #import "XHTableViewCellArrowItem.h"
+#import "XHLineView.h"
 #import "XHColorsView.h"
 
-#define XHColorsViewHeight 309
+#define XHColorsViewHeight 370
 typedef enum {
     EMChartModeSwitch = 0,
     EMGaugeModeSwitch = 1
 }EMSwitch;
 
 @interface XHDisplayViewController ()
+@property (nonatomic, strong) XHLineView *lineView;
 @property (nonatomic, strong) XHColorsView *colorsView;
 @property (nonatomic, assign) BOOL chartSwitch; // chart mode switch is on or close
 @property (nonatomic, assign) BOOL gaugeSwitch; // gauge mode switch's status
@@ -30,12 +32,22 @@ typedef enum {
 {
     [super viewDidLoad];
     
+    [self setupLineView];
     [self setupColorsView];
     [self setupModeGroup];
     [self setupBrushGroup];
 }
 
 #pragma mark - setup methods
+
+- (void)setupLineView
+{
+    CGRect rect = CGRectMake(0, -XHColorsViewHeight, self.view.frame.size.width, XHColorsViewHeight);
+    self.lineView = [[XHLineView alloc] initWithFrame:rect];
+    self.lineView.pull = YES;
+    
+    [self.view addSubview:self.lineView];
+}
 
 - (void)setupColorsView
 {
@@ -77,6 +89,9 @@ typedef enum {
     [self.groups addObject:group];
     
     XHTableViewCellArrowItem *lineWidthItem = [XHTableViewCellArrowItem itemWithTitle:@"Line width"];
+    lineWidthItem.operation = ^ {
+        [self.lineView pullDown:0.5f];
+    };
     
     XHTableViewCellArrowItem *tempColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Temperature color"];
     tempColorItem.operation = ^ {
