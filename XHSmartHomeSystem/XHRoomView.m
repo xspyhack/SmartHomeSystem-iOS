@@ -40,6 +40,10 @@
         self.layer.shadowRadius = 1;
         [self setupSubView];
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onNotificationReceived:)
+                                                 name:XHColorDidChangeNotification
+                                               object:nil];
     return self;
 }
 
@@ -111,6 +115,15 @@
     NSDateFormatter *formater = [[NSDateFormatter alloc] init];
     [formater setTimeStyle:NSDateFormatterShortStyle];
     _updateTimeLabel.text = [NSString stringWithFormat:@"update at %@", [formater stringFromDate:updateTime]];
+}
+
+- (void)onNotificationReceived:(NSNotification *)notification
+{
+    if ([notification.name isEqualToString:XHColorDidChangeNotification]) {
+        self.temperatureLabel.textColor = [XHColorTools temperatureColor];
+        self.humidityLabel.textColor = [XHColorTools humidityColor];
+        XHLog(@"received color changed notification");
+    }
 }
 
 /*

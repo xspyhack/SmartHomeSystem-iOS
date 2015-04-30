@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		781F1FED1AE0C10600ACEACC /* XHChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FEC1AE0C10600ACEACC /* XHChartView.m */; };
 		781F1FF01AE0C97600ACEACC /* XHChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FEF1AE0C97600ACEACC /* XHChartViewController.m */; };
+		78379E771AEE19F1008B5C87 /* XHNotificationTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78379E761AEE19F1008B5C87 /* XHNotificationTypeViewController.m */; };
+		78379E7B1AEE2A49008B5C87 /* XHTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78379E7A1AEE2A49008B5C87 /* XHTimePickerView.m */; };
 		783AF3A91AEB730F0090A81B /* XHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783AF3A81AEB730F0090A81B /* XHTabBarController.m */; };
 		783AF3AC1AEB735D0090A81B /* XHNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783AF3AB1AEB735D0090A81B /* XHNavigationController.m */; };
 		785531421ADE583B00080703 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531411ADE583B00080703 /* UIBarButtonItem+Extension.m */; };
@@ -18,7 +20,6 @@
 		7855314F1ADF58C800080703 /* XHTableViewCellArrowItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7855314E1ADF58C800080703 /* XHTableViewCellArrowItem.m */; };
 		785531521ADF58E500080703 /* XHTableViewCellSwitchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531511ADF58E500080703 /* XHTableViewCellSwitchItem.m */; };
 		785531551ADF5C1F00080703 /* XHTableViewCellLabelItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531541ADF5C1F00080703 /* XHTableViewCellLabelItem.m */; };
-		785531581ADF85AB00080703 /* XHAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531571ADF85AB00080703 /* XHAboutViewController.m */; };
 		7855315B1ADF8CEB00080703 /* XHTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7855315A1ADF8CEB00080703 /* XHTableViewController.m */; };
 		7855315E1ADF907300080703 /* XHGeneralSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7855315D1ADF907300080703 /* XHGeneralSettingsViewController.m */; };
 		7866FABF1AE783C800250478 /* XHGaugeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7866FABE1AE783C800250478 /* XHGaugeViewController.m */; };
@@ -49,6 +50,7 @@
 		787FBB5D1AD8E99800316651 /* XHLinkinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB5C1AD8E99800316651 /* XHLinkinViewController.m */; };
 		7881B75A1AEC97090079D1EB /* XHLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7881B7591AEC97090079D1EB /* XHLineView.m */; };
 		7881B75F1AECCC2A0079D1EB /* UICircularSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7881B75E1AECCC2A0079D1EB /* UICircularSlider.m */; };
+		78AFFCF61AEF8AF9003FCF5E /* XHAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AFFCF51AEF8AF9003FCF5E /* XHAboutViewController.m */; };
 		78B08F381AE20B4C00A26C53 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B08F371AE20B4C00A26C53 /* MBProgressHUD.m */; };
 		78C13B941ADA0EF90020AAFA /* XHTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B931ADA0EF90020AAFA /* XHTokenModel.m */; };
 		78C13B971ADA101C0020AAFA /* XHTokenTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B961ADA101C0020AAFA /* XHTokenTools.m */; };
@@ -81,6 +83,10 @@
 		781F1FEC1AE0C10600ACEACC /* XHChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHChartView.m; sourceTree = "<group>"; };
 		781F1FEE1AE0C97600ACEACC /* XHChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHChartViewController.h; sourceTree = "<group>"; };
 		781F1FEF1AE0C97600ACEACC /* XHChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHChartViewController.m; sourceTree = "<group>"; };
+		78379E751AEE19F1008B5C87 /* XHNotificationTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHNotificationTypeViewController.h; sourceTree = "<group>"; };
+		78379E761AEE19F1008B5C87 /* XHNotificationTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHNotificationTypeViewController.m; sourceTree = "<group>"; };
+		78379E791AEE2A49008B5C87 /* XHTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTimePickerView.h; sourceTree = "<group>"; };
+		78379E7A1AEE2A49008B5C87 /* XHTimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTimePickerView.m; sourceTree = "<group>"; };
 		783AF3A71AEB730F0090A81B /* XHTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTabBarController.h; sourceTree = "<group>"; };
 		783AF3A81AEB730F0090A81B /* XHTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTabBarController.m; sourceTree = "<group>"; };
 		783AF3AA1AEB735D0090A81B /* XHNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHNavigationController.h; sourceTree = "<group>"; };
@@ -99,8 +105,6 @@
 		785531511ADF58E500080703 /* XHTableViewCellSwitchItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTableViewCellSwitchItem.m; sourceTree = "<group>"; };
 		785531531ADF5C1F00080703 /* XHTableViewCellLabelItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTableViewCellLabelItem.h; sourceTree = "<group>"; };
 		785531541ADF5C1F00080703 /* XHTableViewCellLabelItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTableViewCellLabelItem.m; sourceTree = "<group>"; };
-		785531561ADF85AB00080703 /* XHAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHAboutViewController.h; sourceTree = "<group>"; };
-		785531571ADF85AB00080703 /* XHAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHAboutViewController.m; sourceTree = "<group>"; };
 		785531591ADF8CEB00080703 /* XHTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTableViewController.h; sourceTree = "<group>"; };
 		7855315A1ADF8CEB00080703 /* XHTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTableViewController.m; sourceTree = "<group>"; };
 		7855315C1ADF907300080703 /* XHGeneralSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHGeneralSettingsViewController.h; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 		7881B7591AEC97090079D1EB /* XHLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLineView.m; sourceTree = "<group>"; };
 		7881B75B1AECA8410079D1EB /* UICircularSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICircularSlider.h; sourceTree = "<group>"; };
 		7881B75E1AECCC2A0079D1EB /* UICircularSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICircularSlider.m; sourceTree = "<group>"; };
+		78AFFCF41AEF8AF9003FCF5E /* XHAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHAboutViewController.h; sourceTree = "<group>"; };
+		78AFFCF51AEF8AF9003FCF5E /* XHAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHAboutViewController.m; sourceTree = "<group>"; };
 		78B08F361AE20B4C00A26C53 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		78B08F371AE20B4C00A26C53 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		78C13B921ADA0EF90020AAFA /* XHTokenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTokenModel.h; sourceTree = "<group>"; };
@@ -233,6 +239,17 @@
 			name = "Message ViewControllers";
 			sourceTree = "<group>";
 		};
+		78379E781AEE19FC008B5C87 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				7866FADC1AE8C6F900250478 /* XHNotificationsViewController.h */,
+				7866FADD1AE8C6F900250478 /* XHNotificationsViewController.m */,
+				78379E751AEE19F1008B5C87 /* XHNotificationTypeViewController.h */,
+				78379E761AEE19F1008B5C87 /* XHNotificationTypeViewController.m */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
 		785531431ADE5EE800080703 /* Categorys */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,15 +266,14 @@
 			children = (
 				787FBB4E1AD8E5A200316651 /* XHSettingsViewController.h */,
 				787FBB4F1AD8E5A200316651 /* XHSettingsViewController.m */,
-				785531561ADF85AB00080703 /* XHAboutViewController.h */,
-				785531571ADF85AB00080703 /* XHAboutViewController.m */,
 				7866FAC61AE7B70D00250478 /* General */,
 				787F17341AEA6949002B9DCD /* XHThemeViewController.h */,
 				787F17351AEA6949002B9DCD /* XHThemeViewController.m */,
-				7866FADC1AE8C6F900250478 /* XHNotificationsViewController.h */,
-				7866FADD1AE8C6F900250478 /* XHNotificationsViewController.m */,
+				78379E781AEE19FC008B5C87 /* Notifications */,
 				7866FAD01AE8C4FB00250478 /* XHSecurityViewController.h */,
 				7866FAD11AE8C4FB00250478 /* XHSecurityViewController.m */,
+				78AFFCF41AEF8AF9003FCF5E /* XHAboutViewController.h */,
+				78AFFCF51AEF8AF9003FCF5E /* XHAboutViewController.m */,
 			);
 			name = "Settings ViewControllers";
 			sourceTree = "<group>";
@@ -396,6 +412,8 @@
 				787F172C1AE9E578002B9DCD /* XHColorsView.m */,
 				7881B7581AEC97090079D1EB /* XHLineView.h */,
 				7881B7591AEC97090079D1EB /* XHLineView.m */,
+				78379E791AEE2A49008B5C87 /* XHTimePickerView.h */,
+				78379E7A1AEE2A49008B5C87 /* XHTimePickerView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -583,7 +601,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				785531581ADF85AB00080703 /* XHAboutViewController.m in Sources */,
 				787FBB591AD8E67D00316651 /* XHMessagesViewController.m in Sources */,
 				783AF3A91AEB730F0090A81B /* XHTabBarController.m in Sources */,
 				7866FADE1AE8C6F900250478 /* XHNotificationsViewController.m in Sources */,
@@ -609,11 +626,13 @@
 				7866FAE11AE936DD00250478 /* XHLanguageViewController.m in Sources */,
 				786E90321ADB966500A93675 /* XHRoomModel.m in Sources */,
 				786E904F1ADCBBAE00A93675 /* UUMessageCell.m in Sources */,
+				78379E7B1AEE2A49008B5C87 /* XHTimePickerView.m in Sources */,
 				78E6149C1AE5ED7800191132 /* XHChart.m in Sources */,
 				786E904E1ADCBBAE00A93675 /* UUMessage.m in Sources */,
 				7855315B1ADF8CEB00080703 /* XHTableViewController.m in Sources */,
 				787F17361AEA6949002B9DCD /* XHThemeViewController.m in Sources */,
 				7881B75A1AEC97090079D1EB /* XHLineView.m in Sources */,
+				78379E771AEE19F1008B5C87 /* XHNotificationTypeViewController.m in Sources */,
 				785531421ADE583B00080703 /* UIBarButtonItem+Extension.m in Sources */,
 				787FBB5D1AD8E99800316651 /* XHLinkinViewController.m in Sources */,
 				78C13B971ADA101C0020AAFA /* XHTokenTools.m in Sources */,
@@ -622,6 +641,7 @@
 				785531491ADF50BE00080703 /* XHTableViewCellItem.m in Sources */,
 				785531461ADF501600080703 /* XHTableViewCellGroup.m in Sources */,
 				78C13B941ADA0EF90020AAFA /* XHTokenModel.m in Sources */,
+				78AFFCF61AEF8AF9003FCF5E /* XHAboutViewController.m in Sources */,
 				78E614991AE5ED4800191132 /* XHLineChartContentView.m in Sources */,
 				7855314F1ADF58C800080703 /* XHTableViewCellArrowItem.m in Sources */,
 				7855314C1ADF528E00080703 /* XHRoomTableViewCell.m in Sources */,

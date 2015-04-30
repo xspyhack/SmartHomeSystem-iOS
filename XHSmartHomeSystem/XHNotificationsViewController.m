@@ -7,6 +7,7 @@
 //
 
 #import "XHNotificationsViewController.h"
+#import "XHNotificationTypeViewController.h"
 #import "XHTableViewCell.h"
 #import "XHTableViewCellItem.h"
 #import "XHTableViewCellGroup.h"
@@ -63,7 +64,7 @@ typedef enum {
     [self.groups addObject:group];
     group.groupFooter = @"Message notifications will contain sender and summary when enabled.";
     
-    self.showSwitch = [self.defaults boolForKey:@"showSwitch"];
+    self.showSwitch = [self.defaults boolForKey:@"XHShowSwitch"];
     
     XHTableViewCellSwitchItem *showItem = [XHTableViewCellSwitchItem itemWithTitle:@"Show Preview Text"];
     showItem.on = self.showSwitch;
@@ -73,6 +74,8 @@ typedef enum {
     };
 
     XHTableViewCellArrowItem *typeItem = [XHTableViewCellArrowItem itemWithTitle:@"Notification Type"];
+    typeItem.destViewContorller = [XHNotificationTypeViewController class];
+    
     group.items = @[showItem, typeItem];
 }
 
@@ -80,13 +83,13 @@ typedef enum {
 {
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
-    group.groupHeader = [@"Notifications of alerter" lowercaseString];
+    group.groupHeader = [@"Notifications Alerter" lowercaseString];
     
     // read defaults settings
     
-    self.smokeSwitch = [self.defaults boolForKey:@"smokeAlertSwitch"];
-    self.humiditySwitch = [self.defaults boolForKey:@"humidityAlertSwitch"];
-    self.temperatureSwitch = [self.defaults boolForKey:@"temperatureAlertSwitch"];
+    self.smokeSwitch = [self.defaults boolForKey:@"XHSmokeAlertSwitch"];
+    self.humiditySwitch = [self.defaults boolForKey:@"XHHumidityAlertSwitch"];
+    self.temperatureSwitch = [self.defaults boolForKey:@"XHTemperatureAlertSwitch"];
     
     XHTableViewCellSwitchItem *smokeAlertItem = [XHTableViewCellSwitchItem itemWithTitle:@"Smoke"];
     smokeAlertItem.on = self.smokeSwitch;
@@ -131,10 +134,10 @@ typedef enum {
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self.defaults setBool:self.showSwitch forKey:@"showSwitch"];
-    [self.defaults setBool:self.smokeSwitch forKey:@"smokeAlertSwitch"];
-    [self.defaults setBool:self.humiditySwitch forKey:@"humidityAlertSwitch"];
-    [self.defaults setBool:self.temperatureSwitch forKey:@"temperatureAlertSwitch"];
+    [self.defaults setBool:self.showSwitch forKey:@"XHShowSwitch"];
+    [self.defaults setBool:self.smokeSwitch forKey:@"XHSmokeAlertSwitch"];
+    [self.defaults setBool:self.humiditySwitch forKey:@"XHHumidityAlertSwitch"];
+    [self.defaults setBool:self.temperatureSwitch forKey:@"XHTemperatureAlertSwitch"];
 }
 
 @end

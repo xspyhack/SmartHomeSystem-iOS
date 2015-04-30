@@ -71,7 +71,6 @@
     //headerLine.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:headerLine];
     
-
     CGFloat gatewayY = CGRectGetMaxY(headerLineFrame) + controlSpace/2;
     CGRect gatewayFrame = CGRectMake(widgetX, gatewayY, textFieldWidth, textFieldHeight);
     
@@ -136,7 +135,7 @@
     NSMutableDictionary *tokenDict = [NSMutableDictionary dictionary];
     [tokenDict setObject:self.gatewayTextField.text forKey:@"gateway"];
     [tokenDict setObject:self.passwordTextField.text forKey:@"password"];
-    [tokenDict setObject:[NSDate date] forKey:@"expires_time"];
+    [tokenDict setObject:[NSDate distantFuture] forKey:@"expires_time"];
     XHTokenModel *token = [XHTokenModel tokenModelWithDict:tokenDict];
     [XHTokenTools save:token];
     

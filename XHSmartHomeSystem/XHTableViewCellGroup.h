@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy) NSString *groupHeader;
 @property (nonatomic, copy) NSString *groupFooter;
+@property (nonatomic, strong) UIView *headerView;
 
 @property (nonatomic, strong) NSArray *items; // all group item
 

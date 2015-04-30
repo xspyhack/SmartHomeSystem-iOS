@@ -22,12 +22,20 @@
 #import "XHSecurityViewController.h"
 #import "XHAboutViewController.h"
 #import "XHThemeViewController.h"
-
-@interface XHSettingsViewController ()
-@property (nonatomic) UIColor *themeColor;
-@end
+#import "XHLinkinViewController.h"
 
 #define XHLogoViewWidthAndHeight 80
+
+@interface XHSettingsViewController ()
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) XHImageView *logoView;
+@property (nonatomic, copy) NSString *gateway;
+
+@property (nonatomic, strong) NSMutableArray *groups;
+@property (nonatomic) UIColor *themeColor;
+
+@end
 
 @implementation XHSettingsViewController
 
@@ -54,6 +62,7 @@
     [self setupData];
     [self setupTableViewCellGroup];
     [self setupTableView];
+    [self setupLinkOutGroup];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -126,6 +135,7 @@
     // create group
     [self setupGeneralGroup]; // general, notification, security
     [self setupAboutGroup]; // about
+    [self setupLinkOutGroup]; // link out
 }
 
 - (void)setupGeneralGroup
@@ -163,11 +173,71 @@
     group.items = @[aboutItem];
 }
 
+- (void)setupLinkOutGroup
+{
+    CGRect rect = CGRectMake(0, 45, self.view.frame.size.width, 40);
+    UIButton *linkout = [[UIButton alloc] initWithFrame:rect];
+    linkout.backgroundColor = [XHColorTools themeColor];
+    [linkout setTitle:@"Link out" forState:UIControlStateNormal];
+    [linkout setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [linkout addTarget:self action:@selector(linkout) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.tableView.tableFooterView = linkout;
+}
+
+- (void)linkout
+{
+    NSString *msg = @"Link out will not delete any data. You can still link in with this account.";
+    
+    if (IOS_8_OR_LATER) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:msg preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *linkout = [UIAlertAction actionWithTitle:@"Link out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            // link out
+            XHTokenModel *token = [XHTokenTools tokenModel];
+            [XHTokenTools remove:token];
+            
+            XHLinkinViewController *linkVC = [[XHLinkinViewController alloc] init];
+            [self presentViewController:linkVC animated:YES completion:nil];
+            self.view.window.rootViewController = linkVC;
+        }];
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:linkout];
+        [alertController addAction:cancel];
+        [alertController.view setTintColor:[UIColor grayColor]];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
+        UIActionSheet *linkoutActionSheel = [[UIActionSheet alloc] initWithTitle:msg
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"Cancel"
+                                                          destructiveButtonTitle:@"Link out"
+                                                               otherButtonTitles:nil];
+        linkoutActionSheel.actionSheetStyle = UIActionSheetStyleDefault;
+        
+        [linkoutActionSheel showInView:self.view];
+    }
+}
+
 #pragma mark - private methods
 
 - (void)tapLogoView:(UITapGestureRecognizer *)gesture
 {
     XHLog(@"tap");
+    XHAboutViewController *aboutVC = [[XHAboutViewController alloc] init];
+    [self.navigationController pushViewController:aboutVC animated:YES];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == [actionSheet destructiveButtonIndex]) {
+        // link out
+        XHTokenModel *token = [XHTokenTools tokenModel];
+        [XHTokenTools remove:token];
+        
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        window.backgroundColor = [UIColor whiteColor];
+        window.rootViewController = [[XHLinkinViewController alloc] init];
+    }
 }
 
 - (void)alert

@@ -25,7 +25,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.pull = NO; // can not pull down & pull up default.
-        self.backgroundColor = [XHColorTools themeColor];
+        self.backgroundColor = [[XHColorTools themeColor] colorWithAlphaComponent:0.8];
         [self setupView];
     }
     return self;

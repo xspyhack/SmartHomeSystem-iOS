@@ -24,7 +24,7 @@
     
     [self setupGeneralGroup];
     [self setupLanguageGroup];
-    [self setupLinkOutGroup];
+    [self setupWipeCacheGroup];
 }
 
 #pragma mark - private methods
@@ -57,30 +57,30 @@
     group.items = @[languageItem];
 }
 
-- (void)setupLinkOutGroup
+- (void)setupWipeCacheGroup
 {
-    CGRect rect = CGRectMake(0, 45, self.view.frame.size.width, 40);
-    UIButton *linkout = [[UIButton alloc] initWithFrame:rect];
-    linkout.backgroundColor = [XHColorTools themeColor];
-    [linkout setTitle:@"Link out" forState:UIControlStateNormal];
-    [linkout setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [linkout addTarget:self action:@selector(linkout) forControlEvents:UIControlEventTouchUpInside];
+    CGRect rect = CGRectMake(0, 15, self.view.frame.size.width, 40);
+    UIButton *wipeCacheBtn = [[UIButton alloc] initWithFrame:rect];
+    wipeCacheBtn.backgroundColor = [XHColorTools themeColor];
+    [wipeCacheBtn setTitle:@"Wipe cache partition" forState:UIControlStateNormal];
+    [wipeCacheBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [wipeCacheBtn addTarget:self action:@selector(wipeCache) forControlEvents:UIControlEventTouchUpInside];
     
-    self.tableView.tableFooterView = linkout;
+    self.tableView.tableFooterView = wipeCacheBtn;
 }
 
-- (void)linkout
+- (void)wipeCache
 {
-    NSString *msg = @"Link out will not delete any data. You can still link in with this account.";
+    NSString *msg = @"It will wipe all your cache.";
 
     if (IOS_8_OR_LATER) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:msg preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *linkout = [UIAlertAction actionWithTitle:@"Link out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        UIAlertAction *wipeCache = [UIAlertAction actionWithTitle:@"Wipe" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             // link out
         }];
         
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-        [alertController addAction:linkout];
+        [alertController addAction:wipeCache];
         [alertController addAction:cancel];
         [alertController.view setTintColor:[UIColor grayColor]];
         [self presentViewController:alertController animated:YES completion:nil];
@@ -88,7 +88,7 @@
         UIActionSheet *linkoutActionSheel = [[UIActionSheet alloc] initWithTitle:msg
                                                                         delegate:self
                                                                cancelButtonTitle:@"Cancel"
-                                                          destructiveButtonTitle:@"Link out"
+                                                          destructiveButtonTitle:@"Wipe"
                                                                otherButtonTitles:nil];
         linkoutActionSheel.actionSheetStyle = UIActionSheetStyleDefault;
         
@@ -101,7 +101,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Link out" message:@"Link out success." delegate:nil cancelButtonTitle:@"sure" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Wipe cache" message:@"Wipe cache partition success." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
     }
 }

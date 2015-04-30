@@ -19,6 +19,12 @@
     [NSKeyedArchiver archiveRootObject:tokenModel toFile:XHTokenFilePath];
 }
 
++ (void)remove:(XHTokenModel *)tokenModel
+{
+    tokenModel.expires_time = [NSDate distantPast];
+    [NSKeyedArchiver archiveRootObject:tokenModel toFile:XHTokenFilePath];
+}
+
 + (XHTokenModel *)tokenModel
 {
     XHTokenModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:XHTokenFilePath];

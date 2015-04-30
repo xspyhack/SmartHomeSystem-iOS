@@ -44,7 +44,7 @@
     
     NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
     // if exists token
-    if (NO) {
+    if (token) {
         XHLog(@"%@", token.password);
         // first, if it is first time using the version, it will show the new version's feature.
         NSString *versionKey = @"CFBundleVersion";

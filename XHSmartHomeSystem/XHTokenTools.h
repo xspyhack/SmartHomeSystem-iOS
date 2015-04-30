@@ -13,6 +13,7 @@
 
 // setter
 + (void)save:(XHTokenModel *)tokenModel;
++ (void)remove:(XHTokenModel *)tokenModel;
 
 // getter
 + (XHTokenModel *)tokenModel;

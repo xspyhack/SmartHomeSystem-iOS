@@ -8,6 +8,7 @@
 
 #import "XHColorsView.h"
 #import "XHColorModel.h"
+#import "MBProgressHUD.h"
 
 #define XHColorBtnWidth 44
 #define XHColorsViewHeight 370
@@ -136,7 +137,20 @@
 
 - (void)save
 {
-    [self pullUp];
+    if (self.pull) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:XHColorDidChangeNotification object:self];
+        [self pullUp];
+    } else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+        
+        // Configure for text only and offset down
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"Save.";
+        hud.margin = 10.f;
+        hud.removeFromSuperViewOnHide = YES;
+        
+        [hud hide:YES afterDelay:3];
+    }
 }
 
 @end

@@ -24,6 +24,7 @@
 #define IOS_8_OR_LATER ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0)
 
 #define XHThemeDidChangeNotification (@"XHThemeDidChangedNotification")
+#define XHColorDidChangeNotification (@"XHColorDidChangeNotification")
 
 #define XHColor ([UIColor colorWithRed:255.0/255 green:185.0/255 blue:0.0/255 alpha:1.0f])
 #define XHBlackColor ([UIColor colorWithRed:26/255.0f green:26/255.0f blue:26/255.0f alpha:1])

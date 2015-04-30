@@ -9,12 +9,6 @@
 #import <UIKit/UIKit.h>
 @class XHImageView;
 
-@interface XHSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) XHImageView *logoView;
-@property (nonatomic, copy) NSString *gateway;
-
-@property (nonatomic, strong) NSMutableArray *groups;
+@interface XHSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
 @end
