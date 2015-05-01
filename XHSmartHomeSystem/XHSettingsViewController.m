@@ -135,7 +135,7 @@
     // create group
     [self setupGeneralGroup]; // general, notification, security
     [self setupAboutGroup]; // about
-    [self setupLinkOutGroup]; // link out
+    [self setupLinkOutGroup]; // link out, footer view button
 }
 
 - (void)setupGeneralGroup

@@ -40,10 +40,16 @@
         self.layer.shadowRadius = 1;
         [self setupSubView];
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onNotificationReceived:)
-                                                 name:XHColorDidChangeNotification
-                                               object:nil];
+    if ([self respondsToSelector:@selector(handleNotification:)]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleNotification:)
+                                                     name:XHColorDidChangeNotification
+                                                   object:nil];
+        // tell system it needs update color
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:YES forKey:@"XHHaveColorObserver"];
+
+    }
     return self;
 }
 
@@ -117,7 +123,7 @@
     _updateTimeLabel.text = [NSString stringWithFormat:@"update at %@", [formater stringFromDate:updateTime]];
 }
 
-- (void)onNotificationReceived:(NSNotification *)notification
+- (void)handleNotification:(NSNotification *)notification
 {
     if ([notification.name isEqualToString:XHColorDidChangeNotification]) {
         self.temperatureLabel.textColor = [XHColorTools temperatureColor];
@@ -126,6 +132,12 @@
     }
 }
 
+- (void)dealloc
+{
+    // when dealloc, remove observer
+    // if no, it will be crash
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

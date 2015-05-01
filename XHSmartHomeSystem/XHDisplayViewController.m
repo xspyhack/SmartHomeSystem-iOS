@@ -85,10 +85,14 @@ typedef enum {
 
 - (void)setupBrushGroup
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    CGFloat lineWidth = [defaults floatForKey:@"XHLineWidth"];
+    
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
     XHTableViewCellArrowItem *lineWidthItem = [XHTableViewCellArrowItem itemWithTitle:@"Line width"];
+    lineWidthItem.detail = [NSString stringWithFormat:@"%.2f", lineWidth];
     lineWidthItem.operation = ^ {
         [self.lineView pullDown:0.5f];
     };

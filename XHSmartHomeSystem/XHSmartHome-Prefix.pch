@@ -13,6 +13,7 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import "UIBarButtonItem+Extension.h"
 
+
 #ifdef DEBUG
 #define XHLog(...) NSLog(__VA_ARGS__)
 #else
@@ -24,7 +25,7 @@
 #define IOS_8_OR_LATER ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0)
 
 #define XHThemeDidChangeNotification (@"XHThemeDidChangedNotification")
-#define XHColorDidChangeNotification (@"XHColorDidChangeNotification")
+#define XHColorDidChangeNotification (@"XHColorDidChangedNotification")
 
 #define XHColor ([UIColor colorWithRed:255.0/255 green:185.0/255 blue:0.0/255 alpha:1.0f])
 #define XHBlackColor ([UIColor colorWithRed:26/255.0f green:26/255.0f blue:26/255.0f alpha:1])

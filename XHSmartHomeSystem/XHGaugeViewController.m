@@ -9,12 +9,22 @@
 #import "XHGaugeViewController.h"
 #import "XHGaugeView.h"
 #import "XHColorTools.h"
+#import "XHButton.h"
+
+typedef enum {
+    XHParlour = 0,
+    XHBedroom = 1,
+    XHKitchen = 2,
+    XHBathroom = 3
+}XHRoomId;
+
 
 @interface XHGaugeViewController ()
 
 @property (nonatomic, strong) XHGaugeView *temperatureView;
 @property (nonatomic, strong) XHGaugeView *humidityView;
 @property (nonatomic, strong) XHGaugeView *smokeView;
+@property (nonatomic, strong) UILabel *roomNameLabel;
 
 @end
 
@@ -24,6 +34,15 @@
 {
     self.view.backgroundColor = XHBlackColor;
     CGFloat width = self.view.frame.size.width;
+    
+    CGRect roomRect = CGRectMake(10, 40, self.view.frame.size.width - 20, 20);
+    _roomNameLabel = [[UILabel alloc] initWithFrame:roomRect];
+    _roomNameLabel.textAlignment = NSTextAlignmentCenter;
+    _roomNameLabel.font = [UIFont boldSystemFontOfSize:19];
+    _roomNameLabel.textColor = [XHColorTools themeColor];
+    [self setRoomName];
+    [self.view addSubview:_roomNameLabel];
+    
     CGRect tempRect = CGRectMake((width - 250)/2, 100, 250, 250);
     
     self.temperatureView = [[XHGaugeView alloc] initWithFrame:tempRect];
@@ -76,16 +95,36 @@
     self.smokeView.value = 9.4;
     [self.view addSubview:self.smokeView];
     
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(135, 600, 100, 30)];
-    [btn setTitle:@"change" forState:UIControlStateNormal];
-    [btn setTitleColor:[XHColorTools themeColor] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(change) forControlEvents:UIControlEventTouchUpInside];
+    XHButton *btn = [[XHButton alloc] initWithFrame:CGRectMake((width - 70)/2, 560, 70, 70)];
+    
+    [btn setTitle:@"dismiss" forState:UIControlStateNormal];
+    
+    //[btn setTitleColor:[XHColorTools themeColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
 }
 
-- (void)change
+- (void)setRoomId:(NSInteger)roomId
 {
-    self.temperatureView.value += 12;
+    _roomId = roomId;
+}
+
+- (void)setRoomName
+{
+    if (_roomId == XHParlour) {
+        _roomNameLabel.text = @"parlour";
+    } else if (_roomId == XHBedroom) {
+        _roomNameLabel.text = @"bedroom";
+    } else if (_roomId == XHKitchen) {
+        _roomNameLabel.text = @"kitchen";
+    } else if (_roomId == XHBathroom) {
+        _roomNameLabel.text = @"bathroom";
+    }
+}
+
+- (void)dismiss
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle

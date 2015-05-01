@@ -122,7 +122,7 @@
     //[self.btnHeadImage setBackgroundImageForState:UIControlStateNormal
     //                                      withURL:[NSURL URLWithString:message.strIcon]
     //                             placeholderImage:[UIImage imageNamed:@"headImage.jpeg"]];
-    [self.btnHeadImage setBackgroundImage:[UIImage imageNamed:@"headImage"] forState:UIControlStateNormal];
+    [self.btnHeadImage setBackgroundImage:[UIImage imageNamed:message.strIcon] forState:UIControlStateNormal];
     
     // 3、设置下标
     self.labelNum.text = message.strName;

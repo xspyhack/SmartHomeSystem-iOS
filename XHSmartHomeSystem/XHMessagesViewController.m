@@ -11,6 +11,8 @@
 #import "UUMessageCell.h"
 #import "UUMessageFrame.h"
 #import "XHMessageModel.h"
+#import "XHMessageSettingViewController.h"
+#import "XHChatInfoViewController.h"
 
 @interface XHMessagesViewController () <UUMessageCellDelegate>
 
@@ -23,8 +25,7 @@
     // Do any additional setup after loading the view.
     
     // set navigation bar button item
-    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_chart"] style:UIBarButtonItemStyleDone target:self action:@selector(edit)];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_msg_edit_highLighted" target:self action:@selector(edit)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_msg_edit_highLighted" target:self action:@selector(settings)];
     
     [self setupTabelView];
     [self setupViewsAndData];
@@ -81,9 +82,11 @@
 
 #pragma mark - Event
 
-- (void)edit
+- (void)settings
 {
-    XHLog(@"edit.");
+    XHLog(@"settings.");
+    XHMessageSettingViewController *settingVC = [[XHMessageSettingViewController alloc] init];
+    [self.navigationController pushViewController:settingVC animated:YES];
 }
 
 #pragma mark - tableView delegate & datasource
@@ -118,8 +121,11 @@
 
 - (void)headImageDidClick:(UUMessageCell *)cell userId:(NSString *)userId{
     // headIamgeIcon is clicked
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:cell.messageFrame.message.strName message:@"headImage clicked" delegate:nil cancelButtonTitle:@"sure" otherButtonTitles:nil];
-    [alert show];
+    XHChatInfoViewController *chatInfoVC = [[XHChatInfoViewController alloc] init];
+    chatInfoVC.name = cell.messageFrame.message.strName;
+    chatInfoVC.profileImageName = cell.messageFrame.message.strIcon;
+    
+    [self.navigationController pushViewController:chatInfoVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

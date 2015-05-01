@@ -67,13 +67,13 @@
 - (void)gauge
 {
     XHGaugeViewController *gVC = [[XHGaugeViewController alloc] init];
-    [self.navigationController pushViewController:gVC animated:YES];
+    //[self.navigationController pushViewController:gVC animated:YES];
+    [self presentViewController:gVC animated:YES completion:nil]; // modal
 }
 
 - (void)chart
 {
     XHRoomModel *model = _model[0];
-    XHLog(@"chart");
     XHChartViewController *chartVC = [[XHChartViewController alloc] init];
     chartVC.roomId = model.Id;
     chartVC.view.backgroundColor = [UIColor whiteColor];
@@ -120,9 +120,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     XHRoomModel *model = _model[indexPath.row];
-    XHChartViewController *chartVC = [[XHChartViewController alloc] init];
-    chartVC.roomId = model.Id;
-    [self.navigationController pushViewController:chartVC animated:YES];
+    //XHChartViewController *chartVC = [[XHChartViewController alloc] init];
+    XHGaugeViewController *gVC = [[XHGaugeViewController alloc] init];
+    gVC.roomId = model.Id;
+    //[self.navigationController pushViewController:gVC animated:YES];
+    [self presentViewController:gVC animated:YES completion:nil]; // modal
 }
 
 // deselect alter 0.5s

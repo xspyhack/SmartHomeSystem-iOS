@@ -113,6 +113,11 @@
     if ([notification.name isEqualToString:XHThemeDidChangeNotification]) {
         XHTabBarController *tabBarVC = [[XHTabBarController alloc] init]; // alloc a new tabBarViewController
         
+        // important, here must tell system there hasn't color observer
+        // if not, it will crash when update theme and set display color next.
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:NO forKey:@"XHHaveColorObserver"];
+        
         tabBarVC.selectedIndex = 2; // go to settings view
         self.window.rootViewController = nil;
         self.window.rootViewController = tabBarVC;

@@ -9,6 +9,7 @@
 #import "XHColorsView.h"
 #import "XHColorModel.h"
 #import "MBProgressHUD.h"
+#import "XHButton.h"
 
 #define XHColorBtnWidth 44
 #define XHColorsViewHeight 370
@@ -37,7 +38,7 @@
     _master = master;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSInteger index = [defaults integerForKey:_master];
-    self.backgroundColor = [[XHColorModel colorModelWithIndex:index] colorWithAlphaComponent:0.9];
+    self.backgroundColor = [[XHColorModel colorModelWithIndex:index] colorWithAlphaComponent:0.85];
 }
 
 - (void)setupColors
@@ -60,8 +61,8 @@
         //[self.btnArray objectAtIndex:index];
     }
     
-    CGRect btnRect = CGRectMake((self.frame.size.width - 50)/2, self.frame.size.height - 50, 50, 50);
-    UIButton *saveBtn = [[UIButton alloc] initWithFrame:btnRect];
+    CGRect btnRect = CGRectMake((self.frame.size.width - 50)/2, self.frame.size.height - 70, 50, 50);
+    XHButton *saveBtn = [[XHButton alloc] initWithFrame:btnRect];
     [saveBtn addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     [saveBtn setTitle:@"Save" forState:UIControlStateNormal];
     [self addSubview:saveBtn];
@@ -138,14 +139,18 @@
 - (void)save
 {
     if (self.pull) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:XHColorDidChangeNotification object:self];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        BOOL flag = [defaults boolForKey:@"XHHaveColorObserver"];
+        if (flag) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:XHColorDidChangeNotification object:self];
+        }
         [self pullUp];
     } else {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
         
         // Configure for text only and offset down
         hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"Save.";
+        hud.labelText = @"Save";
         hud.margin = 10.f;
         hud.removeFromSuperViewOnHide = YES;
         

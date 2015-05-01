@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface XHGaugeViewController : UIViewController
-
+@property (nonatomic, assign) NSInteger roomId;
 @end

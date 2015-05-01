@@ -69,7 +69,7 @@
     
     CGRect rect = CGRectMake((self.frame.size.width - 200)/2, 30, 200, 200);
     self.circularSlider = [[UICircularSlider alloc] initWithFrame:rect];
-    self.circularSlider.bgColor = self.backgroundColor;
+    self.circularSlider.bgColor = [UIColor clearColor];
     [self.circularSlider addTarget:self action:@selector(updateProgress:) forControlEvents:UIControlEventValueChanged];
     self.circularSlider.minimumValue = 0;
     self.circularSlider.maximumValue = 3;

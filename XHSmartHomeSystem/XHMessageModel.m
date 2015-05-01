@@ -93,7 +93,7 @@ static int dateNum = 10;
     
     int index =  arc4random()%6;
     [dictionary setObject:[self getName:index] forKey:@"strName"];
-    [dictionary setObject:[self getImageStr:index] forKey:@"strIcon"];
+    [dictionary setObject:@"headImage" forKey:@"strIcon"];
     
     return dictionary;
 }
