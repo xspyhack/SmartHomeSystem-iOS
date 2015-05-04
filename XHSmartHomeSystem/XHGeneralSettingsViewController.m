@@ -16,6 +16,12 @@
 #import "XHLanguageViewController.h"
 #import "XHColorTools.h"
 
+@interface XHGeneralSettingsViewController ()
+
+@property(nonatomic, strong) XHTableViewCellArrowItem *languageItem;
+
+@end
+
 @implementation XHGeneralSettingsViewController
 
 - (void)viewDidLoad
@@ -51,10 +57,10 @@
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellArrowItem *languageItem = [XHTableViewCellArrowItem itemWithTitle:@"Language"];
-    languageItem.destViewContorller = [XHLanguageViewController class];
+    _languageItem = [XHTableViewCellArrowItem itemWithTitle:@"Language"];
+    _languageItem.destViewContorller = [XHLanguageViewController class];
     
-    group.items = @[languageItem];
+    group.items = @[_languageItem];
 }
 
 - (void)setupWipeCacheGroup
@@ -120,4 +126,15 @@
         }
     }
 }
+
+#pragma mark - tableView delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section == [self.groups count] - 1) {
+        return 30;
+    }
+    return 15; // default height
+}
+
 @end

@@ -62,10 +62,12 @@
     CGFloat iconViewX = xhTableViewCellControlSpaceing, iconViewY = xhTableViewCellControlSpaceing;
     CGRect iconViewRect = CGRectMake(iconViewX, iconViewY, xhTableViewCellIconWidth, xhTableViewCellIconHeight);
     self.iconView = [[UIImageView alloc] initWithFrame:iconViewRect];
-    self.iconView.layer.masksToBounds = YES;
+    self.iconView.layer.masksToBounds = YES; // must set masksToBounds property YES
     self.iconView.layer.cornerRadius = xhTableViewCellIconWidth / 2;
-    self.iconView.layer.shadowOffset = CGSizeMake(2.0, 2.0);
-    self.iconView.layer.shadowOpacity = 0.5;
+    
+    // if layer set masksToBounds property YES, it can't show shadow
+    //self.iconView.layer.shadowOffset = CGSizeMake(2.0, 2.0);
+    //self.iconView.layer.shadowOpacity = 0.5;
     [self addSubview:self.iconView];
     
     CGFloat roomNameLabelX = CGRectGetMaxX(iconViewRect) + xhTableViewCellControlSpaceing;
@@ -128,7 +130,6 @@
     if ([notification.name isEqualToString:XHColorDidChangeNotification]) {
         self.temperatureLabel.textColor = [XHColorTools temperatureColor];
         self.humidityLabel.textColor = [XHColorTools humidityColor];
-        XHLog(@"received color changed notification");
     }
 }
 

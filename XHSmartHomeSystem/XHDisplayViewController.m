@@ -13,7 +13,7 @@
 #import "XHLineView.h"
 #import "XHColorsView.h"
 
-#define XHColorsViewHeight 370
+#define XHColorsViewHeight (self.view.frame.size.width + 10)
 typedef enum {
     EMChartModeSwitch = 0,
     EMGaugeModeSwitch = 1
@@ -36,13 +36,14 @@ typedef enum {
     [self setupColorsView];
     [self setupModeGroup];
     [self setupBrushGroup];
+    [self setupRangeGroup];
 }
 
 #pragma mark - setup methods
 
 - (void)setupLineView
 {
-    CGRect rect = CGRectMake(0, -XHColorsViewHeight, self.view.frame.size.width, XHColorsViewHeight);
+    CGRect rect = CGRectMake(0, -XHColorsViewHeight - 66, self.view.frame.size.width, XHColorsViewHeight);
     self.lineView = [[XHLineView alloc] initWithFrame:rect];
     self.lineView.pull = YES;
     
@@ -51,7 +52,7 @@ typedef enum {
 
 - (void)setupColorsView
 {
-    CGRect rect = CGRectMake(0, -XHColorsViewHeight, self.view.frame.size.width, XHColorsViewHeight);
+    CGRect rect = CGRectMake(0, -XHColorsViewHeight - 66, self.view.frame.size.width, XHColorsViewHeight);
     self.colorsView = [[XHColorsView alloc] initWithFrame:rect];
     self.colorsView.pull = YES;
 
@@ -65,18 +66,18 @@ typedef enum {
     
     // read user defaults settings
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    self.chartSwitch = [defaults boolForKey:@"ChartModeSwitch"];
-    self.gaugeSwitch = [defaults boolForKey:@"GaugeModeSwitch"];
+    self.chartSwitch = [defaults boolForKey:@"XHChartModeSwitch"];
+    self.gaugeSwitch = [defaults boolForKey:@"XHGaugeModeSwitch"];
     
     XHTableViewCellSwitchItem *chartItem = [XHTableViewCellSwitchItem itemWithTitle:@"Line chart mode"];
     chartItem.on = self.chartSwitch;
-    chartItem.tapSwitch = ^ {
+    chartItem.tapSwitch = ^{
         [self setSwitch:EMChartModeSwitch];
     };
     
     XHTableViewCellSwitchItem *gaugeItem = [XHTableViewCellSwitchItem itemWithTitle:@"Gauge mode"];
     gaugeItem.on = self.gaugeSwitch;
-    gaugeItem.tapSwitch = ^ {
+    gaugeItem.tapSwitch = ^{
         [self setSwitch:EMGaugeModeSwitch];
     };
     
@@ -93,29 +94,40 @@ typedef enum {
     
     XHTableViewCellArrowItem *lineWidthItem = [XHTableViewCellArrowItem itemWithTitle:@"Line width"];
     lineWidthItem.detail = [NSString stringWithFormat:@"%.2f", lineWidth];
-    lineWidthItem.operation = ^ {
+    lineWidthItem.operation = ^{
         [self.lineView pullDown:0.5f];
     };
     
     XHTableViewCellArrowItem *tempColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Temperature color"];
-    tempColorItem.operation = ^ {
+    tempColorItem.operation = ^{
         self.colorsView.master = @"XHTemperatureColor";
         [self.colorsView pullDown:0.5f];
     };
     
     XHTableViewCellArrowItem *humiColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Humidity color"];
-    humiColorItem.operation = ^ {
+    humiColorItem.operation = ^{
         self.colorsView.master = @"XHHumidityColor";
         [self.colorsView pullDown:0.5f];
     };
     
     XHTableViewCellArrowItem *smokeColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Smoke color"];
-    smokeColorItem.operation = ^ {
+    smokeColorItem.operation = ^{
         self.colorsView.master = @"XHSmokeColor";
         [self.colorsView pullDown:0.5f];
     };
     
     group.items = @[lineWidthItem, tempColorItem, humiColorItem, smokeColorItem];
+}
+
+- (void)setupRangeGroup
+{
+    XHTableViewCellGroup *group = [XHTableViewCellGroup group];
+    [self.groups addObject:group];
+    
+    XHTableViewCellArrowItem *tempRangeItem = [XHTableViewCellArrowItem itemWithTitle:@"Temp range"];
+    
+    
+    group.items = @[tempRangeItem];
 }
 
 #pragma mark - private methods
@@ -137,8 +149,8 @@ typedef enum {
 - (void)viewWillDisappear:(BOOL)animated
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:self.chartSwitch forKey:@"ChartModeSwitch"];
-    [defaults setBool:self.gaugeSwitch forKey:@"GaugeModeSwitch"];
+    [defaults setBool:self.chartSwitch forKey:@"XHChartModeSwitch"];
+    [defaults setBool:self.gaugeSwitch forKey:@"XHGaugeModeSwitch"];
 }
 
 /*
@@ -146,17 +158,6 @@ typedef enum {
 {
     [self.colorsView pullUp];
 }
-
-- (void)moveColorsView
-{
-    NSTimeInterval animationDuration = 0.5f;
-    [UIView beginAnimations:@"MoveLogoView" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    self.colorsView.frame = CGRectMake(0, 133.5, self.colorsView.frame.size.width, XHColorsViewHeight);
-    //self.colorsView.center = self.view.center;
-    
-    [UIView commitAnimations];
-}
- */
+*/
 
 @end

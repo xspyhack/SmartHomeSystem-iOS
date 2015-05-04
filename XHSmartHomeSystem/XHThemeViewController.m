@@ -9,7 +9,7 @@
 #import "XHThemeViewController.h"
 #import "XHColorsView.h"
 
-#define XHColorsViewHeight 370
+#define XHColorsViewHeight (self.view.frame.size.width + 10)
 
 @interface XHThemeViewController ()
 

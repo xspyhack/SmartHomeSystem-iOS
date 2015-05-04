@@ -10,6 +10,6 @@
 
 @interface XHTableViewCellLabelItem : XHTableViewCellItem
 
-@property (nonatomic, copy) NSString *text; // right label text
+@property (nonatomic, strong) UILabel *label; // right label
 
 @end

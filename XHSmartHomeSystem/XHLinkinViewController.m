@@ -20,8 +20,8 @@
 
 @implementation XHLinkinViewController
 
-#define controlSpace 60
-#define logoViewWidth 100
+#define controlSpace (self.view.frame.size.width / 6)
+#define logoViewWidth (self.view.frame.size.width * 0.3)
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,7 +40,7 @@
     
     CGFloat viewWidth = self.view.frame.size.width;
     CGFloat textFieldWidth = viewWidth - controlSpace;
-    CGFloat textFieldHeight = 50;
+    CGFloat textFieldHeight = viewWidth/7;
     CGFloat widgetX = (viewWidth - textFieldWidth) / 2;
 
     //UIImageView *gatewayView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
@@ -190,6 +190,8 @@
     
     int offset = frame.origin.y + 160 - (height - 216.0); // keyboard height is 216
     
+    // use block instead
+    /*
     NSTimeInterval animationDuration = 0.30f;
     [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
     [UIView setAnimationDuration:animationDuration];
@@ -199,16 +201,32 @@
         self.view.frame = CGRectMake(0.0f, -offset, width, height);
     }
     [UIView commitAnimations];
+    */
+    
+    // use block
+    [UIView animateWithDuration:0.3f animations:^{
+        if (offset > 0) {
+            self.view.frame = CGRectMake(0.0f, -offset, width, height);
+        }
+    }];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
+    // use block instead
+    /*
     NSTimeInterval animationDuration = 0.30f;
     [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
     [UIView setAnimationDuration:animationDuration];
     
     self.view.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);
     [UIView commitAnimations];
+    */
+    
+    // use block
+    [UIView animateWithDuration:0.30f animations:^{
+        self.view.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);
+    }];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

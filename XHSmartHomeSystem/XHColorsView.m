@@ -11,8 +11,8 @@
 #import "MBProgressHUD.h"
 #import "XHButton.h"
 
-#define XHColorBtnWidth 44
-#define XHColorsViewHeight 370
+#define XHColorsViewHeight (self.frame.size.width + 10)
+#define XHColorBtnWidht (self.frame.size.width / 8.0)
 
 @interface XHColorsView ()
 @property (nonatomic, strong) NSArray *btnArray;
@@ -52,16 +52,19 @@
 
 - (void)setupButton
 {
+    //CGFloat spaceWidht = self.frame.size.width * 33.5 / 375.0;
+    CGFloat btnWidth = self.frame.size.width / 8.0;
     for (NSInteger index = 0; index < XHColorCount; index++) {
         UIColor *color = [self.colorsArray objectAtIndex:index];
-        NSInteger row = index % 5;
-        NSInteger line = index / 5;
-        CGRect rect = CGRectMake((row * XHColorBtnWidth * 1.5) + 33.5, 33.5 + (line * XHColorBtnWidth * 1.5), XHColorBtnWidth, XHColorBtnWidth);
+        NSInteger column = index % 5;
+        NSInteger row = index / 5;
+        CGRect rect = CGRectMake((column * btnWidth * 1.5) + btnWidth/2, btnWidth/2 + (row * btnWidth * 1.5), btnWidth, btnWidth);
         [self setupColorsWithColor:color frame:rect tap:index];
         //[self.btnArray objectAtIndex:index];
     }
     
-    CGRect btnRect = CGRectMake((self.frame.size.width - 50)/2, self.frame.size.height - 70, 50, 50);
+    CGFloat saveBtnWidth = self.frame.size.width / 6.4;
+    CGRect btnRect = CGRectMake((self.frame.size.width - saveBtnWidth)/2, self.frame.size.height -saveBtnWidth - btnWidth/2, saveBtnWidth, saveBtnWidth);
     XHButton *saveBtn = [[XHButton alloc] initWithFrame:btnRect];
     [saveBtn addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     [saveBtn setTitle:@"Save" forState:UIControlStateNormal];
@@ -110,12 +113,20 @@
 
 - (void)pullDown:(NSTimeInterval)animationDuration
 {
-    [UIView beginAnimations:@"PullDownLogoView" context:nil];
+    // this method had be discouraged, but not be deprecated, it should use block to instead
+    /*
+    [UIView beginAnimations:@"PullDownColorsView" context:nil];
     [UIView setAnimationDuration:animationDuration];
     self.frame = CGRectMake(0, 90, self.frame.size.width, XHColorsViewHeight);
     //self.colorsView.center = self.view.center;
     
     [UIView commitAnimations];
+    */
+    
+    // use block
+    [UIView animateWithDuration:animationDuration animations:^{
+        self.frame = CGRectMake(0, 90, self.frame.size.width, XHColorsViewHeight);
+    }];
 }
 
 - (void)pullUp
@@ -126,13 +137,20 @@
     }
     
     if (self.pull) {
+        // this method had be discouraged, but not be deprecated, it should use block to instead
+        /*
         NSTimeInterval animationDuration = 0.5f;
-        [UIView beginAnimations:@"PullUpLogoView" context:nil];
+        [UIView beginAnimations:@"PullUpColorsView" context:nil];
         [UIView setAnimationDuration:animationDuration];
-        self.frame = CGRectMake(0, -XHColorsViewHeight - 60, self.frame.size.width, XHColorsViewHeight);
+        self.frame = CGRectMake(0, -XHColorsViewHeight-66, self.frame.size.width, XHColorsViewHeight);
         //self.colorsView.center = self.view.center;
-        
         [UIView commitAnimations];
+        */
+        
+        // use block
+        [UIView animateWithDuration:0.5f animations:^{
+            self.frame = CGRectMake(0, -XHColorsViewHeight-66, self.frame.size.width, XHColorsViewHeight);
+        }];
     }
 }
 

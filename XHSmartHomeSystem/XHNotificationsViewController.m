@@ -14,6 +14,7 @@
 #import "XHTableViewCellLabelItem.h"
 #import "XHTableViewCellSwitchItem.h"
 #import "XHTableViewCellArrowItem.h"
+#import "XHColorTools.h"
 
 typedef enum {
     EMShowSwitch = 0,
@@ -29,10 +30,23 @@ typedef enum {
 @property (nonatomic, assign) BOOL smokeSwitch;
 @property (nonatomic, assign) BOOL humiditySwitch;
 @property (nonatomic, assign) BOOL temperatureSwitch;
+@property (nonatomic, strong) UILabel *notificatonLabel;
 
 @end
 
 @implementation XHNotificationsViewController
+
+- (UILabel *)notificatonLabel
+{
+    if (!_notificatonLabel) {
+        _notificatonLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _notificatonLabel.textColor = [XHColorTools themeColor];
+        NSString *notification = [self.defaults objectForKey:@"NotificationEnabled"];
+        _notificatonLabel.text = notification;
+        [_notificatonLabel sizeToFit];
+    }
+    return _notificatonLabel;
+}
 
 - (void)viewDidLoad
 {
@@ -50,10 +64,8 @@ typedef enum {
     [self.groups addObject:group];
     group.groupFooter = @"Enable or disable XHSmartSystem Notifications via \"Settings\"->\"Notifications\" on your iPhone.";
     
-    NSString *notification = [self.defaults objectForKey:@"NotificationEnabled"];
-    
     XHTableViewCellLabelItem *notificationItem = [XHTableViewCellLabelItem itemWithTitle:@"Notifications"];
-    notificationItem.text = notification;
+    notificationItem.label = self.notificatonLabel;
     
     group.items = @[notificationItem];
 }
@@ -68,7 +80,7 @@ typedef enum {
     
     XHTableViewCellSwitchItem *showItem = [XHTableViewCellSwitchItem itemWithTitle:@"Show Preview Text"];
     showItem.on = self.showSwitch;
-    showItem.tapSwitch = ^ {
+    showItem.tapSwitch = ^{
         // click
         [self setSwitch:EMShowSwitch];
     };
@@ -93,19 +105,19 @@ typedef enum {
     
     XHTableViewCellSwitchItem *smokeAlertItem = [XHTableViewCellSwitchItem itemWithTitle:@"Smoke"];
     smokeAlertItem.on = self.smokeSwitch;
-    smokeAlertItem.tapSwitch = ^ {
+    smokeAlertItem.tapSwitch = ^{
         [self setSwitch:EMSmokeAlertSwitch];
     };
     
     XHTableViewCellSwitchItem *humidityAlertItem = [XHTableViewCellSwitchItem itemWithTitle:@"Humidity"];
     humidityAlertItem.on = self.humiditySwitch;
-    humidityAlertItem.tapSwitch = ^ {
+    humidityAlertItem.tapSwitch = ^{
         [self setSwitch:EMHumiAlertSwitch];
     };
     
     XHTableViewCellSwitchItem *temperatureAlertItem = [XHTableViewCellSwitchItem itemWithTitle:@"Temperature"];
     temperatureAlertItem.on = self.temperatureSwitch;
-    temperatureAlertItem.tapSwitch = ^ {
+    temperatureAlertItem.tapSwitch = ^{
         [self setSwitch:EMTempAlertSwitch];
     };
     

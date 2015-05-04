@@ -12,12 +12,25 @@
 #import "XHTableViewCellCheckmarkItem.h"
 #import "XHTableViewCellLabelItem.h"
 #import "XHTableViewCellSwitchItem.h"
+#import "XHColorTools.h"
+
+#define XHPickerViewHeight 252
 
 @interface XHNotificationTypeViewController ()
-@property (nonatomic, strong) XHTimePickerView *timePicker;
+@property (nonatomic, strong) UILabel *timeLabel;
 @end
 
 @implementation XHNotificationTypeViewController
+
+- (UILabel *)timeLabel
+{
+    if (!_timeLabel) {
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _timeLabel.textColor = [XHColorTools themeColor];
+        [self updateTimeLabel];
+    }
+    return _timeLabel;
+}
 
 - (void)viewDidLoad
 {
@@ -26,7 +39,6 @@
     
     [self setupTypeGroup];
     [self setupTimeGroup];
-    [self setupDatePicker];
 }
 
 - (void)setupTypeGroup
@@ -48,23 +60,42 @@
     
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
+    
+    XHTableViewCellLabelItem *timeItem = [XHTableViewCellLabelItem itemWithTitle:@"Time"];
+    timeItem.label = self.timeLabel;
+    timeItem.operation = ^{
+        [self setupTimePicker];
+    };
 
-    //group.items = @[self.timeItem];
+    group.items = @[timeItem];
     group.groupHeader = @"Push Time Setting";
 }
 
-- (void)setupDatePicker
+- (void)setupTimePicker
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *startTime = [defaults objectForKey:@"XHNotificationStartTime"];
     NSString *endTime = [defaults objectForKey:@"XHNotificationEndTime"];
     
-    CGRect rect = CGRectMake(0, 200, self.view.frame.size.width, 300);
-    self.timePicker = [[XHTimePickerView alloc] initWithFrame:rect];
-    self.timePicker.startTime = startTime;
-    self.timePicker.endTime = endTime;
+    CGRect rect = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, XHPickerViewHeight);
+    XHTimePickerView *timePicker = [[XHTimePickerView alloc] initWithFrame:rect];
+    timePicker.startTime = startTime;
+    timePicker.endTime = endTime;
+    timePicker.done = ^{
+        [self updateTimeLabel];
+    };
+    [timePicker show];
     
-    [self.view addSubview:self.timePicker];
+    [self.view addSubview:timePicker];
+}
+
+- (void)updateTimeLabel
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *startTime = [defaults objectForKey:@"XHNotificationStartTime"];
+    NSString *endTime = [defaults objectForKey:@"XHNotificationEndTime"];
+    self.timeLabel.text = [NSString stringWithFormat:@"Every day %@ to %@", startTime, endTime];
+    [self.timeLabel sizeToFit];
 }
 
 @end

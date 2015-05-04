@@ -120,11 +120,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     XHRoomModel *model = _model[indexPath.row];
-    //XHChartViewController *chartVC = [[XHChartViewController alloc] init];
-    XHGaugeViewController *gVC = [[XHGaugeViewController alloc] init];
-    gVC.roomId = model.Id;
-    //[self.navigationController pushViewController:gVC animated:YES];
-    [self presentViewController:gVC animated:YES completion:nil]; // modal
+    
+    dispatch_async(dispatch_get_main_queue(), ^ {
+        XHGaugeViewController *gVC = [[XHGaugeViewController alloc] init];
+        gVC.roomId = model.Id;
+        [self presentViewController:gVC animated:YES completion:nil]; // modal
+    });
+    
+//    XHGaugeViewController *gVC = [[XHGaugeViewController alloc] init];
+//    gVC.roomId = model.Id;
+//    [self.navigationController pushViewController:gVC animated:YES];
 }
 
 // deselect alter 0.5s

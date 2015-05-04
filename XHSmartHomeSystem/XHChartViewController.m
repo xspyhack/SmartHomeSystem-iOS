@@ -7,6 +7,7 @@
 //
 
 #import "XHChartViewController.h"
+#import "XHDataAnalysisViewController.h"
 #import "XHChartView.h"
 #import "XHColorTools.h"
 
@@ -19,7 +20,7 @@
     [super viewDidLoad];
     self.title = @"Line Chart";
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"settings" style:UIBarButtonItemStylePlain target:self action:@selector(setChart)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Data analysis" style:UIBarButtonItemStylePlain target:self action:@selector(dataAnalysis)];
     
     // add UIScrollView
     [self setupScrollView];
@@ -86,9 +87,11 @@
 
 #pragma mark - private methods
 
-- (void)setChart
+- (void)dataAnalysis
 {
-    XHLog(@"settings");
+    XHLog(@"data analysis");
+    XHDataAnalysisViewController *analysisVC = [[XHDataAnalysisViewController alloc] init];
+    [self.navigationController pushViewController:analysisVC animated:YES];
 }
 
 - (void)setPage

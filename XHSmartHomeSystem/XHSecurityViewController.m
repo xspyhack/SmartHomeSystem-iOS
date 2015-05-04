@@ -11,6 +11,13 @@
 #import "XHTableViewCellItem.h"
 #import "XHTableViewCellSwitchItem.h"
 #import "XHTableViewCellArrowItem.h"
+#import "XHEncryptTypeViewController.h"
+
+@interface XHSecurityViewController ()
+
+@property (nonatomic, assign) BOOL checkin;
+
+@end
 
 @implementation XHSecurityViewController
 
@@ -26,21 +33,39 @@
 - (void)setupEncryptGroup
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *type = [defaults stringForKey:@"XHEncryptType"];
+    BOOL checkin = [defaults boolForKey:@"XHCheckIn"];
+    
+    NSInteger index = [defaults integerForKey:@"XHEncryptType"];
+    NSString *type;
+    if (index == 0) {
+        type = @"None";
+    } else if (index == 1) {
+        type = @"MD5";
+    } else {
+        type = @"AES";
+    }
     
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellSwitchItem *encryptItem = [XHTableViewCellSwitchItem itemWithTitle:@"Encrypt"];
-    XHTableViewCellArrowItem *encryptTypeItem = [XHTableViewCellArrowItem itemWithTitle:@"Encrypt Type"];
-    encryptTypeItem.detail = type;
-    encryptTypeItem.operation = ^ {
-        
+    XHTableViewCellSwitchItem *checkItem = [XHTableViewCellSwitchItem itemWithTitle:@"Check in"];
+    checkItem.on = checkin;
+    checkItem.tapSwitch = ^{
+        self.checkin = !self.checkin;
     };
     
+    XHTableViewCellArrowItem *encryptTypeItem = [XHTableViewCellArrowItem itemWithTitle:@"Encrypt Type"];
+    encryptTypeItem.detail = type;
+    encryptTypeItem.destViewContorller = [XHEncryptTypeViewController class];
+    
     group.groupFooter = @"Enabling encrypt can improve security.";
-    group.items = @[encryptItem, encryptItem];
+    group.items = @[checkItem, encryptTypeItem];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:self.checkin forKey:@"XHCheckIn"];
+}
 
 @end

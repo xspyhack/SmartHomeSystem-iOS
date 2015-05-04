@@ -11,6 +11,8 @@
 #import "XHColorTools.h"
 #import "XHButton.h"
 
+#define XHTempViewWidth (self.view.frame.size.width * 0.7)
+
 typedef enum {
     XHParlour = 0,
     XHBedroom = 1,
@@ -32,8 +34,11 @@ typedef enum {
 
 - (void)viewDidLoad
 {
+    //self.navigationController.navigationBar.barTintColor = XHBlackColor;
+    //self.navigationController.navigationBar.translucent = NO;
     self.view.backgroundColor = XHBlackColor;
     CGFloat width = self.view.frame.size.width;
+    CGFloat height = self.view.frame.size.height;
     
     CGRect roomRect = CGRectMake(10, 40, self.view.frame.size.width - 20, 20);
     _roomNameLabel = [[UILabel alloc] initWithFrame:roomRect];
@@ -43,7 +48,7 @@ typedef enum {
     [self setRoomName];
     [self.view addSubview:_roomNameLabel];
     
-    CGRect tempRect = CGRectMake((width - 250)/2, 100, 250, 250);
+    CGRect tempRect = CGRectMake((width - XHTempViewWidth)/2, 100, XHTempViewWidth, XHTempViewWidth);
     
     self.temperatureView = [[XHGaugeView alloc] initWithFrame:tempRect];
     self.temperatureView.backgroundColor = self.view.backgroundColor;
@@ -61,7 +66,7 @@ typedef enum {
     self.temperatureView.value = 0.0;
     [self.view addSubview:self.temperatureView];
     
-    CGRect humiRect = CGRectMake(0, 400, width/2+10, width/2+10);
+    CGRect humiRect = CGRectMake(0, CGRectGetMaxY(tempRect)+50, width/2+10, width/2+10);
     self.humidityView = [[XHGaugeView alloc] initWithFrame:humiRect];
     self.humidityView.backgroundColor = self.view.backgroundColor;
     self.humidityView.startAngle = -3 * M_PI / 4.0;
@@ -78,7 +83,7 @@ typedef enum {
     self.humidityView.value = 64.4;
     [self.view addSubview:self.humidityView];
     
-    CGRect smokeRect = CGRectMake(width/2-10, 400, width/2+10, width/2+10);
+    CGRect smokeRect = CGRectMake(width/2-10, CGRectGetMaxY(tempRect)+50, width/2+10, width/2+10);
     self.smokeView = [[XHGaugeView alloc] initWithFrame:smokeRect];
     self.smokeView.backgroundColor = self.view.backgroundColor;
     self.smokeView.startAngle = -3.0 * M_PI / 4.0;
@@ -95,7 +100,7 @@ typedef enum {
     self.smokeView.value = 9.4;
     [self.view addSubview:self.smokeView];
     
-    XHButton *btn = [[XHButton alloc] initWithFrame:CGRectMake((width - 70)/2, 560, 70, 70)];
+    XHButton *btn = [[XHButton alloc] initWithFrame:CGRectMake((width - width*0.2)/2, height - width*0.3, width*0.2, width*0.2)];
     
     [btn setTitle:@"dismiss" forState:UIControlStateNormal];
     

@@ -12,6 +12,7 @@
 #import "XHTableViewCellSwitchItem.h"
 #import "XHTableViewCellLabelItem.h"
 #import "XHTableViewCellCheckmarkItem.h"
+#import "XHTableViewCellTextFieldItem.h"
 #import "XHColorTools.h"
 
 @implementation XHTableViewCell
@@ -23,6 +24,7 @@
     if (!cell) {
         cell = [[XHTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         cell.backgroundColor = XHCellBackgroundColor;
+        //cell.tintColor = [XHColorTools themeColor];
     }
     
     return cell;
@@ -40,20 +42,12 @@
     return _rightSwitch;
 }
 
-- (UILabel *)rightLabel
-{
-    if (!_rightLabel) {
-        _rightLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _rightLabel.textColor = [XHColorTools themeColor];
-    }
-    return _rightLabel;
-}
-
 - (void)setItem:(XHTableViewCellItem *)item
 {
     _item = item;
     if (item.iconName) {
         self.imageView.image = [UIImage imageNamed:item.iconName];
+        self.imageView.image = [self.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     self.textLabel.text = item.title;
     self.detailTextLabel.text = item.detail;
@@ -76,12 +70,13 @@
         self.accessoryView = self.rightSwitch;
     } else if ([item isKindOfClass:[XHTableViewCellLabelItem class]]) {
         XHTableViewCellLabelItem *labelItem = (XHTableViewCellLabelItem *)item; // cover to labelItem
-        self.rightLabel.text = labelItem.text;
-        [self.rightLabel sizeToFit];
-        self.accessoryView = self.rightLabel;
+        self.accessoryView = labelItem.label;
     } else if ([item isKindOfClass:[XHTableViewCellCheckmarkItem class]]) {
         XHTableViewCellCheckmarkItem *checkmarkItem = (XHTableViewCellCheckmarkItem *)item;
         self.accessoryType = checkmarkItem.type;
+    } else if ([item isKindOfClass:[XHTableViewCellTextFieldItem class]]) {
+        XHTableViewCellTextFieldItem *textFieldItem = (XHTableViewCellTextFieldItem *)item;
+        self.accessoryView = textFieldItem.textField;
     } else {
         self.accessoryView = nil;
         self.textLabel.textAlignment = NSTextAlignmentCenter;

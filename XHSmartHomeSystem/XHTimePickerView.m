@@ -8,6 +8,10 @@
 
 #import "XHTimePickerView.h"
 
+#define XHToolBarHeight 36
+// default keyboard height 252
+#define XHPickerViewHeight 252
+
 @interface XHTimePickerView () <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, strong) UIToolbar *toolBar;
@@ -27,8 +31,19 @@
         [self setupToolBar];
         [self setupPickerView];
     }
-    
     return self;
+}
+
+- (NSMutableArray *)timeArray
+{
+    if (!_timeArray) {
+        _timeArray = [NSMutableArray array];
+        for (int i = 0; i < 24; i++) {
+            NSString *str = [NSString stringWithFormat:@"%d:00", i];
+            [_timeArray addObject:str];
+        }
+    }
+    return _timeArray;
 }
 
 - (void)setStartTime:(NSString *)startTime
@@ -47,7 +62,7 @@
 
 - (void)setupToolBar
 {
-    self.toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 44)];
+    self.toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, XHToolBarHeight)];
     self.toolBar.layer.borderWidth = .0f; //self.toolBar.layer.borderColor = [UIColor clearColor].CGColor;
     self.toolBar.layer.masksToBounds = YES;
     
@@ -75,50 +90,53 @@
     [items addObject:done];
     
     [self.toolBar setItems:items];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(popPickerView)];
-    [self.toolBar addGestureRecognizer:tap];
     
     [self addSubview:self.toolBar];
 }
 
-- (void)popPickerView
-{
-    XHLog(@"tap");
-    self.pickerView.hidden = NO;
-}
-
-- (void)pickDone
-{
-    self.pickerView.hidden = YES;
-    // save
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:self.startTimeItem.title forKey:@"XHNotificationStartTime"];
-    [defaults setObject:self.endTimeItem.title forKey:@"XHNotificationEndTime"];
-}
-
 - (void)setupPickerView
 {
-    CGRect rect = CGRectMake(0, 50, self.frame.size.width, self.frame.size.height - 40);
+    CGRect rect = CGRectMake(0, XHToolBarHeight, self.frame.size.width, self.frame.size.height - XHToolBarHeight);
     self.pickerView = [[UIPickerView alloc] initWithFrame:rect];
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;
     self.pickerView.showsSelectionIndicator = YES;
-    self.pickerView.hidden = YES;
+    self.pickerView.hidden = NO;
     
     [self addSubview:self.pickerView];
 }
 
-- (NSMutableArray *)timeArray
+#pragma mark - methods
+
+- (void)pickDone
 {
-    if (!_timeArray) {
-        _timeArray = [NSMutableArray array];
-        for (int i = 0; i < 24; i++) {
-            NSString *str = [NSString stringWithFormat:@"%d:00", i];
-            [_timeArray addObject:str];
-        }
+    // save
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:self.startTimeItem.title forKey:@"XHNotificationStartTime"];
+    [defaults setObject:self.endTimeItem.title forKey:@"XHNotificationEndTime"];
+    
+    if (self.done) {
+        self.done();
     }
-    return _timeArray;
+    [self hide];
 }
+
+- (void)show
+{
+    // use block
+    [UIView animateWithDuration:0.5f animations:^{
+        self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - XHPickerViewHeight - 66, self.frame.size.width, XHPickerViewHeight);
+    }];
+}
+
+- (void)hide
+{
+    [UIView animateWithDuration:0.5f animations:^{
+        self.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, self.frame.size.width, XHPickerViewHeight);
+    }];
+}
+
+#pragma mark - delegate & dataSource
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {

@@ -113,7 +113,7 @@ typedef enum {
     [self.lineChartView strokeChartView];
     [self addSubview:self.lineChartView];
     
-    CGRect roomRect = CGRectMake(10, CGRectGetMaxY(rect), self.frame.size.width - 20, 100);
+    CGRect roomRect = CGRectMake(10, CGRectGetMaxY(rect), self.frame.size.width - 20, 50);
     _roomNameLabel = [[UILabel alloc] initWithFrame:roomRect];
     _roomNameLabel.textAlignment = NSTextAlignmentCenter;
     _roomNameLabel.textColor = [XHColorTools themeColor];

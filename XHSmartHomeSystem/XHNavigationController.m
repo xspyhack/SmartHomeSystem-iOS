@@ -37,7 +37,7 @@
     textAttrs[NSForegroundColorAttributeName] = [XHColorTools themeColor];
     //textAttrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:20];
     //textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero]; // shadow
-    [appearance setTintColor:[XHColorTools themeColor]]; // set tint color
+    //[appearance setTintColor:[XHColorTools themeColor]]; // set tint color
     //[appearance setBarTintColor:XHOrangeColor]; // set bar background color
     
     [appearance setTitleTextAttributes:textAttrs];
@@ -56,11 +56,11 @@
     //textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero];
     
     [appearance setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
-    [appearance setTintColor:[XHColorTools themeColor]];
+    //[appearance setTintColor:[XHColorTools themeColor]];
     
     // set high lighted text attributes
     NSMutableDictionary *highLightedTextAttrs = [NSMutableDictionary dictionary];
-    highLightedTextAttrs[NSForegroundColorAttributeName] = [UIColor orangeColor];
+    highLightedTextAttrs[NSForegroundColorAttributeName] = [XHColorTools defaultColor];
     [appearance setTitleTextAttributes:highLightedTextAttrs forState:UIControlStateHighlighted];
     
     // set disable text attributes
@@ -78,7 +78,7 @@
     textAttrs[NSForegroundColorAttributeName] = [XHColorTools themeColor];
     //textAttrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:20];
     //textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero]; // shadow
-    [self.navigationBar setTintColor:[XHColorTools themeColor]]; // set tint color
+    //[self.navigationBar setTintColor:[XHColorTools themeColor]]; // set tint color
     
     [self.navigationBar setTitleTextAttributes:textAttrs];
 }

@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.tabBar.tintColor = [XHColorTools themeColor];
     [self setupSubViewController];
 }
 
@@ -44,21 +44,29 @@
 - (void)addSubViewController:(UIViewController *)subVC title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName
 {
     // set selected text attribute text color
+    // we can set tintColor insta
     NSMutableDictionary *selectedtextAttrs = [NSMutableDictionary dictionary];
     selectedtextAttrs[NSForegroundColorAttributeName] = [XHColorTools themeColor];
+    [subVC.tabBarItem setTitleTextAttributes:selectedtextAttrs forState:UIControlStateSelected];
     
     subVC.view.backgroundColor = [UIColor whiteColor];
     
     // set title
     //subVC.tabBarItem.title = title;
     //subVC.navigationItem.title = title;
-    subVC.title = title;
-    [subVC.tabBarItem setTitleTextAttributes:selectedtextAttrs forState:UIControlStateSelected];
+    subVC.title = title; // it just need set titile property
     subVC.tabBarItem.image = [UIImage imageNamed:imageName];
     
     UIImage *selectedImage = [UIImage imageNamed:selectedImageName];
     if (IOS_7_OR_LATER) {
-        selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        // here we should use UIImage's new property renderingMode,
+        // and set with UIImageRenderingModeAlwaysAutomatic
+        // if we need to rendering the tabBarItem image automatic according tintColor.
+        // and if we need to use the original image, we should set renderingMode with
+        // UIImageRenderingModeAlwaysOriginal.
+        //selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAutomatic];
+        //selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     subVC.tabBarItem.selectedImage = selectedImage;
     

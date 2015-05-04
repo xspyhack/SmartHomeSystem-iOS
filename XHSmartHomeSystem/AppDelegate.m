@@ -12,6 +12,7 @@
 #import "XHLinkinViewController.h"
 #import "XHTokenModel.h"
 #import "XHTokenTools.h"
+#import "XHColorTools.h"
 
 @interface AppDelegate ()
 
@@ -26,6 +27,7 @@
     // create window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
+    self.window.tintColor = [XHColorTools themeColor]; // set theme color
     
     // set rootViewController
     /*
@@ -119,6 +121,7 @@
         [defaults setBool:NO forKey:@"XHHaveColorObserver"];
         
         tabBarVC.selectedIndex = 2; // go to settings view
+        self.window.tintColor = [XHColorTools themeColor]; // update tintColor
         self.window.rootViewController = nil;
         self.window.rootViewController = tabBarVC;
     }

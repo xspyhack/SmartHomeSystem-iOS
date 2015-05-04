@@ -51,4 +51,14 @@
     XHLog(@"Clear");
 }
 
+#pragma mark - tableView delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section == [self.groups count] - 1) {
+        return 30;
+    }
+    return 15;
+}
+
 @end

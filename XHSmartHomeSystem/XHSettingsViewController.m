@@ -120,12 +120,20 @@
     CGFloat viewWidth = self.view.frame.size.width;
     _logoView.frame = CGRectMake((viewWidth - XHLogoViewWidthAndHeight)/2, -80, XHLogoViewWidthAndHeight, XHLogoViewWidthAndHeight);
     
+    // this method had be discouraged but not deprecated although, it should use block
+    /*
     NSTimeInterval animationDuration = 0.5f;
     [UIView beginAnimations:@"MoveLogoView" context:nil];
     [UIView setAnimationDuration:animationDuration];
     _logoView.frame = CGRectMake((viewWidth - XHLogoViewWidthAndHeight)/2, 10, XHLogoViewWidthAndHeight, XHLogoViewWidthAndHeight);
     
     [UIView commitAnimations];
+    */
+    
+    // use block
+    [UIView animateWithDuration:0.5f animations:^{
+        _logoView.frame = CGRectMake((viewWidth - XHLogoViewWidthAndHeight)/2, 10, XHLogoViewWidthAndHeight, XHLogoViewWidthAndHeight);
+    }];
 }
 
 #pragma mark - set group cell
@@ -147,7 +155,7 @@
     generalItem.destViewContorller = [XHGeneralSettingsViewController class];
     
     XHTableViewCellArrowItem *themeItem = [XHTableViewCellArrowItem itemWithTitle:@"Theme" iconName:@"general"];
-    /**themeItem.operation = ^ {
+    /**themeItem.operation = ^{
         XHThemeViewController *tVC = [[XHThemeViewController alloc] init];
         [self presentViewController:tVC animated:YES completion:nil];
     };*/
@@ -175,7 +183,7 @@
 
 - (void)setupLinkOutGroup
 {
-    CGRect rect = CGRectMake(0, 45, self.view.frame.size.width, 40);
+    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 40);
     UIButton *linkout = [[UIButton alloc] initWithFrame:rect];
     linkout.backgroundColor = [XHColorTools themeColor];
     [linkout setTitle:@"Link out" forState:UIControlStateNormal];
@@ -183,6 +191,15 @@
     [linkout addTarget:self action:@selector(linkout) forControlEvents:UIControlEventTouchUpInside];
     
     self.tableView.tableFooterView = linkout;
+}
+
+#pragma mark - private methods
+
+- (void)tapLogoView:(UITapGestureRecognizer *)gesture
+{
+    XHLog(@"tap");
+    XHAboutViewController *aboutVC = [[XHAboutViewController alloc] init];
+    [self.navigationController pushViewController:aboutVC animated:YES];
 }
 
 - (void)linkout
@@ -196,9 +213,11 @@
             XHTokenModel *token = [XHTokenTools tokenModel];
             [XHTokenTools remove:token];
             
-            XHLinkinViewController *linkVC = [[XHLinkinViewController alloc] init];
-            [self presentViewController:linkVC animated:YES completion:nil];
-            self.view.window.rootViewController = linkVC;
+            //XHLinkinViewController *linkVC = [[XHLinkinViewController alloc] init];
+            //[self presentViewController:linkVC animated:YES completion:nil];
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            window.backgroundColor = [UIColor whiteColor];
+            window.rootViewController = [[XHLinkinViewController alloc] init];
         }];
         
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
@@ -218,14 +237,18 @@
     }
 }
 
-#pragma mark - private methods
-
-- (void)tapLogoView:(UITapGestureRecognizer *)gesture
+- (void)alert
 {
-    XHLog(@"tap");
-    XHAboutViewController *aboutVC = [[XHAboutViewController alloc] init];
-    [self.navigationController pushViewController:aboutVC animated:YES];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Link out" message:@"Link out success." delegate:nil cancelButtonTitle:@"sure" otherButtonTitles:nil];
+    [alert show];
 }
+
+- (void)settings
+{
+    XHLog(@"settings");
+}
+
+#pragma mark - actionSheel delegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -238,22 +261,6 @@
         window.backgroundColor = [UIColor whiteColor];
         window.rootViewController = [[XHLinkinViewController alloc] init];
     }
-}
-
-- (void)alert
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Link out" message:@"Link out success." delegate:nil cancelButtonTitle:@"sure" otherButtonTitles:nil];
-    [alert show];
-}
-
-- (void)settings
-{
-    XHLog(@"settings");
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - tableView delegate & datasource
@@ -277,7 +284,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) return 193;
-    return 30;
+    return 15;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section == 1) {
+        return 30;
+    }
+    return 15;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -346,6 +361,11 @@
 - (void)deselect
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 /*

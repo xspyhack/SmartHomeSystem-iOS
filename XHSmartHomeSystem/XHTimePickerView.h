@@ -13,6 +13,9 @@
 @property (nonatomic, copy) NSString *startTime;
 @property (nonatomic, copy) NSString *endTime;
 
-//@property (nonatomic, strong) void (^done) ();
+@property (nonatomic, strong) void (^done) ();
+
+- (void)show;
+- (void)hide;
 
 @end

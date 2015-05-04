@@ -60,6 +60,9 @@
 		78C13B941ADA0EF90020AAFA /* XHTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B931ADA0EF90020AAFA /* XHTokenModel.m */; };
 		78C13B971ADA101C0020AAFA /* XHTokenTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B961ADA101C0020AAFA /* XHTokenTools.m */; };
 		78C13B9C1ADA6D370020AAFA /* XHImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B9B1ADA6D370020AAFA /* XHImageView.m */; };
+		78CB02D01AF71EEC0004167E /* XHDataAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB02CF1AF71EEC0004167E /* XHDataAnalysisViewController.m */; };
+		78CB02D31AF73C720004167E /* XHTableViewCellTextFieldItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB02D21AF73C720004167E /* XHTableViewCellTextFieldItem.m */; };
+		78CB02DC1AF767A90004167E /* XHEncryptTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB02DB1AF767A90004167E /* XHEncryptTypeViewController.m */; };
 		78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5B9E1AD780B700DC9FA0 /* main.m */; };
 		78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5BA11AD780B700DC9FA0 /* AppDelegate.m */; };
 		78DD5BAA1AD780B700DC9FA0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78DD5BA91AD780B700DC9FA0 /* Images.xcassets */; };
@@ -190,6 +193,12 @@
 		78C13B961ADA101C0020AAFA /* XHTokenTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTokenTools.m; sourceTree = "<group>"; };
 		78C13B9A1ADA6D370020AAFA /* XHImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHImageView.h; sourceTree = "<group>"; };
 		78C13B9B1ADA6D370020AAFA /* XHImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHImageView.m; sourceTree = "<group>"; };
+		78CB02CE1AF71EEC0004167E /* XHDataAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHDataAnalysisViewController.h; sourceTree = "<group>"; };
+		78CB02CF1AF71EEC0004167E /* XHDataAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHDataAnalysisViewController.m; sourceTree = "<group>"; };
+		78CB02D11AF73C720004167E /* XHTableViewCellTextFieldItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTableViewCellTextFieldItem.h; sourceTree = "<group>"; };
+		78CB02D21AF73C720004167E /* XHTableViewCellTextFieldItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTableViewCellTextFieldItem.m; sourceTree = "<group>"; };
+		78CB02DA1AF767A90004167E /* XHEncryptTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHEncryptTypeViewController.h; sourceTree = "<group>"; };
+		78CB02DB1AF767A90004167E /* XHEncryptTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHEncryptTypeViewController.m; sourceTree = "<group>"; };
 		78DD5B991AD780B700DC9FA0 /* XHSmartHomeSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XHSmartHomeSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DD5B9D1AD780B700DC9FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78DD5B9E1AD780B700DC9FA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -239,6 +248,8 @@
 				787FBB551AD8E64100316651 /* XHHomeViewController.m */,
 				781F1FEE1AE0C97600ACEACC /* XHChartViewController.h */,
 				781F1FEF1AE0C97600ACEACC /* XHChartViewController.m */,
+				78CB02CE1AF71EEC0004167E /* XHDataAnalysisViewController.h */,
+				78CB02CF1AF71EEC0004167E /* XHDataAnalysisViewController.m */,
 				7866FABD1AE783C800250478 /* XHGaugeViewController.h */,
 				7866FABE1AE783C800250478 /* XHGaugeViewController.m */,
 			);
@@ -302,6 +313,8 @@
 				78379E781AEE19FC008B5C87 /* Notifications */,
 				7866FAD01AE8C4FB00250478 /* XHSecurityViewController.h */,
 				7866FAD11AE8C4FB00250478 /* XHSecurityViewController.m */,
+				78CB02DA1AF767A90004167E /* XHEncryptTypeViewController.h */,
+				78CB02DB1AF767A90004167E /* XHEncryptTypeViewController.m */,
 				7825E78A1AF36E51008D6CF6 /* XHAboutViewController.h */,
 				7825E78B1AF36E51008D6CF6 /* XHAboutViewController.m */,
 			);
@@ -379,6 +392,8 @@
 				785531541ADF5C1F00080703 /* XHTableViewCellLabelItem.m */,
 				7866FAE21AE937A500250478 /* XHTableViewCellCheckmarkItem.h */,
 				7866FAE31AE937A500250478 /* XHTableViewCellCheckmarkItem.m */,
+				78CB02D11AF73C720004167E /* XHTableViewCellTextFieldItem.h */,
+				78CB02D21AF73C720004167E /* XHTableViewCellTextFieldItem.m */,
 				7855314A1ADF528E00080703 /* XHRoomTableViewCell.h */,
 				7855314B1ADF528E00080703 /* XHRoomTableViewCell.m */,
 			);
@@ -638,6 +653,7 @@
 				783AF3A91AEB730F0090A81B /* XHTabBarController.m in Sources */,
 				7866FADE1AE8C6F900250478 /* XHNotificationsViewController.m in Sources */,
 				786E90601ADCC3F000A93675 /* XHMessageModel.m in Sources */,
+				78CB02D01AF71EEC0004167E /* XHDataAnalysisViewController.m in Sources */,
 				781F1FF01AE0C97600ACEACC /* XHChartViewController.m in Sources */,
 				7866FABF1AE783C800250478 /* XHGaugeViewController.m in Sources */,
 				786E90531ADCBBBC00A93675 /* NSDate+Utils.m in Sources */,
@@ -669,10 +685,12 @@
 				787F17361AEA6949002B9DCD /* XHThemeViewController.m in Sources */,
 				7881B75A1AEC97090079D1EB /* XHLineView.m in Sources */,
 				78379E771AEE19F1008B5C87 /* XHNotificationTypeViewController.m in Sources */,
+				78CB02DC1AF767A90004167E /* XHEncryptTypeViewController.m in Sources */,
 				785531421ADE583B00080703 /* UIBarButtonItem+Extension.m in Sources */,
 				787FBB5D1AD8E99800316651 /* XHLinkinViewController.m in Sources */,
 				78C13B971ADA101C0020AAFA /* XHTokenTools.m in Sources */,
 				7881B75F1AECCC2A0079D1EB /* UICircularSlider.m in Sources */,
+				78CB02D31AF73C720004167E /* XHTableViewCellTextFieldItem.m in Sources */,
 				786E905A1ADCBE4700A93675 /* UUImageAvatarBrowser.m in Sources */,
 				785531491ADF50BE00080703 /* XHTableViewCellItem.m in Sources */,
 				785531461ADF501600080703 /* XHTableViewCellGroup.m in Sources */,

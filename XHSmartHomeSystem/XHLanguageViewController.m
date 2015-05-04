@@ -35,17 +35,17 @@ typedef enum {
     NSInteger index = [defaults integerForKey:@"Language"];
     
     XHTableViewCellCheckmarkItem *englishCheckmark = [XHTableViewCellCheckmarkItem itemWithTitle:@"English"];
-    englishCheckmark.operation = ^ {
+    englishCheckmark.operation = ^{
         [self setCheckmark:EMEnglish];
     };
     
     XHTableViewCellCheckmarkItem *chineseCheckmark = [XHTableViewCellCheckmarkItem itemWithTitle:@"简体中文"];
-    chineseCheckmark.operation = ^ {
+    chineseCheckmark.operation = ^{
         [self setCheckmark:EMChinese];
     };
     
     XHTableViewCellCheckmarkItem *systemCheckmark = [XHTableViewCellCheckmarkItem itemWithTitle:@"System default"];
-    systemCheckmark.operation = ^ {
+    systemCheckmark.operation = ^{
         [self setCheckmark:EMSystem];
     };
     
