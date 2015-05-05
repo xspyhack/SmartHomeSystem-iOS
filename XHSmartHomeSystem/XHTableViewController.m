@@ -20,13 +20,7 @@
 
 @implementation XHTableViewController
 
-- (NSMutableArray *)groups
-{
-    if (!_groups) {
-        _groups = [NSMutableArray array];
-    }
-    return _groups;
-}
+#pragma mark - life cycle
 
 // forbid set UITableViewStyle
 - (id)init
@@ -45,11 +39,9 @@
     
     // no dispaly vertical scroll idicator
     self.tableView.showsVerticalScrollIndicator = NO;
-    
-    
 }
 
-#pragma mark - tableView delegate & datasource
+#pragma mark - UITableViewDelegate & UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -134,6 +126,16 @@
 - (void)deselect
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
+#pragma mark - getter
+
+- (NSMutableArray *)groups
+{
+    if (!_groups) {
+        _groups = [NSMutableArray array];
+    }
+    return _groups;
 }
 
 @end

@@ -10,8 +10,6 @@
 
 @interface XHChartViewController : UIViewController <UIScrollViewDelegate>
 
-@property (nonatomic, strong) UIPageControl *pageControl;
-@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, assign) NSInteger roomId;
 
 @end

@@ -108,6 +108,23 @@
     self.frame = rect;
 }
 
+- (void)handleNotification:(NSNotification *)notification
+{
+    if ([notification.name isEqualToString:XHColorDidChangeNotification]) {
+        self.temperatureLabel.textColor = [XHColorTools temperatureColor];
+        self.humidityLabel.textColor = [XHColorTools humidityColor];
+    }
+}
+
+- (void)dealloc
+{
+    // when dealloc, remove observer
+    // if no, it will be crash
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - setter
+
 - (void)setRoomModel:(XHRoomModel *)roomModel
 {
     _roomModel = roomModel;
@@ -125,20 +142,6 @@
     _updateTimeLabel.text = [NSString stringWithFormat:@"update at %@", [formater stringFromDate:updateTime]];
 }
 
-- (void)handleNotification:(NSNotification *)notification
-{
-    if ([notification.name isEqualToString:XHColorDidChangeNotification]) {
-        self.temperatureLabel.textColor = [XHColorTools temperatureColor];
-        self.humidityLabel.textColor = [XHColorTools humidityColor];
-    }
-}
-
-- (void)dealloc
-{
-    // when dealloc, remove observer
-    // if no, it will be crash
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

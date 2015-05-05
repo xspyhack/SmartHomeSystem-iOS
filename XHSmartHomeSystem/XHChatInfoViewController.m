@@ -90,6 +90,13 @@
     self.tableView.tableFooterView = block;
 }
 
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 30; // here is only one section, so we can just return 30.
+}
+
 #pragma mark - private methods
 
 - (void)tapLogoView:(UITapGestureRecognizer *)gesture
@@ -100,13 +107,6 @@
 - (void)block
 {
     XHLog(@"block");
-}
-
-#pragma mark - tableView delegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 30; // here is only one section, so we can just return 30.
 }
 
 @end

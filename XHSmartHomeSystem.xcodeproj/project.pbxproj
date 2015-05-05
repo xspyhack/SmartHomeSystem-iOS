@@ -28,6 +28,9 @@
 		785531551ADF5C1F00080703 /* XHTableViewCellLabelItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531541ADF5C1F00080703 /* XHTableViewCellLabelItem.m */; };
 		7855315B1ADF8CEB00080703 /* XHTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7855315A1ADF8CEB00080703 /* XHTableViewController.m */; };
 		7855315E1ADF907300080703 /* XHGeneralSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7855315D1ADF907300080703 /* XHGeneralSettingsViewController.m */; };
+		7857C1DF1AF7A26300E1271F /* XHCmdLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7857C1DE1AF7A26300E1271F /* XHCmdLineViewController.m */; };
+		785C20E71AF882BB00F9CD1C /* XHValueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785C20E61AF882BB00F9CD1C /* XHValueViewController.m */; };
+		785C20EA1AF8841E00F9CD1C /* XHInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 785C20E91AF8841E00F9CD1C /* XHInputView.m */; };
 		7866FABF1AE783C800250478 /* XHGaugeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7866FABE1AE783C800250478 /* XHGaugeViewController.m */; };
 		7866FAD21AE8C4FB00250478 /* XHSecurityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7866FAD11AE8C4FB00250478 /* XHSecurityViewController.m */; };
 		7866FAD81AE8C5AC00250478 /* XHDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7866FAD71AE8C5AC00250478 /* XHDisplayViewController.m */; };
@@ -129,6 +132,12 @@
 		7855315A1ADF8CEB00080703 /* XHTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTableViewController.m; sourceTree = "<group>"; };
 		7855315C1ADF907300080703 /* XHGeneralSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHGeneralSettingsViewController.h; sourceTree = "<group>"; };
 		7855315D1ADF907300080703 /* XHGeneralSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHGeneralSettingsViewController.m; sourceTree = "<group>"; };
+		7857C1DD1AF7A26300E1271F /* XHCmdLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHCmdLineViewController.h; sourceTree = "<group>"; };
+		7857C1DE1AF7A26300E1271F /* XHCmdLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHCmdLineViewController.m; sourceTree = "<group>"; };
+		785C20E51AF882BB00F9CD1C /* XHValueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHValueViewController.h; sourceTree = "<group>"; };
+		785C20E61AF882BB00F9CD1C /* XHValueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHValueViewController.m; sourceTree = "<group>"; };
+		785C20E81AF8841E00F9CD1C /* XHInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHInputView.h; sourceTree = "<group>"; };
+		785C20E91AF8841E00F9CD1C /* XHInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHInputView.m; sourceTree = "<group>"; };
 		7866FABD1AE783C800250478 /* XHGaugeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHGaugeViewController.h; sourceTree = "<group>"; };
 		7866FABE1AE783C800250478 /* XHGaugeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHGaugeViewController.m; sourceTree = "<group>"; };
 		7866FAD01AE8C4FB00250478 /* XHSecurityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSecurityViewController.h; sourceTree = "<group>"; };
@@ -252,6 +261,8 @@
 				78CB02CF1AF71EEC0004167E /* XHDataAnalysisViewController.m */,
 				7866FABD1AE783C800250478 /* XHGaugeViewController.h */,
 				7866FABE1AE783C800250478 /* XHGaugeViewController.m */,
+				7857C1DD1AF7A26300E1271F /* XHCmdLineViewController.h */,
+				7857C1DE1AF7A26300E1271F /* XHCmdLineViewController.m */,
 			);
 			name = "Home ViewControllers";
 			sourceTree = "<group>";
@@ -328,6 +339,8 @@
 				7855315D1ADF907300080703 /* XHGeneralSettingsViewController.m */,
 				7866FAD61AE8C5AC00250478 /* XHDisplayViewController.h */,
 				7866FAD71AE8C5AC00250478 /* XHDisplayViewController.m */,
+				785C20E51AF882BB00F9CD1C /* XHValueViewController.h */,
+				785C20E61AF882BB00F9CD1C /* XHValueViewController.m */,
 				7866FAD91AE8C6A100250478 /* XHFeaturesViewController.h */,
 				7866FADA1AE8C6A100250478 /* XHFeaturesViewController.m */,
 				7866FADF1AE936DD00250478 /* XHLanguageViewController.h */,
@@ -358,14 +371,14 @@
 		787FBB5A1AD8E6BF00316651 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7825E7811AF352EB008D6CF6 /* XHInfoViewController.h */,
-				7825E7821AF352EB008D6CF6 /* XHInfoViewController.m */,
-				785531591ADF8CEB00080703 /* XHTableViewController.h */,
-				7855315A1ADF8CEB00080703 /* XHTableViewController.m */,
 				783AF3A71AEB730F0090A81B /* XHTabBarController.h */,
 				783AF3A81AEB730F0090A81B /* XHTabBarController.m */,
 				783AF3AA1AEB735D0090A81B /* XHNavigationController.h */,
 				783AF3AB1AEB735D0090A81B /* XHNavigationController.m */,
+				785531591ADF8CEB00080703 /* XHTableViewController.h */,
+				7855315A1ADF8CEB00080703 /* XHTableViewController.m */,
+				7825E7811AF352EB008D6CF6 /* XHInfoViewController.h */,
+				7825E7821AF352EB008D6CF6 /* XHInfoViewController.m */,
 				787FBB5B1AD8E99800316651 /* XHLinkinViewController.h */,
 				787FBB5C1AD8E99800316651 /* XHLinkinViewController.m */,
 				781F1FF11AE0E4F300ACEACC /* Home ViewControllers */,
@@ -461,6 +474,8 @@
 				7881B7591AEC97090079D1EB /* XHLineView.m */,
 				78379E791AEE2A49008B5C87 /* XHTimePickerView.h */,
 				78379E7A1AEE2A49008B5C87 /* XHTimePickerView.m */,
+				785C20E81AF8841E00F9CD1C /* XHInputView.h */,
+				785C20E91AF8841E00F9CD1C /* XHInputView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -670,6 +685,7 @@
 				786E90501ADCBBAE00A93675 /* UUMessageFrame.m in Sources */,
 				78E614D71AE6447100191132 /* XHGaugeView.m in Sources */,
 				7866FAE41AE937A500250478 /* XHTableViewCellCheckmarkItem.m in Sources */,
+				785C20EA1AF8841E00F9CD1C /* XHInputView.m in Sources */,
 				78E614951AE5ECE600191132 /* XHLineChartView.m in Sources */,
 				786E903D1ADBB54E00A93675 /* XHTableViewCell.m in Sources */,
 				7825E7891AF36A5D008D6CF6 /* XHMessageSettingViewController.m in Sources */,
@@ -686,6 +702,7 @@
 				7881B75A1AEC97090079D1EB /* XHLineView.m in Sources */,
 				78379E771AEE19F1008B5C87 /* XHNotificationTypeViewController.m in Sources */,
 				78CB02DC1AF767A90004167E /* XHEncryptTypeViewController.m in Sources */,
+				785C20E71AF882BB00F9CD1C /* XHValueViewController.m in Sources */,
 				785531421ADE583B00080703 /* UIBarButtonItem+Extension.m in Sources */,
 				787FBB5D1AD8E99800316651 /* XHLinkinViewController.m in Sources */,
 				78C13B971ADA101C0020AAFA /* XHTokenTools.m in Sources */,
@@ -696,6 +713,7 @@
 				785531461ADF501600080703 /* XHTableViewCellGroup.m in Sources */,
 				78C13B941ADA0EF90020AAFA /* XHTokenModel.m in Sources */,
 				7825E7801AF35031008D6CF6 /* GCDAsyncSocket.m in Sources */,
+				7857C1DF1AF7A26300E1271F /* XHCmdLineViewController.m in Sources */,
 				7825E78C1AF36E51008D6CF6 /* XHAboutViewController.m in Sources */,
 				78E614991AE5ED4800191132 /* XHLineChartContentView.m in Sources */,
 				7855314F1ADF58C800080703 /* XHTableViewCellArrowItem.m in Sources */,

@@ -34,30 +34,6 @@
     return self;
 }
 
-- (NSMutableArray *)timeArray
-{
-    if (!_timeArray) {
-        _timeArray = [NSMutableArray array];
-        for (int i = 0; i < 24; i++) {
-            NSString *str = [NSString stringWithFormat:@"%d:00", i];
-            [_timeArray addObject:str];
-        }
-    }
-    return _timeArray;
-}
-
-- (void)setStartTime:(NSString *)startTime
-{
-    _startTime = startTime;
-    self.startTimeItem.title = startTime;
-}
-
-- (void)setEndTime:(NSString *)endTime
-{
-    _endTime = endTime;
-    self.endTimeItem.title = endTime;
-}
-
 #pragma mark - setup
 
 - (void)setupToolBar
@@ -106,21 +82,6 @@
     [self addSubview:self.pickerView];
 }
 
-#pragma mark - methods
-
-- (void)pickDone
-{
-    // save
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:self.startTimeItem.title forKey:@"XHNotificationStartTime"];
-    [defaults setObject:self.endTimeItem.title forKey:@"XHNotificationEndTime"];
-    
-    if (self.done) {
-        self.done();
-    }
-    [self hide];
-}
-
 - (void)show
 {
     // use block
@@ -136,7 +97,7 @@
     }];
 }
 
-#pragma mark - delegate & dataSource
+#pragma mark - UIPickerViewDelegate & UIPickerViewDataSource
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -178,5 +139,47 @@
     self.startTimeItem.title = [self.timeArray objectAtIndex:[pickerView selectedRowInComponent:0]];
     self.endTimeItem.title = [self.timeArray objectAtIndex:[pickerView selectedRowInComponent:1]];
 }
+
+#pragma mark - Event & private
+
+- (void)pickDone
+{
+    // save
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:self.startTimeItem.title forKey:@"XHNotificationStartTime"];
+    [defaults setObject:self.endTimeItem.title forKey:@"XHNotificationEndTime"];
+    
+    if (self.done) {
+        self.done();
+    }
+    [self hide];
+}
+
+#pragma mark - getter & setter
+
+- (NSMutableArray *)timeArray
+{
+    if (!_timeArray) {
+        _timeArray = [NSMutableArray array];
+        for (int i = 0; i < 24; i++) {
+            NSString *str = [NSString stringWithFormat:@"%d:00", i];
+            [_timeArray addObject:str];
+        }
+    }
+    return _timeArray;
+}
+
+- (void)setStartTime:(NSString *)startTime
+{
+    _startTime = startTime;
+    self.startTimeItem.title = startTime;
+}
+
+- (void)setEndTime:(NSString *)endTime
+{
+    _endTime = endTime;
+    self.endTimeItem.title = endTime;
+}
+
 
 @end

@@ -16,21 +16,18 @@
 
 #define XHPickerViewHeight 252
 
+typedef enum {
+    EMAlert = 0,
+    EMText = 1
+}EMMessageType;
+
 @interface XHNotificationTypeViewController ()
 @property (nonatomic, strong) UILabel *timeLabel;
 @end
 
 @implementation XHNotificationTypeViewController
 
-- (UILabel *)timeLabel
-{
-    if (!_timeLabel) {
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _timeLabel.textColor = [XHColorTools themeColor];
-        [self updateTimeLabel];
-    }
-    return _timeLabel;
-}
+#pragma mark - life cycle
 
 - (void)viewDidLoad
 {
@@ -41,18 +38,34 @@
     [self setupTimeGroup];
 }
 
+#pragma mark - setup View
+
 - (void)setupTypeGroup
 {
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellCheckmarkItem *alertItem = [XHTableViewCellCheckmarkItem itemWithTitle:@"Alert"];
-    alertItem.type = UITableViewCellAccessoryCheckmark;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger index = [defaults integerForKey:@"XHMessageType"];
     
-    XHTableViewCellCheckmarkItem *msgItem = [XHTableViewCellCheckmarkItem itemWithTitle:@"Msg"];
+    XHTableViewCellCheckmarkItem *alertItem = [XHTableViewCellCheckmarkItem itemWithTitle:@"Alert"];
+    alertItem.operation = ^{
+        [self setCheckmark:EMAlert];
+    };
+    
+    XHTableViewCellCheckmarkItem *textItem = [XHTableViewCellCheckmarkItem itemWithTitle:@"Text"];
+    textItem.operation = ^{
+        [self setCheckmark:EMText];
+    };
+    
+    if (index == 0) {
+        alertItem.type = UITableViewCellAccessoryCheckmark;
+    } else {
+        textItem.type = UITableViewCellAccessoryCheckmark;
+    }
     
     group.groupHeader = @"Notification Push Type";
-    group.items = @[alertItem, msgItem];
+    group.items = @[alertItem, textItem];
 }
 
 - (void)setupTimeGroup
@@ -89,6 +102,8 @@
     [self.view addSubview:timePicker];
 }
 
+#pragma mark - event
+
 - (void)updateTimeLabel
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -96,6 +111,33 @@
     NSString *endTime = [defaults objectForKey:@"XHNotificationEndTime"];
     self.timeLabel.text = [NSString stringWithFormat:@"Every day %@ to %@", startTime, endTime];
     [self.timeLabel sizeToFit];
+}
+
+- (void)setCheckmark:(NSInteger)index
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    switch (index) {
+        case EMAlert:
+            [defaults setInteger:EMAlert forKey:@"XHMessageType"];
+            break;
+        case EMText:
+            [defaults setInteger:EMText forKey:@"XHMessageType"];
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - getter
+
+- (UILabel *)timeLabel
+{
+    if (!_timeLabel) {
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _timeLabel.textColor = [XHColorTools themeColor];
+        [self updateTimeLabel];
+    }
+    return _timeLabel;
 }
 
 @end

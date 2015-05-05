@@ -36,17 +36,7 @@ typedef enum {
 
 @implementation XHNotificationsViewController
 
-- (UILabel *)notificatonLabel
-{
-    if (!_notificatonLabel) {
-        _notificatonLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _notificatonLabel.textColor = [XHColorTools themeColor];
-        NSString *notification = [self.defaults objectForKey:@"NotificationEnabled"];
-        _notificatonLabel.text = notification;
-        [_notificatonLabel sizeToFit];
-    }
-    return _notificatonLabel;
-}
+#pragma mark - life cycle
 
 - (void)viewDidLoad
 {
@@ -57,6 +47,16 @@ typedef enum {
     [self setupShowGroup];
     [self setupTypeGroup];
 }
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self.defaults setBool:self.showSwitch forKey:@"XHShowSwitch"];
+    [self.defaults setBool:self.smokeSwitch forKey:@"XHSmokeAlertSwitch"];
+    [self.defaults setBool:self.humiditySwitch forKey:@"XHHumidityAlertSwitch"];
+    [self.defaults setBool:self.temperatureSwitch forKey:@"XHTemperatureAlertSwitch"];
+}
+
+#pragma mark - setup View
 
 - (void)setupStatusGroup
 {
@@ -76,7 +76,7 @@ typedef enum {
     [self.groups addObject:group];
     group.groupFooter = @"Message notifications will contain sender and summary when enabled.";
     
-    self.showSwitch = [self.defaults boolForKey:@"XHShowSwitch"];
+    self.showSwitch = [self.defaults boolForKey:@"XHShowPreviewText"];
     
     XHTableViewCellSwitchItem *showItem = [XHTableViewCellSwitchItem itemWithTitle:@"Show Preview Text"];
     showItem.on = self.showSwitch;
@@ -95,7 +95,7 @@ typedef enum {
 {
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
-    group.groupHeader = [@"Notifications Alerter" lowercaseString];
+    group.groupHeader = [@"Notifications Alerter" lowercaseString]; // it looks doesn't work well.
     
     // read defaults settings
     
@@ -121,8 +121,11 @@ typedef enum {
         [self setSwitch:EMTempAlertSwitch];
     };
     
+    group.groupFooter = @"If turn off alert, you can't get important system notification at first.";
     group.items = @[smokeAlertItem, humidityAlertItem, temperatureAlertItem];
 }
+
+#pragma mark - event
 
 - (void)setSwitch:(NSInteger)index
 {
@@ -144,12 +147,19 @@ typedef enum {
     }
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+#pragma mark - getter
+
+- (UILabel *)notificatonLabel
 {
-    [self.defaults setBool:self.showSwitch forKey:@"XHShowSwitch"];
-    [self.defaults setBool:self.smokeSwitch forKey:@"XHSmokeAlertSwitch"];
-    [self.defaults setBool:self.humiditySwitch forKey:@"XHHumidityAlertSwitch"];
-    [self.defaults setBool:self.temperatureSwitch forKey:@"XHTemperatureAlertSwitch"];
+    if (!_notificatonLabel) {
+        _notificatonLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _notificatonLabel.textColor = [XHColorTools themeColor];
+        NSString *notification = [self.defaults objectForKey:@"NotificationEnabled"];
+        _notificatonLabel.text = notification;
+        [_notificatonLabel sizeToFit];
+    }
+    return _notificatonLabel;
 }
+
 
 @end

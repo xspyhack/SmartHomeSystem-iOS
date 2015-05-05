@@ -46,12 +46,7 @@
     self.tableView.tableFooterView = clear;
 }
 
-- (void)clear
-{
-    XHLog(@"Clear");
-}
-
-#pragma mark - tableView delegate
+#pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -60,5 +55,11 @@
     }
     return 15;
 }
+
+- (void)clear
+{
+    XHLog(@"Clear");
+}
+
 
 @end

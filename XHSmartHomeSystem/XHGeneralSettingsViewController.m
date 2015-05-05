@@ -75,34 +75,7 @@
     self.tableView.tableFooterView = wipeCacheBtn;
 }
 
-- (void)wipeCache
-{
-    NSString *msg = @"It will wipe all your cache.";
-
-    if (IOS_8_OR_LATER) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:msg preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *wipeCache = [UIAlertAction actionWithTitle:@"Wipe" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-            // link out
-        }];
-        
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-        [alertController addAction:wipeCache];
-        [alertController addAction:cancel];
-        [alertController.view setTintColor:[UIColor grayColor]];
-        [self presentViewController:alertController animated:YES completion:nil];
-    } else {
-        UIActionSheet *linkoutActionSheel = [[UIActionSheet alloc] initWithTitle:msg
-                                                                        delegate:self
-                                                               cancelButtonTitle:@"Cancel"
-                                                          destructiveButtonTitle:@"Wipe"
-                                                               otherButtonTitles:nil];
-        linkoutActionSheel.actionSheetStyle = UIActionSheetStyleDefault;
-        
-        [linkoutActionSheel showInView:self.view];
-    }
-}
-
-#pragma mark - actionSheel delegate
+#pragma mark - UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -127,7 +100,7 @@
     }
 }
 
-#pragma mark - tableView delegate
+#pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -135,6 +108,35 @@
         return 30;
     }
     return 15; // default height
+}
+
+#pragma mark - event response
+
+- (void)wipeCache
+{
+    NSString *msg = @"It will wipe all your cache.";
+    
+    if (IOS_8_OR_LATER) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:msg preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *wipeCache = [UIAlertAction actionWithTitle:@"Wipe" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            // link out
+        }];
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:wipeCache];
+        [alertController addAction:cancel];
+        [alertController.view setTintColor:[UIColor grayColor]];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
+        UIActionSheet *linkoutActionSheel = [[UIActionSheet alloc] initWithTitle:msg
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"Cancel"
+                                                          destructiveButtonTitle:@"Wipe"
+                                                               otherButtonTitles:nil];
+        linkoutActionSheel.actionSheetStyle = UIActionSheetStyleDefault;
+        
+        [linkoutActionSheel showInView:self.view];
+    }
 }
 
 @end

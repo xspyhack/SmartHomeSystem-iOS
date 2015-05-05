@@ -40,21 +40,6 @@ typedef enum {
     return self;
 }
 
-- (NSMutableArray *)dataSource
-{
-    if (!_dataSource) {
-        _dataSource = [NSMutableArray array];
-    }
-    return _dataSource;
-}
-
-/*
-- (void)setDataSource:(NSMutableArray *)dataSource
-{
-    
-}
-*/
-
 - (void)setupDataSource
 {
     double distanceMin = 0, distanceMax = 100;
@@ -82,20 +67,6 @@ typedef enum {
     }
 }
 
-- (void)setRoomId:(NSInteger)roomId
-{
-    _roomId = roomId;
-    if (roomId == XHParlour) {
-        _roomNameLabel.text = @"parlour";
-    } else if (roomId == XHBedroom) {
-        _roomNameLabel.text = @"bedroom";
-    } else if (roomId == XHKitchen) {
-        _roomNameLabel.text = @"kitchen";
-    } else if (roomId == XHBathroom) {
-        _roomNameLabel.text = @"bathroom";
-    }
-}
-
 - (void)setupChartView
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -114,10 +85,10 @@ typedef enum {
     [self addSubview:self.lineChartView];
     
     CGRect roomRect = CGRectMake(10, CGRectGetMaxY(rect), self.frame.size.width - 20, 50);
-    _roomNameLabel = [[UILabel alloc] initWithFrame:roomRect];
-    _roomNameLabel.textAlignment = NSTextAlignmentCenter;
-    _roomNameLabel.textColor = [XHColorTools themeColor];
-    [self addSubview:_roomNameLabel];
+    self.roomNameLabel = [[UILabel alloc] initWithFrame:roomRect];
+    self.roomNameLabel.textAlignment = NSTextAlignmentCenter;
+    self.roomNameLabel.textColor = [XHColorTools themeColor];
+    [self addSubview:self.roomNameLabel];
     
     UIButton *refresh = [[UIButton alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(roomRect), self.frame.size.width - 20, 30)];
     [refresh setTitle:@"refresh" forState:UIControlStateNormal];
@@ -131,5 +102,34 @@ typedef enum {
     [self setupDataSource];
     [self.lineChartView refreshChartWithData:self.dataSource];
 }
+
+- (NSMutableArray *)dataSource
+{
+    if (!_dataSource) {
+        _dataSource = [NSMutableArray array];
+    }
+    return _dataSource;
+}
+
+- (void)setRoomId:(NSInteger)roomId
+{
+    _roomId = roomId;
+    if (roomId == XHParlour) {
+        self.roomNameLabel.text = @"parlour";
+    } else if (roomId == XHBedroom) {
+        self.roomNameLabel.text = @"bedroom";
+    } else if (roomId == XHKitchen) {
+        self.roomNameLabel.text = @"kitchen";
+    } else if (roomId == XHBathroom) {
+        self.roomNameLabel.text = @"bathroom";
+    }
+}
+
+/*
+ - (void)setDataSource:(NSMutableArray *)dataSource
+ {
+ 
+ }
+ */
 
 @end

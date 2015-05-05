@@ -10,8 +10,16 @@
 #import "XHDataAnalysisViewController.h"
 #import "XHChartView.h"
 #import "XHColorTools.h"
+#import "XHGaugeViewController.h"
 
 #define XHChartViewCount 4
+
+@interface XHChartViewController ()
+
+@property (nonatomic, strong) UIPageControl *pageControl;
+@property (nonatomic, strong) UIScrollView *scrollView;
+
+@end
 
 @implementation XHChartViewController
 
@@ -19,6 +27,7 @@
 {
     [super viewDidLoad];
     self.title = @"Line Chart";
+    self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Data analysis" style:UIBarButtonItemStylePlain target:self action:@selector(dataAnalysis)];
     
@@ -85,20 +94,6 @@
     [self.view addSubview:pageControl];
 }
 
-#pragma mark - private methods
-
-- (void)dataAnalysis
-{
-    XHLog(@"data analysis");
-    XHDataAnalysisViewController *analysisVC = [[XHDataAnalysisViewController alloc] init];
-    [self.navigationController pushViewController:analysisVC animated:YES];
-}
-
-- (void)setPage
-{
-    [self.scrollView setContentOffset:CGPointMake(self.view.bounds.size.width * self.pageControl.currentPage, self.scrollView.bounds.origin.y) animated:YES];
-}
-
 #pragma  mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -115,6 +110,20 @@
         
     }
     //[self.scrollView setContentOffset:CGPointMake(self.view.bounds.size.width * self.pageControl.currentPage, self.scrollView.bounds.origin.y) animated:NO];
+}
+
+#pragma mark - private methods
+
+- (void)dataAnalysis
+{
+    XHLog(@"data analysis");
+    XHDataAnalysisViewController *analysisVC = [[XHDataAnalysisViewController alloc] init];
+    [self.navigationController pushViewController:analysisVC animated:YES];
+}
+
+- (void)setPage
+{
+    [self.scrollView setContentOffset:CGPointMake(self.view.bounds.size.width * self.pageControl.currentPage, self.scrollView.bounds.origin.y) animated:YES];
 }
 
 @end

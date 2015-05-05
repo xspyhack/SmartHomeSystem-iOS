@@ -39,15 +39,7 @@
 
 @implementation XHSettingsViewController
 
-// getter & setter
-
-- (NSMutableArray *)groups
-{
-    if (!_groups) {
-        _groups = [NSMutableArray array];
-    }
-    return _groups;
-}
+#pragma mark - life cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -77,24 +69,24 @@
     CGFloat viewWidth = self.view.frame.size.width;
     CGFloat viewHeight = self.view.frame.size.height;
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight) style:UITableViewStyleGrouped];
-    if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [_tableView setSeparatorInset:UIEdgeInsetsZero];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight) style:UITableViewStyleGrouped];
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     }
     
-    [_tableView setSeparatorColor:[UIColor whiteColor]];
-    _tableView.showsVerticalScrollIndicator = NO; // don't show vertical scroll
-    _tableView.backgroundColor = [UIColor whiteColor];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
+    [self.tableView setSeparatorColor:[UIColor whiteColor]];
+    self.tableView.showsVerticalScrollIndicator = NO; // don't show vertical scroll
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
-    [self.view addSubview:_tableView];
+    [self.view addSubview:self.tableView];
 }
 
 - (void)setupData
 {
     XHTokenModel *token = [XHTokenTools tokenModel];
-    _gateway = token.gateway;
+    self.gateway = token.gateway;
 }
 
 - (void)setupLogoView:(UIView *)superView
@@ -102,23 +94,23 @@
     CGFloat viewWidth = self.view.frame.size.width;
 
     CGRect logoRect = CGRectMake((viewWidth - XHLogoViewWidthAndHeight)/2, 10, XHLogoViewWidthAndHeight, XHLogoViewWidthAndHeight);
-    _logoView = [[XHImageView alloc] initWithFrame:logoRect];
-    _logoView.color = _themeColor;
-    _logoView.progress = 0.7f;
-    _logoView.imageName = @"logo";
-    _logoView.userInteractionEnabled = YES; // must set user interaction enable
+    self.logoView = [[XHImageView alloc] initWithFrame:logoRect];
+    self.logoView.color = _themeColor;
+    self.logoView.progress = 0.7f;
+    self.logoView.imageName = @"logo";
+    self.logoView.userInteractionEnabled = YES; // must set user interaction enable
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLogoView:)];
-    [_logoView addGestureRecognizer:tapGesture];
+    [self.logoView addGestureRecognizer:tapGesture];
     
-    [superView addSubview:_logoView];
+    [superView addSubview:self.logoView];
 }
 
 // animation for logoview drop down
 - (void)moveLogoView
 {
     CGFloat viewWidth = self.view.frame.size.width;
-    _logoView.frame = CGRectMake((viewWidth - XHLogoViewWidthAndHeight)/2, -80, XHLogoViewWidthAndHeight, XHLogoViewWidthAndHeight);
+    self.logoView.frame = CGRectMake((viewWidth - XHLogoViewWidthAndHeight)/2, -80, XHLogoViewWidthAndHeight, XHLogoViewWidthAndHeight);
     
     // this method had be discouraged but not deprecated although, it should use block
     /*
@@ -132,7 +124,7 @@
     
     // use block
     [UIView animateWithDuration:0.5f animations:^{
-        _logoView.frame = CGRectMake((viewWidth - XHLogoViewWidthAndHeight)/2, 10, XHLogoViewWidthAndHeight, XHLogoViewWidthAndHeight);
+        self.logoView.frame = CGRectMake((viewWidth - XHLogoViewWidthAndHeight)/2, 10, XHLogoViewWidthAndHeight, XHLogoViewWidthAndHeight);
     }];
 }
 
@@ -193,62 +185,7 @@
     self.tableView.tableFooterView = linkout;
 }
 
-#pragma mark - private methods
-
-- (void)tapLogoView:(UITapGestureRecognizer *)gesture
-{
-    XHLog(@"tap");
-    XHAboutViewController *aboutVC = [[XHAboutViewController alloc] init];
-    [self.navigationController pushViewController:aboutVC animated:YES];
-}
-
-- (void)linkout
-{
-    NSString *msg = @"Link out will not delete any data. You can still link in with this account.";
-    
-    if (IOS_8_OR_LATER) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:msg preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *linkout = [UIAlertAction actionWithTitle:@"Link out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-            // link out
-            XHTokenModel *token = [XHTokenTools tokenModel];
-            [XHTokenTools remove:token];
-            
-            //XHLinkinViewController *linkVC = [[XHLinkinViewController alloc] init];
-            //[self presentViewController:linkVC animated:YES completion:nil];
-            UIWindow *window = [UIApplication sharedApplication].keyWindow;
-            window.backgroundColor = [UIColor whiteColor];
-            window.rootViewController = [[XHLinkinViewController alloc] init];
-        }];
-        
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-        [alertController addAction:linkout];
-        [alertController addAction:cancel];
-        [alertController.view setTintColor:[UIColor grayColor]];
-        [self presentViewController:alertController animated:YES completion:nil];
-    } else {
-        UIActionSheet *linkoutActionSheel = [[UIActionSheet alloc] initWithTitle:msg
-                                                                        delegate:self
-                                                               cancelButtonTitle:@"Cancel"
-                                                          destructiveButtonTitle:@"Link out"
-                                                               otherButtonTitles:nil];
-        linkoutActionSheel.actionSheetStyle = UIActionSheetStyleDefault;
-        
-        [linkoutActionSheel showInView:self.view];
-    }
-}
-
-- (void)alert
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Link out" message:@"Link out success." delegate:nil cancelButtonTitle:@"sure" otherButtonTitles:nil];
-    [alert show];
-}
-
-- (void)settings
-{
-    XHLog(@"settings");
-}
-
-#pragma mark - actionSheel delegate
+#pragma mark - UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -263,7 +200,7 @@
     }
 }
 
-#pragma mark - tableView delegate & datasource
+#pragma mark - UITableViewDelegate & UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -358,9 +295,76 @@
     [self performSelector:@selector(deselect) withObject:nil afterDelay:0.1f]; // deselect
 }
 
+#pragma mark - event
+
+- (void)tapLogoView:(UITapGestureRecognizer *)gesture
+{
+    XHLog(@"tap");
+    XHAboutViewController *aboutVC = [[XHAboutViewController alloc] init];
+    [self.navigationController pushViewController:aboutVC animated:YES];
+}
+
+- (void)linkout
+{
+    NSString *msg = @"Link out will not delete any data. You can still link in with this account.";
+    
+    if (IOS_8_OR_LATER) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:msg preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *linkout = [UIAlertAction actionWithTitle:@"Link out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            // link out
+            XHTokenModel *token = [XHTokenTools tokenModel];
+            [XHTokenTools remove:token];
+            
+            //XHLinkinViewController *linkVC = [[XHLinkinViewController alloc] init];
+            //[self presentViewController:linkVC animated:YES completion:nil];
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            window.backgroundColor = [UIColor whiteColor];
+            window.rootViewController = [[XHLinkinViewController alloc] init];
+        }];
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:linkout];
+        [alertController addAction:cancel];
+        [alertController.view setTintColor:[UIColor grayColor]];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
+        UIActionSheet *linkoutActionSheel = [[UIActionSheet alloc] initWithTitle:msg
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"Cancel"
+                                                          destructiveButtonTitle:@"Link out"
+                                                               otherButtonTitles:nil];
+        linkoutActionSheel.actionSheetStyle = UIActionSheetStyleDefault;
+        
+        [linkoutActionSheel showInView:self.view];
+    }
+}
+
+- (void)settings
+{
+    XHLog(@"settings");
+}
+
+#pragma mark - private methods
+
+- (void)alert
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Link out" message:@"Link out success." delegate:nil cancelButtonTitle:@"sure" otherButtonTitles:nil];
+    [alert show];
+}
+
 - (void)deselect
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
+#pragma mark - getter & setter
+
+- (NSMutableArray *)groups
+{
+    if (!_groups) {
+        _groups = [NSMutableArray array];
+    }
+    return _groups;
 }
 
 - (void)didReceiveMemoryWarning {

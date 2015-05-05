@@ -10,7 +10,7 @@
 
 @interface XHLineView : UIView
 
-@property (nonatomic, assign) BOOL pull;
+@property (assign, getter=isPull) BOOL pull;
 
 - (void)pullDown:(NSTimeInterval)animationDuration;
 - (void)pullUp;

@@ -21,57 +21,32 @@
 
 #define DEFAULT_USER_IMAGE_SCALE_FACTOR 0.97
 
-- (CGFloat)imageScaleFactor
-{
-    if (!_imageScaleFactor) _imageScaleFactor = DEFAULT_USER_IMAGE_SCALE_FACTOR;
-    return _imageScaleFactor;
-}
-
-- (void)setImageScaleFactor:(CGFloat)imageScaleFactor
-{
-    _imageScaleFactor = imageScaleFactor;
-    [self setNeedsDisplay];
-}
-
-- (void)setImageName:(NSString *)imageName
-{
-    _imageName = imageName;
-    [self setNeedsDisplay];
-}
-
-- (void)setColor:(UIColor *)color
-{
-    _color = color;
-    [self setNeedsDisplay];
-}
-
-- (void)setProgress:(CGFloat)progress
-{
-    _progress = progress;
-    [self setNeedsDisplay];
-}
-
-- (CGFloat)lineWidth
-{
-    if (!_lineWidth)
-        _lineWidth = 3;
-    return _lineWidth;
-}
-
-- (void)setLineWidth:(CGFloat)lineWidth
-{
-    _lineWidth = lineWidth;
-    [self setNeedsDisplay];
-}
-
 #pragma mark - Drawing
 
 #define CORNER_FONT_STANDARD_HEIGHT 80.0
 #define CORNER_RADIUS 80.0
 
-- (CGFloat)cornerScaleFactor { return self.bounds.size.height / CORNER_FONT_STANDARD_HEIGHT; }
-- (CGFloat)cornerRadius { return CORNER_RADIUS * [self cornerScaleFactor]; }
-- (CGFloat)cornerOffset { return [self cornerRadius] / 3.0; }
+#pragma mark - Initialization
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setUp];
+    }
+    return self;
+}
+
+- (void)setUp
+{
+    self.backgroundColor = [UIColor clearColor];
+    self.opaque = NO;
+    self.contentMode = UIViewContentModeRedraw;
+}
+
+- (void)awakeFromNib
+{
+    [self setUp];
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -147,26 +122,55 @@
     UIRectFill(self.bounds);
 }
 
-#pragma mark - Initialization
+#pragma mark - private methods
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (CGFloat)cornerScaleFactor { return self.bounds.size.height / CORNER_FONT_STANDARD_HEIGHT; }
+- (CGFloat)cornerRadius { return CORNER_RADIUS * [self cornerScaleFactor]; }
+- (CGFloat)cornerOffset { return [self cornerRadius] / 3.0; }
+
+#pragma mark - getter & setter
+
+- (CGFloat)imageScaleFactor
 {
-    if (self = [super initWithFrame:frame]) {
-        [self setUp];
-    }
-    return self;
+    if (!_imageScaleFactor) _imageScaleFactor = DEFAULT_USER_IMAGE_SCALE_FACTOR;
+    return _imageScaleFactor;
 }
 
-- (void)setUp
+- (void)setImageScaleFactor:(CGFloat)imageScaleFactor
 {
-    self.backgroundColor = [UIColor clearColor];
-    self.opaque = NO;
-    self.contentMode = UIViewContentModeRedraw;
+    _imageScaleFactor = imageScaleFactor;
+    [self setNeedsDisplay];
 }
 
-- (void)awakeFromNib
+- (void)setImageName:(NSString *)imageName
 {
-    [self setUp];
+    _imageName = imageName;
+    [self setNeedsDisplay];
+}
+
+- (void)setColor:(UIColor *)color
+{
+    _color = color;
+    [self setNeedsDisplay];
+}
+
+- (void)setProgress:(CGFloat)progress
+{
+    _progress = progress;
+    [self setNeedsDisplay];
+}
+
+- (CGFloat)lineWidth
+{
+    if (!_lineWidth)
+        _lineWidth = 3;
+    return _lineWidth;
+}
+
+- (void)setLineWidth:(CGFloat)lineWidth
+{
+    _lineWidth = lineWidth;
+    [self setNeedsDisplay];
 }
 
 @end

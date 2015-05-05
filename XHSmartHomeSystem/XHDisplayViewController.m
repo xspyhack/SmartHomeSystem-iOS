@@ -12,6 +12,7 @@
 #import "XHTableViewCellArrowItem.h"
 #import "XHLineView.h"
 #import "XHColorsView.h"
+#import "XHValueViewController.h"
 
 #define XHColorsViewHeight (self.view.frame.size.width + 10)
 typedef enum {
@@ -20,13 +21,22 @@ typedef enum {
 }EMSwitch;
 
 @interface XHDisplayViewController ()
+@property (nonatomic, strong) XHTableViewCellArrowItem *tempRangeItem;
+@property (nonatomic, strong) XHTableViewCellArrowItem *humiRangeItem;
+@property (nonatomic, strong) XHTableViewCellArrowItem *smokeRangeItem;
 @property (nonatomic, strong) XHLineView *lineView;
 @property (nonatomic, strong) XHColorsView *colorsView;
 @property (nonatomic, assign) BOOL chartSwitch; // chart mode switch is on or close
 @property (nonatomic, assign) BOOL gaugeSwitch; // gauge mode switch's status
+@property (nonatomic, assign) CGFloat lineWidth;
+@property (nonatomic, copy) NSString *tempRange;
+@property (nonatomic, copy) NSString *humiRange;
+@property (nonatomic, copy) NSString *smokeRange;
 @end
 
 @implementation XHDisplayViewController
+
+#pragma mark - life cycle
 
 - (void)viewDidLoad
 {
@@ -39,6 +49,26 @@ typedef enum {
     [self setupRangeGroup];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self getUserDefaults];
+    self.tempRangeItem.detail = self.tempRange;
+    self.humiRangeItem.detail = self.humiRange;
+    self.smokeRangeItem.detail = self.smokeRange;
+    [self.tableView reloadData]; // update cell
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:self.chartSwitch forKey:@"XHChartModeSwitch"];
+    [defaults setBool:self.gaugeSwitch forKey:@"XHGaugeModeSwitch"];
+}
+
 #pragma mark - setup methods
 
 - (void)setupLineView
@@ -46,7 +76,6 @@ typedef enum {
     CGRect rect = CGRectMake(0, -XHColorsViewHeight - 66, self.view.frame.size.width, XHColorsViewHeight);
     self.lineView = [[XHLineView alloc] initWithFrame:rect];
     self.lineView.pull = YES;
-    
     [self.view addSubview:self.lineView];
 }
 
@@ -55,7 +84,6 @@ typedef enum {
     CGRect rect = CGRectMake(0, -XHColorsViewHeight - 66, self.view.frame.size.width, XHColorsViewHeight);
     self.colorsView = [[XHColorsView alloc] initWithFrame:rect];
     self.colorsView.pull = YES;
-
     [self.view addSubview:self.colorsView];
 }
 
@@ -87,13 +115,13 @@ typedef enum {
 - (void)setupBrushGroup
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    CGFloat lineWidth = [defaults floatForKey:@"XHLineWidth"];
+    self.lineWidth = [defaults floatForKey:@"XHLineWidth"];
     
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
     XHTableViewCellArrowItem *lineWidthItem = [XHTableViewCellArrowItem itemWithTitle:@"Line width"];
-    lineWidthItem.detail = [NSString stringWithFormat:@"%.2f", lineWidth];
+    lineWidthItem.detail = [NSString stringWithFormat:@"%.2f", self.lineWidth];
     lineWidthItem.operation = ^{
         [self.lineView pullDown:0.5f];
     };
@@ -116,6 +144,7 @@ typedef enum {
         [self.colorsView pullDown:0.5f];
     };
     
+    group.groupHeader = @"Brush";
     group.items = @[lineWidthItem, tempColorItem, humiColorItem, smokeColorItem];
 }
 
@@ -124,10 +153,23 @@ typedef enum {
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellArrowItem *tempRangeItem = [XHTableViewCellArrowItem itemWithTitle:@"Temp range"];
+    [self getUserDefaults];
     
+    self.tempRangeItem = [XHTableViewCellArrowItem itemWithTitle:@"Temperature"];
+    self.tempRangeItem.detail = self.tempRange;
+    self.tempRangeItem.destViewContorller = [XHValueViewController class];
     
-    group.items = @[tempRangeItem];
+    self.humiRangeItem = [XHTableViewCellArrowItem itemWithTitle:@"Humidity"];
+    self.humiRangeItem.detail = self.humiRange;
+    self.humiRangeItem.destViewContorller = [XHValueViewController class];
+    
+    self.smokeRangeItem = [XHTableViewCellArrowItem itemWithTitle:@"Smoke"];
+    self.smokeRangeItem.detail = self.smokeRange;
+    self.smokeRangeItem.destViewContorller = [XHValueViewController class];
+    
+    group.groupHeader = @"Range";
+    group.groupFooter = @"Setup max or min value which will show in line chart or gauge chart can help system more accurately to show data.";
+    group.items = @[self.tempRangeItem, self.humiRangeItem, self.smokeRangeItem];
 }
 
 #pragma mark - private methods
@@ -146,11 +188,20 @@ typedef enum {
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)getUserDefaults
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:self.chartSwitch forKey:@"XHChartModeSwitch"];
-    [defaults setBool:self.gaugeSwitch forKey:@"XHGaugeModeSwitch"];
+    self.tempRange = [NSString stringWithFormat:@"%.1f - %.1f",
+                      [defaults floatForKey:@"XHTemperatureMinValue"],
+                      [defaults floatForKey:@"XHTemperatureMaxValue"]];
+    
+    self.humiRange = [NSString stringWithFormat:@"%.1f - %.1f",
+                      [defaults floatForKey:@"XHHumidityMinValue"],
+                      [defaults floatForKey:@"XHHumidityMaxValue"]];
+    
+    self.smokeRange = [NSString stringWithFormat:@"%.1f - %.1f",
+                       [defaults floatForKey:@"XHSmokeMinValue"],
+                       [defaults floatForKey:@"XHSmokeMaxValue"]];
 }
 
 /*

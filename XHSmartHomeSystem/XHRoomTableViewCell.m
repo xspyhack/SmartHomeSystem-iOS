@@ -25,6 +25,10 @@
     return self;
 }
 
+- (void)awakeFromNib {
+    // Initialization code
+}
+
 #pragma mark - setup view
 
 - (void)setupSubView
@@ -35,14 +39,6 @@
     [self addSubview:_roomView];
 }
 
-- (void)setRoomModel:(XHRoomModel *)roomModel
-{
-    _roomView.roomModel = roomModel;
-    _roomView.updateTime = [NSDate date];
-    
-    _height = CGRectGetMaxY(_roomView.frame) + XHTableViewCellControlSpaceing;
-}
-
 // over write
 - (void)setFrame:(CGRect)frame
 {
@@ -50,14 +46,18 @@
     [super setFrame:frame];
 }
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
     // Configure the view for the selected state
+}
+
+- (void)setRoomModel:(XHRoomModel *)roomModel
+{
+    _roomView.roomModel = roomModel;
+    _roomView.updateTime = [NSDate date];
+    
+    _height = CGRectGetMaxY(_roomView.frame) + XHTableViewCellControlSpaceing;
 }
 
 @end

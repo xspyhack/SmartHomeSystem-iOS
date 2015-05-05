@@ -18,46 +18,13 @@
 
 @implementation XHInfoViewController
 
-- (NSMutableArray *)groups
-{
-    if (!_groups) {
-        _groups = [NSMutableArray array];
-    }
-    return _groups;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
-#pragma mark - setter
-
-- (void)setTableView:(UITableView *)tableView
-{
-    _tableView = tableView;
-    if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [_tableView setSeparatorInset:UIEdgeInsetsZero];
-    }
-    
-    [_tableView setSeparatorColor:[UIColor whiteColor]];
-    _tableView.showsVerticalScrollIndicator = NO; // don't show vertical scroll
-    _tableView.backgroundColor = [UIColor whiteColor];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    
-    [self.view addSubview:_tableView];
-}
-
-- (void)setGroup:(XHTableViewCellGroup *)group
-{
-    _group = group;
-    [self.groups addObject:group];
-}
-
-
-#pragma mark - tableView delegate & datasource
+#pragma mark - UITableViewDelegate & UITabelViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -105,6 +72,38 @@
 - (void)deselect
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
+#pragma mark - getter & setter
+
+- (NSMutableArray *)groups
+{
+    if (!_groups) {
+        _groups = [NSMutableArray array];
+    }
+    return _groups;
+}
+
+- (void)setTableView:(UITableView *)tableView
+{
+    _tableView = tableView;
+    if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [_tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    [_tableView setSeparatorColor:[UIColor whiteColor]];
+    _tableView.showsVerticalScrollIndicator = NO; // don't show vertical scroll
+    _tableView.backgroundColor = [UIColor whiteColor];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    
+    [self.view addSubview:_tableView];
+}
+
+- (void)setGroup:(XHTableViewCellGroup *)group
+{
+    _group = group;
+    [self.groups addObject:group];
 }
 
 @end

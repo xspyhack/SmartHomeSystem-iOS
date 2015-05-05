@@ -33,14 +33,6 @@
     return self;
 }
 
-- (void)setMaster:(NSString *)master
-{
-    _master = master;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSInteger index = [defaults integerForKey:_master];
-    self.backgroundColor = [[XHColorModel colorModelWithIndex:index] colorWithAlphaComponent:0.85];
-}
-
 - (void)setupColors
 {
     self.colorsArray = [NSMutableArray array];
@@ -175,5 +167,14 @@
         [hud hide:YES afterDelay:3];
     }
 }
+
+- (void)setMaster:(NSString *)master
+{
+    _master = master;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger index = [defaults integerForKey:_master];
+    self.backgroundColor = [[XHColorModel colorModelWithIndex:index] colorWithAlphaComponent:0.85];
+}
+
 
 @end

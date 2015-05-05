@@ -20,6 +20,8 @@
 
 @implementation XHMessagesViewController
 
+#pragma mark - life cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -70,26 +72,7 @@
     [self tableViewScrollToBottom];
 }
 
-//tableView Scroll to bottom
-- (void)tableViewScrollToBottom
-{
-    if (self.msgModel.dataSource.count == 0)
-        return;
-    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.msgModel.dataSource.count-1 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-}
-
-#pragma mark - Event
-
-- (void)settings
-{
-    XHLog(@"settings.");
-    XHMessageSettingViewController *settingVC = [[XHMessageSettingViewController alloc] init];
-    [self.navigationController pushViewController:settingVC animated:YES];
-}
-
-#pragma mark - tableView delegate & datasource
+#pragma mark - UITableViewDelegate & UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.msgModel.dataSource.count;
@@ -117,7 +100,7 @@
     [self.view endEditing:YES];
 }
 
-#pragma mark - cellDelegate
+#pragma mark - UUMessageCellDelegate
 
 - (void)headImageDidClick:(UUMessageCell *)cell userId:(NSString *)userId{
     // headIamgeIcon is clicked
@@ -126,6 +109,25 @@
     chatInfoVC.profileImageName = cell.messageFrame.message.strIcon;
     
     [self.navigationController pushViewController:chatInfoVC animated:YES];
+}
+
+#pragma mark - Event
+
+//tableView Scroll to bottom
+- (void)tableViewScrollToBottom
+{
+    if (self.msgModel.dataSource.count == 0)
+        return;
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.msgModel.dataSource.count-1 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+- (void)settings
+{
+    XHLog(@"settings.");
+    XHMessageSettingViewController *settingVC = [[XHMessageSettingViewController alloc] init];
+    [self.navigationController pushViewController:settingVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

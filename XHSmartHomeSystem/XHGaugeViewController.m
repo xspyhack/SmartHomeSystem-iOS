@@ -40,12 +40,13 @@ typedef enum {
     CGFloat width = self.view.frame.size.width;
     CGFloat height = self.view.frame.size.height;
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     CGRect roomRect = CGRectMake(10, 40, self.view.frame.size.width - 20, 20);
     _roomNameLabel = [[UILabel alloc] initWithFrame:roomRect];
     _roomNameLabel.textAlignment = NSTextAlignmentCenter;
     _roomNameLabel.font = [UIFont boldSystemFontOfSize:19];
     _roomNameLabel.textColor = [XHColorTools themeColor];
-    [self setRoomName];
     [self.view addSubview:_roomNameLabel];
     
     CGRect tempRect = CGRectMake((width - XHTempViewWidth)/2, 100, XHTempViewWidth, XHTempViewWidth);
@@ -54,8 +55,8 @@ typedef enum {
     self.temperatureView.backgroundColor = self.view.backgroundColor;
     
     self.temperatureView.textLabel.text = @"°C";
-    self.temperatureView.minNumber = -40;
-    self.temperatureView.maxNumber = 60;
+    self.temperatureView.minNumber = [defaults floatForKey:@"XHTemperatureMinValue"];
+    self.temperatureView.maxNumber = [defaults floatForKey:@"XHTemperatureMaxValue"];
     self.temperatureView.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-BoldItalic" size:18.0];
     self.temperatureView.lineWidth = 1.5;
     self.temperatureView.minorTickLength = 15.0;
@@ -63,7 +64,7 @@ typedef enum {
     self.temperatureView.needle.tintColor = [XHColorTools temperatureColor];
     self.temperatureView.textLabel.textColor = [XHColorTools temperatureColor];
     
-    self.temperatureView.value = 0.0;
+    self.temperatureView.value = 7.0;
     [self.view addSubview:self.temperatureView];
     
     CGRect humiRect = CGRectMake(0, CGRectGetMaxY(tempRect)+50, width/2+10, width/2+10);
@@ -72,8 +73,8 @@ typedef enum {
     self.humidityView.startAngle = -3 * M_PI / 4.0;
     self.humidityView.arcLength = M_PI / 2.0;
     self.humidityView.textLabel.text = @"%RH";
-    self.humidityView.minNumber = 20.0;
-    self.humidityView.maxNumber = 80.0;
+    self.humidityView.minNumber = [defaults floatForKey:@"XHHumidityMinValue"];
+    self.humidityView.maxNumber = [defaults floatForKey:@"XHHumidityMaxValue"];
     self.humidityView.textLabel.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:15.0];
     self.humidityView.textLabel.textColor = [XHColorTools humidityColor];
     self.humidityView.tintColor = [UIColor colorWithRed:0.88 green:1 blue:1 alpha:1];
@@ -89,15 +90,15 @@ typedef enum {
     self.smokeView.startAngle = -3.0 * M_PI / 4.0;
     self.smokeView.arcLength = M_PI / 2.0;
     self.smokeView.textLabel.text = @"PPM";
-    self.smokeView.minNumber = 5.0;
-    self.smokeView.maxNumber = 20.0;
+    self.smokeView.minNumber = [defaults floatForKey:@"XHSmokeMinValue"];
+    self.smokeView.maxNumber = [defaults floatForKey:@"XHSmokeMaxValue"];
     self.smokeView.textLabel.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:15.0];
     self.smokeView.textLabel.textColor = [XHColorTools smokeColor];
     self.smokeView.tintColor = [UIColor colorWithRed:0.52 green:0.46 blue:0.98 alpha:1];
     self.smokeView.needle.tintColor = [XHColorTools smokeColor];
     self.smokeView.needle.width = 1.0;
     
-    self.smokeView.value = 9.4;
+    self.smokeView.value = 49.4;
     [self.view addSubview:self.smokeView];
     
     XHButton *btn = [[XHButton alloc] initWithFrame:CGRectMake((width - width*0.2)/2, height - width*0.3, width*0.2, width*0.2)];
@@ -109,22 +110,9 @@ typedef enum {
     [self.view addSubview:btn];
 }
 
-- (void)setRoomId:(NSInteger)roomId
+- (UIStatusBarStyle)preferredStatusBarStyle
 {
-    _roomId = roomId;
-}
-
-- (void)setRoomName
-{
-    if (_roomId == XHParlour) {
-        _roomNameLabel.text = @"parlour";
-    } else if (_roomId == XHBedroom) {
-        _roomNameLabel.text = @"bedroom";
-    } else if (_roomId == XHKitchen) {
-        _roomNameLabel.text = @"kitchen";
-    } else if (_roomId == XHBathroom) {
-        _roomNameLabel.text = @"bathroom";
-    }
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)dismiss
@@ -132,9 +120,18 @@ typedef enum {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
+- (void)setRoomId:(NSInteger)roomId
 {
-    return UIStatusBarStyleLightContent;
+    _roomId = roomId;
+    if (self.roomId == XHParlour) {
+        self.roomNameLabel.text = @"parlour";
+    } else if (_roomId == XHBedroom) {
+        self.roomNameLabel.text = @"bedroom";
+    } else if (_roomId == XHKitchen) {
+        self.roomNameLabel.text = @"kitchen";
+    } else if (_roomId == XHBathroom) {
+        self.roomNameLabel.text = @"bathroom";
+    }
 }
 
 @end

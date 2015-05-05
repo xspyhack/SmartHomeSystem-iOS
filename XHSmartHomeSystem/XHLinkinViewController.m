@@ -129,58 +129,7 @@
     [self.view addSubview:footer];
 }
 
-- (void)linkIn
-{
-    // save token to archiver data
-    NSMutableDictionary *tokenDict = [NSMutableDictionary dictionary];
-    [tokenDict setObject:self.gatewayTextField.text forKey:@"gateway"];
-    [tokenDict setObject:self.passwordTextField.text forKey:@"password"];
-    [tokenDict setObject:[NSDate distantFuture] forKey:@"expires_time"];
-    XHTokenModel *token = [XHTokenModel tokenModelWithDict:tokenDict];
-    [XHTokenTools save:token];
-    
-    //NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    //NSString *filePath = [doc stringByAppendingPathComponent:@"token.plist"];
-    //NSString *filePath = [[NSBundle mainBundle] pathForResource:@"token" ofType:@"plist"];
-    //[token writeToFile:filePath atomically:YES];
-    
-    [self start];
-}
-
-- (void)start
-{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    window.backgroundColor = [UIColor whiteColor];
-    NSString *versionKey = @"CFBundleVersion";
-    versionKey = (__bridge NSString *)kCFBundleVersionKey;
-    
-    // get last time save version key
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
-    NSString *lastVersion = [defaults objectForKey:versionKey];
-    
-    // get current version key
-    NSString *currentVersion = [NSBundle mainBundle].infoDictionary[versionKey];
-    if ([currentVersion isEqualToString:lastVersion]) {
-        window.rootViewController = [[XHTabBarController alloc] init];
-    } else {
-        window.rootViewController = [[XHNewFeatureViewController alloc] init];
-        // save this version key
-        [defaults setObject:currentVersion forKey:versionKey];
-        // write now
-        [defaults synchronize];
-    }
-
-}
-
-#pragma mark - touch view
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.gatewayTextField resignFirstResponder];
-    [self.passwordTextField resignFirstResponder];
-}
-
-#pragma mark - textField delegate
+#pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -241,10 +190,63 @@
     return YES;
 }
 
+#pragma mark - touch view
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.gatewayTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+}
+
 // hide status bar
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
+}
+
+#pragma mark - event
+
+- (void)linkIn
+{
+    // save token to archiver data
+    NSMutableDictionary *tokenDict = [NSMutableDictionary dictionary];
+    [tokenDict setObject:self.gatewayTextField.text forKey:@"gateway"];
+    [tokenDict setObject:self.passwordTextField.text forKey:@"password"];
+    [tokenDict setObject:[NSDate distantFuture] forKey:@"expires_time"];
+    XHTokenModel *token = [XHTokenModel tokenModelWithDict:tokenDict];
+    [XHTokenTools save:token];
+    
+    //NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    //NSString *filePath = [doc stringByAppendingPathComponent:@"token.plist"];
+    //NSString *filePath = [[NSBundle mainBundle] pathForResource:@"token" ofType:@"plist"];
+    //[token writeToFile:filePath atomically:YES];
+    
+    [self start];
+}
+
+- (void)start
+{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    window.backgroundColor = [UIColor whiteColor];
+    NSString *versionKey = @"CFBundleVersion";
+    versionKey = (__bridge NSString *)kCFBundleVersionKey;
+    
+    // get last time save version key
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
+    NSString *lastVersion = [defaults objectForKey:versionKey];
+    
+    // get current version key
+    NSString *currentVersion = [NSBundle mainBundle].infoDictionary[versionKey];
+    if ([currentVersion isEqualToString:lastVersion]) {
+        window.rootViewController = [[XHTabBarController alloc] init];
+    } else {
+        window.rootViewController = [[XHNewFeatureViewController alloc] init];
+        // save this version key
+        [defaults setObject:currentVersion forKey:versionKey];
+        // write now
+        [defaults synchronize];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

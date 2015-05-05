@@ -11,7 +11,7 @@
 @interface XHColorsView : UIView
 
 @property (nonatomic, copy) NSString *master;
-@property (nonatomic, assign) BOOL pull;
+@property (nonatomic, getter=isPull) BOOL pull;
 
 - (void)pullDown:(NSTimeInterval)animationDuration;
 - (void)pullUp;
