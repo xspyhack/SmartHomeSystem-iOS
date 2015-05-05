@@ -9,6 +9,7 @@
 #import "XHNewFeatureViewController.h"
 #import "XHTabBarController.h"
 #import "XHColorTools.h"
+#import "XHButton.h"
 
 @interface XHNewFeatureViewController ()
 
@@ -100,8 +101,6 @@
 
 - (void)setupStartButton:(UIImageView *)imageView
 {
-    UIButton *startButtn = [[UIButton alloc] init];
-    
     // set background image
     //[startButtn setBackgroundImage:[UIImage imageNamed:@"new_feature_finish_button"] forState:UIControlStateNormal];
     //[startButtn setBackgroundImage:[UIImage imageNamed:@"new_feature_finish_button_highlighted"] forState:UIControlStateHighlighted];
@@ -111,17 +110,13 @@
     CGFloat height = width;
     CGPoint center = CGPointMake(self.view.center.x, self.view.frame.size.height * 0.8);
     
-    startButtn.frame = CGRectMake(0, 0, width, height);
-    [startButtn setCenter:center];
-    startButtn.layer.cornerRadius = width;
-    startButtn.backgroundColor = [XHColorTools themeColor];
+    XHButton *startBtn = [[XHButton alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+    [startBtn setCenter:center];
+    [startBtn setTitle:@"Go!" forState:UIControlStateNormal];
+    [startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [startBtn addTarget:self action:@selector(start) forControlEvents:UIControlEventTouchUpInside];
     
-    [startButtn setTitle:@"Go!" forState:UIControlStateNormal];
-    
-    [startButtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [startButtn addTarget:self action:@selector(start) forControlEvents:UIControlEventTouchUpInside];
-    
-    [imageView addSubview:startButtn];
+    [imageView addSubview:startBtn];
 }
 
 - (void)pageChange
@@ -134,7 +129,7 @@
 }
 
 - (void)start
-{
+{    
     // show main controller, tabbar viewController
     XHTabBarController *tabbarVC = [[XHTabBarController alloc] init];
     

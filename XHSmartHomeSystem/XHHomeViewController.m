@@ -59,12 +59,12 @@
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"data" ofType:@"plist"];
     NSArray *array = [[NSArray alloc] initWithContentsOfFile:path];
-    self.model = [[NSMutableArray alloc] init];
-    self.modelCells = [[NSMutableArray alloc] init];
+    _model = [[NSMutableArray alloc] init];
+    _modelCells = [[NSMutableArray alloc] init];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [self.model addObject:[XHRoomModel roomModelWithDict:obj]];
+        [_model addObject:[XHRoomModel roomModelWithDict:obj]];
         XHRoomTableViewCell *cell = [[XHRoomTableViewCell alloc] init];
-        [self.modelCells addObject:cell];
+        [_modelCells addObject:cell];
     }];
 }
 

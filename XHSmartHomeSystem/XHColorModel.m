@@ -34,7 +34,7 @@
         case 17: color = XHAsbestosColor; break;
         case 18: color = XHAsphaltColor; break;
         case 19: color = XHMidnightColor; break;
-        default: color = XHOrangeColor; break;
+        default: color = XHColor; break;
     }
     
     return color;

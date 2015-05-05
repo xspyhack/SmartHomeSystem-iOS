@@ -13,6 +13,7 @@
 #import "XHColorTools.h"
 #import "XHTokenTools.h"
 #import "XHImageView.h"
+#import "XHButton.h"
 
 @interface XHLinkinViewController ()
 

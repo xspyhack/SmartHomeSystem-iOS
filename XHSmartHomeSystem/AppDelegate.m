@@ -10,6 +10,7 @@
 #import "XHTabBarController.h"
 #import "XHNewFeatureViewController.h"
 #import "XHLinkinViewController.h"
+#import "XHSetupTools.h"
 #import "XHTokenModel.h"
 #import "XHTokenTools.h"
 #import "XHColorTools.h"
@@ -41,14 +42,18 @@
     NSLog(@"%@", token);
      */
     
+    // is new user
+    [XHSetupTools check];
+    
+    NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
+    
     // use archiver
     XHTokenModel *token = [XHTokenTools tokenModel];
     
-    NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
     // if exists token
     if (token) {
         XHLog(@"%@", token.password);
-        // first, if it is first time using the version, it will show the new version's feature.
+        // first, if it is first time using this version, it will show the new version's feature.
         NSString *versionKey = @"CFBundleVersion";
         versionKey = (__bridge NSString *)kCFBundleVersionKey;
         
