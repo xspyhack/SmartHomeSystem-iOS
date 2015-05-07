@@ -28,7 +28,11 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:XHThemeDidChangeNotification object:self];
+    
+    // async
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:XHThemeDidChangeNotification object:self];
+    });
 }
 
 #pragma mark - setup methods

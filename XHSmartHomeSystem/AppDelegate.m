@@ -118,17 +118,31 @@
 - (void)onNotificationReceived:(NSNotification *)notification
 {
     if ([notification.name isEqualToString:XHThemeDidChangeNotification]) {
-        XHTabBarController *tabBarVC = [[XHTabBarController alloc] init]; // alloc a new tabBarViewController
-        
-        // important, here must tell system there hasn't color observer
-        // if not, it will crash when update theme and set display color next.
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setBool:NO forKey:@"XHHaveColorObserver"];
-        
-        tabBarVC.selectedIndex = 2; // go to settings view
-        self.window.tintColor = [XHColorTools themeColor]; // update tintColor
-        self.window.rootViewController = nil;
-        self.window.rootViewController = tabBarVC;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            XHTabBarController *tabBarVC = [[XHTabBarController alloc] init]; // alloc a new tabBarViewController
+            
+            // important, here must tell system there hasn't color observer
+            // if not, it will crash when update theme and set display color next.
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setBool:NO forKey:@"XHHaveColorObserver"];
+            
+            tabBarVC.selectedIndex = 2; // go to settings view
+            self.window.tintColor = [XHColorTools themeColor]; // update tintColor
+            self.window.rootViewController = nil;
+            self.window.rootViewController = tabBarVC;
+
+        });
+//        XHTabBarController *tabBarVC = [[XHTabBarController alloc] init]; // alloc a new tabBarViewController
+//        
+//        // important, here must tell system there hasn't color observer
+//        // if not, it will crash when update theme and set display color next.
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        [defaults setBool:NO forKey:@"XHHaveColorObserver"];
+//        
+//        tabBarVC.selectedIndex = 2; // go to settings view
+//        self.window.tintColor = [XHColorTools themeColor]; // update tintColor
+//        self.window.rootViewController = nil;
+//        self.window.rootViewController = tabBarVC;
     }
 }
 

@@ -15,6 +15,14 @@
 		7825E7891AF36A5D008D6CF6 /* XHMessageSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7825E7881AF36A5D008D6CF6 /* XHMessageSettingViewController.m */; };
 		7825E78C1AF36E51008D6CF6 /* XHAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7825E78B1AF36E51008D6CF6 /* XHAboutViewController.m */; };
 		7825E7921AF37993008D6CF6 /* XHButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7825E7911AF37993008D6CF6 /* XHButton.m */; };
+		78266C371AF9E65300D9A584 /* XHFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78266C361AF9E65300D9A584 /* XHFeedbackViewController.m */; };
+		78266C3E1AFB41F300D9A584 /* NSData+CCCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78266C3D1AFB41F300D9A584 /* NSData+CCCryptor.m */; };
+		78266C411AFB477400D9A584 /* XHCryptTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 78266C401AFB477400D9A584 /* XHCryptTools.m */; };
+		78266C4D1AFB543600D9A584 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 78266C431AFB543600D9A584 /* FMDatabase.m */; };
+		78266C4E1AFB543600D9A584 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78266C451AFB543600D9A584 /* FMDatabaseAdditions.m */; };
+		78266C4F1AFB543600D9A584 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 78266C471AFB543600D9A584 /* FMDatabasePool.m */; };
+		78266C501AFB543600D9A584 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 78266C491AFB543600D9A584 /* FMDatabaseQueue.m */; };
+		78266C511AFB543600D9A584 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 78266C4C1AFB543600D9A584 /* FMResultSet.m */; };
 		78379E771AEE19F1008B5C87 /* XHNotificationTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78379E761AEE19F1008B5C87 /* XHNotificationTypeViewController.m */; };
 		78379E7B1AEE2A49008B5C87 /* XHTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78379E7A1AEE2A49008B5C87 /* XHTimePickerView.m */; };
 		783AF3A91AEB730F0090A81B /* XHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783AF3A81AEB730F0090A81B /* XHTabBarController.m */; };
@@ -107,6 +115,23 @@
 		7825E78B1AF36E51008D6CF6 /* XHAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHAboutViewController.m; sourceTree = "<group>"; };
 		7825E7901AF37993008D6CF6 /* XHButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHButton.h; sourceTree = "<group>"; };
 		7825E7911AF37993008D6CF6 /* XHButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHButton.m; sourceTree = "<group>"; };
+		78266C351AF9E65300D9A584 /* XHFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHFeedbackViewController.h; sourceTree = "<group>"; };
+		78266C361AF9E65300D9A584 /* XHFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHFeedbackViewController.m; sourceTree = "<group>"; };
+		78266C3C1AFB41F300D9A584 /* NSData+CCCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CCCryptor.h"; sourceTree = "<group>"; };
+		78266C3D1AFB41F300D9A584 /* NSData+CCCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CCCryptor.m"; sourceTree = "<group>"; };
+		78266C3F1AFB477400D9A584 /* XHCryptTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHCryptTools.h; sourceTree = "<group>"; };
+		78266C401AFB477400D9A584 /* XHCryptTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHCryptTools.m; sourceTree = "<group>"; };
+		78266C421AFB543600D9A584 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		78266C431AFB543600D9A584 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		78266C441AFB543600D9A584 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		78266C451AFB543600D9A584 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		78266C461AFB543600D9A584 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		78266C471AFB543600D9A584 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		78266C481AFB543600D9A584 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		78266C491AFB543600D9A584 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		78266C4A1AFB543600D9A584 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		78266C4B1AFB543600D9A584 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		78266C4C1AFB543600D9A584 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		78379E751AEE19F1008B5C87 /* XHNotificationTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHNotificationTypeViewController.h; sourceTree = "<group>"; };
 		78379E761AEE19F1008B5C87 /* XHNotificationTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHNotificationTypeViewController.m; sourceTree = "<group>"; };
 		78379E791AEE2A49008B5C87 /* XHTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTimePickerView.h; sourceTree = "<group>"; };
@@ -292,6 +317,46 @@
 			name = Socket;
 			sourceTree = "<group>";
 		};
+		78266C341AF9E62800D9A584 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				7825E78A1AF36E51008D6CF6 /* XHAboutViewController.h */,
+				7825E78B1AF36E51008D6CF6 /* XHAboutViewController.m */,
+				78266C351AF9E65300D9A584 /* XHFeedbackViewController.h */,
+				78266C361AF9E65300D9A584 /* XHFeedbackViewController.m */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
+		78266C381AF9F95000D9A584 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				7866FAD01AE8C4FB00250478 /* XHSecurityViewController.h */,
+				7866FAD11AE8C4FB00250478 /* XHSecurityViewController.m */,
+				78CB02DA1AF767A90004167E /* XHEncryptTypeViewController.h */,
+				78CB02DB1AF767A90004167E /* XHEncryptTypeViewController.m */,
+			);
+			name = Security;
+			sourceTree = "<group>";
+		};
+		78266C521AFB543E00D9A584 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				78266C421AFB543600D9A584 /* FMDatabase.h */,
+				78266C431AFB543600D9A584 /* FMDatabase.m */,
+				78266C441AFB543600D9A584 /* FMDatabaseAdditions.h */,
+				78266C451AFB543600D9A584 /* FMDatabaseAdditions.m */,
+				78266C461AFB543600D9A584 /* FMDatabasePool.h */,
+				78266C471AFB543600D9A584 /* FMDatabasePool.m */,
+				78266C481AFB543600D9A584 /* FMDatabaseQueue.h */,
+				78266C491AFB543600D9A584 /* FMDatabaseQueue.m */,
+				78266C4A1AFB543600D9A584 /* FMDB.h */,
+				78266C4B1AFB543600D9A584 /* FMResultSet.h */,
+				78266C4C1AFB543600D9A584 /* FMResultSet.m */,
+			);
+			name = FMDB;
+			sourceTree = "<group>";
+		};
 		78379E781AEE19FC008B5C87 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +377,8 @@
 				785531411ADE583B00080703 /* UIBarButtonItem+Extension.m */,
 				7825E7901AF37993008D6CF6 /* XHButton.h */,
 				7825E7911AF37993008D6CF6 /* XHButton.m */,
+				78266C3C1AFB41F300D9A584 /* NSData+CCCryptor.h */,
+				78266C3D1AFB41F300D9A584 /* NSData+CCCryptor.m */,
 			);
 			name = Categorys;
 			sourceTree = "<group>";
@@ -325,12 +392,8 @@
 				787F17341AEA6949002B9DCD /* XHThemeViewController.h */,
 				787F17351AEA6949002B9DCD /* XHThemeViewController.m */,
 				78379E781AEE19FC008B5C87 /* Notifications */,
-				7866FAD01AE8C4FB00250478 /* XHSecurityViewController.h */,
-				7866FAD11AE8C4FB00250478 /* XHSecurityViewController.m */,
-				78CB02DA1AF767A90004167E /* XHEncryptTypeViewController.h */,
-				78CB02DB1AF767A90004167E /* XHEncryptTypeViewController.m */,
-				7825E78A1AF36E51008D6CF6 /* XHAboutViewController.h */,
-				7825E78B1AF36E51008D6CF6 /* XHAboutViewController.m */,
+				78266C381AF9F95000D9A584 /* Security */,
+				78266C341AF9E62800D9A584 /* About */,
 			);
 			name = "Settings ViewControllers";
 			sourceTree = "<group>";
@@ -458,6 +521,8 @@
 				78E1BA7C1AEB8FA9006A777F /* XHColorTools.m */,
 				7889A9181AF9153500E0DF89 /* XHSetupTools.h */,
 				7889A9191AF9153500E0DF89 /* XHSetupTools.m */,
+				78266C3F1AFB477400D9A584 /* XHCryptTools.h */,
+				78266C401AFB477400D9A584 /* XHCryptTools.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -508,6 +573,7 @@
 		78DD5B9B1AD780B700DC9FA0 /* XHSmartHomeSystem */ = {
 			isa = PBXGroup;
 			children = (
+				78266C521AFB543E00D9A584 /* FMDB */,
 				7825E77D1AF32B41008D6CF6 /* Socket */,
 				78B08F391AE20B5400A26C53 /* MBProgressHUD */,
 				786E90541ADCBBC100A93675 /* UUChat */,
@@ -674,6 +740,7 @@
 				7866FADE1AE8C6F900250478 /* XHNotificationsViewController.m in Sources */,
 				786E90601ADCC3F000A93675 /* XHMessageModel.m in Sources */,
 				78CB02D01AF71EEC0004167E /* XHDataAnalysisViewController.m in Sources */,
+				78266C4F1AFB543600D9A584 /* FMDatabasePool.m in Sources */,
 				781F1FF01AE0C97600ACEACC /* XHChartViewController.m in Sources */,
 				7866FABF1AE783C800250478 /* XHGaugeViewController.m in Sources */,
 				786E90531ADCBBBC00A93675 /* NSDate+Utils.m in Sources */,
@@ -689,8 +756,10 @@
 				787FBB501AD8E5A200316651 /* XHSettingsViewController.m in Sources */,
 				786E90501ADCBBAE00A93675 /* UUMessageFrame.m in Sources */,
 				78E614D71AE6447100191132 /* XHGaugeView.m in Sources */,
+				78266C411AFB477400D9A584 /* XHCryptTools.m in Sources */,
 				7866FAE41AE937A500250478 /* XHTableViewCellCheckmarkItem.m in Sources */,
 				785C20EA1AF8841E00F9CD1C /* XHInputView.m in Sources */,
+				78266C4E1AFB543600D9A584 /* FMDatabaseAdditions.m in Sources */,
 				78E614951AE5ECE600191132 /* XHLineChartView.m in Sources */,
 				786E903D1ADBB54E00A93675 /* XHTableViewCell.m in Sources */,
 				7825E7891AF36A5D008D6CF6 /* XHMessageSettingViewController.m in Sources */,
@@ -706,6 +775,7 @@
 				7855315B1ADF8CEB00080703 /* XHTableViewController.m in Sources */,
 				787F17361AEA6949002B9DCD /* XHThemeViewController.m in Sources */,
 				7881B75A1AEC97090079D1EB /* XHLineView.m in Sources */,
+				78266C371AF9E65300D9A584 /* XHFeedbackViewController.m in Sources */,
 				78379E771AEE19F1008B5C87 /* XHNotificationTypeViewController.m in Sources */,
 				78CB02DC1AF767A90004167E /* XHEncryptTypeViewController.m in Sources */,
 				785C20E71AF882BB00F9CD1C /* XHValueViewController.m in Sources */,
@@ -714,10 +784,12 @@
 				78C13B971ADA101C0020AAFA /* XHTokenTools.m in Sources */,
 				7881B75F1AECCC2A0079D1EB /* UICircularSlider.m in Sources */,
 				78CB02D31AF73C720004167E /* XHTableViewCellTextFieldItem.m in Sources */,
+				78266C501AFB543600D9A584 /* FMDatabaseQueue.m in Sources */,
 				786E905A1ADCBE4700A93675 /* UUImageAvatarBrowser.m in Sources */,
 				785531491ADF50BE00080703 /* XHTableViewCellItem.m in Sources */,
 				785531461ADF501600080703 /* XHTableViewCellGroup.m in Sources */,
 				78C13B941ADA0EF90020AAFA /* XHTokenModel.m in Sources */,
+				78266C4D1AFB543600D9A584 /* FMDatabase.m in Sources */,
 				7825E7801AF35031008D6CF6 /* GCDAsyncSocket.m in Sources */,
 				7857C1DF1AF7A26300E1271F /* XHCmdLineViewController.m in Sources */,
 				7825E78C1AF36E51008D6CF6 /* XHAboutViewController.m in Sources */,
@@ -729,8 +801,10 @@
 				787DECE81AD93FF70081ECEE /* XHNewFeatureViewController.m in Sources */,
 				78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */,
 				781F1FED1AE0C10600ACEACC /* XHChartView.m in Sources */,
+				78266C3E1AFB41F300D9A584 /* NSData+CCCryptor.m in Sources */,
 				785531551ADF5C1F00080703 /* XHTableViewCellLabelItem.m in Sources */,
 				7825E7831AF352EB008D6CF6 /* XHInfoViewController.m in Sources */,
+				78266C511AFB543600D9A584 /* FMResultSet.m in Sources */,
 				7866FADB1AE8C6A100250478 /* XHFeaturesViewController.m in Sources */,
 				78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */,
 				78C13B9C1ADA6D370020AAFA /* XHImageView.m in Sources */,

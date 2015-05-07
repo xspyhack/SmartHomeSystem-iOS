@@ -11,6 +11,7 @@
 #import "XHColorTools.h"
 #import "XHTableViewCellGroup.h"
 #import "XHTableViewCellArrowItem.h"
+#import "XHFeedbackViewController.h"
 
 #define XHLogoViewWidthAndHeight 100
 
@@ -59,6 +60,7 @@
     XHTableViewCellArrowItem *rateItem = [XHTableViewCellArrowItem itemWithTitle:@"Rate"];
     XHTableViewCellArrowItem *aboutItem = [XHTableViewCellArrowItem itemWithTitle:@"About"];
     XHTableViewCellArrowItem *feedbackItem = [XHTableViewCellArrowItem itemWithTitle:@"Feedback"];
+    feedbackItem.destViewContorller = [XHFeedbackViewController class];
     XHTableViewCellArrowItem *helpItem = [XHTableViewCellArrowItem itemWithTitle:@"Help"];
     
     self.group.items = @[rateItem, aboutItem, feedbackItem, helpItem];

@@ -7,6 +7,7 @@
 //
 
 #import "XHSetupTools.h"
+#import "XHCryptTools.h"
 
 @implementation XHSetupTools
 
@@ -27,6 +28,8 @@
 + (void)setUserDefaults
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:[XHCryptTools md5WithKey:@"admin"] forKey:@"XHPassword"];
     [defaults setFloat:60.0f forKey:@"XHTemperatureMaxValue"];
     [defaults setFloat:-40.0f forKey:@"XHTemperatureMinValue"];
     

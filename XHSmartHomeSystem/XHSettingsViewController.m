@@ -59,7 +59,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self moveLogoView];
+    [self dropLogoView];
 }
 
 #pragma mark - setup
@@ -89,7 +89,7 @@
     self.gateway = token.gateway;
 }
 
-- (void)setupLogoView:(UIView *)superView
+- (void)setupLogoViewWithSuperView:(UIView *)superView
 {
     CGFloat viewWidth = self.view.frame.size.width;
 
@@ -107,7 +107,7 @@
 }
 
 // animation for logoview drop down
-- (void)moveLogoView
+- (void)dropLogoView
 {
     CGFloat viewWidth = self.view.frame.size.width;
     self.logoView.frame = CGRectMake((viewWidth - XHLogoViewWidthAndHeight)/2, -80, XHLogoViewWidthAndHeight, XHLogoViewWidthAndHeight);
@@ -249,7 +249,7 @@
         
         [view addSubview:subView];
         
-        [self setupLogoView:view];
+        [self setupLogoViewWithSuperView:view];
         
         UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 163, self.view.frame.size.width, 30)];
         footView.backgroundColor = [UIColor whiteColor];

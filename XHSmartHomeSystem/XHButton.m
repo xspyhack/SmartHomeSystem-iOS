@@ -26,7 +26,7 @@
     self.layer.cornerRadius = self.frame.size.width / 2;
     //self.layer.borderWidth = 1.0f;
     //self.layer.borderColor = [XHColorTools themeColor].CGColor;
-    self.backgroundColor = [XHColorTools themeColor];
+    self.backgroundColor = [[XHColorTools themeColor] colorWithAlphaComponent:0.9];
     self.titleLabel.textColor = [UIColor whiteColor];
 }
 
