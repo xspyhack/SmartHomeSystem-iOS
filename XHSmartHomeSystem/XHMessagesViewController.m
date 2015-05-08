@@ -12,10 +12,13 @@
 #import "UUMessageFrame.h"
 #import "XHMessageModel.h"
 #import "XHMessageSettingViewController.h"
+#import "XHSearchResultsViewController.h"
 #import "XHChatInfoViewController.h"
 
-@interface XHMessagesViewController () <UUMessageCellDelegate>
-
+@interface XHMessagesViewController () <UISearchBarDelegate, UUMessageCellDelegate>
+@property (nonatomic, strong) UISearchController *searchController;
+@property (nonatomic, strong) UISearchController *navItemSearchController;
+@property (nonatomic, strong) UIView *searchBarView;
 @end
 
 @implementation XHMessagesViewController
@@ -28,8 +31,10 @@
     
     // set navigation bar button item
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_msg_edit_highLighted" target:self action:@selector(settings)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_msg_edit_highLighted" target:self action:@selector(searchButtonClicked)];
     
     [self setupTabelView];
+    //[self setupSearchController];
     [self setupViewsAndData];
 }
 
@@ -72,7 +77,29 @@
     [self tableViewScrollToBottom];
 }
 
+- (void)setupSearchController
+{
+    XHSearchResultsViewController *searchResultsController = [[XHSearchResultsViewController alloc] init];
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:searchResultsController];
+    self.searchController.searchResultsUpdater = searchResultsController;
+    
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.searchBar.barTintColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:.8];
+    
+    [self.searchBarView addSubview:self.searchController.searchBar];
+   
+    //self.searchController.searchBar.layer.borderWidth = 0;
+    [self.searchController.searchBar sizeToFit];
+    
+    self.definesPresentationContext = YES;
+}
+
 #pragma mark - UITableViewDelegate & UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.msgModel.dataSource.count;
@@ -88,16 +115,19 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return [self.msgModel.dataSource[indexPath.row] cellHeight];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.view endEditing:YES];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.searchController setActive:NO];
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    [self.view endEditing:YES];
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.searchController setActive:NO];
 }
 
 #pragma mark - UUMessageCellDelegate
@@ -123,6 +153,22 @@
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
+- (void)searchButtonClicked
+{
+    // Create the search results view controller and use it for the UISearchController.
+    XHSearchResultsViewController *resultsController = [[XHSearchResultsViewController alloc] init];
+    
+    // Create the search controller and make it perform the results updating.
+    self.navItemSearchController = [[UISearchController alloc] initWithSearchResultsController:resultsController];
+    self.navItemSearchController.searchResultsUpdater = resultsController;
+    self.navItemSearchController.hidesNavigationBarDuringPresentation = NO;
+    self.navItemSearchController.searchBar.barTintColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:.8];
+    
+    self.definesPresentationContext = NO;
+    // Present the view controller.
+    [self presentViewController:self.navItemSearchController animated:YES completion:nil];
+}
+
 - (void)settings
 {
     XHLog(@"settings.");
@@ -135,6 +181,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (UIView *)searchBarView
+{
+    if (!_searchBarView) {
+        _searchBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 63, self.view.frame.size.width, 44)];
+        [self.view addSubview:_searchBarView];
+    }
+    return _searchBarView;
+}
 /*
 #pragma mark - Navigation
 

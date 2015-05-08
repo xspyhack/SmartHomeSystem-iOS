@@ -30,6 +30,11 @@
     
     XHTableViewCellArrowItem *bgItem = [XHTableViewCellArrowItem itemWithTitle:@"Background"];
     XHTableViewCellArrowItem *searchItem = [XHTableViewCellArrowItem itemWithTitle:@"Search Histroy"];
+    searchItem.operation = ^{
+        //[self.navigationController popViewControllerAnimated:YES];
+        UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController:self.parentViewController];
+        [searchController.searchBar sizeToFit];
+    };
 
     group.items = @[bgItem, searchItem];
 }
