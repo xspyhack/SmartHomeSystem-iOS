@@ -15,7 +15,7 @@
 #import "XHSearchResultsViewController.h"
 #import "XHChatInfoViewController.h"
 
-@interface XHMessagesViewController () <UISearchBarDelegate, UUMessageCellDelegate>
+@interface XHMessagesViewController ()<UISearchBarDelegate, UUMessageCellDelegate>
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) UISearchController *navItemSearchController;
 @property (nonatomic, strong) UIView *searchBarView;
@@ -65,7 +65,6 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
-    
 }
 
 - (void)setupViewsAndData
@@ -106,9 +105,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UUMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"XHMsgCellID"];
-    if (cell == nil) {
-        cell = [[UUMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XHMsgCellID"];
+    UUMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"XHMessageCellID"];
+    if (!cell) {
+        cell = [[UUMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XHMessageCellID"];
         cell.delegate = self;
     }
     [cell setMessageFrame:self.msgModel.dataSource[indexPath.row]];

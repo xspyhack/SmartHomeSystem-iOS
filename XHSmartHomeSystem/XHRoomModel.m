@@ -10,33 +10,57 @@
 
 @implementation XHRoomModel
 
-+ (instancetype)roomModelWithDict:(NSDictionary *)dict
++ (instancetype)roomModelWithDictionary:(NSDictionary *)dictionary
 {
-    XHRoomModel *roomModel = [[XHRoomModel alloc] initWithDict:dict];
+    XHRoomModel *roomModel = [[XHRoomModel alloc] initWithDictionary:dictionary];
     return roomModel;
 }
 
-- (XHRoomModel *)initWithDict:(NSDictionary *)dict
+- (XHRoomModel *)initWithDictionary:(NSDictionary *)dictionary
 {
     if (self = [super init]) {
-        self.Id = [dict[@"Id"] integerValue];
-        self.iconName = dict[@"iconName"];
-        self.name = dict[@"name"];
-        self.temperature = dict[@"temperature"];
-        self.humidity = dict[@"humidity"];
+        self.Id = [dictionary[@"Id"] integerValue];
+        self.iconName = dictionary[@"iconName"];
+        self.name = dictionary[@"name"];
+        self.temperature = dictionary[@"temperature"];
+        self.humidity = dictionary[@"humidity"];
+        self.smoke = dictionary[@"smoke"];
+        self.temperatureStatus = [dictionary[@"temperatureStatus"] boolValue];
+        self.humidityStatus = [dictionary[@"humidityStatus"] boolValue];
+        self.smokeStatus = [dictionary[@"smokeStatus"] boolValue];
+        
+        [self setValuesForKeysWithDictionary:dictionary]; // use KVC
     }
     
     return self;
 }
 
-- (NSString *)temperature
-{
-    return [NSString stringWithFormat:@"temp: %@°C", _temperature];
-}
+//- (NSString *)temperature
+//{
+//    if (!_temperature) {
+//        _temperature = [NSString stringWithFormat:@"temp: %@°C", _temperature];
+//    }
+//    
+//    return _temperature;
+//}
 
-- (NSString *)humidity
-{
-    return [NSString stringWithFormat:@"humi: %@%%RH", _humidity];
-}
+//- (void)setTemperature:(NSString *)temperature
+//{
+//    _temperature = [NSString stringWithFormat:@"temp: %@°C", temperature];
+//}
+
+//- (NSString *)humidity
+//{
+//    if (!_humidity) {
+//        _humidity = [NSString stringWithFormat:@"humi: %@%%RH", _humidity];
+//    }
+//    
+//    return _humidity;
+//}
+
+//- (void)setHumidity:(NSString *)humidity
+//{
+//    _humidity = [NSString stringWithFormat:@"humi: %@%%RH", humidity];
+//}
 
 @end

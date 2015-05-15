@@ -18,6 +18,7 @@
 @property (nonatomic, getter=isCmdLineMode) BOOL cmdLineMode;
 
 @end
+
 @implementation XHFeaturesViewController
 
 - (void)viewDidLoad
@@ -43,12 +44,10 @@
     
     XHTableViewCellSwitchItem *clmItem = [XHTableViewCellSwitchItem itemWithTitle:@"Command Line Mode"];\
     clmItem.on = [self isCmdLineMode];
-    clmItem.tapSwitch = ^{
-        self.cmdLineMode = !self.cmdLineMode;
-    };
+    clmItem.tapSwitch = ^{ self.cmdLineMode = !self.cmdLineMode; };
     
     group.groupFooter = @"Command line interface in a secret place. If you want to use it find it out first.";
-    group.items = @[clmItem];
+    group.items = @[ clmItem ];
 }
 
 @end

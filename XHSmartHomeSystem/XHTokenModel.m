@@ -10,11 +10,11 @@
 
 @implementation XHTokenModel
 
-+ (instancetype)tokenModelWithDict:(NSDictionary *)dict
++ (instancetype)tokenModelWithDictionary:(NSDictionary *)dictionary
 {
     XHTokenModel *model = [[self alloc] init];
-    model.gateway = dict[@"gateway"];
-    model.password = dict[@"password"];
+    model.gateway = dictionary[@"gateway"];
+    model.password = dictionary[@"password"];
     
     // expires time = now + 1 week
     //NSInteger expires = 1000;

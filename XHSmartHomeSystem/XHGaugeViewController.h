@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@class XHRoomModel;
 
 @interface XHGaugeViewController : UIViewController
-@property (nonatomic, assign) NSInteger roomId;
+//@property (nonatomic, strong) XHRoomModel *roomModel;
+@property (nonatomic, assign) NSUInteger roomId;
 @end

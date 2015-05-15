@@ -28,15 +28,15 @@
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellArrowItem *bgItem = [XHTableViewCellArrowItem itemWithTitle:@"Background"];
+    XHTableViewCellArrowItem *backgroundItem = [XHTableViewCellArrowItem itemWithTitle:@"Background"];
     XHTableViewCellArrowItem *searchItem = [XHTableViewCellArrowItem itemWithTitle:@"Search Histroy"];
-    searchItem.operation = ^{
+    searchItem.clicked = ^{
         //[self.navigationController popViewControllerAnimated:YES];
         UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController:self.parentViewController];
         [searchController.searchBar sizeToFit];
     };
 
-    group.items = @[bgItem, searchItem];
+    group.items = @[ backgroundItem, searchItem ];
 }
 
 - (void)setupClearGroup
@@ -46,7 +46,7 @@
     clear.backgroundColor = [XHColorTools themeColor];
     [clear setTitle:@"Clear Message History" forState:UIControlStateNormal];
     [clear setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [clear addTarget:self action:@selector(clear) forControlEvents:UIControlEventTouchUpInside];
+    [clear addTarget:self action:@selector(clearButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
     self.tableView.tableFooterView = clear;
 }
@@ -61,7 +61,7 @@
     return 15;
 }
 
-- (void)clear
+- (void)clearButtonClicked
 {
     XHLog(@"Clear");
 }

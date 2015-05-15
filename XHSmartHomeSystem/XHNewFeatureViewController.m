@@ -110,13 +110,13 @@
     CGFloat height = width;
     CGPoint center = CGPointMake(self.view.center.x, self.view.frame.size.height * 0.8);
     
-    XHButton *startBtn = [[XHButton alloc] initWithFrame:CGRectMake(0, 0, width, height)];
-    [startBtn setCenter:center];
-    [startBtn setTitle:@"Go!" forState:UIControlStateNormal];
-    [startBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [startBtn addTarget:self action:@selector(start) forControlEvents:UIControlEventTouchUpInside];
+    XHButton *startButton = [[XHButton alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+    [startButton setCenter:center];
+    [startButton setTitle:@"Go!" forState:UIControlStateNormal];
+    [startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [startButton addTarget:self action:@selector(startButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
-    [imageView addSubview:startBtn];
+    [imageView addSubview:startButton];
 }
 
 - (void)pageChange
@@ -128,7 +128,7 @@
     [self.scrollView scrollRectToVisible:bounds animated:YES];
 }
 
-- (void)start
+- (void)startButtonClicked
 {    
     // show main controller, tabbar viewController
     XHTabBarController *tabbarVC = [[XHTabBarController alloc] init];

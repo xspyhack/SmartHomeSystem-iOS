@@ -17,6 +17,7 @@
 
 #ifdef DEBUG
 #define XHLog(...) NSLog(__VA_ARGS__)
+#define XHLocate() NSLog(@"Func: %s, Line: %d", __func__, __LINE__)
 #else
 #define XHLog(...)
 #endif
@@ -27,6 +28,7 @@
 
 #define XHThemeDidChangeNotification (@"XHThemeDidChangedNotification")
 #define XHColorDidChangeNotification (@"XHColorDidChangedNotification")
+#define XHUpdateRoomModelNotification (@"XHUpdateRoomModelNotification")
 
 #define XHColor ([UIColor colorWithRed:255.0/255 green:185.0/255 blue:0.0/255 alpha:1.0f])
 #define XHBlackColor ([UIColor colorWithRed:26/255.0f green:26/255.0f blue:26/255.0f alpha:1])

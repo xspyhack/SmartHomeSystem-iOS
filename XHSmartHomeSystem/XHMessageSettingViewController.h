@@ -8,6 +8,6 @@
 
 #import "XHTableViewController.h"
 
-@interface XHMessageSettingViewController : XHTableViewController <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate>
+@interface XHMessageSettingViewController : XHTableViewController<UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate>
 
 @end

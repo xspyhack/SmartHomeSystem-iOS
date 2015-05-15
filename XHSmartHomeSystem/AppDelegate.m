@@ -14,8 +14,9 @@
 #import "XHTokenModel.h"
 #import "XHTokenTools.h"
 #import "XHColorTools.h"
+#import "XHSocketThread.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<XHSocketThreadDelegate>
 
 @end
 
@@ -46,7 +47,7 @@
     [XHSetupTools check];
     
     NSUserDefaults *defaults = [[NSUserDefaults alloc] init];
-    
+        
     // use archiver
     XHTokenModel *token = [XHTokenTools tokenModel];
     
@@ -90,6 +91,7 @@
                                              selector:@selector(onNotificationReceived:)
                                                  name:XHThemeDidChangeNotification
                                                object:nil];
+    
     return YES;
 }
 

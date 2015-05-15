@@ -17,7 +17,8 @@
 #import "XHButton.h"
 
 @interface XHLinkinViewController ()
-
+@property (nonatomic, strong) UITextField *gatewayTextField;
+@property (nonatomic, strong) UITextField *passwordTextField;
 @end
 
 @implementation XHLinkinViewController
@@ -224,7 +225,7 @@
             [tokenDict setObject:self.gatewayTextField.text forKey:@"gateway"];
             [tokenDict setObject:self.passwordTextField.text forKey:@"password"];
             [tokenDict setObject:[NSDate distantFuture] forKey:@"expires_time"];
-            XHTokenModel *token = [XHTokenModel tokenModelWithDict:tokenDict];
+            XHTokenModel *token = [XHTokenModel tokenModelWithDictionary:tokenDict];
             [XHTokenTools save:token];
             
             //NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];

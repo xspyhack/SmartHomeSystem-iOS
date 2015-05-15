@@ -10,7 +10,7 @@
 #import "XHButton.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
-@interface XHFeedbackViewController () <MFMailComposeViewControllerDelegate>
+@interface XHFeedbackViewController ()<MFMailComposeViewControllerDelegate>
 
 @end
 
@@ -29,7 +29,7 @@
     XHButton *send = [[XHButton alloc] initWithFrame:rect];
     send.center = self.view.center;
     [send setTitle:@"Send Mail" forState:UIControlStateNormal];
-    [send addTarget:self action:@selector(sendMail) forControlEvents:UIControlEventTouchUpInside];
+    [send addTarget:self action:@selector(sendMailButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:send];
 }
@@ -64,7 +64,7 @@
 
 #pragma mark - event
 
-- (void)sendMail
+- (void)sendMailButtonClicked
 {
     MFMailComposeViewController *mailComposeVC = [[MFMailComposeViewController alloc] init];
     if ([MFMailComposeViewController canSendMail]) {

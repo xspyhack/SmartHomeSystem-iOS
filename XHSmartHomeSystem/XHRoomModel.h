@@ -15,8 +15,12 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *temperature;
 @property (nonatomic, copy) NSString *humidity;
+@property (nonatomic, copy) NSString *smoke;
+@property (nonatomic, assign) BOOL temperatureStatus; // status ? on : off
+@property (nonatomic, assign) BOOL humidityStatus;
+@property (nonatomic, assign) BOOL smokeStatus;
 
-+ (instancetype)roomModelWithDict:(NSDictionary *)dict;
-- (XHRoomModel *)initWithDict:(NSDictionary *)dict;
++ (instancetype)roomModelWithDictionary:(NSDictionary *)dictionary;
+- (XHRoomModel *)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

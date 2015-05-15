@@ -18,7 +18,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self setupSubView];
+        [self addSubview:self.roomView];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
@@ -29,14 +29,16 @@
     // Initialization code
 }
 
-#pragma mark - setup view
+#pragma mark - getter & setter
 
-- (void)setupSubView
+- (XHRoomView *)roomView
 {
-    CGRect rect = CGRectMake(0, 0, self.frame.size.width, 0);
-    _roomView = [[XHRoomView alloc] initWithFrame:rect];
-    _roomView.backgroundColor = [UIColor whiteColor];
-    [self addSubview:_roomView];
+    if (!_roomView) {
+        CGRect rect = CGRectMake(0, 0, self.frame.size.width, 0);
+        _roomView = [[XHRoomView alloc] initWithFrame:rect];
+        _roomView.backgroundColor = [UIColor whiteColor];
+    }
+    return _roomView;
 }
 
 // over write

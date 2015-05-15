@@ -29,6 +29,7 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+    [defaults setInteger:12345 forKey:@"XHPort"];
     [defaults setObject:[XHCryptTools md5WithKey:@"admin"] forKey:@"XHPassword"];
     [defaults setFloat:60.0f forKey:@"XHTemperatureMaxValue"];
     [defaults setFloat:-40.0f forKey:@"XHTemperatureMinValue"];

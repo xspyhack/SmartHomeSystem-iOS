@@ -12,8 +12,14 @@
 #import "XHChartViewController.h"
 #import "XHGaugeViewController.h"
 #import "XHCmdLineViewController.h"
+#import "XHSocketThread.h"
+#import "XHRoomTools.h"
 
-@interface XHHomeViewController ()
+@interface XHHomeViewController ()<XHSocketThreadDelegate>
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, copy) NSMutableArray *modelCells;
+@property (nonatomic, copy) NSMutableArray *roomModels;
 
 @end
 
@@ -21,22 +27,50 @@
 
 #pragma mark - life cycle
 
+//- (instancetype)init
+//{
+//    if (self = [super init]) {
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateRoomModel:) name:XHUpdateRoomModelNotification object:nil];
+//    }
+//    return self;
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     // set navigationbar button
-    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_chart"] style:UIBarButtonItemStyleDone target:self action:@selector(chart)];
-    // use category
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_chart_highLighted" target:self action:@selector(chart)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_chart_highLighted" target:self action:@selector(chartButtonItemClicked)];
     
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_gauge" highLightedImageName:@"nav_gauge_hightLighted" target:self action:@selector(gauge)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_gauge" highLightedImageName:@"nav_gauge_hightLighted" target:self action:@selector(gaugeButtonItemClicked)];
     UILongPressGestureRecognizer *longPressGuesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress)];
     longPressGuesture.minimumPressDuration = 1.5f;
     [self.navigationItem.leftBarButtonItem.customView addGestureRecognizer:longPressGuesture];
     
     [self setupData];
     [self setupTabelView];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateRoomModel:) name:XHUpdateRoomModelNotification object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [XHSocketThread shareInstance].delegate = self;
+//    [[XHSocketThread shareInstance] disconnect];
+//    [[XHSocketThread shareInstance] connect];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    //[[XHSocketThread shareInstance] disconnect];
+}
+
+- (void)dealloc
+{
+    XHLocate();
+    //[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - initialization
@@ -52,17 +86,16 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
-
 }
 
 - (void)setupData
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"data" ofType:@"plist"];
     NSArray *array = [[NSArray alloc] initWithContentsOfFile:path];
-    _model = [[NSMutableArray alloc] init];
+    _roomModels = [[NSMutableArray alloc] init];
     _modelCells = [[NSMutableArray alloc] init];
     [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [_model addObject:[XHRoomModel roomModelWithDict:obj]];
+        [_roomModels addObject:[XHRoomModel roomModelWithDictionary:obj]];
         XHRoomTableViewCell *cell = [[XHRoomTableViewCell alloc] init];
         [_modelCells addObject:cell];
     }];
@@ -77,21 +110,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.model.count;
+    return self.roomModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"UITableViewCellIdenfifierKey";
-    XHRoomTableViewCell *cell;
-    cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    XHRoomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[XHRoomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     cell.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:0.8];
     
-    XHRoomModel *model = self.model[indexPath.row];
+    XHRoomModel *model = self.roomModels[indexPath.row];
     cell.roomModel = model;
 
     return cell;
@@ -100,13 +132,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     XHRoomTableViewCell *cell = self.modelCells[indexPath.row];
-    cell.roomModel = self.model[indexPath.row];
+    cell.roomModel = self.roomModels[indexPath.row];
     return cell.height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    XHRoomModel *model = self.model[indexPath.row];
+    XHRoomModel *model = self.roomModels[indexPath.row];
     
     dispatch_async(dispatch_get_main_queue(), ^ {
         XHGaugeViewController *gVC = [[XHGaugeViewController alloc] init];
@@ -119,9 +151,43 @@
 //    [self.navigationController pushViewController:gVC animated:YES];
 }
 
+- (void)didReadBuffer:(NSString *)buffer
+{
+    XHRoomModel *model = [XHRoomTools roomModelWithString:buffer];
+    
+    // update row
+    XHRoomModel *roomModel = self.roomModels[model.Id];
+    if (roomModel) {
+        roomModel.temperature = model.temperature;
+        roomModel.humidity = model.humidity;
+        NSIndexPath *path = [NSIndexPath indexPathForRow:model.Id inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:@[ path ] withRowAnimation:UITableViewRowAnimationRight];
+        XHLog(@"update row: %ld", model.Id);
+    }
+}
+
 #pragma mark - event
 
-- (void)gauge
+//- (void)updateRoomModel:(NSNotification *)notification
+//{
+//    if ([notification.name isEqualToString:XHUpdateRoomModelNotification]) {
+//        NSString *buffer = [notification.userInfo objectForKey:@"BUFFER"];
+//        NSLog(@"buffer: %@", buffer);
+//        XHRoomModel *model = [XHRoomTools roomModelWithString:buffer];
+//        
+//        // update row
+//        XHRoomModel *roomModel = self.roomModels[model.Id];
+//        if (roomModel) {
+//            roomModel.temperature = model.temperature;
+//            roomModel.humidity = model.humidity;
+//            NSIndexPath *path = [NSIndexPath indexPathForRow:model.Id inSection:0];
+//            [self.tableView reloadRowsAtIndexPaths:@[ path ] withRowAnimation:UITableViewRowAnimationRight];
+//            XHLog(@"update row: %ld", model.Id);
+//        }
+//    }
+//}
+
+- (void)gaugeButtonItemClicked
 {
     //XHGaugeViewController *gVC = [[XHGaugeViewController alloc] init];
     //[self.navigationController pushViewController:gVC animated:YES];
@@ -137,9 +203,9 @@
     //    [self presentViewController:cmdLineVC animated:YES completion:nil];
 }
 
-- (void)chart
+- (void)chartButtonItemClicked
 {
-    XHRoomModel *model = _model[0];
+    XHRoomModel *model = self.roomModels[0];
     XHChartViewController *chartVC = [[XHChartViewController alloc] init];
     chartVC.roomId = model.Id;
     chartVC.view.backgroundColor = [UIColor whiteColor];

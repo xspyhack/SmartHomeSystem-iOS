@@ -37,7 +37,7 @@
 {
     self.colorsArray = [NSMutableArray array];
     for (NSInteger index = 0; index < XHColorCount; index++) {
-        UIColor *color= [XHColorModel colorModelWithIndex:index];
+        UIColor *color= [XHColorModel colorModelAtIndex:index];
         [self.colorsArray addObject:color];
     }
 }
@@ -173,7 +173,7 @@
     _master = master;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSInteger index = [defaults integerForKey:_master];
-    self.backgroundColor = [[XHColorModel colorModelWithIndex:index] colorWithAlphaComponent:0.85];
+    self.backgroundColor = [[XHColorModel colorModelAtIndex:index] colorWithAlphaComponent:0.85];
 }
 
 

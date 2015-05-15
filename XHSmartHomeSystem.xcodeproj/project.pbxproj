@@ -68,6 +68,8 @@
 		787FBB5D1AD8E99800316651 /* XHLinkinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787FBB5C1AD8E99800316651 /* XHLinkinViewController.m */; };
 		7881B75A1AEC97090079D1EB /* XHLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7881B7591AEC97090079D1EB /* XHLineView.m */; };
 		7881B75F1AECCC2A0079D1EB /* UICircularSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7881B75E1AECCC2A0079D1EB /* UICircularSlider.m */; };
+		7888C1251B00EC07002AE1B7 /* XHSocketThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888C1241B00EC07002AE1B7 /* XHSocketThread.m */; };
+		7888C12B1B00FC24002AE1B7 /* XHRoomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888C12A1B00FC24002AE1B7 /* XHRoomTools.m */; };
 		7889A91A1AF9153500E0DF89 /* XHSetupTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7889A9191AF9153500E0DF89 /* XHSetupTools.m */; };
 		78B08F381AE20B4C00A26C53 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B08F371AE20B4C00A26C53 /* MBProgressHUD.m */; };
 		78C11AE91AFC66F00006A2B3 /* XHSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C11AE81AFC66F00006A2B3 /* XHSearchResultsViewController.m */; };
@@ -88,6 +90,7 @@
 		78E6149C1AE5ED7800191132 /* XHChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6149B1AE5ED7800191132 /* XHChart.m */; };
 		78E6149F1AE5EDCF00191132 /* XHLineChartItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6149E1AE5EDCF00191132 /* XHLineChartItem.m */; };
 		78E614D71AE6447100191132 /* XHGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E614D61AE6447100191132 /* XHGaugeView.m */; };
+		78F456AA1B05B613008B4FC5 /* XHGatewayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F456A91B05B613008B4FC5 /* XHGatewayViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,6 +226,10 @@
 		7881B7591AEC97090079D1EB /* XHLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLineView.m; sourceTree = "<group>"; };
 		7881B75B1AECA8410079D1EB /* UICircularSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICircularSlider.h; sourceTree = "<group>"; };
 		7881B75E1AECCC2A0079D1EB /* UICircularSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICircularSlider.m; sourceTree = "<group>"; };
+		7888C1231B00EC06002AE1B7 /* XHSocketThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSocketThread.h; sourceTree = "<group>"; };
+		7888C1241B00EC07002AE1B7 /* XHSocketThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHSocketThread.m; sourceTree = "<group>"; };
+		7888C1291B00FC24002AE1B7 /* XHRoomTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHRoomTools.h; sourceTree = "<group>"; };
+		7888C12A1B00FC24002AE1B7 /* XHRoomTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHRoomTools.m; sourceTree = "<group>"; };
 		7889A9181AF9153500E0DF89 /* XHSetupTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSetupTools.h; sourceTree = "<group>"; };
 		7889A9191AF9153500E0DF89 /* XHSetupTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHSetupTools.m; sourceTree = "<group>"; };
 		78B08F361AE20B4C00A26C53 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -263,6 +270,8 @@
 		78E6149E1AE5EDCF00191132 /* XHLineChartItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLineChartItem.m; sourceTree = "<group>"; };
 		78E614D51AE6447100191132 /* XHGaugeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHGaugeView.h; sourceTree = "<group>"; };
 		78E614D61AE6447100191132 /* XHGaugeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHGaugeView.m; sourceTree = "<group>"; };
+		78F456A81B05B613008B4FC5 /* XHGatewayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHGatewayViewController.h; sourceTree = "<group>"; };
+		78F456A91B05B613008B4FC5 /* XHGatewayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHGatewayViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +330,8 @@
 			children = (
 				7825E77E1AF35031008D6CF6 /* GCDAsyncSocket.h */,
 				7825E77F1AF35031008D6CF6 /* GCDAsyncSocket.m */,
+				7888C1231B00EC06002AE1B7 /* XHSocketThread.h */,
+				7888C1241B00EC07002AE1B7 /* XHSocketThread.m */,
 			);
 			name = Socket;
 			sourceTree = "<group>";
@@ -411,6 +422,8 @@
 			children = (
 				7855315C1ADF907300080703 /* XHGeneralSettingsViewController.h */,
 				7855315D1ADF907300080703 /* XHGeneralSettingsViewController.m */,
+				78F456A81B05B613008B4FC5 /* XHGatewayViewController.h */,
+				78F456A91B05B613008B4FC5 /* XHGatewayViewController.m */,
 				7866FAD61AE8C5AC00250478 /* XHDisplayViewController.h */,
 				7866FAD71AE8C5AC00250478 /* XHDisplayViewController.m */,
 				785C20E51AF882BB00F9CD1C /* XHValueViewController.h */,
@@ -531,6 +544,8 @@
 				7889A9191AF9153500E0DF89 /* XHSetupTools.m */,
 				78266C3F1AFB477400D9A584 /* XHCryptTools.h */,
 				78266C401AFB477400D9A584 /* XHCryptTools.m */,
+				7888C1291B00FC24002AE1B7 /* XHRoomTools.h */,
+				7888C12A1B00FC24002AE1B7 /* XHRoomTools.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -588,8 +603,8 @@
 				786E90541ADCBBC100A93675 /* UUChat */,
 				78E614961AE5ECFE00191132 /* Chart */,
 				78C13B991ADA380D0020AAFA /* Tools */,
-				78C13B9D1ADA6D430020AAFA /* Views */,
 				787FBB651AD8EB7C00316651 /* Models */,
+				78C13B9D1ADA6D430020AAFA /* Views */,
 				787FBB611AD8EA9F00316651 /* Cells */,
 				787FBB5A1AD8E6BF00316651 /* Controllers */,
 				78C13B981ADA37DC0020AAFA /* New Feature */,
@@ -750,6 +765,7 @@
 				786E90601ADCC3F000A93675 /* XHMessageModel.m in Sources */,
 				78CB02D01AF71EEC0004167E /* XHDataAnalysisViewController.m in Sources */,
 				78266C4F1AFB543600D9A584 /* FMDatabasePool.m in Sources */,
+				78F456AA1B05B613008B4FC5 /* XHGatewayViewController.m in Sources */,
 				781F1FF01AE0C97600ACEACC /* XHChartViewController.m in Sources */,
 				7866FABF1AE783C800250478 /* XHGaugeViewController.m in Sources */,
 				786E90531ADCBBBC00A93675 /* NSDate+Utils.m in Sources */,
@@ -788,6 +804,7 @@
 				78266C371AF9E65300D9A584 /* XHFeedbackViewController.m in Sources */,
 				78379E771AEE19F1008B5C87 /* XHNotificationTypeViewController.m in Sources */,
 				78CB02DC1AF767A90004167E /* XHEncryptTypeViewController.m in Sources */,
+				7888C1251B00EC07002AE1B7 /* XHSocketThread.m in Sources */,
 				785C20E71AF882BB00F9CD1C /* XHValueViewController.m in Sources */,
 				785531421ADE583B00080703 /* UIBarButtonItem+Extension.m in Sources */,
 				787FBB5D1AD8E99800316651 /* XHLinkinViewController.m in Sources */,
@@ -798,6 +815,7 @@
 				786E905A1ADCBE4700A93675 /* UUImageAvatarBrowser.m in Sources */,
 				785531491ADF50BE00080703 /* XHTableViewCellItem.m in Sources */,
 				785531461ADF501600080703 /* XHTableViewCellGroup.m in Sources */,
+				7888C12B1B00FC24002AE1B7 /* XHRoomTools.m in Sources */,
 				78C13B941ADA0EF90020AAFA /* XHTokenModel.m in Sources */,
 				78266C4D1AFB543600D9A584 /* FMDatabase.m in Sources */,
 				7825E7801AF35031008D6CF6 /* GCDAsyncSocket.m in Sources */,

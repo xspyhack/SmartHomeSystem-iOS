@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 @class XHImageView;
 
-@interface XHSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
+@interface XHSettingsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
 @end

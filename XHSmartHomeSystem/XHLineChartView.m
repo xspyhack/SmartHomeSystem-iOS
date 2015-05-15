@@ -148,7 +148,7 @@
     UIFont *font = [UIFont systemFontOfSize:14];
     CGFloat y = ChartViewMargin_Top;
     
-    CGSize y1TtleSize = [self.y1Title sizeWithAttributes:@{NSFontAttributeName:font}];
+    CGSize y1TtleSize = [self.y1Title sizeWithAttributes:@{ NSFontAttributeName : font }];
     CGRect y1TitleRect = CGRectMake(Y1_Margin_Left - 10,
                                     y,
                                     y1TtleSize.width,
@@ -161,7 +161,7 @@
     
     //
     y = y1TitleRect.origin.y;
-    CGSize y2TitleSize = [self.y2Title sizeWithAttributes:@{NSFontAttributeName:font}];
+    CGSize y2TitleSize = [self.y2Title sizeWithAttributes:@{ NSFontAttributeName : font }];
     CGRect y2TitleRect = CGRectMake(self.frame.size.width - y2TitleSize.width - Y2_Margin_Right + 10,
                                     y,
                                     y2TitleSize.width,
@@ -197,7 +197,7 @@
     [XHChart drawLineWithContext:context startPoint:startPoint endPoint:endPoint lineColor:textColor];
 
     UIFont *descFont = [UIFont systemFontOfSize:descFontSize];
-    CGSize desc1Size = [self.desc1 sizeWithAttributes:@{NSFontAttributeName:descFont}];
+    CGSize desc1Size = [self.desc1 sizeWithAttributes:@{ NSFontAttributeName : descFont }];
     CGRect desc1Rect = CGRectMake(endPoint.x + 3,
                                   y - (desc1Size.height/2),
                                   desc1Size.width,
@@ -207,9 +207,9 @@
     NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
     paragraph.alignment = NSTextAlignmentLeft;
     
-    [self.desc1 drawInRect:desc1Rect withAttributes:@{NSFontAttributeName:descFont,
-                                                      NSForegroundColorAttributeName:self.y1LineColor,
-                                                      NSParagraphStyleAttributeName:paragraph}];
+    [self.desc1 drawInRect:desc1Rect withAttributes:@{ NSFontAttributeName : descFont,
+                                                       NSForegroundColorAttributeName : self.y1LineColor,
+                                                       NSParagraphStyleAttributeName : paragraph }];
     
     // describe 2
     textColor = self.y2LineColor;
@@ -219,18 +219,18 @@
     endPoint = CGPointMake(startPoint.x + 15, y);
     [XHChart drawLineWithContext:context startPoint:startPoint endPoint:endPoint lineColor:textColor];
 
-    CGSize desc2Size = [self.desc2 sizeWithAttributes:@{NSFontAttributeName:descFont}];
+    CGSize desc2Size = [self.desc2 sizeWithAttributes:@{ NSFontAttributeName : descFont }];
     CGRect desc2Rect = CGRectMake(endPoint.x + 3,
                                   y - (desc2Size.height/2),
                                   desc2Size.width,
                                   desc2Size.height);
-    [self.desc2 drawInRect:desc2Rect withAttributes:@{NSFontAttributeName:descFont,
-                                                      NSForegroundColorAttributeName:self.y2LineColor,
-                                                      NSParagraphStyleAttributeName:paragraph}];
+    [self.desc2 drawInRect:desc2Rect withAttributes:@{ NSFontAttributeName : descFont,
+                                                       NSForegroundColorAttributeName : self.y2LineColor,
+                                                       NSParagraphStyleAttributeName : paragraph }];
     // x axis describe
     [[UIColor grayColor] set];
     UIFont *titleXFont = [UIFont systemFontOfSize:xTitleFontSize];
-    CGSize titleXSize = [self.xTitle sizeWithAttributes:@{NSFontAttributeName:titleXFont}];
+    CGSize titleXSize = [self.xTitle sizeWithAttributes:@{ NSFontAttributeName : titleXFont }];
     CGRect titleXRect = CGRectMake((self.frame.size.width - titleXSize.width) / 2,
                                    y - (titleXSize.height/2) - 15,
                                    titleXSize.width,
@@ -239,9 +239,9 @@
     NSMutableParagraphStyle *paragraph2 = [[NSMutableParagraphStyle alloc] init];
     paragraph2.alignment = NSTextAlignmentCenter;
     
-    [self.xTitle drawInRect:titleXRect withAttributes:@{NSFontAttributeName:titleXFont,
-                                                        NSForegroundColorAttributeName:[XHColorTools themeColor],
-                                                        NSParagraphStyleAttributeName:paragraph2}];
+    [self.xTitle drawInRect:titleXRect withAttributes:@{ NSFontAttributeName : titleXFont,
+                                                         NSForegroundColorAttributeName : [XHColorTools themeColor],
+                                                         NSParagraphStyleAttributeName : paragraph2 }];
 }
 
 @end

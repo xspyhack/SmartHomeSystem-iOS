@@ -43,7 +43,7 @@
     XHTableViewCellSwitchItem *stickItem = [XHTableViewCellSwitchItem itemWithTitle:@"Stick to top"];
     XHTableViewCellSwitchItem *shieldItem = [XHTableViewCellSwitchItem itemWithTitle:@"Shield"];
     
-    self.group.items = @[stickItem, shieldItem];
+    self.group.items = @[ stickItem, shieldItem ];
 }
 
 - (void)setupProfileView
@@ -51,7 +51,7 @@
     CGFloat viewWidth = self.view.frame.size.width;
     UIColor *color = [XHColorTools themeColor];
     
-    CGRect avatarRect = CGRectMake((viewWidth - XHAvatarWidth)/2, 100, XHAvatarWidth, XHAvatarWidth);
+    CGRect avatarRect = CGRectMake((viewWidth-XHAvatarWidth)/2, 100, XHAvatarWidth, XHAvatarWidth);
     XHImageView *avatarView = [[XHImageView alloc] initWithFrame:avatarRect];
     avatarView.color = color;
     avatarView.progress = 0.7f;
@@ -61,13 +61,13 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLogoView:)];
     [avatarView addGestureRecognizer:tapGesture];
     
-    CGRect nameRect = CGRectMake((viewWidth - 200)/2, CGRectGetMaxY(avatarRect)+20, 200, 20);
+    CGRect nameRect = CGRectMake((viewWidth-200)/2, CGRectGetMaxY(avatarRect)+20, 200, 20);
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:nameRect];
     nameLabel.text = self.name;
     nameLabel.textColor = color;
     nameLabel.textAlignment = NSTextAlignmentCenter;
     
-    CGRect bioRect = CGRectMake((viewWidth - 200)/2, CGRectGetMaxY(nameRect)+10, 200, 20);
+    CGRect bioRect = CGRectMake((viewWidth-200)/2, CGRectGetMaxY(nameRect)+10, 200, 20);
     UILabel *bioLabel = [[UILabel alloc] initWithFrame:bioRect];
     bioLabel.text = @"Bio: nothing else.";
     bioLabel.textColor = color;
@@ -85,7 +85,7 @@
     block.backgroundColor = [XHColorTools themeColor];
     [block setTitle:@"Block" forState:UIControlStateNormal];
     [block setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [block addTarget:self action:@selector(block) forControlEvents:UIControlEventTouchUpInside];
+    [block addTarget:self action:@selector(blockButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
     self.tableView.tableFooterView = block;
 }
@@ -104,7 +104,7 @@
     XHLog(@"tap");
 }
 
-- (void)block
+- (void)blockButtonClicked
 {
     XHLog(@"block");
 }

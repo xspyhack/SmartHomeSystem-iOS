@@ -10,6 +10,6 @@
 
 @interface XHColorModel : NSObject
 
-+ (UIColor *)colorModelWithIndex:(NSInteger)index;
++ (UIColor *)colorModelAtIndex:(NSInteger)index;
 
 @end

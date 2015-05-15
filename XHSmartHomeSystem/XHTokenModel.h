@@ -14,6 +14,6 @@
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, copy) NSDate *expires_time;
 
-+ (instancetype)tokenModelWithDict:(NSDictionary *)dict;
++ (instancetype)tokenModelWithDictionary:(NSDictionary *)dictionary;
 
 @end

@@ -130,8 +130,8 @@
     _roomModel = roomModel;
     _iconView.image = [UIImage imageNamed:roomModel.iconName];
     _roomNameLabel.text = roomModel.name;
-    _temperatureLabel.text = roomModel.temperature;
-    _humidityLabel.text = roomModel.humidity;
+    _temperatureLabel.text = [NSString stringWithFormat:@"temp: %@°C", roomModel.temperature];
+    _humidityLabel.text = [NSString stringWithFormat:@"humi: %@%%RH", roomModel.humidity];
 }
 
 - (void)setUpdateTime:(NSDate *)updateTime

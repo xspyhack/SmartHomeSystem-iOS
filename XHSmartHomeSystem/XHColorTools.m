@@ -14,13 +14,13 @@
 + (UIColor *)themeColor
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [XHColorModel colorModelWithIndex:[defaults integerForKey:@"XHThemeColor"]];
+    return [XHColorModel colorModelAtIndex:[defaults integerForKey:@"XHThemeColor"]];
 }
 
 + (UIColor *)textColor
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [XHColorModel colorModelWithIndex:[defaults integerForKey:@"XHTextColor"]];
+    return [XHColorModel colorModelAtIndex:[defaults integerForKey:@"XHTextColor"]];
 }
 
 + (UIColor *)defaultColor
@@ -31,19 +31,19 @@
 + (UIColor *)temperatureColor
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [XHColorModel colorModelWithIndex:[defaults integerForKey:@"XHTemperatureColor"]];
+    return [XHColorModel colorModelAtIndex:[defaults integerForKey:@"XHTemperatureColor"]];
 }
 
 + (UIColor *)humidityColor
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [XHColorModel colorModelWithIndex:[defaults integerForKey:@"XHHumidityColor"]];
+    return [XHColorModel colorModelAtIndex:[defaults integerForKey:@"XHHumidityColor"]];
 }
 
 + (UIColor *)smokeColor
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [XHColorModel colorModelWithIndex:[defaults integerForKey:@"XHSmokeColor"]];
+    return [XHColorModel colorModelAtIndex:[defaults integerForKey:@"XHSmokeColor"]];
 }
 
 @end

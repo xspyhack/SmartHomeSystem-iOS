@@ -8,6 +8,6 @@
 
 #import "XHTableViewController.h"
 
-@interface XHGeneralSettingsViewController : XHTableViewController <UIActionSheetDelegate>
+@interface XHGeneralSettingsViewController : XHTableViewController<UIActionSheetDelegate>
 
 @end

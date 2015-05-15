@@ -31,9 +31,9 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     
     // update tableviewcell content
     [self getUserDefaults];
@@ -65,10 +65,10 @@
     
     self.encryptTypeItem = [XHTableViewCellArrowItem itemWithTitle:@"Encrypt Type"];
     self.encryptTypeItem.detail = self.type;
-    self.encryptTypeItem.destViewContorller = [XHEncryptTypeViewController class];
+    self.encryptTypeItem.destinationContorller = [XHEncryptTypeViewController class];
     
     group.groupFooter = @"Enabling encrypt can improve security.";
-    group.items = @[checkItem, self.encryptTypeItem];
+    group.items = @[ checkItem, self.encryptTypeItem ];
 }
 
 #pragma mark - private methods

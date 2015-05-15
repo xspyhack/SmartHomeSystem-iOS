@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XHLinkinViewController : UIViewController <UITextFieldDelegate>
-
-@property (nonatomic, strong) UITextField *gatewayTextField;
-@property (nonatomic, strong) UITextField *passwordTextField;
+@interface XHLinkinViewController : UIViewController<UITextFieldDelegate>
 
 @end

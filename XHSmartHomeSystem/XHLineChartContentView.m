@@ -65,18 +65,18 @@
 
 - (void)strokeChart
 {
-    _chartPath = [[NSMutableArray alloc] init];
-    _pointPath = [[NSMutableArray alloc] init];
+    self.chartPath = [[NSMutableArray alloc] init];
+    self.pointPath = [[NSMutableArray alloc] init];
     
-    [self calculateChartPath:_chartPath andPointsPath:_pointPath andPathKeyPoints:_pathPoints];
+    [self calculateChartPath:self.chartPath pointsPath:self.pointPath pathKeyPoints:self.pathPoints];
     
     // Draw each lines
     for (NSUInteger i = 0; i < 2; i++) {
         CAShapeLayer *chartLine = (CAShapeLayer *)self.chartLineArray[i];
         CAShapeLayer *pointLayer = (CAShapeLayer *)self.chartPointArray[i];
         UIGraphicsBeginImageContext(self.frame.size);
-        UIBezierPath *progressLine = [_chartPath objectAtIndex:i];
-        UIBezierPath *pointPath = [_pointPath objectAtIndex:i];
+        UIBezierPath *progressLine = [self.chartPath objectAtIndex:i];
+        UIBezierPath *pointPath = [self.pointPath objectAtIndex:i];
         
         chartLine.path = progressLine.CGPath;
         pointLayer.path = pointPath.CGPath;
@@ -86,7 +86,7 @@
         pathAnimation.duration = 1.0;
         pathAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         pathAnimation.fromValue = @0.0f;
-        pathAnimation.toValue   = @1.0f;
+        pathAnimation.toValue = @1.0f;
         
         [chartLine addAnimation:pathAnimation forKey:@"strokeEndAnimation"];
         chartLine.strokeEnd = 1.0;
@@ -102,20 +102,20 @@
 
 - (void)refreshData:(NSArray*)dataSource
 {
-    _dataSource = dataSource;
+    self.dataSource = dataSource;
     
     [self buildXYStepArray:DEFAULT_X_COUNT yStepCount:DEFAULT_Y_COUNT];    
     [self prepareXYLabels];
     
-    [self calculateChartPath:_chartPath andPointsPath:_pointPath andPathKeyPoints:_pathPoints];
+    [self calculateChartPath:self.chartPath pointsPath:self.pointPath pathKeyPoints:self.pathPoints];
     
     // Draw each line
     for (NSUInteger i = 0; i < 2; i++) {
         CAShapeLayer *chartLine = (CAShapeLayer *)self.chartLineArray[i];
         CAShapeLayer *pointLayer = (CAShapeLayer *)self.chartPointArray[i];
 
-        UIBezierPath *progressLine = [_chartPath objectAtIndex:i];
-        UIBezierPath *pointPath = [_pointPath objectAtIndex:i];
+        UIBezierPath *progressLine = [self.chartPath objectAtIndex:i];
+        UIBezierPath *pointPath = [self.pointPath objectAtIndex:i];
         
         CABasicAnimation * pathAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
         pathAnimation.fromValue = (id)chartLine.path;
@@ -205,17 +205,17 @@
     
     self.clipsToBounds = YES;
     self.chartLineArray = [NSMutableArray new];
-    _pathPoints = [[NSMutableArray alloc] init];
+    self.pathPoints = [[NSMutableArray alloc] init];
     self.userInteractionEnabled = YES;
     
-    _marginLeft = 40;
-    _marginRight = 40;
+    self.marginLeft = 40;
+    self.marginRight = 40;
     
-    _lineWidth = 1.f;
-    _inflexionPointWidth = 4.f;
-    _y1LineColor = XHY1LineColor;
-    _y2LineColor = XHY2LineColor;
-    _alpha = 1.f;
+    self.lineWidth = 1.f;
+    self.inflexionPointWidth = 4.f;
+    self.y1LineColor = XHY1LineColor;
+    self.y2LineColor = XHY2LineColor;
+    self.alpha = 1.f;
 }
 
 - (void)addLineLayerWithColor:(UIColor *)color
@@ -302,7 +302,7 @@
         else
             [self.y2Array removeAllObjects];
         float y2Per = (y2Max ) / yStepCount ;
-        for (int i=0; i<yStepCount; i++) {
+        for (int i = 0; i<yStepCount; i++) {
             [self.y2Array addObject:[NSNumber numberWithFloat: (y2Per + i * y2Per)]];
         }
     }
@@ -323,7 +323,7 @@
 
 #pragma mark - private methods
 
-- (void)calculateChartPath:(NSMutableArray *)chartPath andPointsPath:(NSMutableArray *)pointsPath andPathKeyPoints:(NSMutableArray *)pathPoints
+- (void)calculateChartPath:(NSMutableArray *)chartPath pointsPath:(NSMutableArray *)pointsPath pathKeyPoints:(NSMutableArray *)pathPoints
 {
     UIBezierPath *progressLine1 = [UIBezierPath bezierPath];
     UIBezierPath *progressLine2 = [UIBezierPath bezierPath];
@@ -352,39 +352,60 @@
         float xPosition = self.originPoint.x + ((self.xPerStepWidth * item.xValue) / xPerStepVal) + self.contentScroll.x;
         
         float y1PerStepVal = [(NSNumber*)[self.y1Array objectAtIndex:0] floatValue];
-        float y1Position = self.originPoint.y - fabs(((self.yPerStepHeight * item.y1Value) / y1PerStepVal )) + self.contentScroll.y;
+        float y1Position = self.originPoint.y - fabs(((self.yPerStepHeight * item.y1Value) / y1PerStepVal)) + self.contentScroll.y;
         
         float y2PerStepVal = [(NSNumber*)[self.y2Array objectAtIndex:0] floatValue];
-        float y2Position = self.originPoint.y - fabs(((self.yPerStepHeight * item.y2Value) / y2PerStepVal )) + self.contentScroll.y;
+        float y2Position = self.originPoint.y - fabs(((self.yPerStepHeight * item.y2Value) / y2PerStepVal)) + self.contentScroll.y;
         
-        CGRect circleRect1 = CGRectMake(xPosition - _inflexionPointWidth / 2, y1Position - _inflexionPointWidth / 2, _inflexionPointWidth, _inflexionPointWidth);
-        CGPoint circleCenter1 = CGPointMake(circleRect1.origin.x + (circleRect1.size.width / 2), circleRect1.origin.y + (circleRect1.size.height / 2));
+        CGRect circleRect1 = CGRectMake(xPosition - self.inflexionPointWidth/2,
+                                        y1Position - self.inflexionPointWidth/2,
+                                        self.inflexionPointWidth,
+                                        self.inflexionPointWidth);
         
-        [pointPath1 moveToPoint:CGPointMake(circleCenter1.x + (_inflexionPointWidth / 2), circleCenter1.y)];
-        [pointPath1 addArcWithCenter:circleCenter1 radius:_inflexionPointWidth / 2 startAngle:0 endAngle:2 * M_PI clockwise:YES];
+        CGPoint circleCenter1 = CGPointMake(circleRect1.origin.x + (circleRect1.size.width/2),
+                                            circleRect1.origin.y + (circleRect1.size.height/2));
         
-        CGRect circleRect2 = CGRectMake(xPosition - _inflexionPointWidth / 2, y2Position - _inflexionPointWidth / 2, _inflexionPointWidth, _inflexionPointWidth);
-        CGPoint circleCenter2 = CGPointMake(circleRect2.origin.x + (circleRect2.size.width / 2), circleRect2.origin.y + (circleRect2.size.height / 2));
+        [pointPath1 moveToPoint:CGPointMake(circleCenter1.x + (self.inflexionPointWidth/2),
+                                            circleCenter1.y)];
         
-        [pointPath2 moveToPoint:CGPointMake(circleCenter2.x + (_inflexionPointWidth / 2), circleCenter2.y)];
-        [pointPath2 addArcWithCenter:circleCenter2 radius:_inflexionPointWidth / 2 startAngle:0 endAngle:2 * M_PI clockwise:YES];
+        [pointPath1 addArcWithCenter:circleCenter1
+                               radius:self.inflexionPointWidth/2
+                          startAngle:0
+                            endAngle:2 * M_PI
+                           clockwise:YES];
+        
+        CGRect circleRect2 = CGRectMake(xPosition-self.inflexionPointWidth/2,
+                                        y2Position-self.inflexionPointWidth/2,
+                                        self.inflexionPointWidth,
+                                        self.inflexionPointWidth);
+        CGPoint circleCenter2 = CGPointMake(circleRect2.origin.x + (circleRect2.size.width/2),
+                                            circleRect2.origin.y + (circleRect2.size.height/2));
+        
+        [pointPath2 moveToPoint:CGPointMake(circleCenter2.x + (self.inflexionPointWidth/2),
+                                            circleCenter2.y)];
+        
+        [pointPath2 addArcWithCenter:circleCenter2
+                              radius:self.inflexionPointWidth/2
+                          startAngle:0
+                            endAngle:2 * M_PI
+                           clockwise:YES];
         
         
         if ( i != 0 ) {
             // calculate the point for line
-            float distance1 = sqrt(pow(xPosition - last_xPos, 2) + pow(y1Position - last_yPos1, 2) );
-            float last_x = last_xPos + (_inflexionPointWidth / 2) / distance1 * (xPosition - last_xPos);
-            float last_y1 = last_yPos1 + (_inflexionPointWidth / 2) / distance1 * (y1Position - last_yPos1);
-            float x = xPosition - (_inflexionPointWidth / 2) / distance1 * (xPosition - last_xPos);
-            float y1 = y1Position - (_inflexionPointWidth / 2) / distance1 * (y1Position - last_yPos1);
+            float distance1 = sqrt(pow(xPosition - last_xPos, 2) + pow(y1Position - last_yPos1, 2));
+            float last_x = last_xPos + (self.inflexionPointWidth/2) / distance1 * (xPosition - last_xPos);
+            float last_y1 = last_yPos1 + (self.inflexionPointWidth/2) / distance1 * (y1Position - last_yPos1);
+            float x = xPosition - (self.inflexionPointWidth/2) / distance1 * (xPosition - last_xPos);
+            float y1 = y1Position - (self.inflexionPointWidth/2) / distance1 * (y1Position - last_yPos1);
             
             [progressLine1 moveToPoint:CGPointMake(last_x, last_y1)];
             [progressLine1 addLineToPoint:CGPointMake(x, y1)];
             
-            float distance2 = sqrt(pow(xPosition - last_xPos, 2) + pow(y2Position - last_yPos2, 2) );
-            float last_y2 = last_yPos2 + (_inflexionPointWidth / 2) / distance2 * (y2Position - last_yPos2);
+            float distance2 = sqrt(pow(xPosition - last_xPos, 2) + pow(y2Position - last_yPos2, 2));
+            float last_y2 = last_yPos2 + (self.inflexionPointWidth/2) / distance2 * (y2Position - last_yPos2);
             
-            float y2 = y2Position - (_inflexionPointWidth / 2) / distance2 * (y2Position - last_yPos2);
+            float y2 = y2Position - (self.inflexionPointWidth/2) / distance2 * (y2Position - last_yPos2);
             
             [progressLine2 moveToPoint:CGPointMake(last_x, last_y2)];
             [progressLine2 addLineToPoint:CGPointMake(x, y2)];
@@ -441,18 +462,18 @@
     self.marginRight = size.width;
     
     //
-    self.originPoint = CGPointMake(self.marginLeft + 2, self.frame.size.height - self.marginBottom - 20);
-    self.leftTopPoint = CGPointMake(self.originPoint.x, 0 + 20);
-    self.rightBottomPoint = CGPointMake(self.frame.size.width - self.marginRight - 2, self.originPoint.y);
+    self.originPoint = CGPointMake(self.marginLeft+2, self.frame.size.height - self.marginBottom-20);
+    self.leftTopPoint = CGPointMake(self.originPoint.x, 0+20);
+    self.rightBottomPoint = CGPointMake(self.frame.size.width - self.marginRight-2, self.originPoint.y);
     
     //
-    self.xPerStepWidth = (self.rightBottomPoint.x - self.originPoint.x) / (DEFAULT_X_COUNT) - 0.1;
-    self.maxWidth = (self.xArray.count - 1) * self.xPerStepWidth;
+    self.xPerStepWidth = (self.rightBottomPoint.x - self.originPoint.x) / (DEFAULT_X_COUNT)-0.1;
+    self.maxWidth = (self.xArray.count-1) * self.xPerStepWidth;
     
-    self.yPerStepHeight = (self.originPoint.y - self.leftTopPoint.y) / (DEFAULT_Y_COUNT) - 0.1;
+    self.yPerStepHeight = (self.originPoint.y - self.leftTopPoint.y) / (DEFAULT_Y_COUNT)-0.1;
     //
     NSInteger yStepCount = (self.y1Array.count > self.y2Array.count ? self.y1Array.count : self.y2Array.count);
-    self.maxHeight = (yStepCount - 1) * self.yPerStepHeight;
+    self.maxHeight = (yStepCount-1) * self.yPerStepHeight;
     
 }
 
@@ -465,7 +486,7 @@
     UIColor *dataLineColor = [UIColor lightGrayColor];
    
     // x axis
-    for (NSInteger index=0; index < self.xArray.count; index++) {
+    for (NSInteger index = 0; index < self.xArray.count; index++) {
         
         NSNumber *num = [self.xArray objectAtIndex:index];
         NSString *valStr = [NSString stringWithFormat:@"%.3lf", [num doubleValue]]; //四舍五入保留2位
@@ -476,20 +497,20 @@
             
             // draw x axis label text
             [xyTextColor set];
-            CGSize title1Size = [valStr sizeWithAttributes:@{NSFontAttributeName:xyTextFont}];
+            CGSize title1Size = [valStr sizeWithAttributes:@{ NSFontAttributeName:xyTextFont }];
             CGRect titleRect1 = CGRectMake(xPosition - (title1Size.width)/2,
-                                           self.originPoint.y + 2,
+                                           self.originPoint.y+2,
                                            title1Size.width,
                                            title1Size.height);
             NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
             paragraph.alignment = NSTextAlignmentCenter;
-            [valStr drawInRect:titleRect1 withAttributes:@{NSFontAttributeName:xyTextFont,
-                                                           NSForegroundColorAttributeName:xyTextColor,
-                                                           NSParagraphStyleAttributeName:paragraph}];
+            [valStr drawInRect:titleRect1 withAttributes:@{ NSFontAttributeName:xyTextFont,
+                                                            NSForegroundColorAttributeName:xyTextColor,
+                                                            NSParagraphStyleAttributeName:paragraph }];
             
 
-            CGFloat dashPattern[]= {6.0, 5};
-            if (index < self.xArray.count - 1) {
+            CGFloat dashPattern[]= { 6.0, 5 };
+            if (index < self.xArray.count-1) {
                 CGContextSetLineDash(context, 0.0, dashPattern, 2); // dash line
                 [XHChart drawLineWithContext:context
                                  startPoint:CGPointMake(xPosition, self.originPoint.y)
@@ -511,16 +532,16 @@
         if (y1Position < self.originPoint.y && y1Position > self.leftTopPoint.y) {
     
             [self.y1LineColor set];
-            CGSize title1Size = [valStr sizeWithAttributes:@{NSFontAttributeName:xyTextFont}];
+            CGSize title1Size = [valStr sizeWithAttributes:@{ NSFontAttributeName:xyTextFont }];
             CGRect titleRect1 = CGRectMake(1,
                                            y1Position - (title1Size.height)/2,
                                            title1Size.width,
                                            title1Size.height);
-            [valStr drawInRect:titleRect1 withAttributes:@{NSFontAttributeName:xyTextFont,
-                                                           NSForegroundColorAttributeName:self.y1LineColor,
-                                                           NSParagraphStyleAttributeName:paragraph}];
+            [valStr drawInRect:titleRect1 withAttributes:@{ NSFontAttributeName:xyTextFont,
+                                                            NSForegroundColorAttributeName:self.y1LineColor,
+                                                            NSParagraphStyleAttributeName:paragraph}];
             
-            CGFloat dashPattern[]= {6.0, 5};
+            CGFloat dashPattern[]= { 6.0, 5 };
             CGContextSetLineDash(context, 0.0, dashPattern, 2);
             [XHChart drawLineWithContext:context
                              startPoint:CGPointMake(self.originPoint.x, y1Position)
@@ -539,16 +560,16 @@
         if (y2Position < self.originPoint.y && y2Position > self.leftTopPoint.y) {
             
             [self.y2LineColor set];
-            CGSize title1Size = [valStr sizeWithAttributes:@{NSFontAttributeName:xyTextFont}];
-            CGRect titleRect1 = CGRectMake(self.rightBottomPoint.x + 1,
+            CGSize title1Size = [valStr sizeWithAttributes:@{ NSFontAttributeName:xyTextFont }];
+            CGRect titleRect1 = CGRectMake(self.rightBottomPoint.x+1,
                                            y2Position - (title1Size.height)/2,
                                            title1Size.width,
                                            title1Size.height);
-            [valStr drawInRect:titleRect1 withAttributes:@{NSFontAttributeName:xyTextFont,
-                                                           NSForegroundColorAttributeName:self.y2LineColor,
-                                                           NSParagraphStyleAttributeName:paragraph}];
+            [valStr drawInRect:titleRect1 withAttributes:@{ NSFontAttributeName:xyTextFont,
+                                                            NSForegroundColorAttributeName:self.y2LineColor,
+                                                            NSParagraphStyleAttributeName:paragraph }];
             
-            CGFloat dashPattern[]= {6.0, 5};
+            CGFloat dashPattern[]= { 6.0, 5 };
             CGContextSetLineDash(context, 0.0, dashPattern, 2);
             [XHChart drawLineWithContext:context
                              startPoint:CGPointMake(self.originPoint.x, y2Position)
@@ -565,28 +586,28 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     // y1 axis
-    CGFloat normal[1]={1};
-    CGContextSetLineDash(context,0,normal,0);
+    CGFloat normal[1] = { 1 };
+    CGContextSetLineDash(context, 0, normal, 0);
     [XHChart drawLineWithContext:context
                      startPoint:self.originPoint
-                       endPoint:CGPointMake(self.leftTopPoint.x, self.leftTopPoint.y - 20)
+                       endPoint:CGPointMake(self.leftTopPoint.x, self.leftTopPoint.y-20)
                       lineColor:dataLineColor];
     // draw left y axis arrow
-    CGContextMoveToPoint(context, self.leftTopPoint.x - 3, self.leftTopPoint.y - 17);
-    CGContextAddLineToPoint(context, self.leftTopPoint.x, self.leftTopPoint.y - 20);
-    CGContextAddLineToPoint(context, self.leftTopPoint.x + 3, self.leftTopPoint.y - 17);
+    CGContextMoveToPoint(context, self.leftTopPoint.x-3, self.leftTopPoint.y-17);
+    CGContextAddLineToPoint(context, self.leftTopPoint.x, self.leftTopPoint.y-20);
+    CGContextAddLineToPoint(context, self.leftTopPoint.x+3, self.leftTopPoint.y-17);
     CGContextStrokePath(context);
     
     // y2 axis
     [XHChart drawLineWithContext:context
                      startPoint:self.rightBottomPoint
-                       endPoint:CGPointMake(self.rightBottomPoint.x, self.leftTopPoint.y - 20)
+                       endPoint:CGPointMake(self.rightBottomPoint.x, self.leftTopPoint.y-20)
                       lineColor:dataLineColor];
     
     // draw right y axis arrow
-    CGContextMoveToPoint(context, self.rightBottomPoint.x - 3, self.leftTopPoint.y - 17);
-    CGContextAddLineToPoint(context, self.rightBottomPoint.x, self.leftTopPoint.y - 20);
-    CGContextAddLineToPoint(context, self.rightBottomPoint.x + 3, self.leftTopPoint.y - 17);
+    CGContextMoveToPoint(context, self.rightBottomPoint.x-3, self.leftTopPoint.y-17);
+    CGContextAddLineToPoint(context, self.rightBottomPoint.x, self.leftTopPoint.y-20);
+    CGContextAddLineToPoint(context, self.rightBottomPoint.x+3, self.leftTopPoint.y-17);
     CGContextStrokePath(context);
     
     // x axis

@@ -93,15 +93,15 @@
 {
     XHTableViewCellGroup *group = self.groups[indexPath.section];
     XHTableViewCellItem *item = group.items[indexPath.row];
-    if (item.destViewContorller) {
-        UIViewController *destVC = [[item.destViewContorller alloc] init];
+    if (item.destinationContorller) {
+        UIViewController *destVC = [[item.destinationContorller alloc] init];
         destVC.title = item.title;
         [self.navigationController pushViewController:destVC animated:YES];
     }
     
-    // does this item have operation block method that needs to be call.
-    if (item.operation) {
-        item.operation();
+    // does this item have clicked block method that needs to be call.
+    if (item.clicked) {
+        item.clicked();
     }
     
     // deal checkmark

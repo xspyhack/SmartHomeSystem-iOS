@@ -56,15 +56,15 @@
 {
     XHTableViewCellGroup *group = self.groups[indexPath.section];
     XHTableViewCellItem *item = group.items[indexPath.row];
-    if (item.destViewContorller) {
-        UIViewController *destVC = [[item.destViewContorller alloc] init];
-        destVC.title = item.title;
-        [self.navigationController pushViewController:destVC animated:YES];
+    if (item.destinationContorller) {
+        UIViewController *destinationController = [[item.destinationContorller alloc] init];
+        destinationController.title = item.title;
+        [self.navigationController pushViewController:destinationController animated:YES];
     }
     
     // has it method that needs to be call.
-    if (item.operation) {
-        item.operation();
+    if (item.clicked) {
+        item.clicked();
     }
     [self performSelector:@selector(deselect) withObject:nil afterDelay:0.1f]; // deselect
 }

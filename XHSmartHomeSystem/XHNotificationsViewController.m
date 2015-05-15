@@ -16,12 +16,12 @@
 #import "XHTableViewCellArrowItem.h"
 #import "XHColorTools.h"
 
-typedef enum {
+typedef enum _EMSwitch {
     EMShowSwitch = 0,
     EMSmokeAlertSwitch = 1,
     EMHumiAlertSwitch = 2,
     EMTempAlertSwitch = 3
-}EMSwitch;
+} EMSwitch;
 
 @interface XHNotificationsViewController ()
 
@@ -67,7 +67,7 @@ typedef enum {
     XHTableViewCellLabelItem *notificationItem = [XHTableViewCellLabelItem itemWithTitle:@"Notifications"];
     notificationItem.label = self.notificatonLabel;
     
-    group.items = @[notificationItem];
+    group.items = @[ notificationItem ];
 }
 
 - (void)setupShowGroup
@@ -80,15 +80,12 @@ typedef enum {
     
     XHTableViewCellSwitchItem *showItem = [XHTableViewCellSwitchItem itemWithTitle:@"Show Preview Text"];
     showItem.on = self.showSwitch;
-    showItem.tapSwitch = ^{
-        // click
-        [self setSwitch:EMShowSwitch];
-    };
+    showItem.tapSwitch = ^{ [self setSwitch:EMShowSwitch]; }; // tap
 
     XHTableViewCellArrowItem *typeItem = [XHTableViewCellArrowItem itemWithTitle:@"Notification Type"];
-    typeItem.destViewContorller = [XHNotificationTypeViewController class];
+    typeItem.destinationContorller = [XHNotificationTypeViewController class];
     
-    group.items = @[showItem, typeItem];
+    group.items = @[ showItem, typeItem ];
 }
 
 - (void)setupTypeGroup
@@ -105,24 +102,18 @@ typedef enum {
     
     XHTableViewCellSwitchItem *smokeAlertItem = [XHTableViewCellSwitchItem itemWithTitle:@"Smoke"];
     smokeAlertItem.on = self.smokeSwitch;
-    smokeAlertItem.tapSwitch = ^{
-        [self setSwitch:EMSmokeAlertSwitch];
-    };
+    smokeAlertItem.tapSwitch = ^{ [self setSwitch:EMSmokeAlertSwitch]; };
     
     XHTableViewCellSwitchItem *humidityAlertItem = [XHTableViewCellSwitchItem itemWithTitle:@"Humidity"];
     humidityAlertItem.on = self.humiditySwitch;
-    humidityAlertItem.tapSwitch = ^{
-        [self setSwitch:EMHumiAlertSwitch];
-    };
+    humidityAlertItem.tapSwitch = ^{ [self setSwitch:EMHumiAlertSwitch]; };
     
     XHTableViewCellSwitchItem *temperatureAlertItem = [XHTableViewCellSwitchItem itemWithTitle:@"Temperature"];
     temperatureAlertItem.on = self.temperatureSwitch;
-    temperatureAlertItem.tapSwitch = ^{
-        [self setSwitch:EMTempAlertSwitch];
-    };
+    temperatureAlertItem.tapSwitch = ^{ [self setSwitch:EMTempAlertSwitch]; };
     
     group.groupFooter = @"If turn off alert, you can't get important system notification at first.";
-    group.items = @[smokeAlertItem, humidityAlertItem, temperatureAlertItem];
+    group.items = @[ smokeAlertItem, humidityAlertItem, temperatureAlertItem ];
 }
 
 #pragma mark - event

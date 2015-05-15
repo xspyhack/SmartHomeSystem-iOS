@@ -16,10 +16,10 @@
 
 #define XHPickerViewHeight 252
 
-typedef enum {
+typedef enum _EMMessageType {
     EMAlert = 0,
     EMText = 1
-}EMMessageType;
+} EMMessageType;
 
 @interface XHNotificationTypeViewController ()
 @property (nonatomic, strong) UILabel *timeLabel;
@@ -49,14 +49,10 @@ typedef enum {
     NSInteger index = [defaults integerForKey:@"XHMessageType"];
     
     XHTableViewCellCheckmarkItem *alertItem = [XHTableViewCellCheckmarkItem itemWithTitle:@"Alert"];
-    alertItem.operation = ^{
-        [self setCheckmark:EMAlert];
-    };
+    alertItem.clicked = ^{ [self setCheckmark:EMAlert]; };
     
     XHTableViewCellCheckmarkItem *textItem = [XHTableViewCellCheckmarkItem itemWithTitle:@"Text"];
-    textItem.operation = ^{
-        [self setCheckmark:EMText];
-    };
+    textItem.clicked = ^{ [self setCheckmark:EMText]; };
     
     if (index == 0) {
         alertItem.type = UITableViewCellAccessoryCheckmark;
@@ -65,7 +61,7 @@ typedef enum {
     }
     
     group.groupHeader = @"Notification Push Type";
-    group.items = @[alertItem, textItem];
+    group.items = @[ alertItem, textItem ];
 }
 
 - (void)setupTimeGroup
@@ -76,11 +72,9 @@ typedef enum {
     
     XHTableViewCellLabelItem *timeItem = [XHTableViewCellLabelItem itemWithTitle:@"Time"];
     timeItem.label = self.timeLabel;
-    timeItem.operation = ^{
-        [self setupTimePicker];
-    };
+    timeItem.clicked = ^{ [self setupTimePicker]; };
 
-    group.items = @[timeItem];
+    group.items = @[ timeItem ];
     group.groupHeader = @"Push Time Setting";
 }
 
@@ -94,9 +88,7 @@ typedef enum {
     XHTimePickerView *timePicker = [[XHTimePickerView alloc] initWithFrame:rect];
     timePicker.startTime = startTime;
     timePicker.endTime = endTime;
-    timePicker.done = ^{
-        [self updateTimeLabel];
-    };
+    timePicker.done = ^{ [self updateTimeLabel]; };
     [timePicker show];
     
     [self.view addSubview:timePicker];

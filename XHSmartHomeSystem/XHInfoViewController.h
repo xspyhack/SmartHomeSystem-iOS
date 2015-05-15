@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class XHTableViewCellGroup;
 
-@interface XHInfoViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface XHInfoViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) XHTableViewCellGroup *group;

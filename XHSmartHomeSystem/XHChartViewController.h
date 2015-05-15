@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XHChartViewController : UIViewController <UIScrollViewDelegate>
+@interface XHChartViewController : UIViewController<UIScrollViewDelegate>
 
 @property (nonatomic, assign) NSInteger roomId;
 

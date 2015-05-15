@@ -10,7 +10,7 @@
 
 @implementation XHColorModel
 
-+ (UIColor *)colorModelWithIndex:(NSInteger)index
++ (UIColor *)colorModelAtIndex:(NSInteger)index
 {
     UIColor *color = [[UIColor alloc] init];
     switch (index) {

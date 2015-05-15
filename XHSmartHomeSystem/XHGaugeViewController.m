@@ -10,18 +10,21 @@
 #import "XHGaugeView.h"
 #import "XHColorTools.h"
 #import "XHButton.h"
+#import "XHRoomModel.h"
+#import "XHRoomTools.h"
+#import "XHSocketThread.h"
 
 #define XHTempViewWidth (self.view.frame.size.width * 0.7)
 
-typedef enum {
+typedef enum _XHRoomId {
     XHParlour = 0,
     XHBedroom = 1,
     XHKitchen = 2,
     XHBathroom = 3
-}XHRoomId;
+} XHRoomId;
 
 
-@interface XHGaugeViewController ()
+@interface XHGaugeViewController ()<XHSocketThreadDelegate>
 
 @property (nonatomic, strong) XHGaugeView *temperatureView;
 @property (nonatomic, strong) XHGaugeView *humidityView;
@@ -31,6 +34,27 @@ typedef enum {
 @end
 
 @implementation XHGaugeViewController
+
+//- (instancetype)init
+//{
+//    if (self = [super init]) {
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateRoomModel:) name:XHUpdateRoomModelNotification object:nil];
+//    }
+//    return self;
+//}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [XHSocketThread shareInstance].delegate = self;
+    //[[XHSocketThread shareInstance] connect];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    //[[XHSocketThread shareInstance] disconnect];
+}
 
 - (void)viewDidLoad
 {
@@ -42,12 +66,7 @@ typedef enum {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    CGRect roomRect = CGRectMake(10, 40, self.view.frame.size.width - 20, 20);
-    _roomNameLabel = [[UILabel alloc] initWithFrame:roomRect];
-    _roomNameLabel.textAlignment = NSTextAlignmentCenter;
-    _roomNameLabel.font = [UIFont boldSystemFontOfSize:19];
-    _roomNameLabel.textColor = [XHColorTools themeColor];
-    [self.view addSubview:_roomNameLabel];
+    [self.view addSubview:self.roomNameLabel];
     
     CGRect tempRect = CGRectMake((width - XHTempViewWidth)/2, 100, XHTempViewWidth, XHTempViewWidth);
     
@@ -64,7 +83,7 @@ typedef enum {
     self.temperatureView.needle.tintColor = [XHColorTools temperatureColor];
     self.temperatureView.textLabel.textColor = [XHColorTools temperatureColor];
     
-    self.temperatureView.value = 7.0;
+    self.temperatureView.value = 30;
     [self.view addSubview:self.temperatureView];
     
     CGRect humiRect = CGRectMake(0, CGRectGetMaxY(tempRect)+50, width/2+10, width/2+10);
@@ -81,7 +100,7 @@ typedef enum {
     self.humidityView.needle.tintColor = [XHColorTools humidityColor];
     self.humidityView.needle.width = 1.0;
     
-    self.humidityView.value = 64.4;
+    self.humidityView.value = 55.5f;
     [self.view addSubview:self.humidityView];
     
     CGRect smokeRect = CGRectMake(width/2-10, CGRectGetMaxY(tempRect)+50, width/2+10, width/2+10);
@@ -98,16 +117,28 @@ typedef enum {
     self.smokeView.needle.tintColor = [XHColorTools smokeColor];
     self.smokeView.needle.width = 1.0;
     
-    self.smokeView.value = 49.4;
+    self.smokeView.value = 9.0;
     [self.view addSubview:self.smokeView];
     
-    XHButton *btn = [[XHButton alloc] initWithFrame:CGRectMake((width - width*0.2)/2, height - width*0.3, width*0.2, width*0.2)];
+    XHButton *button = [[XHButton alloc] initWithFrame:CGRectMake((width - width*0.2)/2, height - width*0.3, width*0.2, width*0.2)];
     
-    [btn setTitle:@"dismiss" forState:UIControlStateNormal];
+    [button setTitle:@"dismiss" forState:UIControlStateNormal];
     
     //[btn setTitleColor:[XHColorTools themeColor] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
+    [button addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+}
+
+- (void)didReadBuffer:(NSString *)buffer
+{
+    XHRoomModel *model = [XHRoomTools roomModelWithString:buffer];
+    
+    // update
+    self.temperatureView.value = [model.temperature floatValue];
+    self.humidityView.value = [model.humidity floatValue];
+    self.smokeView.value = [model.smoke floatValue];
+    self.roomId = model.Id;
+    XHLog(@"update %ld temp: %f", model.Id, [model.temperature floatValue]);
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -115,23 +146,87 @@ typedef enum {
     return UIStatusBarStyleLightContent;
 }
 
+- (void)updateRoomModel:(NSNotification *)notification
+{
+    if ([notification.name isEqualToString:XHUpdateRoomModelNotification]) {
+        NSString *buffer = [notification.userInfo objectForKey:@"BUFFER"];
+        XHRoomModel *model = [XHRoomTools roomModelWithString:buffer];
+        
+        // update
+//        self.roomModel.temperature = model.temperature;
+//        self.roomModel.humidity = model.humidity;
+//        self.roomModel.smoke = model.smoke;
+        self.smokeView.value = [model.temperature floatValue];
+        self.humidityView.value = [model.humidity floatValue];
+        self.smokeView.value = [model.smoke floatValue];
+    }
+}
+
 - (void)dismiss
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)setRoomId:(NSInteger)roomId
+//- (XHRoomModel *)roomModel
+//{
+//    if (!_roomModel) {
+//        _roomModel = [[XHRoomModel alloc] init];
+//    }
+//    return _roomModel;
+//}
+
+//- (void)setRoomModel:(XHRoomModel *)roomModel
+//{
+//    _roomModel = roomModel;
+//    switch (roomModel.Id) {
+//        case XHParlour:
+//            self.roomNameLabel.text = @"Parlour";
+//            break;
+//        case XHBedroom:
+//            self.roomNameLabel.text = @"Bedroom";
+//            break;
+//        case XHKitchen:
+//            self.roomNameLabel.text = @"Kitchen";
+//            break;
+//        case XHBathroom:
+//            self.roomNameLabel.text = @"Bathroom";
+//            break;
+//        default:
+//            break;
+//    }
+//}
+
+- (void)setRoomId:(NSUInteger)roomId
 {
     _roomId = roomId;
-    if (self.roomId == XHParlour) {
-        self.roomNameLabel.text = @"parlour";
-    } else if (_roomId == XHBedroom) {
-        self.roomNameLabel.text = @"bedroom";
-    } else if (_roomId == XHKitchen) {
-        self.roomNameLabel.text = @"kitchen";
-    } else if (_roomId == XHBathroom) {
-        self.roomNameLabel.text = @"bathroom";
+    switch (roomId) {
+        case XHParlour:
+            self.roomNameLabel.text = @"Parlour";
+            break;
+        case XHBedroom:
+            self.roomNameLabel.text = @"Bedroom";
+            break;
+        case XHKitchen:
+            self.roomNameLabel.text = @"Kitchen";
+            break;
+        case XHBathroom:
+            self.roomNameLabel.text = @"Bathroom";
+            break;
+        default:
+            break;
     }
+}
+
+- (UILabel *)roomNameLabel
+{
+    if (!_roomNameLabel) {
+        CGRect roomRect = CGRectMake(10, 40, self.view.frame.size.width - 20, 20);
+        _roomNameLabel = [[UILabel alloc] initWithFrame:roomRect];
+        _roomNameLabel.textAlignment = NSTextAlignmentCenter;
+        _roomNameLabel.font = [UIFont boldSystemFontOfSize:19];
+        _roomNameLabel.textColor = [XHColorTools themeColor];
+    }
+    return _roomNameLabel;
 }
 
 @end

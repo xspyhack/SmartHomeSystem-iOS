@@ -10,11 +10,11 @@
 #import "XHTableViewCellGroup.h"
 #import "XHTableViewCellCheckmarkItem.h"
 
-typedef enum {
+typedef enum _EMEncryptType {
     EMNONE = 0,
     EMMD5 = 1,
     EMAES = 2,
-}EMEncryptType;
+} EMEncryptType;
 
 @implementation XHEncryptTypeViewController
 
@@ -35,18 +35,12 @@ typedef enum {
     NSInteger index = [defaults integerForKey:@"XHEncryptType"];
     
     XHTableViewCellCheckmarkItem *noneItem = [XHTableViewCellCheckmarkItem itemWithTitle:@"None"];
-    noneItem.operation = ^{
-        [self setCheckmark:EMNONE];
-    };
+    noneItem.clicked = ^{ [self setCheckmark:EMNONE]; };
     
     XHTableViewCellCheckmarkItem *md5Itme = [XHTableViewCellCheckmarkItem itemWithTitle:@"MD5"];
-    md5Itme.operation = ^{
-        [self setCheckmark:EMMD5];
-    };
+    md5Itme.clicked = ^{ [self setCheckmark:EMMD5]; };
     XHTableViewCellCheckmarkItem *aesItem = [XHTableViewCellCheckmarkItem itemWithTitle:@"AES"];
-    aesItem.operation = ^{
-        [self setCheckmark:EMAES];
-    };
+    aesItem.clicked = ^{ [self setCheckmark:EMAES]; };
     
     if (index == EMNONE) {
         noneItem.type = UITableViewCellAccessoryCheckmark;
@@ -56,7 +50,7 @@ typedef enum {
         aesItem.type = UITableViewCellAccessoryCheckmark;
     }
     
-    group.items = @[noneItem, md5Itme, aesItem];
+    group.items = @[ noneItem, md5Itme, aesItem ];
 }
 
 - (void)setCheckmark:(NSInteger)index

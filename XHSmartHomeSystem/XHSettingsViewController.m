@@ -47,9 +47,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"settings" style:UIBarButtonItemStyleDone target:self action:@selector(settings)];
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"settings" highLightedImageName:@"nav_setting_highLighted" target:self action:@selector(settings)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"settings" highLightedImageName:@"nav_setting_highLighted" target:self action:@selector(settingsButtonItemClicked)];
     
-    _themeColor = [XHColorTools themeColor];
+    self.themeColor = [XHColorTools themeColor];
     
     [self setupData];
     [self setupTableViewCellGroup];
@@ -95,7 +95,7 @@
 
     CGRect logoRect = CGRectMake((viewWidth - XHLogoViewWidthAndHeight)/2, 10, XHLogoViewWidthAndHeight, XHLogoViewWidthAndHeight);
     self.logoView = [[XHImageView alloc] initWithFrame:logoRect];
-    self.logoView.color = _themeColor;
+    self.logoView.color = self.themeColor;
     self.logoView.progress = 0.7f;
     self.logoView.imageName = @"logo";
     self.logoView.userInteractionEnabled = YES; // must set user interaction enable
@@ -144,20 +144,20 @@
     [self.groups addObject:group];
     
     XHTableViewCellArrowItem *generalItem = [XHTableViewCellArrowItem itemWithTitle:@"General" iconName:@"general"];
-    generalItem.destViewContorller = [XHGeneralSettingsViewController class];
+    generalItem.destinationContorller = [XHGeneralSettingsViewController class];
     
     XHTableViewCellArrowItem *themeItem = [XHTableViewCellArrowItem itemWithTitle:@"Theme" iconName:@"general"];
     /**themeItem.operation = ^{
         XHThemeViewController *tVC = [[XHThemeViewController alloc] init];
         [self presentViewController:tVC animated:YES completion:nil];
     };*/
-    themeItem.destViewContorller = [XHThemeViewController class];
+    themeItem.destinationContorller = [XHThemeViewController class];
     
     XHTableViewCellArrowItem *notificationItem = [XHTableViewCellArrowItem itemWithTitle:@"Notifications" iconName:@"notification"];
-    notificationItem.destViewContorller = [XHNotificationsViewController class];
+    notificationItem.destinationContorller = [XHNotificationsViewController class];
     
     XHTableViewCellArrowItem *securityItem = [XHTableViewCellArrowItem itemWithTitle:@"Security" iconName:@"security"];
-    securityItem.destViewContorller = [XHSecurityViewController class];
+    securityItem.destinationContorller = [XHSecurityViewController class];
     
     group.items = @[generalItem, themeItem, notificationItem, securityItem];
 }
@@ -168,9 +168,9 @@
     [self.groups addObject:group];
     
     XHTableViewCellArrowItem *aboutItem = [XHTableViewCellArrowItem itemWithTitle:@"About" iconName:@"about"];
-    aboutItem.destViewContorller = [XHAboutViewController class];
+    aboutItem.destinationContorller = [XHAboutViewController class];
     
-    group.items = @[aboutItem];
+    group.items = @[ aboutItem ];
 }
 
 - (void)setupLinkOutGroup
@@ -282,15 +282,15 @@
 {
     XHTableViewCellGroup *group = self.groups[indexPath.section];
     XHTableViewCellItem *item = group.items[indexPath.row];
-    if (item.destViewContorller) {
-        UIViewController *destVC = [[item.destViewContorller alloc] init];
+    if (item.destinationContorller) {
+        UIViewController *destVC = [[item.destinationContorller alloc] init];
         destVC.title = item.title;
         [self.navigationController pushViewController:destVC animated:YES];
     }
     
     // has it method that needs to be call.
-    if (item.operation) {
-        item.operation();
+    if (item.clicked) {
+        item.clicked();
     }
     [self performSelector:@selector(deselect) withObject:nil afterDelay:0.1f]; // deselect
 }
@@ -339,7 +339,7 @@
     }
 }
 
-- (void)settings
+- (void)settingsButtonItemClicked
 {
     XHLog(@"settings");
 }

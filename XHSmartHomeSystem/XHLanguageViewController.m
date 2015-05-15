@@ -11,11 +11,11 @@
 #import "XHTableViewCellItem.h"
 #import "XHTableViewCellCheckmarkItem.h"
 
-typedef enum {
+typedef enum _EMLanguage{
     EMEnglish = 0,
     EMChinese = 1,
     EMSystem = 2,
-}EMLanguage;
+} EMLanguage;
 
 @implementation XHLanguageViewController
 
@@ -35,19 +35,13 @@ typedef enum {
     NSInteger index = [defaults integerForKey:@"Language"];
     
     XHTableViewCellCheckmarkItem *englishCheckmark = [XHTableViewCellCheckmarkItem itemWithTitle:@"English"];
-    englishCheckmark.operation = ^{
-        [self setCheckmark:EMEnglish];
-    };
+    englishCheckmark.clicked = ^{ [self setCheckmark:EMEnglish]; };
     
     XHTableViewCellCheckmarkItem *chineseCheckmark = [XHTableViewCellCheckmarkItem itemWithTitle:@"简体中文"];
-    chineseCheckmark.operation = ^{
-        [self setCheckmark:EMChinese];
-    };
+    chineseCheckmark.clicked = ^{ [self setCheckmark:EMChinese]; };
     
     XHTableViewCellCheckmarkItem *systemCheckmark = [XHTableViewCellCheckmarkItem itemWithTitle:@"System default"];
-    systemCheckmark.operation = ^{
-        [self setCheckmark:EMSystem];
-    };
+    systemCheckmark.clicked = ^{ [self setCheckmark:EMSystem]; };
     
     if (index == EMEnglish) {
         englishCheckmark.type = UITableViewCellAccessoryCheckmark;

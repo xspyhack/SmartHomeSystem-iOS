@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XHNewFeatureViewController : UIViewController <UIScrollViewDelegate>
+@interface XHNewFeatureViewController : UIViewController<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic, strong) UIScrollView *scrollView;

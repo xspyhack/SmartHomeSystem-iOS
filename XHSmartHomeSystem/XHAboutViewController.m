@@ -60,10 +60,10 @@
     XHTableViewCellArrowItem *rateItem = [XHTableViewCellArrowItem itemWithTitle:@"Rate"];
     XHTableViewCellArrowItem *aboutItem = [XHTableViewCellArrowItem itemWithTitle:@"About"];
     XHTableViewCellArrowItem *feedbackItem = [XHTableViewCellArrowItem itemWithTitle:@"Feedback"];
-    feedbackItem.destViewContorller = [XHFeedbackViewController class];
+    feedbackItem.destinationContorller = [XHFeedbackViewController class];
     XHTableViewCellArrowItem *helpItem = [XHTableViewCellArrowItem itemWithTitle:@"Help"];
     
-    self.group.items = @[rateItem, aboutItem, feedbackItem, helpItem];
+    self.group.items = @[ rateItem, aboutItem, feedbackItem, helpItem ];
 }
 
 - (void)setupFooterView

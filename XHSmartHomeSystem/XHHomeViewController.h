@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XHHomeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, copy) NSMutableArray *modelCells;
-@property (nonatomic, copy) NSMutableArray *model;
+@interface XHHomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @end

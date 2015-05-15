@@ -12,9 +12,9 @@
 #import "XHMessagesViewController.h"
 #import "XHSettingsViewController.h"
 #import "XHColorTools.h"
+#import "XHSocketThread.h"
 
-
-@interface XHTabBarController ()
+@interface XHTabBarController ()<XHSocketThreadDelegate>
 
 @end
 
@@ -25,7 +25,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.tabBar.tintColor = [XHColorTools themeColor];
+    [XHSocketThread shareInstance].delegate = self;
+    [[XHSocketThread shareInstance] connect];
+    
     [self setupSubViewController];
+}
+
+- (void)dealloc
+{
+    XHLocate();
 }
 
 - (void)setupSubViewController

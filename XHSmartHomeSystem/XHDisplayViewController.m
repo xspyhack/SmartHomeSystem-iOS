@@ -15,10 +15,10 @@
 #import "XHValueViewController.h"
 
 #define XHColorsViewHeight (self.view.frame.size.width + 10)
-typedef enum {
+typedef enum _EMSwitch {
     EMChartModeSwitch = 0,
     EMGaugeModeSwitch = 1
-}EMSwitch;
+} EMSwitch;
 
 @interface XHDisplayViewController ()
 @property (nonatomic, strong) XHTableViewCellArrowItem *tempRangeItem;
@@ -99,15 +99,11 @@ typedef enum {
     
     XHTableViewCellSwitchItem *chartItem = [XHTableViewCellSwitchItem itemWithTitle:@"Line chart mode"];
     chartItem.on = self.chartSwitch;
-    chartItem.tapSwitch = ^{
-        [self setSwitch:EMChartModeSwitch];
-    };
+    chartItem.tapSwitch = ^{ [self setSwitch:EMChartModeSwitch]; };
     
     XHTableViewCellSwitchItem *gaugeItem = [XHTableViewCellSwitchItem itemWithTitle:@"Gauge mode"];
     gaugeItem.on = self.gaugeSwitch;
-    gaugeItem.tapSwitch = ^{
-        [self setSwitch:EMGaugeModeSwitch];
-    };
+    gaugeItem.tapSwitch = ^{ [self setSwitch:EMGaugeModeSwitch]; };
     
     group.items = @[chartItem, gaugeItem];
 }
@@ -122,30 +118,28 @@ typedef enum {
     
     XHTableViewCellArrowItem *lineWidthItem = [XHTableViewCellArrowItem itemWithTitle:@"Line width"];
     lineWidthItem.detail = [NSString stringWithFormat:@"%.2f", self.lineWidth];
-    lineWidthItem.operation = ^{
-        [self.lineView pullDown:0.5f];
-    };
+    lineWidthItem.clicked = ^{ [self.lineView pullDown:0.5f]; };
     
     XHTableViewCellArrowItem *tempColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Temperature color"];
-    tempColorItem.operation = ^{
+    tempColorItem.clicked = ^{
         self.colorsView.master = @"XHTemperatureColor";
         [self.colorsView pullDown:0.5f];
     };
     
     XHTableViewCellArrowItem *humiColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Humidity color"];
-    humiColorItem.operation = ^{
+    humiColorItem.clicked = ^{
         self.colorsView.master = @"XHHumidityColor";
         [self.colorsView pullDown:0.5f];
     };
     
     XHTableViewCellArrowItem *smokeColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Smoke color"];
-    smokeColorItem.operation = ^{
+    smokeColorItem.clicked = ^{
         self.colorsView.master = @"XHSmokeColor";
         [self.colorsView pullDown:0.5f];
     };
     
     group.groupHeader = @"Brush";
-    group.items = @[lineWidthItem, tempColorItem, humiColorItem, smokeColorItem];
+    group.items = @[ lineWidthItem, tempColorItem, humiColorItem, smokeColorItem ];
 }
 
 - (void)setupRangeGroup
@@ -157,19 +151,19 @@ typedef enum {
     
     self.tempRangeItem = [XHTableViewCellArrowItem itemWithTitle:@"Temperature"];
     self.tempRangeItem.detail = self.tempRange;
-    self.tempRangeItem.destViewContorller = [XHValueViewController class];
+    self.tempRangeItem.destinationContorller = [XHValueViewController class];
     
     self.humiRangeItem = [XHTableViewCellArrowItem itemWithTitle:@"Humidity"];
     self.humiRangeItem.detail = self.humiRange;
-    self.humiRangeItem.destViewContorller = [XHValueViewController class];
+    self.humiRangeItem.destinationContorller = [XHValueViewController class];
     
     self.smokeRangeItem = [XHTableViewCellArrowItem itemWithTitle:@"Smoke"];
     self.smokeRangeItem.detail = self.smokeRange;
-    self.smokeRangeItem.destViewContorller = [XHValueViewController class];
+    self.smokeRangeItem.destinationContorller = [XHValueViewController class];
     
     group.groupHeader = @"Range";
     group.groupFooter = @"Setup max or min value which will show in line chart or gauge chart can help system more accurately to show data.";
-    group.items = @[self.tempRangeItem, self.humiRangeItem, self.smokeRangeItem];
+    group.items = @[ self.tempRangeItem, self.humiRangeItem, self.smokeRangeItem ];
 }
 
 #pragma mark - private methods

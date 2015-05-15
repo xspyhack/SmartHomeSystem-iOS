@@ -10,7 +10,7 @@
 #import "XHTableViewCellGroup.h"
 #import "XHTableViewCellArrowItem.h"
 #import "XHTableViewCellSwitchItem.h"
-#import "XHAboutViewController.h"
+#import "XHGatewayViewController.h"
 #import "XHDisplayViewController.h"
 #import "XHFeaturesViewController.h"
 #import "XHLanguageViewController.h"
@@ -40,16 +40,16 @@
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellArrowItem *generalItem = [XHTableViewCellArrowItem itemWithTitle:@"General"];
-    generalItem.destViewContorller = [XHAboutViewController class];
+    XHTableViewCellArrowItem *gatewayItem = [XHTableViewCellArrowItem itemWithTitle:@"Gateway"];
+    gatewayItem.destinationContorller = [XHGatewayViewController class];
     
     XHTableViewCellArrowItem *displayItem = [XHTableViewCellArrowItem itemWithTitle:@"Display"];
-    displayItem.destViewContorller = [XHDisplayViewController class];
+    displayItem.destinationContorller = [XHDisplayViewController class];
     
     XHTableViewCellArrowItem *featureItem = [XHTableViewCellArrowItem itemWithTitle:@"Features"];
-    featureItem.destViewContorller = [XHFeaturesViewController class];
+    featureItem.destinationContorller = [XHFeaturesViewController class];
     
-    group.items = @[generalItem, displayItem, featureItem];
+    group.items = @[ gatewayItem, displayItem, featureItem ];
 }
 
 - (void)setupLanguageGroup
@@ -57,22 +57,22 @@
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    _languageItem = [XHTableViewCellArrowItem itemWithTitle:@"Language"];
-    _languageItem.destViewContorller = [XHLanguageViewController class];
+    self.languageItem = [XHTableViewCellArrowItem itemWithTitle:@"Language"];
+    self.languageItem.destinationContorller = [XHLanguageViewController class];
     
-    group.items = @[_languageItem];
+    group.items = @[ self.languageItem ];
 }
 
 - (void)setupWipeCacheGroup
 {
     CGRect rect = CGRectMake(0, 15, self.view.frame.size.width, 40);
-    UIButton *wipeCacheBtn = [[UIButton alloc] initWithFrame:rect];
-    wipeCacheBtn.backgroundColor = [XHColorTools themeColor];
-    [wipeCacheBtn setTitle:@"Wipe cache partition" forState:UIControlStateNormal];
-    [wipeCacheBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [wipeCacheBtn addTarget:self action:@selector(wipeCache) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *wipeCacheButton = [[UIButton alloc] initWithFrame:rect];
+    wipeCacheButton.backgroundColor = [XHColorTools themeColor];
+    [wipeCacheButton setTitle:@"Wipe cache partition" forState:UIControlStateNormal];
+    [wipeCacheButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [wipeCacheButton addTarget:self action:@selector(wipeCacheButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
-    self.tableView.tableFooterView = wipeCacheBtn;
+    self.tableView.tableFooterView = wipeCacheButton;
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -112,7 +112,7 @@
 
 #pragma mark - event response
 
-- (void)wipeCache
+- (void)wipeCacheButtonClicked
 {
     NSString *msg = @"It will wipe all your cache.";
     
