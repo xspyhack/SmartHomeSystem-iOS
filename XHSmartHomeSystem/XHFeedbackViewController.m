@@ -40,11 +40,11 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     if (result == MFMailComposeResultCancelled) {
-        XHLog(@"cancel");
+        [self showAlert:@"Cancelled"];
     } else if (result == MFMailComposeResultSent) {
-        XHLog(@"sent");
+        [self showAlert:@"Sent"];
     } else if (result == MFMailComposeResultFailed) {
-        XHLog(@"failed");
+        [self showAlert:@"Send email failed"];
     } else {
         XHLog(@"nothing");
     }
@@ -104,6 +104,16 @@
         message = [error description];
     }
     XHLog(@"%@", message);
+}
+
+- (void)showAlert:(NSString *)message
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message"
+                                                    message:message
+                                                   delegate:self
+                                          cancelButtonTitle:nil
+                                          otherButtonTitles:@"OK", nil];
+    [alert show];
 }
 
 @end

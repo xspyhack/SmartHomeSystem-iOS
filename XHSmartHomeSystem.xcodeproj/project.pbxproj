@@ -91,6 +91,7 @@
 		78E6149F1AE5EDCF00191132 /* XHLineChartItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6149E1AE5EDCF00191132 /* XHLineChartItem.m */; };
 		78E614D71AE6447100191132 /* XHGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E614D61AE6447100191132 /* XHGaugeView.m */; };
 		78F456AA1B05B613008B4FC5 /* XHGatewayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F456A91B05B613008B4FC5 /* XHGatewayViewController.m */; };
+		78F456AD1B05E6F2008B4FC5 /* XHDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F456AC1B05E6F2008B4FC5 /* XHDatabase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -272,6 +273,8 @@
 		78E614D61AE6447100191132 /* XHGaugeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHGaugeView.m; sourceTree = "<group>"; };
 		78F456A81B05B613008B4FC5 /* XHGatewayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHGatewayViewController.h; sourceTree = "<group>"; };
 		78F456A91B05B613008B4FC5 /* XHGatewayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHGatewayViewController.m; sourceTree = "<group>"; };
+		78F456AB1B05E6F2008B4FC5 /* XHDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHDatabase.h; sourceTree = "<group>"; };
+		78F456AC1B05E6F2008B4FC5 /* XHDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHDatabase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,6 +375,8 @@
 				78266C4A1AFB543600D9A584 /* FMDB.h */,
 				78266C4B1AFB543600D9A584 /* FMResultSet.h */,
 				78266C4C1AFB543600D9A584 /* FMResultSet.m */,
+				78F456AB1B05E6F2008B4FC5 /* XHDatabase.h */,
+				78F456AC1B05E6F2008B4FC5 /* XHDatabase.m */,
 			);
 			name = FMDB;
 			sourceTree = "<group>";
@@ -835,6 +840,7 @@
 				78266C511AFB543600D9A584 /* FMResultSet.m in Sources */,
 				7866FADB1AE8C6A100250478 /* XHFeaturesViewController.m in Sources */,
 				78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */,
+				78F456AD1B05E6F2008B4FC5 /* XHDatabase.m in Sources */,
 				78C13B9C1ADA6D370020AAFA /* XHImageView.m in Sources */,
 				7855315E1ADF907300080703 /* XHGeneralSettingsViewController.m in Sources */,
 				786E90571ADCBD6000A93675 /* UUMessageContentButton.m in Sources */,

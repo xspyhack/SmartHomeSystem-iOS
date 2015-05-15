@@ -35,14 +35,6 @@ typedef enum _XHRoomId {
 
 @implementation XHGaugeViewController
 
-//- (instancetype)init
-//{
-//    if (self = [super init]) {
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateRoomModel:) name:XHUpdateRoomModelNotification object:nil];
-//    }
-//    return self;
-//}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -52,7 +44,7 @@ typedef enum _XHRoomId {
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
+    //[super viewWillDisappear:animated];
     //[[XHSocketThread shareInstance] disconnect];
 }
 
@@ -67,6 +59,7 @@ typedef enum _XHRoomId {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     [self.view addSubview:self.roomNameLabel];
+    [self updateRoomNameLabel];
     
     CGRect tempRect = CGRectMake((width - XHTempViewWidth)/2, 100, XHTempViewWidth, XHTempViewWidth);
     
@@ -138,7 +131,7 @@ typedef enum _XHRoomId {
     self.humidityView.value = [model.humidity floatValue];
     self.smokeView.value = [model.smoke floatValue];
     self.roomId = model.Id;
-    XHLog(@"update %ld temp: %f", model.Id, [model.temperature floatValue]);
+    [self updateRoomNameLabel];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -153,9 +146,6 @@ typedef enum _XHRoomId {
         XHRoomModel *model = [XHRoomTools roomModelWithString:buffer];
         
         // update
-//        self.roomModel.temperature = model.temperature;
-//        self.roomModel.humidity = model.humidity;
-//        self.roomModel.smoke = model.smoke;
         self.smokeView.value = [model.temperature floatValue];
         self.humidityView.value = [model.humidity floatValue];
         self.smokeView.value = [model.smoke floatValue];
@@ -196,10 +186,9 @@ typedef enum _XHRoomId {
 //    }
 //}
 
-- (void)setRoomId:(NSUInteger)roomId
+- (void)updateRoomNameLabel
 {
-    _roomId = roomId;
-    switch (roomId) {
+    switch (self.roomId) {
         case XHParlour:
             self.roomNameLabel.text = @"Parlour";
             break;
@@ -215,6 +204,11 @@ typedef enum _XHRoomId {
         default:
             break;
     }
+}
+
+- (void)setRoomId:(NSUInteger)roomId
+{
+    _roomId = roomId;
 }
 
 - (UILabel *)roomNameLabel

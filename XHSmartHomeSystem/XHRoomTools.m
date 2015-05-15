@@ -8,6 +8,7 @@
 
 #import "XHRoomTools.h"
 #import "XHRoomModel.h"
+#import "XHDatabase.h"
 
 @implementation XHRoomTools
 
@@ -63,7 +64,84 @@
     } else {
         return @":D";
     }
+}
+
++ (NSArray *)recentWeekWithRoomId:(NSUInteger)roomId;
+{
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %lu ORDER BY id LIMIT 0, 8", roomId];
+    XHDatabase *db = [[XHDatabase alloc] init];
+    return [db executeQuery:sql];
+}
+
++ (NSArray *)recentMonthWithRoomId:(NSUInteger)roomId
+{
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %lu ORDER BY id LIMIT 0, 30", roomId];
+    XHDatabase *db = [[XHDatabase alloc] init];
+    return [db executeQuery:sql];
+}
+
++ (NSArray *)recentYearWithRoomId:(NSUInteger)roomId
+{
+    NSString *sql = [NSString stringWithFormat:@"%lu", roomId];
+    XHDatabase *db = [[XHDatabase alloc] init];
+    return [db executeQuery:sql];
+}
+
++ (NSDictionary *)weekDataWithRoomId:(NSUInteger)roomId
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    //NSArray *array = [self recentWeekWithRoomId:roomId];
+    //dictionary[@"temperture"] = [self averageWithArray:array index:@"temperature"];
+    return dictionary;
+}
+
++ (NSDictionary *)monthDataWithRoomId:(NSUInteger)roomId
+{
+    return nil;
+}
+
++ (NSDictionary *)yearDataWithRoomId:(NSUInteger)roomId
+{
+    return nil;
+}
+
++ (CGFloat)averageWithArray:(NSArray *)array index:(NSString *)index
+{
+    float count;
+    for (NSDictionary *dict in array) {
+        count += [dict[index] floatValue];
+    }
     
+    return count / [array count];
+}
+
++ (float)maxWithArray:(NSArray *)array index:(NSString *)index
+{
+    float max = -100.0f;
+    for (NSDictionary *dict in array) {
+        if (max < [dict[index] floatValue]) {
+            max = [dict[index] floatValue];
+        }
+    }
+    
+    return max;
+}
+
++ (float)minWithArray:(NSArray *)array index:(NSString *)index
+{
+    float min = 100.0f;
+    for (NSDictionary *dict in array) {
+        if (min > [dict[index] floatValue]) {
+            min = [dict[index] floatValue];
+        }
+    }
+    
+    return min;
+}
+
++ (NSArray *)sort:(NSArray *)array
+{
+    return nil;
 }
 
 @end

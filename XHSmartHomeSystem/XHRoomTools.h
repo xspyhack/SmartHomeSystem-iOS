@@ -7,10 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 @class XHRoomModel;
 
 @interface XHRoomTools : NSObject
 
 + (XHRoomModel *)roomModelWithString:(NSString *)aString;
+
+/* 
+ return recent week/month/year data
+ */
++ (NSArray *)recentWeekWithRoomId:(NSUInteger)roomId;
++ (NSArray *)recentMonthWithRoomId:(NSUInteger)roomId;
++ (NSArray *)recentYearWithRoomId:(NSUInteger)roomId;
+
+/*
+ retuan average/max/min value
+ */
++ (NSDictionary *)weekDataWithRoomId:(NSUInteger)roomId;
++ (NSDictionary *)monthDataWithRoomId:(NSUInteger)roomId;
++ (NSDictionary *)yearDataWithRoomId:(NSUInteger)roomId;
 
 @end

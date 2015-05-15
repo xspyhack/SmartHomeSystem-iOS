@@ -42,7 +42,7 @@ enum _DisconnectByWho {
     //_socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *err = nil;
     if (![self.socket connectToHost:self.host onPort:12345 error:&err]) {
-        NSLog(@"connect fail: %@", err.description);
+        [self showAlert:[NSString stringWithFormat:@"Connect to %@ failed. Error: %@", self.host, err.description]];
     } else {
         NSLog(@"connecting");
     }
@@ -51,7 +51,7 @@ enum _DisconnectByWho {
 - (void)disconnect
 {
     //self.socket.userData = DisconnectByUser;
-    XHLog(@"disconnect");
+    [self showAlert:@"Disconnection"];
     if ([self.socket isConnected]) {
         [self.socket disconnect];
     }
@@ -145,6 +145,16 @@ enum _DisconnectByWho {
         _port = [[NSUserDefaults standardUserDefaults] integerForKey:@"XHPort"];
     }
     return _port;
+}
+
+- (void)showAlert:(NSString *)message
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                    message:message
+                                                   delegate:self
+                                          cancelButtonTitle:nil
+                                          otherButtonTitles:@"OK", nil];
+    [alert show];
 }
 
 @end

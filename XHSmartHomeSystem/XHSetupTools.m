@@ -8,6 +8,7 @@
 
 #import "XHSetupTools.h"
 #import "XHCryptTools.h"
+#import "XHDatabase.h"
 
 @implementation XHSetupTools
 
@@ -18,6 +19,16 @@
     
     if (!xh) {
         //
+        XHDatabase *db = [[XHDatabase alloc] init];
+        [db createTable];
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 10; j++) {
+                NSString *sql = [NSString stringWithFormat:@"INSERT INTO XHRoom('roomId', 'roomName', 'temperature', 'humidity', 'smoke') VALUES(%d, '%d', '%d', '%d', '%d')", i, i, 10+i*j, i*j+1, i*j+1];
+                [db executeNonQuery:sql];
+
+            }
+        }
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [self setUserDefaults];
         });
