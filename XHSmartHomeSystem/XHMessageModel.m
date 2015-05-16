@@ -9,47 +9,16 @@
 #import "XHMessageModel.h"
 #import "UUMessage.h"
 #import "UUMessageFrame.h"
+#import "XHMessageTools.h"
 
 @implementation XHMessageModel
 
 - (void)populateRandomDataSource {
     self.dataSource = [NSMutableArray array];
-    [self.dataSource addObjectsFromArray:[self additems:5]];
-}
-
-- (void)addRandomItemsToDataSource:(NSInteger)number{
-    
-    for (int i=0; i<number; i++) {
-        [self.dataSource insertObject:[[self additems:1] firstObject] atIndex:0];
-    }
-}
-
-// 添加自己的item
-- (void)addSpecifiedItem:(NSDictionary *)dic
-{
-    UUMessageFrame *messageFrame = [[UUMessageFrame alloc]init];
-    UUMessage *message = [[UUMessage alloc] init];
-    NSMutableDictionary *dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-    
-    NSString *URLStr = @"http://img0.bdstatic.com/img/image/shouye/xinshouye/mingxing16.jpg";
-    [dataDic setObject:@(UUMessageFromMe) forKey:@"from"];
-    [dataDic setObject:[[NSDate date] description] forKey:@"strTime"];
-    [dataDic setObject:@"Hello,Sister" forKey:@"strName"];
-    [dataDic setObject:URLStr forKey:@"strIcon"];
-    
-    [message setWithDict:dataDic];
-    [message minuteOffSetStart:previousTime end:dataDic[@"strTime"]];
-    messageFrame.showTime = message.showDateLabel;
-    [messageFrame setMessage:message];
-    
-    if (message.showDateLabel) {
-        previousTime = dataDic[@"strTime"];
-    }
-    [self.dataSource addObject:messageFrame];
+    [self.dataSource addObjectsFromArray:[self getMessages]];
 }
 
 // 添加聊天item（一个cell内容）
-static NSString *previousTime = nil;
 - (NSArray *)additems:(NSInteger)number
 {
     NSMutableArray *result = [NSMutableArray array];
@@ -71,6 +40,54 @@ static NSString *previousTime = nil;
     }
     return result;
 }
+
+static NSString *previousTime = nil;
+- (NSArray *)getMessages
+{
+    NSMutableArray *messages = [NSMutableArray array];
+    NSArray *arrays = [XHMessageTools latestMessageWithNumber:10];
+    for (NSMutableDictionary *dict in arrays) {
+        [dict setObject:@(UUMessageFromOther) forKey:@"from"];
+        
+        UUMessageFrame *messageFrame = [[UUMessageFrame alloc] init];
+        UUMessage *message = [[UUMessage alloc] init];
+        [message setWithDict:dict];
+        [message minuteOffSetStart:previousTime end:dict[@"strTime"]];
+        messageFrame.showTime = message.showDateLabel;
+        [messageFrame setMessage:message];
+        if (message.showDateLabel) {
+            previousTime = dict[@"strTime"];
+        }
+        
+        [messages addObject:messageFrame];
+    }
+    return messages;
+}
+
+//// 添加自己的item
+//- (void)addSpecifiedItem:(NSDictionary *)dic
+//{
+//    UUMessageFrame *messageFrame = [[UUMessageFrame alloc]init];
+//    UUMessage *message = [[UUMessage alloc] init];
+//    NSMutableDictionary *dataDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+//    
+//    NSString *URLStr = @"http://img0.bdstatic.com/img/image/shouye/xinshouye/mingxing16.jpg";
+//    [dataDic setObject:@(UUMessageFromMe) forKey:@"from"];
+//    [dataDic setObject:[[NSDate date] description] forKey:@"strTime"];
+//    [dataDic setObject:@"Hello,Sister" forKey:@"strName"];
+//    [dataDic setObject:URLStr forKey:@"strIcon"];
+//    
+//    [message setWithDict:dataDic];
+//    [message minuteOffSetStart:previousTime end:dataDic[@"strTime"]];
+//    messageFrame.showTime = message.showDateLabel;
+//    [messageFrame setMessage:message];
+//    
+//    if (message.showDateLabel) {
+//        previousTime = dataDic[@"strTime"];
+//    }
+//    [self.dataSource addObject:messageFrame];
+//}
+
 
 // 如下:群聊（groupChat）
 static int dateNum = 10;

@@ -113,7 +113,7 @@ enum _DisconnectByWho {
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
 {
-    XHLog(@"didDisconnect with error: %@", err.description);
+    [self showAlert:[NSString stringWithFormat:@"Disconnect with error: %@", err.description]];
 //    if ((int)sock.userData == DisconnectByServer) {
 //        // reconnect
 //        [self connect];
@@ -151,7 +151,7 @@ enum _DisconnectByWho {
 
 - (void)showAlert:(NSString *)message
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket"
                                                     message:message
                                                    delegate:self
                                           cancelButtonTitle:nil

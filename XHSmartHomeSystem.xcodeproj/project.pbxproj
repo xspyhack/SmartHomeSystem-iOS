@@ -29,6 +29,7 @@
 		783AF3A91AEB730F0090A81B /* XHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783AF3A81AEB730F0090A81B /* XHTabBarController.m */; };
 		783AF3AC1AEB735D0090A81B /* XHNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783AF3AB1AEB735D0090A81B /* XHNavigationController.m */; };
 		784707E91B06F063004D9420 /* XHCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784707E81B06F063004D9420 /* XHCoordinateView.m */; };
+		784707EC1B0781E0004D9420 /* XHMessageTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 784707EB1B0781E0004D9420 /* XHMessageTools.m */; };
 		785531421ADE583B00080703 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531411ADE583B00080703 /* UIBarButtonItem+Extension.m */; };
 		785531461ADF501600080703 /* XHTableViewCellGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531451ADF501600080703 /* XHTableViewCellGroup.m */; };
 		785531491ADF50BE00080703 /* XHTableViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531481ADF50BE00080703 /* XHTableViewCellItem.m */; };
@@ -151,6 +152,8 @@
 		783AF3AB1AEB735D0090A81B /* XHNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHNavigationController.m; sourceTree = "<group>"; };
 		784707E71B06F063004D9420 /* XHCoordinateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHCoordinateView.h; sourceTree = "<group>"; };
 		784707E81B06F063004D9420 /* XHCoordinateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHCoordinateView.m; sourceTree = "<group>"; };
+		784707EA1B0781E0004D9420 /* XHMessageTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHMessageTools.h; sourceTree = "<group>"; };
+		784707EB1B0781E0004D9420 /* XHMessageTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHMessageTools.m; sourceTree = "<group>"; };
 		785531401ADE583B00080703 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		785531411ADE583B00080703 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		785531441ADF501600080703 /* XHTableViewCellGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTableViewCellGroup.h; sourceTree = "<group>"; };
@@ -559,6 +562,8 @@
 				78266C401AFB477400D9A584 /* XHCryptTools.m */,
 				7888C1291B00FC24002AE1B7 /* XHRoomTools.h */,
 				7888C12A1B00FC24002AE1B7 /* XHRoomTools.m */,
+				784707EA1B0781E0004D9420 /* XHMessageTools.h */,
+				784707EB1B0781E0004D9420 /* XHMessageTools.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -852,6 +857,7 @@
 				78266C511AFB543600D9A584 /* FMResultSet.m in Sources */,
 				7866FADB1AE8C6A100250478 /* XHFeaturesViewController.m in Sources */,
 				78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */,
+				784707EC1B0781E0004D9420 /* XHMessageTools.m in Sources */,
 				78F456AD1B05E6F2008B4FC5 /* XHDatabase.m in Sources */,
 				78C13B9C1ADA6D370020AAFA /* XHImageView.m in Sources */,
 				7855315E1ADF907300080703 /* XHGeneralSettingsViewController.m in Sources */,

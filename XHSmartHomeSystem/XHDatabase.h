@@ -18,4 +18,6 @@
 - (void)executeNonQuery:(NSString *)sql;
 - (NSArray *)executeQuery:(NSString *)sql;
 
+- (NSInteger)getCount:(NSString *)sql;
+
 @end

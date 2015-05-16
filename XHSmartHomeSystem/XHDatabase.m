@@ -24,6 +24,9 @@
     if (![fileManager fileExistsAtPath:self.dbPath]) {
         NSString *sql = @"CREATE TABLE 'XHRoom' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, 'roomId' INTEGER, 'roomName' VARCHAR(20), 'temperature' VARCHAR(10), 'humidity' VARCHAR(10), 'smoke' VARCHAR(10), 'date' DATE)";
         [self executeNonQuery:sql];
+        
+        sql = @"CREATE TABLE 'XHMessage' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, 'strId' INTEGER, 'strName' VARCHAR(20), 'strIcon' VARCHAR(200), 'strContent' VARCHAR(10), 'strTime' DATETIME)";
+        [self executeNonQuery:sql];
     }
 }
 
@@ -79,6 +82,21 @@
         XHLog(@"Open database failed.");
         return nil;
     }
+}
+
+- (NSInteger)getCount:(NSString *)sql
+{
+    int count = 0;
+    if ([self open]) {
+        FMResultSet *results = [self.database executeQuery:sql];
+        if ([results next]) {
+            count = [results intForColumnIndex:0];
+        }
+        [self close];
+    } else {
+        XHLog(@"Open database failed.");
+    }
+    return count;
 }
 
 - (NSString *)dbPath

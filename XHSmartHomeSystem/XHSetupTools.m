@@ -26,6 +26,9 @@
             for (int j = 0; j < 10; j++) {
                 NSString *sql = [NSString stringWithFormat:@"INSERT INTO XHRoom('roomId', 'roomName', 'temperature', 'humidity', 'smoke', 'date') VALUES(%d, '%d', '%d', '%d', '%d', '%@')", i, i, 10+i*j, i*j+1, i*j+1, [NSDate stringYearMonthDayWithDate:[NSDate dateYesterday]]];
                 [db executeNonQuery:sql];
+                
+                sql = [NSString stringWithFormat:@"INSERT INTO XHMessage('strId', 'strName', 'strIcon', 'strContent', 'strTime') VALUES(%d, 'Hey,%d', 'headImage', '%@', '%@')", i, j, [self getRandomString], [[NSDate date] description]];
+                [db executeNonQuery:sql];
                 XHLog(@"%@", sql);
             }
         }
@@ -55,6 +58,19 @@
     [defaults setFloat:1.0f forKey:@"XHLineWidth"];
     
     [defaults setObject:@"XH" forKey:@"XH"];
+}
+
++ (NSString *)getRandomString {
+    
+    NSString *lorumIpsum = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non quam ac massa viverra semper. Maecenas mattis justo ac augue volutpat congue. Maecenas laoreet, nulla eu faucibus gravida, felis orci dictum risus, sed sodales sem eros eget risus. Morbi imperdiet sed diam et sodales.";
+    
+    NSArray *lorumIpsumArray = [lorumIpsum componentsSeparatedByString:@" "];
+    
+    int r = arc4random() % [lorumIpsumArray count];
+    r = MAX(6, r); // no less than 6 words
+    NSArray *lorumIpsumRandom = [lorumIpsumArray objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, r)]];
+    
+    return [NSString stringWithFormat:@"%@!!", [lorumIpsumRandom componentsJoinedByString:@" "]];
 }
 
 @end

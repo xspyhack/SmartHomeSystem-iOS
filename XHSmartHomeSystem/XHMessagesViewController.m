@@ -69,8 +69,8 @@
 
 - (void)setupViewsAndData
 {
-    self.msgModel = [[XHMessageModel alloc] init];
-    [self.msgModel populateRandomDataSource];
+    self.messageModel = [[XHMessageModel alloc] init];
+    [self.messageModel populateRandomDataSource];
     
     [self.tableView reloadData];
     [self tableViewScrollToBottom];
@@ -101,7 +101,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.msgModel.dataSource.count;
+    return self.messageModel.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -110,13 +110,13 @@
         cell = [[UUMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"XHMessageCellID"];
         cell.delegate = self;
     }
-    [cell setMessageFrame:self.msgModel.dataSource[indexPath.row]];
+    [cell setMessageFrame:self.messageModel.dataSource[indexPath.row]];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.msgModel.dataSource[indexPath.row] cellHeight];
+    return [self.messageModel.dataSource[indexPath.row] cellHeight];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -145,10 +145,10 @@
 //tableView Scroll to bottom
 - (void)tableViewScrollToBottom
 {
-    if (self.msgModel.dataSource.count == 0)
+    if (self.messageModel.dataSource.count == 0)
         return;
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.msgModel.dataSource.count-1 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.messageModel.dataSource.count-1 inSection:0];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 

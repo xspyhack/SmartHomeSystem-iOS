@@ -69,21 +69,30 @@
 
 + (NSArray *)recentWeekWithRoomId:(NSUInteger)roomId;
 {
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %lu ORDER BY id LIMIT 0, 8", (unsigned long)roomId];
+    NSInteger count = [self getCountWithRoomId:roomId];
+    count = count > 8 ? count : 8;
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %lu ORDER BY id LIMIT %ld, 8", (unsigned long)roomId, (count - 8)];
     XHDatabase *db = [[XHDatabase alloc] init];
     return [db executeQuery:sql];
 }
 
 + (NSArray *)recentMonthWithRoomId:(NSUInteger)roomId
 {
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %lu ORDER BY id LIMIT 0, 30", (unsigned long)roomId];
+    NSInteger count = [self getCountWithRoomId:roomId];
+    count = count > 30 ? count : 30;
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %lu ORDER BY id LIMIT %ld, 30", (unsigned long)roomId, (count - 30)];
     XHDatabase *db = [[XHDatabase alloc] init];
     return [db executeQuery:sql];
 }
 
 + (NSArray *)recentYearWithRoomId:(NSUInteger)roomId
 {
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %lu ORDER BY id LIMIT 0, 365", (unsigned long)roomId];
+    NSInteger count = [self getCountWithRoomId:roomId];
+    count = count > 365 ? count : 365;
+    
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %lu ORDER BY id LIMIT %ld, 365", (unsigned long)roomId, (count - 365)];
     XHDatabase *db = [[XHDatabase alloc] init];
     return [db executeQuery:sql];
 }
@@ -104,6 +113,13 @@
 + (NSDictionary *)yearDataWithRoomId:(NSUInteger)roomId
 {
     return nil;
+}
+
++ (NSUInteger)getCountWithRoomId:(NSUInteger)roomId
+{
+    XHDatabase *db = [[XHDatabase alloc] init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT COUNT(*) FROM XHRoom WHERE roomId = %lu", roomId];
+    return [db getCount:sql];
 }
 
 + (CGFloat)averageWithArray:(NSArray *)array index:(NSString *)index
@@ -149,7 +165,7 @@
 {
     // read the lastest data from database
     XHDatabase *db = [[XHDatabase alloc] init];
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %ld ORDER BY id LIMIT 0, 1", (long)model.Id];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %ld ORDER BY id DESC LIMIT 0, 1", (long)model.Id];
     NSArray *array = [db executeQuery:sql];
     NSDictionary *dict = [NSDictionary dictionary];
     dict = array.lastObject;

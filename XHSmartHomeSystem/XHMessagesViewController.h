@@ -12,6 +12,6 @@
 @interface XHMessagesViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) XHMessageModel *msgModel;
+@property (nonatomic, strong) XHMessageModel *messageModel;
 
 @end
