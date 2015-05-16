@@ -30,6 +30,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:[self isCmdLineMode] forKey:@"XHCmdLineMode"];
 }

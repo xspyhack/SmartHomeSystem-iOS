@@ -44,12 +44,17 @@ typedef enum _XHRoomId {
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    self.temperatureView.value = 30.f;
+    self.humidityView.value = 55.f;
+    self.smokeView.value = 9.f;
+    
     //[super viewWillDisappear:animated];
     //[[XHSocketThread shareInstance] disconnect];
 }
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     //self.navigationController.navigationBar.barTintColor = XHBlackColor;
     //self.navigationController.navigationBar.translucent = NO;
     self.view.backgroundColor = XHBlackColor;
@@ -76,7 +81,7 @@ typedef enum _XHRoomId {
     self.temperatureView.needle.tintColor = [XHColorTools temperatureColor];
     self.temperatureView.textLabel.textColor = [XHColorTools temperatureColor];
     
-    self.temperatureView.value = 30;
+    self.temperatureView.value = 0.f;
     [self.view addSubview:self.temperatureView];
     
     CGRect humiRect = CGRectMake(0, CGRectGetMaxY(tempRect)+50, width/2+10, width/2+10);
@@ -93,7 +98,7 @@ typedef enum _XHRoomId {
     self.humidityView.needle.tintColor = [XHColorTools humidityColor];
     self.humidityView.needle.width = 1.0;
     
-    self.humidityView.value = 55.5f;
+    self.humidityView.value = 0.f;
     [self.view addSubview:self.humidityView];
     
     CGRect smokeRect = CGRectMake(width/2-10, CGRectGetMaxY(tempRect)+50, width/2+10, width/2+10);
@@ -110,7 +115,7 @@ typedef enum _XHRoomId {
     self.smokeView.needle.tintColor = [XHColorTools smokeColor];
     self.smokeView.needle.width = 1.0;
     
-    self.smokeView.value = 9.0;
+    self.smokeView.value = 0.f;
     [self.view addSubview:self.smokeView];
     
     XHButton *button = [[XHButton alloc] initWithFrame:CGRectMake((width - width*0.2)/2, height - width*0.3, width*0.2, width*0.2)];
@@ -120,6 +125,7 @@ typedef enum _XHRoomId {
     //[btn setTitleColor:[XHColorTools themeColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
+    XHLog(@"view did load");
 }
 
 - (void)didReadBuffer:(NSString *)buffer

@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupSubView];
@@ -29,6 +30,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     NSMutableDictionary *tokenDict = [NSMutableDictionary dictionary];
     [tokenDict setObject:self.gatewayView.value.text forKey:@"gateway"];
     [tokenDict setObject:self.passwordView.value.text forKey:@"password"];

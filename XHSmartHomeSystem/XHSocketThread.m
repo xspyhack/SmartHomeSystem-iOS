@@ -42,9 +42,10 @@ enum _DisconnectByWho {
     //_socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *err = nil;
     if (![self.socket connectToHost:self.host onPort:12345 error:&err]) {
+        XHLog(@"connect failed");
         [self showAlert:[NSString stringWithFormat:@"Connect to %@ failed. Error: %@", self.host, err.description]];
     } else {
-        NSLog(@"connecting");
+        XHLog(@"connecting");
     }
 }
 
@@ -106,6 +107,7 @@ enum _DisconnectByWho {
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
 {
     //
+    XHLog(@"write success");
     [self.socket readDataWithTimeout:-1 tag:0];
 }
 

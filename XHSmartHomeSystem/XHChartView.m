@@ -104,18 +104,6 @@ typedef enum {
     self.roomNameLabel.textAlignment = NSTextAlignmentCenter;
     self.roomNameLabel.textColor = [XHColorTools themeColor];
     [self addSubview:self.roomNameLabel];
-    
-    UIButton *refresh = [[UIButton alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(roomRect), self.frame.size.width - 20, 30)];
-    [refresh setTitle:@"refresh" forState:UIControlStateNormal];
-    refresh.backgroundColor = [XHColorTools themeColor];
-    [refresh addTarget:self action:@selector(refresh) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:refresh];
-}
-
-- (void)refresh
-{
-    [self setupDataSource];
-    [self.lineChartView refreshChartWithData:self.dataSource];
 }
 
 - (NSMutableArray *)dataSource

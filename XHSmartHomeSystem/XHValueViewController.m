@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     if (!_master) {
         _master = [NSString stringWithFormat:@"XH%@" ,self.title];
@@ -30,6 +31,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
    
     [defaults setFloat:[self.maxView.value.text floatValue]

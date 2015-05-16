@@ -28,4 +28,6 @@
 + (NSDictionary *)monthDataWithRoomId:(NSUInteger)roomId;
 + (NSDictionary *)yearDataWithRoomId:(NSUInteger)roomId;
 
++ (BOOL)saveIfIsFirstDataToday:(XHRoomModel *)model;
+
 @end

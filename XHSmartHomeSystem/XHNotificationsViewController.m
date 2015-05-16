@@ -50,6 +50,7 @@ typedef enum _EMSwitch {
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
     [self.defaults setBool:self.showSwitch forKey:@"XHShowSwitch"];
     [self.defaults setBool:self.smokeSwitch forKey:@"XHSmokeAlertSwitch"];
     [self.defaults setBool:self.humiditySwitch forKey:@"XHHumidityAlertSwitch"];

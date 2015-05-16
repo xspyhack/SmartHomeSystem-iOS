@@ -12,14 +12,18 @@
 #import "XHChartViewController.h"
 #import "XHGaugeViewController.h"
 #import "XHCmdLineViewController.h"
+#import "XHStatusViewController.h"
 #import "XHSocketThread.h"
 #import "XHRoomTools.h"
+#import "XHDatabase.h"
 
 @interface XHHomeViewController ()<XHSocketThreadDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, copy) NSMutableArray *modelCells;
 @property (nonatomic, copy) NSMutableArray *roomModels;
+@property (nonatomic, getter=isFirstTimeTodayReadData) BOOL firstTimeTodayReadData;
+@property (nonatomic, strong) NSMutableArray *array;
 
 @end
 
@@ -39,26 +43,36 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.firstTimeTodayReadData = YES;
+    
     // set navigationbar button
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_chart_highLighted" target:self action:@selector(chartButtonItemClicked)];
     
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_gauge" highLightedImageName:@"nav_gauge_hightLighted" target:self action:@selector(gaugeButtonItemClicked)];
-    UILongPressGestureRecognizer *longPressGuesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress)];
-    longPressGuesture.minimumPressDuration = 1.5f;
-    [self.navigationItem.leftBarButtonItem.customView addGestureRecognizer:longPressGuesture];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_gauge" highLightedImageName:@"nav_gauge_hightLighted" target:self action:@selector(statusButtonItemClicked)];
+
     
     [self setupData];
     [self setupTabelView];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateRoomModel:) name:XHUpdateRoomModelNotification object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateRoomModel:) name:XHUpdateRoomModelNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     [XHSocketThread shareInstance].delegate = self;
-//    [[XHSocketThread shareInstance] disconnect];
-//    [[XHSocketThread shareInstance] connect];
+    //[[XHSocketThread shareInstance] disconnect];
+    //[[XHSocketThread shareInstance] connect];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"XHCmdLineMode"]) {
+        UILongPressGestureRecognizer *longPressGuesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(barButtonItemLongPress:)];
+        longPressGuesture.minimumPressDuration = 1.0f;
+        [self.navigationItem.leftBarButtonItem.customView addGestureRecognizer:longPressGuesture];
+    } else {
+        for (UIGestureRecognizer *gestureRecognizer in [self.navigationItem.leftBarButtonItem.customView gestureRecognizers]) {
+            [self.navigationItem.leftBarButtonItem.customView removeGestureRecognizer:gestureRecognizer];
+        }
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -140,20 +154,25 @@
 {
     XHRoomModel *model = self.roomModels[indexPath.row];
     
+    // here use GCD to present ViewController, if not ,it will delay...
     dispatch_async(dispatch_get_main_queue(), ^ {
         XHGaugeViewController *gVC = [[XHGaugeViewController alloc] init];
         gVC.roomId = model.Id;
         [self presentViewController:gVC animated:YES completion:nil]; // modal
     });
-    
-//    XHGaugeViewController *gVC = [[XHGaugeViewController alloc] init];
-//    gVC.roomId = model.Id;
-//    [self.navigationController pushViewController:gVC animated:YES];
 }
 
 - (void)didReadBuffer:(NSString *)buffer
 {
     XHRoomModel *model = [XHRoomTools roomModelWithString:buffer];
+    
+    if (![self isExists:model.Id]) {
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            if ([XHRoomTools saveIfIsFirstDataToday:model]) {
+                XHLog(@"first data today");
+            }
+        });
+    }
     
     // update row
     XHRoomModel *roomModel = self.roomModels[model.Id];
@@ -187,20 +206,18 @@
 //    }
 //}
 
-- (void)gaugeButtonItemClicked
+- (void)statusButtonItemClicked
 {
-    //XHGaugeViewController *gVC = [[XHGaugeViewController alloc] init];
-    //[self.navigationController pushViewController:gVC animated:YES];
-    //[self presentViewController:gVC animated:YES completion:nil]; // modal
-    
-    XHCmdLineViewController *cmdLineVC = [[XHCmdLineViewController alloc] init];
-    [self presentViewController:cmdLineVC animated:YES completion:nil];
+    XHStatusViewController *statusVC = [[XHStatusViewController alloc] init];
+    [self.navigationController pushViewController:statusVC animated:YES];
 }
 
-- (void)longPress
+- (void)barButtonItemLongPress:(UILongPressGestureRecognizer *)sender
 {
-    //    XHCmdLineViewController *cmdLineVC = [[XHCmdLineViewController alloc] init];
-    //    [self presentViewController:cmdLineVC animated:YES completion:nil];
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        XHCmdLineViewController *cmdLineVC = [[XHCmdLineViewController alloc] init];
+        [self presentViewController:cmdLineVC animated:YES completion:nil];
+    }
 }
 
 - (void)chartButtonItemClicked
@@ -218,6 +235,20 @@
 - (void)deselect
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
+- (BOOL)isExists:(NSUInteger)roomId
+{
+    NSNumber *room = [NSNumber numberWithInteger:roomId];
+    for (NSNumber *number in self.array) {
+        if ([number isEqualToNumber:room]) {
+            return YES;
+        }
+    }
+    [self.array addObject:room];
+    XHLog(@"addObject %@", room);
+    
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning {

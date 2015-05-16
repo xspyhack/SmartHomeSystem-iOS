@@ -22,7 +22,7 @@
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:self.dbPath]) {
-        NSString *sql = @"CREATE TABLE 'XHRoom' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, 'roomId' INTEGER, 'roomName' VARCHAR(20), 'temperature' VARCHAR(10), 'humidity' VARCHAR(10), 'smoke' VARCHAR(10))";
+        NSString *sql = @"CREATE TABLE 'XHRoom' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, 'roomId' INTEGER, 'roomName' VARCHAR(20), 'temperature' VARCHAR(10), 'humidity' VARCHAR(10), 'smoke' VARCHAR(10), 'date' DATE)";
         [self executeNonQuery:sql];
     }
 }

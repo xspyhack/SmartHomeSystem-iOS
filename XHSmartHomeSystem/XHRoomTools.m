@@ -9,6 +9,7 @@
 #import "XHRoomTools.h"
 #import "XHRoomModel.h"
 #import "XHDatabase.h"
+#import "NSDate+Utils.h"
 
 @implementation XHRoomTools
 
@@ -18,7 +19,7 @@
     if (aString) {
         NSArray *arrays = [aString componentsSeparatedByString:@";"];
         // don't forget aString is end with '\n',
-        // looks like 00000001:SEN_TEMP:00000027;00000001:SEN_HUMI:00000040;/n
+        // looks like 00000001:SEN_TEMP:00000027;00000001:SEN_HUMI:00000040;\n
         // so arrays count is 3, we don't need the lastest.
         for (int i = 0; i < [arrays count] - 1; i++) {
             NSArray *array = [arrays[i] componentsSeparatedByString:@":"];
@@ -68,21 +69,21 @@
 
 + (NSArray *)recentWeekWithRoomId:(NSUInteger)roomId;
 {
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %lu ORDER BY id LIMIT 0, 8", roomId];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %lu ORDER BY id LIMIT 0, 8", (unsigned long)roomId];
     XHDatabase *db = [[XHDatabase alloc] init];
     return [db executeQuery:sql];
 }
 
 + (NSArray *)recentMonthWithRoomId:(NSUInteger)roomId
 {
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %lu ORDER BY id LIMIT 0, 30", roomId];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %lu ORDER BY id LIMIT 0, 30", (unsigned long)roomId];
     XHDatabase *db = [[XHDatabase alloc] init];
     return [db executeQuery:sql];
 }
 
 + (NSArray *)recentYearWithRoomId:(NSUInteger)roomId
 {
-    NSString *sql = [NSString stringWithFormat:@"%lu", roomId];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %lu ORDER BY id LIMIT 0, 365", (unsigned long)roomId];
     XHDatabase *db = [[XHDatabase alloc] init];
     return [db executeQuery:sql];
 }
@@ -107,7 +108,7 @@
 
 + (CGFloat)averageWithArray:(NSArray *)array index:(NSString *)index
 {
-    float count;
+    float count = 0.0f;
     for (NSDictionary *dict in array) {
         count += [dict[index] floatValue];
     }
@@ -144,4 +145,27 @@
     return nil;
 }
 
++ (BOOL)saveIfIsFirstDataToday:(XHRoomModel *)model
+{
+    // read the lastest data from database
+    XHDatabase *db = [[XHDatabase alloc] init];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM XHRoom WHERE roomId = %ld ORDER BY id LIMIT 0, 1", (long)model.Id];
+    NSArray *array = [db executeQuery:sql];
+    NSDictionary *dict = [NSDictionary dictionary];
+    dict = array.lastObject;
+    NSString *date = dict[@"date"];
+    
+    if (![date isEqualToString:[NSDate stringYearMonthDayWithDate:nil]]) {
+        // save to database
+        NSString *sql = [NSString stringWithFormat:@"INSERT INTO XHRoom('roomId', 'roomName', 'temperature', 'humidity', 'smoke') VALUES(%ld, '%@', '%@', '%@', '%@')",
+                         (long)model.Id,
+                         model.name,
+                         model.temperature,
+                         model.humidity,
+                         model.smoke];
+        [db executeNonQuery:sql];
+        return YES;
+    }
+    return NO;
+}
 @end

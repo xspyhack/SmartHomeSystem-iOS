@@ -28,6 +28,7 @@
 		78379E7B1AEE2A49008B5C87 /* XHTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78379E7A1AEE2A49008B5C87 /* XHTimePickerView.m */; };
 		783AF3A91AEB730F0090A81B /* XHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783AF3A81AEB730F0090A81B /* XHTabBarController.m */; };
 		783AF3AC1AEB735D0090A81B /* XHNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783AF3AB1AEB735D0090A81B /* XHNavigationController.m */; };
+		784707E91B06F063004D9420 /* XHCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784707E81B06F063004D9420 /* XHCoordinateView.m */; };
 		785531421ADE583B00080703 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531411ADE583B00080703 /* UIBarButtonItem+Extension.m */; };
 		785531461ADF501600080703 /* XHTableViewCellGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531451ADF501600080703 /* XHTableViewCellGroup.m */; };
 		785531491ADF50BE00080703 /* XHTableViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531481ADF50BE00080703 /* XHTableViewCellItem.m */; };
@@ -92,6 +93,7 @@
 		78E614D71AE6447100191132 /* XHGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E614D61AE6447100191132 /* XHGaugeView.m */; };
 		78F456AA1B05B613008B4FC5 /* XHGatewayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F456A91B05B613008B4FC5 /* XHGatewayViewController.m */; };
 		78F456AD1B05E6F2008B4FC5 /* XHDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F456AC1B05E6F2008B4FC5 /* XHDatabase.m */; };
+		78F456B01B063C08008B4FC5 /* XHStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F456AF1B063C08008B4FC5 /* XHStatusViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +149,8 @@
 		783AF3A81AEB730F0090A81B /* XHTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTabBarController.m; sourceTree = "<group>"; };
 		783AF3AA1AEB735D0090A81B /* XHNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHNavigationController.h; sourceTree = "<group>"; };
 		783AF3AB1AEB735D0090A81B /* XHNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHNavigationController.m; sourceTree = "<group>"; };
+		784707E71B06F063004D9420 /* XHCoordinateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHCoordinateView.h; sourceTree = "<group>"; };
+		784707E81B06F063004D9420 /* XHCoordinateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHCoordinateView.m; sourceTree = "<group>"; };
 		785531401ADE583B00080703 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		785531411ADE583B00080703 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		785531441ADF501600080703 /* XHTableViewCellGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTableViewCellGroup.h; sourceTree = "<group>"; };
@@ -275,6 +279,8 @@
 		78F456A91B05B613008B4FC5 /* XHGatewayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHGatewayViewController.m; sourceTree = "<group>"; };
 		78F456AB1B05E6F2008B4FC5 /* XHDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHDatabase.h; sourceTree = "<group>"; };
 		78F456AC1B05E6F2008B4FC5 /* XHDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHDatabase.m; sourceTree = "<group>"; };
+		78F456AE1B063C08008B4FC5 /* XHStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStatusViewController.h; sourceTree = "<group>"; };
+		78F456AF1B063C08008B4FC5 /* XHStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStatusViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +315,8 @@
 				7866FABE1AE783C800250478 /* XHGaugeViewController.m */,
 				7857C1DD1AF7A26300E1271F /* XHCmdLineViewController.h */,
 				7857C1DE1AF7A26300E1271F /* XHCmdLineViewController.m */,
+				78F456AE1B063C08008B4FC5 /* XHStatusViewController.h */,
+				78F456AF1B063C08008B4FC5 /* XHStatusViewController.m */,
 			);
 			name = "Home ViewControllers";
 			sourceTree = "<group>";
@@ -574,6 +582,8 @@
 				78379E7A1AEE2A49008B5C87 /* XHTimePickerView.m */,
 				785C20E81AF8841E00F9CD1C /* XHInputView.h */,
 				785C20E91AF8841E00F9CD1C /* XHInputView.m */,
+				784707E71B06F063004D9420 /* XHCoordinateView.h */,
+				784707E81B06F063004D9420 /* XHCoordinateView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -786,10 +796,12 @@
 				787FBB501AD8E5A200316651 /* XHSettingsViewController.m in Sources */,
 				786E90501ADCBBAE00A93675 /* UUMessageFrame.m in Sources */,
 				78E614D71AE6447100191132 /* XHGaugeView.m in Sources */,
+				784707E91B06F063004D9420 /* XHCoordinateView.m in Sources */,
 				78266C411AFB477400D9A584 /* XHCryptTools.m in Sources */,
 				7866FAE41AE937A500250478 /* XHTableViewCellCheckmarkItem.m in Sources */,
 				785C20EA1AF8841E00F9CD1C /* XHInputView.m in Sources */,
 				78266C4E1AFB543600D9A584 /* FMDatabaseAdditions.m in Sources */,
+				78F456B01B063C08008B4FC5 /* XHStatusViewController.m in Sources */,
 				78E614951AE5ECE600191132 /* XHLineChartView.m in Sources */,
 				786E903D1ADBB54E00A93675 /* XHTableViewCell.m in Sources */,
 				7825E7891AF36A5D008D6CF6 /* XHMessageSettingViewController.m in Sources */,

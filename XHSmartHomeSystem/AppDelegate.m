@@ -117,6 +117,10 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    // Called when the application receive local notification.
+}
+
 - (void)onNotificationReceived:(NSNotification *)notification
 {
     if ([notification.name isEqualToString:XHThemeDidChangeNotification]) {

@@ -8,8 +8,9 @@
 
 #import "XHCmdLineViewController.h"
 #import "XHColorTools.h"
+#import "XHSocketThread.h"
 
-@interface XHCmdLineViewController ()
+@interface XHCmdLineViewController ()<UITextViewDelegate, XHSocketThreadDelegate>
 
 @property (nonatomic, strong) UITextView *statusView;
 
@@ -21,12 +22,24 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
     
     [self.view addGestureRecognizer:longPressGesture];
     
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [swipeGesture setDirection:UISwipeGestureRecognizerDirectionDown];
+    
+    [self.view addGestureRecognizer:swipeGesture];
+    
     [self setupTextView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [XHSocketThread shareInstance].delegate = self;
 }
 
 #pragma mark - setup
@@ -46,9 +59,19 @@
 
 #pragma mark - delegate
 
+- (void)didReadBuffer:(NSString *)buffer
+{
+    [self addStatusText:buffer];
+}
+
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    [self addStatusText:@"\n$ "];
 }
 
 #pragma mark - event response
@@ -56,6 +79,11 @@
 - (void)dismiss
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)sender
+{
+    [self.statusView resignFirstResponder];
 }
 
 #pragma mark - private methods

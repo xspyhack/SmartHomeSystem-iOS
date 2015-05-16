@@ -9,6 +9,7 @@
 #import "XHSetupTools.h"
 #import "XHCryptTools.h"
 #import "XHDatabase.h"
+#import "NSDate+Utils.h"
 
 @implementation XHSetupTools
 
@@ -23,9 +24,9 @@
         [db createTable];
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 10; j++) {
-                NSString *sql = [NSString stringWithFormat:@"INSERT INTO XHRoom('roomId', 'roomName', 'temperature', 'humidity', 'smoke') VALUES(%d, '%d', '%d', '%d', '%d')", i, i, 10+i*j, i*j+1, i*j+1];
+                NSString *sql = [NSString stringWithFormat:@"INSERT INTO XHRoom('roomId', 'roomName', 'temperature', 'humidity', 'smoke', 'date') VALUES(%d, '%d', '%d', '%d', '%d', '%@')", i, i, 10+i*j, i*j+1, i*j+1, [NSDate stringYearMonthDayWithDate:[NSDate dateYesterday]]];
                 [db executeNonQuery:sql];
-
+                XHLog(@"%@", sql);
             }
         }
         
