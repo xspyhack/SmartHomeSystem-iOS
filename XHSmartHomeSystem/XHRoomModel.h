@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    XHParlour = 0,
+    XHKitchen = 1,
+    XHBathroom = 2,
+    XHBedroom = 3
+}XHRoomId;
+
+
 @interface XHRoomModel : NSObject
 
 @property (nonatomic, assign) NSInteger Id; // 0, 1, 2, 3

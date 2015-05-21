@@ -37,7 +37,6 @@
     }
     
     if ([self.database open]) {
-        XHLog(@"Open database success.");
         return YES;
     } else {
         XHLog(@"Open database failed");

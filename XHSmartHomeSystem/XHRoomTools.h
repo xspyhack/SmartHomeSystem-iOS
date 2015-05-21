@@ -12,7 +12,7 @@
 
 @interface XHRoomTools : NSObject
 
-+ (XHRoomModel *)roomModelWithString:(NSString *)aString;
+- (XHRoomModel *)roomModelWithString:(NSString *)aString;
 
 /* 
  return recent week/month/year data

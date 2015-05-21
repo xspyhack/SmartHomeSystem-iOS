@@ -58,7 +58,7 @@
     
     [self getUserDefaults];
     
-    XHTableViewCellSwitchItem *checkItem = [XHTableViewCellSwitchItem itemWithTitle:@"Check in"];
+    XHTableViewCellSwitchItem *checkItem = [XHTableViewCellSwitchItem itemWithTitle:@"Check In"];
     checkItem.on = [self isCheckin];
     checkItem.tapSwitch = ^{
         self.checkin = !self.checkin;

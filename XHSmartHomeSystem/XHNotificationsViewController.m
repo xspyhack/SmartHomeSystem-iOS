@@ -7,7 +7,8 @@
 //
 
 #import "XHNotificationsViewController.h"
-#import "XHNotificationTypeViewController.h"
+#import "XHDisturbViewController.h"
+#import "XHAlertValuesViewController.h"
 #import "XHTableViewCell.h"
 #import "XHTableViewCellItem.h"
 #import "XHTableViewCellGroup.h"
@@ -46,6 +47,7 @@ typedef enum _EMSwitch {
     [self setupStatusGroup];
     [self setupShowGroup];
     [self setupTypeGroup];
+    [self setupDisturbGroup];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -82,18 +84,15 @@ typedef enum _EMSwitch {
     XHTableViewCellSwitchItem *showItem = [XHTableViewCellSwitchItem itemWithTitle:@"Show Preview Text"];
     showItem.on = self.showSwitch;
     showItem.tapSwitch = ^{ [self setSwitch:EMShowSwitch]; }; // tap
-
-    XHTableViewCellArrowItem *typeItem = [XHTableViewCellArrowItem itemWithTitle:@"Notification Type"];
-    typeItem.destinationContorller = [XHNotificationTypeViewController class];
     
-    group.items = @[ showItem, typeItem ];
+    group.items = @[ showItem ];
 }
 
 - (void)setupTypeGroup
 {
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
-    group.groupHeader = [@"Notifications Alerter" lowercaseString]; // it looks doesn't work well.
+    group.groupHeader = [@"Notifications Alertor" lowercaseString]; // it looks doesn't work well.
     
     // read defaults settings
     
@@ -113,8 +112,23 @@ typedef enum _EMSwitch {
     temperatureAlertItem.on = self.temperatureSwitch;
     temperatureAlertItem.tapSwitch = ^{ [self setSwitch:EMTempAlertSwitch]; };
     
-    group.groupFooter = @"If turn off alert, you can't get important system notification at first.";
-    group.items = @[ smokeAlertItem, humidityAlertItem, temperatureAlertItem ];
+    XHTableViewCellArrowItem *alertValuesItem = [XHTableViewCellArrowItem itemWithTitle:@"Alert Values"];
+    alertValuesItem.destinationContorller = [XHAlertValuesViewController class];
+    
+    group.groupFooter = @"If turn off alertor, you can't get important system notification at first.";
+    group.items = @[ smokeAlertItem, humidityAlertItem, temperatureAlertItem, alertValuesItem ];
+}
+
+- (void)setupDisturbGroup
+{
+    XHTableViewCellGroup *group = [XHTableViewCellGroup group];
+    [self.groups addObject:group];
+    
+    XHTableViewCellArrowItem *disturbItem = [XHTableViewCellArrowItem itemWithTitle:@"Don't Disturb"];
+    disturbItem.destinationContorller = [XHDisturbViewController class];
+    
+    group.items = @[ disturbItem ];
+    
 }
 
 #pragma mark - event

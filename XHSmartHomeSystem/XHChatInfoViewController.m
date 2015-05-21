@@ -40,7 +40,7 @@
 {
     self.group = [XHTableViewCellGroup group];
     
-    XHTableViewCellSwitchItem *stickItem = [XHTableViewCellSwitchItem itemWithTitle:@"Stick to top"];
+    XHTableViewCellSwitchItem *stickItem = [XHTableViewCellSwitchItem itemWithTitle:@"Stick To Top"];
     XHTableViewCellSwitchItem *shieldItem = [XHTableViewCellSwitchItem itemWithTitle:@"Shield"];
     
     self.group.items = @[ stickItem, shieldItem ];

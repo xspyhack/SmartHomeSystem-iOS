@@ -8,15 +8,20 @@
 
 #import "XHStatusViewController.h"
 #import "XHCoordinateView.h"
-#import "XHButton.h"
 #import "XHColorTools.h"
 #import "XHSocketThread.h"
+#import "XHRoomModel.h"
+#import "XHRoomTools.h"
 
-#define BUTTON_WIDTH 50
+#define BUTTON_WIDTH (self.view.frame.size.width*50/375.0f)
+#define COORDINATE_WIDTH (self.view.frame.size.width*200/375.0f)
+#define ALL_BUTTON_WIDTH (self.view.frame.size.width*80/375.0f)
 
 @interface XHStatusViewController ()<XHSocketThreadDelegate>
 
 @property (nonatomic, strong) NSMutableArray *buttons;
+@property (nonatomic, getter=isAllButtonSelected) BOOL allButtonSelected;
+@property (nonatomic, strong) XHRoomTools *roomTools;
 
 @end;
 
@@ -26,6 +31,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
     [self setup];
 }
 
@@ -34,7 +40,7 @@
     [super viewWillDisappear:animated];
     
     CGPoint center = self.view.center;
-    float radius = 150.0f;
+    float radius = self.view.frame.size.width*150/375.0f;
     
     CGPoint buttonCenter = CGPointMake(center.x, center.y);
     for (int i = 0; i < 12; i++) {
@@ -51,10 +57,13 @@
 
 - (void)setup
 {
+    self.allButtonSelected = NO;
+    self.roomTools = [[XHRoomTools alloc] init];
+    
     self.buttons = [NSMutableArray array];
     CGPoint center = self.view.center;
     
-    CGRect coordinateRect = CGRectMake(0, 0, 200, 200);
+    CGRect coordinateRect = CGRectMake(0, 0, COORDINATE_WIDTH, COORDINATE_WIDTH);
     XHCoordinateView *coordinateView = [[XHCoordinateView alloc] initWithFrame:coordinateRect];
     coordinateView.center = center;
     [self.view addSubview:coordinateView];
@@ -73,8 +82,8 @@
         [self.buttons addObject:button];
     }
     
-    UIButton *allButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonCenter.x-40, buttonCenter.y-40, 80, 80)];
-    allButton.layer.cornerRadius = 40;
+    UIButton *allButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonCenter.x-ALL_BUTTON_WIDTH/2, buttonCenter.y-ALL_BUTTON_WIDTH/2, ALL_BUTTON_WIDTH, ALL_BUTTON_WIDTH)];
+    allButton.layer.cornerRadius = ALL_BUTTON_WIDTH/2;
     allButton.backgroundColor = [[XHColorTools themeColor] colorWithAlphaComponent:.98f];
     [allButton setTitle:@"All" forState:UIControlStateNormal];
     [allButton addTarget:self action:@selector(allButtonClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -82,10 +91,86 @@
     [self.view addSubview:allButton];
 }
 
-- (float)angle2Radians:(float)angle
+#pragma mark - delegate
+
+- (void)writeWithRoom:(NSString *)room sensor:(NSString *)sensor status:(NSString *)status
 {
-    return (angle) /180.0 * M_PI;
+    NSString *buffer = [NSString stringWithFormat:@"%@:LED_%@:%@;\n", room, sensor, status];
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [[XHSocketThread shareInstance] write:buffer];
+    });
 }
+
+- (void)didReadBuffer:(NSString *)buffer
+{
+    XHRoomModel *roomModel = [self.roomTools roomModelWithString:buffer];
+    
+    if (roomModel.temperatureStatus) {
+        [self setButtonSelected:YES index:(roomModel.Id * 3)];
+    } else {
+        [self setButtonSelected:NO index:(roomModel.Id * 3)];
+    }
+    if (roomModel.humidityStatus) {
+        [self setButtonSelected:YES index:(roomModel.Id * 3 + 1)];
+    } else {
+        [self setButtonSelected:NO index:(roomModel.Id * 3 + 1)];
+    }
+    if (roomModel.smokeStatus) {
+        [self setButtonSelected:YES index:(roomModel.Id * 3 + 2)];
+    } else {
+        [self setButtonSelected:NO index:(roomModel.Id * 3 + 2)];
+    }
+}
+
+#pragma mark - response event
+
+- (void)buttonClicked:(UIButton *)button
+{
+    button.selected = !button.selected;
+    // selected: on, unselected: off
+    NSString *status = button.selected ? @"11111111" : @"00000000";
+    
+    NSString *room = [NSString string];
+    NSString *sensor = [NSString string];
+    
+    switch (button.tag%3) {
+        case 0:
+            sensor = @"TEMP";
+            break;
+        case 1:
+            sensor = @"HUMI";
+            break;
+        case 2:
+            sensor = @"SMOK";
+            break;
+        default:
+            break;
+    }
+    
+    switch (button.tag/3) {
+        case 0:
+            room = @"00000001";
+            break;
+        case 1:
+            room = @"00000002";
+            break;
+        case 2:
+            room = @"00000003";
+            break;
+        case 3:
+            room = @"00000004";
+            break;
+        default:
+            break;
+    }
+    
+    XHLog(@"status: %@", status);
+    [self writeWithRoom:room sensor:sensor status:status];
+    
+    [self setButtonBackgroundColor:button];
+}
+
+#pragma mark - private methods
 
 - (UIButton *)buttonWithFrame:(CGRect)frame tag:(NSUInteger)tag
 {
@@ -106,76 +191,15 @@
             break;
     }
     button.layer.cornerRadius = BUTTON_WIDTH / 2;
-
+    
     [button setTitle:title forState:UIControlStateNormal];
     
     return button;
 }
 
-- (void)buttonClicked:(UIButton *)button
+- (float)angle2Radians:(float)angle
 {
-    // selected: off, unselected: on
-    [button setSelected:!button.selected];
-    NSString *status = button.state ? @"11111111" : @"00000000";
-    
-    NSString *room = [NSString string];
-    NSString *sensor = [NSString string];
-    
-    switch (button.tag) {
-        case 0:
-            room = @"00000001";
-            sensor = @"TEMP";
-            break;
-        case 1:
-            room = @"00000001";
-            sensor = @"HUMI";
-            break;
-        case 2:
-            room = @"00000001";
-            sensor = @"SMOK";
-            break;
-        case 3:
-            room = @"00000002";
-            sensor = @"TEMP";
-            break;
-        case 4:
-            room = @"00000002";
-            sensor = @"HUMI";
-            break;
-        case 5:
-            room = @"00000002";
-            sensor = @"SMOK";
-            break;
-        case 6:
-            room = @"00000003";
-            sensor = @"TEMP";
-            break;
-        case 7:
-            room = @"00000003";
-            sensor = @"HUMI";
-            break;
-        case 8:
-            room = @"00000003";
-            sensor = @"SMOK";
-            break;
-        case 9:
-            room = @"00000004";
-            sensor = @"TEMP";
-            break;
-        case 10:
-            room = @"00000004";
-            sensor = @"HUMI";
-            break;
-        case 11:
-            room = @"00000004";
-            sensor = @"SMOK";
-            break;
-        default:
-            break;
-    }
-    [self writeWithRoom:room sensor:sensor status:status];
-    
-    [self setButtonBackgroundColor:button];
+    return (angle) /180.0 * M_PI;
 }
 
 - (void)setButtonBackgroundColor:(UIButton *)button
@@ -203,17 +227,26 @@
     }
 }
 
-- (void)allButtonClicked
+- (void)setButtonSelected:(BOOL)selected index:(NSUInteger)index
 {
-    
+    UIButton *button = self.buttons[index];
+    button.selected = selected;
+    [self setButtonBackgroundColor:button];
 }
 
-- (void)writeWithRoom:(NSString *)room sensor:(NSString *)sensor status:(NSString *)status
+- (void)allButtonClicked
 {
-    NSString *buffer = [NSString stringWithFormat:@"%@:LED_%@:%@;\n", room, sensor, status];
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        [[XHSocketThread shareInstance] write:buffer];
-    });
+    for (UIButton *button in self.buttons) {
+        [UIView animateWithDuration:.7f
+                              delay:.0f
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             button.selected = self.isAllButtonSelected ? YES : NO;
+                             [self buttonClicked:button];
+                         }
+                         completion:nil];
+    }
+    self.allButtonSelected = !self.allButtonSelected;
 }
 
 @end

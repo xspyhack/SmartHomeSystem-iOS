@@ -40,7 +40,7 @@ typedef enum _EMLanguage{
     XHTableViewCellCheckmarkItem *chineseCheckmark = [XHTableViewCellCheckmarkItem itemWithTitle:@"简体中文"];
     chineseCheckmark.clicked = ^{ [self setCheckmark:EMChinese]; };
     
-    XHTableViewCellCheckmarkItem *systemCheckmark = [XHTableViewCellCheckmarkItem itemWithTitle:@"System default"];
+    XHTableViewCellCheckmarkItem *systemCheckmark = [XHTableViewCellCheckmarkItem itemWithTitle:@"System Default"];
     systemCheckmark.clicked = ^{ [self setCheckmark:EMSystem]; };
     
     if (index == EMEnglish) {

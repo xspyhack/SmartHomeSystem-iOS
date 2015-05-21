@@ -16,20 +16,13 @@
 
 #define XHTempViewWidth (self.view.frame.size.width * 0.7)
 
-typedef enum _XHRoomId {
-    XHParlour = 0,
-    XHBedroom = 1,
-    XHKitchen = 2,
-    XHBathroom = 3
-} XHRoomId;
-
-
 @interface XHGaugeViewController ()<XHSocketThreadDelegate>
 
 @property (nonatomic, strong) XHGaugeView *temperatureView;
 @property (nonatomic, strong) XHGaugeView *humidityView;
 @property (nonatomic, strong) XHGaugeView *smokeView;
 @property (nonatomic, strong) UILabel *roomNameLabel;
+@property (nonatomic, strong) XHRoomTools *roomTools;
 
 @end
 
@@ -47,7 +40,7 @@ typedef enum _XHRoomId {
     self.temperatureView.value = 30.f;
     self.humidityView.value = 55.f;
     self.smokeView.value = 9.f;
-    
+
     //[super viewWillDisappear:animated];
     //[[XHSocketThread shareInstance] disconnect];
 }
@@ -58,6 +51,13 @@ typedef enum _XHRoomId {
     //self.navigationController.navigationBar.barTintColor = XHBlackColor;
     //self.navigationController.navigationBar.translucent = NO;
     self.view.backgroundColor = XHBlackColor;
+    [self setup];
+}
+
+- (void)setup
+{
+    self.roomTools = [[XHRoomTools alloc] init];
+    
     CGFloat width = self.view.frame.size.width;
     CGFloat height = self.view.frame.size.height;
     
@@ -125,12 +125,11 @@ typedef enum _XHRoomId {
     //[btn setTitleColor:[XHColorTools themeColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
-    XHLog(@"view did load");
 }
 
 - (void)didReadBuffer:(NSString *)buffer
 {
-    XHRoomModel *model = [XHRoomTools roomModelWithString:buffer];
+    XHRoomModel *model = [self.roomTools roomModelWithString:buffer];
     
     // update
     self.temperatureView.value = [model.temperature floatValue];
@@ -149,7 +148,7 @@ typedef enum _XHRoomId {
 {
     if ([notification.name isEqualToString:XHUpdateRoomModelNotification]) {
         NSString *buffer = [notification.userInfo objectForKey:@"BUFFER"];
-        XHRoomModel *model = [XHRoomTools roomModelWithString:buffer];
+        XHRoomModel *model = [self.roomTools roomModelWithString:buffer];
         
         // update
         self.smokeView.value = [model.temperature floatValue];

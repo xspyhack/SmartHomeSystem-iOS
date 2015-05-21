@@ -11,9 +11,26 @@
 #import "XHDatabase.h"
 #import "NSDate+Utils.h"
 
+@interface XHRoomTools ()
+@property (nonatomic, assign) CGFloat temperatureAlertValue;
+@property (nonatomic, assign) CGFloat humidityAlertValue;
+@property (nonatomic, assign) CGFloat smokeAlertValue;
+@end;
+
 @implementation XHRoomTools
 
-+ (XHRoomModel *)roomModelWithString:(NSString *)aString
+- (instancetype)init
+{
+    if (self = [super init]) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        self.temperatureAlertValue = [defaults floatForKey:@"XHTemperatureAlertValue"];
+        self.humidityAlertValue = [defaults floatForKey:@"XHHumidityAlertValue"];
+        self.smokeAlertValue = [defaults floatForKey:@"XHSmokeAlertValue"];
+    }
+    return self;
+}
+
+- (XHRoomModel *)roomModelWithString:(NSString *)aString
 {
     XHRoomModel *roomModel = [[XHRoomModel alloc] init];
     if (aString) {
@@ -53,12 +70,13 @@
                 else { }
             }
         }
+        return roomModel;
     }
     
-    return roomModel;
+    return nil;
 }
 
-+ (NSString *)stringWithString:(NSString *)aString
+- (NSString *)stringWithString:(NSString *)aString
 {
     if (aString) {
         return [NSString stringWithFormat:@"%.1f", [aString floatValue]];

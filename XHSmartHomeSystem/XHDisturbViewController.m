@@ -1,18 +1,19 @@
 //
-//  XHNotificationTypeViewController.m
+//  XHDisturbViewController.m
 //  XHSmartHomeSystem
 //
-//  Created by bl4ckra1sond3tre on 4/27/15.
+//  Created by bl4ckra1sond3tre on 5/18/15.
 //  Copyright (c) 2015 bl4ckra1sond3tre. All rights reserved.
 //
 
-#import "XHNotificationTypeViewController.h"
+#import "XHDisturbViewController.h"
 #import "XHTimePickerView.h"
 #import "XHTableViewCellGroup.h"
 #import "XHTableViewCellCheckmarkItem.h"
 #import "XHTableViewCellLabelItem.h"
 #import "XHTableViewCellSwitchItem.h"
 #import "XHColorTools.h"
+#import "XHInputView.h"
 
 #define XHPickerViewHeight 252
 
@@ -21,11 +22,11 @@ typedef enum _EMMessageType {
     EMText = 1
 } EMMessageType;
 
-@interface XHNotificationTypeViewController ()
+@interface XHDisturbViewController ()
 @property (nonatomic, strong) UILabel *timeLabel;
 @end
 
-@implementation XHNotificationTypeViewController
+@implementation XHDisturbViewController
 
 #pragma mark - life cycle
 
@@ -48,10 +49,10 @@ typedef enum _EMMessageType {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSInteger index = [defaults integerForKey:@"XHMessageType"];
     
-    XHTableViewCellCheckmarkItem *alertItem = [XHTableViewCellCheckmarkItem itemWithTitle:@"Alert"];
+    XHTableViewCellCheckmarkItem *alertItem = [XHTableViewCellCheckmarkItem itemWithTitle:@"Alertor"];
     alertItem.clicked = ^{ [self setCheckmark:EMAlert]; };
     
-    XHTableViewCellCheckmarkItem *textItem = [XHTableViewCellCheckmarkItem itemWithTitle:@"Text"];
+    XHTableViewCellCheckmarkItem *textItem = [XHTableViewCellCheckmarkItem itemWithTitle:@"Message Text"];
     textItem.clicked = ^{ [self setCheckmark:EMText]; };
     
     if (index == 0) {
@@ -73,7 +74,7 @@ typedef enum _EMMessageType {
     XHTableViewCellLabelItem *timeItem = [XHTableViewCellLabelItem itemWithTitle:@"Time"];
     timeItem.label = self.timeLabel;
     timeItem.clicked = ^{ [self setupTimePicker]; };
-
+    
     group.items = @[ timeItem ];
     group.groupHeader = @"Push Time Setting";
 }

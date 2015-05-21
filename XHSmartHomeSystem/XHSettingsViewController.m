@@ -179,7 +179,7 @@
     CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 40);
     UIButton *linkout = [[UIButton alloc] initWithFrame:rect];
     linkout.backgroundColor = [XHColorTools themeColor];
-    [linkout setTitle:@"Link out" forState:UIControlStateNormal];
+    [linkout setTitle:@"Link Out" forState:UIControlStateNormal];
     [linkout setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [linkout addTarget:self action:@selector(linkout) forControlEvents:UIControlEventTouchUpInside];
     
@@ -216,7 +216,7 @@
 /*
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 50; // default 44
 }
 */
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

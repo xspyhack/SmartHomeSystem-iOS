@@ -24,7 +24,6 @@
 		78266C501AFB543600D9A584 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 78266C491AFB543600D9A584 /* FMDatabaseQueue.m */; };
 		78266C511AFB543600D9A584 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 78266C4C1AFB543600D9A584 /* FMResultSet.m */; };
 		78266C541AFB5F1E00D9A584 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78266C531AFB5F1E00D9A584 /* libsqlite3.0.dylib */; };
-		78379E771AEE19F1008B5C87 /* XHNotificationTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78379E761AEE19F1008B5C87 /* XHNotificationTypeViewController.m */; };
 		78379E7B1AEE2A49008B5C87 /* XHTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78379E7A1AEE2A49008B5C87 /* XHTimePickerView.m */; };
 		783AF3A91AEB730F0090A81B /* XHTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783AF3A81AEB730F0090A81B /* XHTabBarController.m */; };
 		783AF3AC1AEB735D0090A81B /* XHNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783AF3AB1AEB735D0090A81B /* XHNavigationController.m */; };
@@ -73,6 +72,8 @@
 		7888C1251B00EC07002AE1B7 /* XHSocketThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888C1241B00EC07002AE1B7 /* XHSocketThread.m */; };
 		7888C12B1B00FC24002AE1B7 /* XHRoomTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7888C12A1B00FC24002AE1B7 /* XHRoomTools.m */; };
 		7889A91A1AF9153500E0DF89 /* XHSetupTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7889A9191AF9153500E0DF89 /* XHSetupTools.m */; };
+		789DDE1D1B0A030100EFB778 /* XHAlertValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 789DDE1C1B0A030100EFB778 /* XHAlertValuesViewController.m */; };
+		789DDE201B0A05BA00EFB778 /* XHDisturbViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 789DDE1F1B0A05BA00EFB778 /* XHDisturbViewController.m */; };
 		78B08F381AE20B4C00A26C53 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B08F371AE20B4C00A26C53 /* MBProgressHUD.m */; };
 		78C11AE91AFC66F00006A2B3 /* XHSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C11AE81AFC66F00006A2B3 /* XHSearchResultsViewController.m */; };
 		78C13B941ADA0EF90020AAFA /* XHTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B931ADA0EF90020AAFA /* XHTokenModel.m */; };
@@ -142,8 +143,6 @@
 		78266C4B1AFB543600D9A584 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		78266C4C1AFB543600D9A584 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		78266C531AFB5F1E00D9A584 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		78379E751AEE19F1008B5C87 /* XHNotificationTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHNotificationTypeViewController.h; sourceTree = "<group>"; };
-		78379E761AEE19F1008B5C87 /* XHNotificationTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHNotificationTypeViewController.m; sourceTree = "<group>"; };
 		78379E791AEE2A49008B5C87 /* XHTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTimePickerView.h; sourceTree = "<group>"; };
 		78379E7A1AEE2A49008B5C87 /* XHTimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTimePickerView.m; sourceTree = "<group>"; };
 		783AF3A71AEB730F0090A81B /* XHTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTabBarController.h; sourceTree = "<group>"; };
@@ -240,6 +239,10 @@
 		7888C12A1B00FC24002AE1B7 /* XHRoomTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHRoomTools.m; sourceTree = "<group>"; };
 		7889A9181AF9153500E0DF89 /* XHSetupTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSetupTools.h; sourceTree = "<group>"; };
 		7889A9191AF9153500E0DF89 /* XHSetupTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHSetupTools.m; sourceTree = "<group>"; };
+		789DDE1B1B0A030100EFB778 /* XHAlertValuesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHAlertValuesViewController.h; sourceTree = "<group>"; };
+		789DDE1C1B0A030100EFB778 /* XHAlertValuesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHAlertValuesViewController.m; sourceTree = "<group>"; };
+		789DDE1E1B0A05BA00EFB778 /* XHDisturbViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHDisturbViewController.h; sourceTree = "<group>"; };
+		789DDE1F1B0A05BA00EFB778 /* XHDisturbViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHDisturbViewController.m; sourceTree = "<group>"; };
 		78B08F361AE20B4C00A26C53 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		78B08F371AE20B4C00A26C53 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		78C11AE71AFC66F00006A2B3 /* XHSearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSearchResultsViewController.h; sourceTree = "<group>"; };
@@ -397,8 +400,10 @@
 			children = (
 				7866FADC1AE8C6F900250478 /* XHNotificationsViewController.h */,
 				7866FADD1AE8C6F900250478 /* XHNotificationsViewController.m */,
-				78379E751AEE19F1008B5C87 /* XHNotificationTypeViewController.h */,
-				78379E761AEE19F1008B5C87 /* XHNotificationTypeViewController.m */,
+				789DDE1B1B0A030100EFB778 /* XHAlertValuesViewController.h */,
+				789DDE1C1B0A030100EFB778 /* XHAlertValuesViewController.m */,
+				789DDE1E1B0A05BA00EFB778 /* XHDisturbViewController.h */,
+				789DDE1F1B0A05BA00EFB778 /* XHDisturbViewController.m */,
 			);
 			name = Notifications;
 			sourceTree = "<group>";
@@ -786,6 +791,7 @@
 				78CB02D01AF71EEC0004167E /* XHDataAnalysisViewController.m in Sources */,
 				78266C4F1AFB543600D9A584 /* FMDatabasePool.m in Sources */,
 				78F456AA1B05B613008B4FC5 /* XHGatewayViewController.m in Sources */,
+				789DDE201B0A05BA00EFB778 /* XHDisturbViewController.m in Sources */,
 				781F1FF01AE0C97600ACEACC /* XHChartViewController.m in Sources */,
 				7866FABF1AE783C800250478 /* XHGaugeViewController.m in Sources */,
 				786E90531ADCBBBC00A93675 /* NSDate+Utils.m in Sources */,
@@ -822,9 +828,9 @@
 				786E904E1ADCBBAE00A93675 /* UUMessage.m in Sources */,
 				7855315B1ADF8CEB00080703 /* XHTableViewController.m in Sources */,
 				787F17361AEA6949002B9DCD /* XHThemeViewController.m in Sources */,
+				789DDE1D1B0A030100EFB778 /* XHAlertValuesViewController.m in Sources */,
 				7881B75A1AEC97090079D1EB /* XHLineView.m in Sources */,
 				78266C371AF9E65300D9A584 /* XHFeedbackViewController.m in Sources */,
-				78379E771AEE19F1008B5C87 /* XHNotificationTypeViewController.m in Sources */,
 				78CB02DC1AF767A90004167E /* XHEncryptTypeViewController.m in Sources */,
 				7888C1251B00EC07002AE1B7 /* XHSocketThread.m in Sources */,
 				785C20E71AF882BB00F9CD1C /* XHValueViewController.m in Sources */,

@@ -24,6 +24,7 @@
 @property (nonatomic, copy) NSMutableArray *roomModels;
 @property (nonatomic, getter=isFirstTimeTodayReadData) BOOL firstTimeTodayReadData;
 @property (nonatomic, strong) NSMutableArray *array;
+@property (nonatomic, strong) XHRoomTools *roomTools;
 
 @end
 
@@ -63,6 +64,7 @@
     [XHSocketThread shareInstance].delegate = self;
     //[[XHSocketThread shareInstance] disconnect];
     //[[XHSocketThread shareInstance] connect];
+    self.roomTools = [[XHRoomTools alloc] init];
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"XHCmdLineMode"]) {
         UILongPressGestureRecognizer *longPressGuesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(barButtonItemLongPress:)];
@@ -164,15 +166,18 @@
 
 - (void)didReadBuffer:(NSString *)buffer
 {
-    XHRoomModel *model = [XHRoomTools roomModelWithString:buffer];
+    XHRoomModel *model = [self.roomTools roomModelWithString:buffer];
     
-    if (![self isExists:model.Id]) {
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            if ([XHRoomTools saveIfIsFirstDataToday:model]) {
-                XHLog(@"first data today");
-            }
-        });
+    if (!model) {
+        return;
     }
+//    if (![self isExists:model.Id]) {
+//        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//            if ([XHRoomTools saveIfIsFirstDataToday:model]) {
+//                XHLog(@"first data today");
+//            }
+//        });
+//    }
     
     // update row
     XHRoomModel *roomModel = self.roomModels[model.Id];

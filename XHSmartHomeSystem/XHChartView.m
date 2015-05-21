@@ -19,14 +19,6 @@
 
 @end
 
-typedef enum {
-    XHParlour = 0,
-    XHBedroom = 1,
-    XHKitchen = 2,
-    XHBathroom = 3
-}XHRoomId;
-
-
 @implementation XHChartView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -43,9 +35,6 @@ typedef enum {
 
 - (void)setupDataSource
 {
-//    double distanceMin = 0, distanceMax = 100;
-//    double altitudeMin = 5.0, altitudeMax = 50;
-//    double speedMin = 0.5, speedMax = 15;
     if (self.dataSource) {
         [self.dataSource removeAllObjects];
     }
@@ -63,23 +52,6 @@ typedef enum {
         
         [self.dataSource addObject:item];
     }
-//    srand(time(NULL)); //Random seed
-//    for (int i = 0; i < 8; i++) {
-//        //srand(time(i)); //Random seed
-//        XHLineChartItem *item = [[XHLineChartItem alloc] init];
-//        double randVal;
-//        
-//        randVal = rand() /((double)(RAND_MAX)/distanceMax) + distanceMin;
-//        item.xValue = i;
-//        
-//        randVal = rand() /((double)(RAND_MAX)/altitudeMax) + altitudeMin;
-//        item.y1Value = randVal;
-//        
-//        randVal = rand() /((double)(RAND_MAX)/speedMax) + speedMin;
-//        item.y2Value = randVal;
-//        
-//        [self.dataSource addObject:item];
-//    }
 }
 
 - (void)setupChartView

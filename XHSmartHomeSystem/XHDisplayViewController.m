@@ -97,11 +97,11 @@ typedef enum _EMSwitch {
     self.chartSwitch = [defaults boolForKey:@"XHChartModeSwitch"];
     self.gaugeSwitch = [defaults boolForKey:@"XHGaugeModeSwitch"];
     
-    XHTableViewCellSwitchItem *chartItem = [XHTableViewCellSwitchItem itemWithTitle:@"Line chart mode"];
+    XHTableViewCellSwitchItem *chartItem = [XHTableViewCellSwitchItem itemWithTitle:@"Line Chart Mode"];
     chartItem.on = self.chartSwitch;
     chartItem.tapSwitch = ^{ [self setSwitch:EMChartModeSwitch]; };
     
-    XHTableViewCellSwitchItem *gaugeItem = [XHTableViewCellSwitchItem itemWithTitle:@"Gauge mode"];
+    XHTableViewCellSwitchItem *gaugeItem = [XHTableViewCellSwitchItem itemWithTitle:@"Gauge Mode"];
     gaugeItem.on = self.gaugeSwitch;
     gaugeItem.tapSwitch = ^{ [self setSwitch:EMGaugeModeSwitch]; };
     
@@ -116,23 +116,23 @@ typedef enum _EMSwitch {
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellArrowItem *lineWidthItem = [XHTableViewCellArrowItem itemWithTitle:@"Line width"];
+    XHTableViewCellArrowItem *lineWidthItem = [XHTableViewCellArrowItem itemWithTitle:@"Line Width"];
     lineWidthItem.detail = [NSString stringWithFormat:@"%.2f", self.lineWidth];
     lineWidthItem.clicked = ^{ [self.lineView pullDown:0.5f]; };
     
-    XHTableViewCellArrowItem *tempColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Temperature color"];
+    XHTableViewCellArrowItem *tempColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Temperature Color"];
     tempColorItem.clicked = ^{
         self.colorsView.master = @"XHTemperatureColor";
         [self.colorsView pullDown:0.5f];
     };
     
-    XHTableViewCellArrowItem *humiColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Humidity color"];
+    XHTableViewCellArrowItem *humiColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Humidity Color"];
     humiColorItem.clicked = ^{
         self.colorsView.master = @"XHHumidityColor";
         [self.colorsView pullDown:0.5f];
     };
     
-    XHTableViewCellArrowItem *smokeColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Smoke color"];
+    XHTableViewCellArrowItem *smokeColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Smoke Color"];
     smokeColorItem.clicked = ^{
         self.colorsView.master = @"XHSmokeColor";
         [self.colorsView pullDown:0.5f];
