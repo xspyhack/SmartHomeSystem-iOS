@@ -54,7 +54,7 @@
     XHImageView *logoView = [[XHImageView alloc] initWithFrame:logoRect];
     logoView.backgroundColor = [UIColor clearColor];
     logoView.progress = 0.7;
-    logoView.imageName = @"logo";
+    logoView.imageName = @"logo-white";
     logoView.color = color;
     [self.view addSubview:logoView];
     

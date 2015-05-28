@@ -27,7 +27,7 @@
     UINavigationBar *appearance = [UINavigationBar appearance];
     
     /*
-    if (!IOS_7) {
+    if (!IOS_7_OR_LATER) {
         [appearance setBackgroundImage:[UIImage imageNamed:@"nav_background"] forBarMetrics:UIBarMetricsDefault];
     }
     */

@@ -392,7 +392,7 @@
         
         
         if ( i != 0 ) {
-            // calculate the point for line
+            // calculate the point of line
             float distance1 = sqrt(pow(xPosition - last_xPos, 2) + pow(y1Position - last_yPos1, 2));
             float last_x = last_xPos + (self.inflexionPointWidth/2) / distance1 * (xPosition - last_xPos);
             float last_y1 = last_yPos1 + (self.inflexionPointWidth/2) / distance1 * (y1Position - last_yPos1);

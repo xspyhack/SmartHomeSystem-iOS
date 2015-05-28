@@ -30,12 +30,14 @@
     // Do any additional setup after loading the view.
     
     // set navigation bar button item
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_msg_edit_highLighted" target:self action:@selector(settings)];
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_msg_edit_highLighted" target:self action:@selector(searchButtonClicked)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_settings" highLightedImageName:@"nav_settings_highLighted" target:self action:@selector(settings)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_search" highLightedImageName:@"nav_search_highLighted" target:self action:@selector(searchButtonClicked)];
     
     [self setupTabelView];
     //[self setupSearchController];
     [self setupViewsAndData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:XHDidAlertNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -141,6 +143,18 @@
 }
 
 #pragma mark - Event
+
+- (void)handleNotification:(NSNotification *)notification
+{
+    if ([notification.name isEqualToString:XHDidAlertNotification]) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
+        [dict setObject:dict[@"strName"] forKey:@"strIcon"];
+        
+        [self tableViewScrollToBottom];
+        [self.messageModel addMessageItem:dict];
+        [self.tableView reloadData];
+    }
+}
 
 //tableView Scroll to bottom
 - (void)tableViewScrollToBottom

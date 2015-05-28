@@ -211,6 +211,7 @@
         val = self.minNumber;
     _value = val;
     
+    // according valus to caculate move angle.
     CGFloat angle = self.startAngle + self.arcLength * val / (self.maxNumber - self.minNumber) - self.arcLength * (self.minNumber / (self.maxNumber - self.minNumber));
     
     self.needleLayer.transform = CATransform3DMakeRotation(angle, 0, 0, 1);

@@ -67,7 +67,7 @@
 {
     CGRect rect = CGRectMake(0, 15, self.view.frame.size.width, 40);
     UIButton *wipeCacheButton = [[UIButton alloc] initWithFrame:rect];
-    wipeCacheButton.backgroundColor = [XHColorTools themeColor];
+    wipeCacheButton.backgroundColor = [[XHColorTools themeColor] colorWithAlphaComponent:.8f];
     [wipeCacheButton setTitle:@"Wipe Cache Partition" forState:UIControlStateNormal];
     [wipeCacheButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [wipeCacheButton addTarget:self action:@selector(wipeCacheButtonClicked) forControlEvents:UIControlEventTouchUpInside];

@@ -19,7 +19,7 @@
 @synthesize imageScaleFactor = _imageScaleFactor;
 @synthesize lineWidth = _lineWidth;
 
-#define DEFAULT_USER_IMAGE_SCALE_FACTOR 0.97
+#define DEFAULT_USER_IMAGE_SCALE_FACTOR 0.975
 
 #pragma mark - Drawing
 
@@ -78,6 +78,10 @@
     [self.layer addSublayer:arcLayer];
 */
     UIImage *faceImage = [UIImage imageNamed:self.imageName];
+    if (IOS_7_OR_LATER) {
+        //faceImage = [faceImage imageWithRenderingMode:UIImageRenderingModeAutomatic];
+        //faceImage = [faceImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    }
     if (faceImage) {
         CGRect imageRect = CGRectInset(self.bounds,
                                        self.bounds.size.width * (1.0 - self.imageScaleFactor),

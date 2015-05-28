@@ -15,6 +15,11 @@
 @property (nonatomic, assign) CGFloat temperatureAlertValue;
 @property (nonatomic, assign) CGFloat humidityAlertValue;
 @property (nonatomic, assign) CGFloat smokeAlertValue;
+@property (nonatomic, assign) NSTimeInterval *timer;
+@property (nonatomic, assign) NSUInteger parlourStatus;
+@property (nonatomic, assign) NSUInteger kitchenStatus;
+@property (nonatomic, assign) NSUInteger bathroomStatus;
+@property (nonatomic, assign) NSUInteger bedroomStatus;
 @end;
 
 @implementation XHRoomTools
@@ -26,54 +31,93 @@
         self.temperatureAlertValue = [defaults floatForKey:@"XHTemperatureAlertValue"];
         self.humidityAlertValue = [defaults floatForKey:@"XHHumidityAlertValue"];
         self.smokeAlertValue = [defaults floatForKey:@"XHSmokeAlertValue"];
+        self.parlourStatus = 0;
+        self.kitchenStatus = 0;
+        self.bedroomStatus = 0;
     }
     return self;
 }
 
-- (XHRoomModel *)roomModelWithString:(NSString *)aString
+- (NSArray *)roomModelWithString:(NSString *)aString
 {
-    XHRoomModel *roomModel = [[XHRoomModel alloc] init];
+    NSMutableArray *roomModels = [NSMutableArray array];
+
     if (aString) {
-        NSArray *arrays = [aString componentsSeparatedByString:@";"];
-        // don't forget aString is end with '\n',
-        // looks like 00000001:SEN_TEMP:00000027;00000001:SEN_HUMI:00000040;\n
-        // so arrays count is 3, we don't need the lastest.
-        for (int i = 0; i < [arrays count] - 1; i++) {
-            NSArray *array = [arrays[i] componentsSeparatedByString:@":"];
-            NSString *Id = array[0];
-            NSString *type = array[1];
-            NSString *value = array[2];
+        NSArray *arr = [self componentsSeparated:aString withLength:162];
+        
+        for (NSString *str in arr) {
+            XHRoomModel *roomModel = [[XHRoomModel alloc] init];
+            NSArray *arrays = [str componentsSeparatedByString:@";"];
             
-            //NSString *preType = [type substringWithRange:NSMakeRange(0, 3)];
-            //NSString *sufType = [type substringWithRange:NSMakeRange(4, 4)];
-            NSString *preType = [type substringToIndex:3];
-            NSString *sufType = [type substringFromIndex:4];
-            
-            roomModel.Id = [Id integerValue] - 1; // why? because Id is begin with 0, and some body is 1
-            if ([preType isEqualToString:@"SEN"]) {
-                if ([sufType isEqualToString:@"TEMP"]) {
-                    roomModel.temperature = [self stringWithString:value];
-                } else if ([sufType isEqualToString:@"HUMI"]) {
-                    roomModel.humidity = [self stringWithString:value];
-                } else if ([sufType isEqualToString:@"SMOK"]) {
-                    roomModel.smoke = [self stringWithString:value];
+            // the last array is blank, e.g. 1;1; is count 3.
+            for (int i = 0; i < [arrays count] - 1; i++) {
+                NSArray *array = [arrays[i] componentsSeparatedByString:@":"];
+                NSString *Id = array[0];
+                NSString *type = array[1];
+                NSString *value = array[2];
+                
+                //NSString *preType = [type substringWithRange:NSMakeRange(0, 3)];
+                //NSString *sufType = [type substringWithRange:NSMakeRange(4, 4)];
+                NSString *preType = [type substringToIndex:3];
+                NSString *sufType = [type substringFromIndex:4];
+                
+                roomModel.Id = [Id integerValue] - 1; // why? because Id is begin with 0, and some body is 1
+                if ([preType isEqualToString:@"SEN"]) {
+                    if ([sufType isEqualToString:@"TEMP"]) {
+                        roomModel.temperature = [self stringWithString:value];
+                    } else if ([sufType isEqualToString:@"HUMI"]) {
+                        roomModel.humidity = [self stringWithString:value];
+                    } else if ([sufType isEqualToString:@"SMOK"]) {
+                        roomModel.smoke = [self stringWithString:value];
+                    }
+                    else { }
+                } else if ([preType isEqualToString:@"LED"]) {
+                    if ([sufType isEqualToString:@"TEMP"]) {
+                        roomModel.temperatureStatus = [value isEqualToString:@"00000000"] ? NO : YES;
+                    } else if ([sufType isEqualToString:@"HUMI"]) {
+                        roomModel.humidityStatus = [value isEqualToString:@"00000000"] ? NO : YES;
+                    } else if ([sufType isEqualToString:@"SMOK"]) {
+                        roomModel.smokeStatus = [value isEqualToString:@"00000000"] ? NO : YES;
+                    }
+                    else { }
                 }
-                else { }
-            } else if ([preType isEqualToString:@"LED"]) {
-                if ([sufType isEqualToString:@"TEMP"]) {
-                    roomModel.temperatureStatus = [value isEqualToString:@"00000000"] ? NO : YES;
-                } else if ([sufType isEqualToString:@"HUMI"]) {
-                    roomModel.humidityStatus = [value isEqualToString:@"00000000"] ? NO : YES;
-                } else if ([sufType isEqualToString:@"SMOK"]) {
-                    roomModel.smokeStatus = [value isEqualToString:@"00000000"] ? NO : YES;
+                
+                // check value
+                if ([roomModel.temperature floatValue] >= self.temperatureAlertValue) {
+                    [self pushLocalNotificationWithRoomId:roomModel.Id sensor:0 value:[roomModel.temperature floatValue]];
                 }
-                else { }
+                if ([roomModel.humidity floatValue] >= self.humidityAlertValue) {
+                    [self pushLocalNotificationWithRoomId:roomModel.Id sensor:1 value:[roomModel.humidity floatValue]];
+                }
+                if ([roomModel.smoke floatValue] >= self.smokeAlertValue) {
+                    [self pushLocalNotificationWithRoomId:roomModel.Id sensor:2 value:[roomModel.smoke floatValue]];
+                }
             }
+            [roomModels addObject:roomModel];
         }
-        return roomModel;
     }
     
-    return nil;
+    return roomModels;
+}
+
+- (NSArray *)componentsSeparated:(NSString *)aString withLength:(NSInteger)length
+{
+    // don't forget aString is end with '\n',
+    // looks like 00000001:SEN_TEMP:00000027;00000001:SEN_HUMI:00000040;\n
+    // so we don't need the lastest.
+    aString = [[aString componentsSeparatedByString:@"\n"] firstObject];
+    
+    length = length ? length : 162;
+    //NSUInteger count = ([aString length] - 1) / length; // sub '\n'
+    NSUInteger count = [aString length] / length;
+    //count = count > 12 ? 12 : count;
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (int i = 0; i < count; i++) {
+        NSString *str = [aString substringWithRange:NSMakeRange(length * i, length)];
+        [array addObject:str];
+    }
+    return array;
 }
 
 - (NSString *)stringWithString:(NSString *)aString
@@ -84,6 +128,8 @@
         return @":D";
     }
 }
+
+#pragma mark - database operation
 
 + (NSArray *)recentWeekWithRoomId:(NSUInteger)roomId;
 {
@@ -202,4 +248,152 @@
     }
     return NO;
 }
+
+#pragma mark - notificaton
+
+- (void)pushLocalNotificationWithRoomId:(NSUInteger)roomId sensor:(NSUInteger)index value:(CGFloat)value
+{
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"NotificationEnabled"] isEqualToString:@"Disabled"]) {
+        return;
+    }
+    NSString *sensor = @"";
+    switch (index) {
+        case 0:
+            if ([self checkTemperatureStatusWithId:roomId]) return;
+            sensor = @"temperature";
+            break;
+        case 1:
+            if ([self checkHumidityStatusWithId:roomId]) return;
+            sensor = @"humidity";
+            break;
+        case 2:
+            if ([self checkSmokeStatusWithId:roomId]) return;
+            sensor = @"smoke";
+            break;
+        default:
+            break;
+    }
+    
+    NSString *roomName = [self getRoomNameWithId:roomId];
+    if (!roomName) {
+        return;
+    }
+    
+    NSString *alertBody = [NSString stringWithFormat:@"My master, %@'s %@ now %.2f!", roomName, sensor, value];
+    XHLog(@"%@", alertBody);
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        // define local notification object
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:7];
+        notification.repeatInterval = 2;
+        notification.alertBody = alertBody;
+        notification.applicationIconBadgeNumber = 1;
+        notification.alertAction = @"open";
+        notification.alertLaunchImage = @"1";
+        notification.soundName = @"msg.caf";
+        notification.userInfo = @{ @"id" : @1, @"user" : @"b233" };
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:XHDidAlertNotification
+                                                            object:nil
+                                                          userInfo:@{ @"strName" : roomName, @"strContent" : alertBody }];
+    });
+}
+
+- (NSString *)getRoomNameWithId:(NSUInteger)Id
+{
+    NSString *name = @"";
+    switch (Id) {
+        case 0:
+            name = @"parlour";
+            break;
+        case 1:
+            name = @"kitchen";
+            break;
+        case 2:
+            name = @"bathroom";
+            break;
+        case 3:
+            name = @"bedroom";
+            break;
+        default:
+            name = nil;
+            break;
+    }
+    return name;
+}
+
+// return:
+- (BOOL)checkTemperatureStatusWithId:(NSUInteger)Id
+{
+    switch (Id) {
+        case 0:
+            if ((self.parlourStatus % 2) == 1) return YES;
+            else self.parlourStatus += 1;
+            break;
+        case 1:
+            if ((self.kitchenStatus % 2) == 1) return YES;
+            else self.kitchenStatus += 1;
+            break;
+        case 2:
+            if ((self.bathroomStatus % 2) == 1) return YES;
+            else self.bathroomStatus += 1;
+            break;
+        case 3:
+            if ((self.bedroomStatus % 2) == 1) return YES;
+            else self.bedroomStatus += 1;
+            break;
+        default:
+            break;
+    }
+    return NO;
+}
+
+- (BOOL)checkHumidityStatusWithId:(NSUInteger)Id
+{
+    switch (Id) {
+        case 0:
+            if (self.parlourStatus == 2 || self.parlourStatus == 3 || self.parlourStatus >= 6) return YES;
+            else self.parlourStatus += 2;
+            break;
+        case 1:
+            if (self.kitchenStatus == 2 || self.kitchenStatus == 3 || self.kitchenStatus >= 6) return YES;
+            else self.kitchenStatus += 2;
+            break;
+        case 2:
+            if (self.bathroomStatus == 2 || self.bathroomStatus == 3 || self.bathroomStatus >= 6) return YES;
+            else self.bathroomStatus += 2;
+            break;
+        case 3:
+            if (self.bedroomStatus == 2 || self.bedroomStatus == 3 || self.bedroomStatus >= 6) return YES;
+            else self.bedroomStatus += 2;
+            break;
+    }
+    return NO;
+}
+
+- (BOOL)checkSmokeStatusWithId:(NSUInteger)Id
+{
+    switch (Id) {
+        case 0:
+            if (self.parlourStatus >=4) return YES;
+            else self.parlourStatus += 4;
+            break;
+        case 1:
+            if (self.kitchenStatus >=4) return YES;
+            else self.kitchenStatus += 4;
+            break;
+        case 2:
+            if (self.bathroomStatus >=4) return YES;
+            else self.bathroomStatus += 4;
+            break;
+        case 3:
+            if (self.bedroomStatus >= 4) return YES;
+            else self.bedroomStatus += 4;
+            break;
+    }
+    return NO;
+}
+
 @end

@@ -82,6 +82,8 @@
 		78CB02D01AF71EEC0004167E /* XHDataAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB02CF1AF71EEC0004167E /* XHDataAnalysisViewController.m */; };
 		78CB02D31AF73C720004167E /* XHTableViewCellTextFieldItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB02D21AF73C720004167E /* XHTableViewCellTextFieldItem.m */; };
 		78CB02DC1AF767A90004167E /* XHEncryptTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB02DB1AF767A90004167E /* XHEncryptTypeViewController.m */; };
+		78CC8D041B16E8B200B82F82 /* XHLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC8D031B16E8B200B82F82 /* XHLicenseViewController.m */; };
+		78CC8D081B16F20E00B82F82 /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = 78CC8D071B16F20E00B82F82 /* license.html */; };
 		78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5B9E1AD780B700DC9FA0 /* main.m */; };
 		78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5BA11AD780B700DC9FA0 /* AppDelegate.m */; };
 		78DD5BAA1AD780B700DC9FA0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78DD5BA91AD780B700DC9FA0 /* Images.xcassets */; };
@@ -259,6 +261,9 @@
 		78CB02D21AF73C720004167E /* XHTableViewCellTextFieldItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTableViewCellTextFieldItem.m; sourceTree = "<group>"; };
 		78CB02DA1AF767A90004167E /* XHEncryptTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHEncryptTypeViewController.h; sourceTree = "<group>"; };
 		78CB02DB1AF767A90004167E /* XHEncryptTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHEncryptTypeViewController.m; sourceTree = "<group>"; };
+		78CC8D021B16E8B200B82F82 /* XHLicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHLicenseViewController.h; sourceTree = "<group>"; };
+		78CC8D031B16E8B200B82F82 /* XHLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLicenseViewController.m; sourceTree = "<group>"; };
+		78CC8D071B16F20E00B82F82 /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = license.html; sourceTree = "<group>"; };
 		78DD5B991AD780B700DC9FA0 /* XHSmartHomeSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XHSmartHomeSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DD5B9D1AD780B700DC9FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78DD5B9E1AD780B700DC9FA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -360,6 +365,8 @@
 				7825E78B1AF36E51008D6CF6 /* XHAboutViewController.m */,
 				78266C351AF9E65300D9A584 /* XHFeedbackViewController.h */,
 				78266C361AF9E65300D9A584 /* XHFeedbackViewController.m */,
+				78CC8D021B16E8B200B82F82 /* XHLicenseViewController.h */,
+				78CC8D031B16E8B200B82F82 /* XHLicenseViewController.m */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -411,6 +418,8 @@
 		785531431ADE5EE800080703 /* Categorys */ = {
 			isa = PBXGroup;
 			children = (
+				786E90511ADCBBBC00A93675 /* NSDate+Utils.h */,
+				786E90521ADCBBBC00A93675 /* NSDate+Utils.m */,
 				7881B75B1AECA8410079D1EB /* UICircularSlider.h */,
 				7881B75E1AECCC2A0079D1EB /* UICircularSlider.m */,
 				785531401ADE583B00080703 /* UIBarButtonItem+Extension.h */,
@@ -462,8 +471,6 @@
 			children = (
 				786E90581ADCBE4700A93675 /* UUImageAvatarBrowser.h */,
 				786E90591ADCBE4700A93675 /* UUImageAvatarBrowser.m */,
-				786E90511ADCBBBC00A93675 /* NSDate+Utils.h */,
-				786E90521ADCBBBC00A93675 /* NSDate+Utils.m */,
 				786E90481ADCBBAE00A93675 /* UUMessage.h */,
 				786E90491ADCBBAE00A93675 /* UUMessage.m */,
 				786E904A1ADCBBAE00A93675 /* UUMessageCell.h */,
@@ -642,6 +649,7 @@
 		78DD5B9C1AD780B700DC9FA0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				78CC8D071B16F20E00B82F82 /* license.html */,
 				786E90331ADBAD0A00A93675 /* data.plist */,
 				787FBB6C1AD90CD200316651 /* XHSmartHome-Prefix.pch */,
 				78DD5BA01AD780B700DC9FA0 /* AppDelegate.h */,
@@ -766,6 +774,7 @@
 			files = (
 				786E90341ADBAD0A00A93675 /* data.plist in Resources */,
 				78DD5BAD1AD780B700DC9FA0 /* LaunchScreen.xib in Resources */,
+				78CC8D081B16F20E00B82F82 /* license.html in Resources */,
 				78DD5BAA1AD780B700DC9FA0 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -849,6 +858,7 @@
 				7825E7801AF35031008D6CF6 /* GCDAsyncSocket.m in Sources */,
 				7857C1DF1AF7A26300E1271F /* XHCmdLineViewController.m in Sources */,
 				7825E78C1AF36E51008D6CF6 /* XHAboutViewController.m in Sources */,
+				78CC8D041B16E8B200B82F82 /* XHLicenseViewController.m in Sources */,
 				78E614991AE5ED4800191132 /* XHLineChartContentView.m in Sources */,
 				7855314F1ADF58C800080703 /* XHTableViewCellArrowItem.m in Sources */,
 				7855314C1ADF528E00080703 /* XHRoomTableViewCell.m in Sources */,

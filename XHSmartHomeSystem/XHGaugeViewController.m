@@ -129,14 +129,15 @@
 
 - (void)didReadBuffer:(NSString *)buffer
 {
-    XHRoomModel *model = [self.roomTools roomModelWithString:buffer];
-    
-    // update
-    self.temperatureView.value = [model.temperature floatValue];
-    self.humidityView.value = [model.humidity floatValue];
-    self.smokeView.value = [model.smoke floatValue];
-    self.roomId = model.Id;
-    [self updateRoomNameLabel];
+    for (XHRoomModel *model in [self.roomTools roomModelWithString:buffer]) {
+        if (model && model.Id == self.roomId) {
+            self.temperatureView.value = [model.temperature floatValue];
+            self.humidityView.value = [model.humidity floatValue];
+            self.smokeView.value = [model.smoke floatValue];
+            self.roomId = model.Id;
+            [self updateRoomNameLabel];
+        }
+    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -144,18 +145,18 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (void)updateRoomModel:(NSNotification *)notification
-{
-    if ([notification.name isEqualToString:XHUpdateRoomModelNotification]) {
-        NSString *buffer = [notification.userInfo objectForKey:@"BUFFER"];
-        XHRoomModel *model = [self.roomTools roomModelWithString:buffer];
-        
-        // update
-        self.smokeView.value = [model.temperature floatValue];
-        self.humidityView.value = [model.humidity floatValue];
-        self.smokeView.value = [model.smoke floatValue];
-    }
-}
+//- (void)updateRoomModel:(NSNotification *)notification
+//{
+//    if ([notification.name isEqualToString:XHUpdateRoomModelNotification]) {
+//        NSString *buffer = [notification.userInfo objectForKey:@"BUFFER"];
+//        XHRoomModel *model = [self.roomTools roomModelWithString:buffer];
+//        
+//        // update
+//        self.smokeView.value = [model.temperature floatValue];
+//        self.humidityView.value = [model.humidity floatValue];
+//        self.smokeView.value = [model.smoke floatValue];
+//    }
+//}
 
 - (void)dismiss
 {

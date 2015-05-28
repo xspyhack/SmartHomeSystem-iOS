@@ -82,7 +82,7 @@
 {
     CGRect rect = CGRectMake(0, 45, self.view.frame.size.width, 40);
     UIButton *block = [[UIButton alloc] initWithFrame:rect];
-    block.backgroundColor = [XHColorTools themeColor];
+    block.backgroundColor = [[XHColorTools themeColor] colorWithAlphaComponent:.8f];
     [block setTitle:@"Block" forState:UIControlStateNormal];
     [block setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [block addTarget:self action:@selector(blockButtonClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -94,7 +94,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 30; // here is only one section, so we can just return 30.
+    return 30; // here is only one section, so we can just return 30. ah hum.
 }
 
 #pragma mark - private methods

@@ -13,6 +13,7 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import "UIBarButtonItem+Extension.h"
 #import "NSData+CCCryptor.h"
+#import "NSDate+Utils.h"
 
 
 #ifdef DEBUG
@@ -29,6 +30,7 @@
 #define XHThemeDidChangeNotification (@"XHThemeDidChangedNotification")
 #define XHColorDidChangeNotification (@"XHColorDidChangedNotification")
 #define XHUpdateRoomModelNotification (@"XHUpdateRoomModelNotification")
+#define XHDidAlertNotification (@"XHDidAlertNotification")
 
 #define XHColor ([UIColor colorWithRed:255.0/255 green:185.0/255 blue:0.0/255 alpha:1.0f])
 #define XHBlackColor ([UIColor colorWithRed:26/255.0f green:26/255.0f blue:26/255.0f alpha:1])

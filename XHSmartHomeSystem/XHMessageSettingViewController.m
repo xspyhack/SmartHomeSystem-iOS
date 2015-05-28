@@ -43,7 +43,7 @@
 {
     CGRect rect = CGRectMake(0, 45, self.view.frame.size.width, 40);
     UIButton *clear = [[UIButton alloc] initWithFrame:rect];
-    clear.backgroundColor = [XHColorTools themeColor];
+    clear.backgroundColor = [[XHColorTools themeColor] colorWithAlphaComponent:.8f];
     [clear setTitle:@"Clear Message History" forState:UIControlStateNormal];
     [clear setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [clear addTarget:self action:@selector(clearButtonClicked) forControlEvents:UIControlEventTouchUpInside];

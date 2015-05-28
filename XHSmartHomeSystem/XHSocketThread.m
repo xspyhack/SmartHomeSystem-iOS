@@ -30,6 +30,7 @@ enum _DisconnectByWho {
 {
     static XHSocketThread *shareInstance = nil;
     static dispatch_once_t onceToken;
+    // singleton
     dispatch_once(&onceToken, ^{
         shareInstance = [[self alloc] init];
     });
@@ -40,6 +41,9 @@ enum _DisconnectByWho {
 - (void)connect
 {
     //_socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    if ([self.socket isConnected]) {
+        return;
+    }
     NSError *err = nil;
     if (![self.socket connectToHost:self.host onPort:12345 error:&err]) {
         XHLog(@"connect failed");
@@ -52,9 +56,11 @@ enum _DisconnectByWho {
 - (void)disconnect
 {
     //self.socket.userData = DisconnectByUser;
-    [self showAlert:@"Disconnection"];
+    //[self showAlert:@"Disconnection"];
+    XHLog(@"disconnect.");
     if ([self.socket isConnected]) {
         [self.socket disconnect];
+        XHLog(@"close");
     }
 }
 
@@ -91,14 +97,14 @@ enum _DisconnectByWho {
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
     // loop read data
-    NSString *butter = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *buffer = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 //        [[NSNotificationCenter defaultCenter] postNotificationName:XHUpdateRoomModelNotification object:nil userInfo:@{@"BUFFER" : butter}];
 //    });
     
     if ([self.delegate respondsToSelector:@selector(didReadBuffer:)]) {
-        [self.delegate didReadBuffer:butter];
+        [self.delegate didReadBuffer:buffer];
     }
     // wait and read next buffer
     [self.socket readDataWithTimeout:-1 tag:0];
@@ -113,7 +119,8 @@ enum _DisconnectByWho {
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
 {
-    [self showAlert:[NSString stringWithFormat:@"Disconnect with error: %@", err.description]];
+    XHLog(@"Disconnect with error: %@", err.description);
+    //[self showAlert:[NSString stringWithFormat:@"Disconnect with error: %@", err.description]];
 //    if ((int)sock.userData == DisconnectByServer) {
 //        // reconnect
 //        [self connect];

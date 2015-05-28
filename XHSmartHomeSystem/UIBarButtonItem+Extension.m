@@ -18,8 +18,8 @@
     // custom UIView
     UIButton *btn = [[UIButton alloc] init];
     //btn.tintColor = [XHColorTools themeColor];
-    [btn setBackgroundImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     
+    UIImage *image = [UIImage imageNamed:imageName];
     UIImage *highLightedIamge = [UIImage imageNamed:highLightedImageName];
     if (IOS_7_OR_LATER) {
         // here we should use UIImage's new property renderingMode,
@@ -27,11 +27,13 @@
         // if we need to rendering the hightLighted image automatic according tintColor.
         // and if we need to use the original image, we should set renderingMode with
         // UIImageRenderingModeAlwaysOriginal.
+        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         //selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        //highLightedIamge = [highLightedIamge imageWithRenderingMode:UIImageRenderingModeAutomatic];
+        highLightedIamge = [highLightedIamge imageWithRenderingMode:UIImageRenderingModeAutomatic];
         //selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     
+    [btn setBackgroundImage:image forState:UIControlStateNormal];
     [btn setBackgroundImage:highLightedIamge forState:UIControlStateHighlighted];
     
     // set frame

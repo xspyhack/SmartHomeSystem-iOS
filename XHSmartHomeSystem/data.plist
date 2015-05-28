@@ -6,49 +6,49 @@
 		<key>Id</key>
 		<integer>0</integer>
 		<key>iconName</key>
-		<string>1</string>
+		<string>parlour</string>
 		<key>name</key>
 		<string>parlour</string>
 		<key>temperature</key>
-		<string>35</string>
+		<string>0.0</string>
 		<key>humidity</key>
-		<string>190</string>
+		<string>0.0</string>
 	</dict>
 	<dict>
 		<key>Id</key>
 		<integer>1</integer>
 		<key>iconName</key>
-		<string>2</string>
+		<string>kitchen</string>
 		<key>name</key>
 		<string>kitchen</string>
 		<key>temperature</key>
-		<string>35.5</string>
+		<string>0.0</string>
 		<key>humidity</key>
-		<string>1900</string>
+		<string>0.0</string>
 	</dict>
 	<dict>
 		<key>Id</key>
 		<integer>2</integer>
 		<key>iconName</key>
-		<string>3</string>
+		<string>bathroom</string>
 		<key>name</key>
 		<string>bathroom</string>
 		<key>temperature</key>
-		<string>36</string>
+		<string>0.0</string>
 		<key>humidity</key>
-		<string>190</string>
+		<string>0.0</string>
 	</dict>
 	<dict>
 		<key>Id</key>
 		<integer>3</integer>
 		<key>iconName</key>
-		<string>1</string>
+		<string>bedroom</string>
 		<key>name</key>
 		<string>bedroom</string>
 		<key>temperature</key>
-		<string>40</string>
+		<string>0.0</string>
 		<key>humidity</key>
-		<string>190</string>
+		<string>0.0</string>
 	</dict>
 </array>
 </plist>

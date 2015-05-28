@@ -15,7 +15,7 @@
 #define XHColorBtnWidht (self.frame.size.width / 8.0)
 
 @interface XHColorsView ()
-@property (nonatomic, strong) NSArray *btnArray;
+//@property (nonatomic, strong) NSArray *btnArray;
 @property (nonatomic, strong) NSMutableArray *colorsArray;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) UIButton *lastButton;

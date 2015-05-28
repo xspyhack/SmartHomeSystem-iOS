@@ -14,8 +14,6 @@
 
 - (void)populateRandomDataSource;
 
-//- (void)addRandomItemsToDataSource:(NSInteger)number;
-
-//- (void)addSpecifiedItem:(NSDictionary *)dic;
+- (void)addMessageItem:(NSDictionary *)dictionary;
 
 @end

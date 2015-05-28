@@ -2602,6 +2602,7 @@ enum GCDAsyncSocketConfig
 		{
 			LogVerbose(@"close(socket4FD)");
 			close(socket4FD);
+            //shutdown(socket4FD, SHUT_RDWR);
 			socket4FD = SOCKET_NULL;
 		}
 

@@ -49,8 +49,7 @@
     // set navigationbar button
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_chart_highLighted" target:self action:@selector(chartButtonItemClicked)];
     
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_gauge" highLightedImageName:@"nav_gauge_hightLighted" target:self action:@selector(statusButtonItemClicked)];
-
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_status" highLightedImageName:@"nav_status_highLighted" target:self action:@selector(statusButtonItemClicked)];
     
     [self setupData];
     [self setupTabelView];
@@ -166,28 +165,25 @@
 
 - (void)didReadBuffer:(NSString *)buffer
 {
-    XHRoomModel *model = [self.roomTools roomModelWithString:buffer];
-    
-    if (!model) {
-        return;
+    for (XHRoomModel *model in [self.roomTools roomModelWithString:buffer]) {
+        if (model) {
+            XHRoomModel *roomModel = self.roomModels[model.Id];
+            if (roomModel) {
+                roomModel.temperature = model.temperature;
+                roomModel.humidity = model.humidity;
+                NSIndexPath *path = [NSIndexPath indexPathForRow:model.Id inSection:0];
+                [self.tableView reloadRowsAtIndexPaths:@[ path ] withRowAnimation:UITableViewRowAnimationRight];
+            }
+        }
     }
-//    if (![self isExists:model.Id]) {
-//        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-//            if ([XHRoomTools saveIfIsFirstDataToday:model]) {
-//                XHLog(@"first data today");
-//            }
-//        });
-//    }
     
-    // update row
-    XHRoomModel *roomModel = self.roomModels[model.Id];
-    if (roomModel) {
-        roomModel.temperature = model.temperature;
-        roomModel.humidity = model.humidity;
-        NSIndexPath *path = [NSIndexPath indexPathForRow:model.Id inSection:0];
-        [self.tableView reloadRowsAtIndexPaths:@[ path ] withRowAnimation:UITableViewRowAnimationRight];
-        XHLog(@"update row: %ld", model.Id);
-    }
+////    if (![self isExists:model.Id]) {
+////        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+////            if ([XHRoomTools saveIfIsFirstDataToday:model]) {
+////                XHLog(@"first data today");
+////            }
+////        });
+////    }
 }
 
 #pragma mark - event

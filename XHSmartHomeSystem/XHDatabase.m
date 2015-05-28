@@ -25,7 +25,7 @@
         NSString *sql = @"CREATE TABLE 'XHRoom' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, 'roomId' INTEGER, 'roomName' VARCHAR(20), 'temperature' VARCHAR(10), 'humidity' VARCHAR(10), 'smoke' VARCHAR(10), 'date' DATE)";
         [self executeNonQuery:sql];
         
-        sql = @"CREATE TABLE 'XHMessage' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, 'strId' INTEGER, 'strName' VARCHAR(20), 'strIcon' VARCHAR(200), 'strContent' VARCHAR(10), 'strTime' DATETIME)";
+        sql = @"CREATE TABLE 'XHMessage' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL, 'strId' INTEGER, 'strName' VARCHAR(20), 'strIcon' VARCHAR(10), 'strContent' VARCHAR(200), 'strTime' DATETIME)";
         [self executeNonQuery:sql];
     }
 }

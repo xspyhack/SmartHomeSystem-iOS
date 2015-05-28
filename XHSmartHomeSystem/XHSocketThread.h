@@ -18,7 +18,7 @@
 
 @interface XHSocketThread : NSObject<GCDAsyncSocketDelegate>
 
-+ (XHSocketThread *)shareInstance; // single
++ (XHSocketThread *)shareInstance; // singleton
 
 @property (nonatomic, strong, readwrite) id<XHSocketThreadDelegate> delegate;
 

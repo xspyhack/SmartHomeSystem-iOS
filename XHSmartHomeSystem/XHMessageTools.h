@@ -13,4 +13,6 @@
 + (NSArray *)latestMessageWithNumber:(NSUInteger)number;
 + (NSArray *)latestMessageWithNumber:(NSUInteger)number userName:(NSString *)userName;
 
++ (void)saveMessage:(NSDictionary *)dictionary;
+
 @end

@@ -26,10 +26,10 @@
             for (int j = 0; j < 10; j++) {
                 NSString *sql = [NSString stringWithFormat:@"INSERT INTO XHRoom('roomId', 'roomName', 'temperature', 'humidity', 'smoke', 'date') VALUES(%d, '%d', '%d', '%d', '%d', '%@')", i, i, 10+i*j, i*j+1, i*j+1, [NSDate stringYearMonthDayWithDate:[NSDate dateYesterday]]];
                 [db executeNonQuery:sql];
-                
+                XHLog(@"%@", sql);
+
                 sql = [NSString stringWithFormat:@"INSERT INTO XHMessage('strId', 'strName', 'strIcon', 'strContent', 'strTime') VALUES(%d, 'Hey,%d', 'headImage', '%@', '%@')", i, j, [self getRandomString], [[NSDate date] description]];
                 [db executeNonQuery:sql];
-                XHLog(@"%@", sql);
             }
         }
         

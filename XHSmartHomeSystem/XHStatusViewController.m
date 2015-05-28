@@ -20,6 +20,7 @@
 @interface XHStatusViewController ()<XHSocketThreadDelegate>
 
 @property (nonatomic, strong) NSMutableArray *buttons;
+@property (nonatomic, strong) UIButton *allButton;
 @property (nonatomic, getter=isAllButtonSelected) BOOL allButtonSelected;
 @property (nonatomic, strong) XHRoomTools *roomTools;
 
@@ -84,9 +85,10 @@
     
     UIButton *allButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonCenter.x-ALL_BUTTON_WIDTH/2, buttonCenter.y-ALL_BUTTON_WIDTH/2, ALL_BUTTON_WIDTH, ALL_BUTTON_WIDTH)];
     allButton.layer.cornerRadius = ALL_BUTTON_WIDTH/2;
-    allButton.backgroundColor = [[XHColorTools themeColor] colorWithAlphaComponent:.98f];
+    allButton.backgroundColor = [[XHColorTools themeColor] colorWithAlphaComponent:.3f];
     [allButton setTitle:@"All" forState:UIControlStateNormal];
     [allButton addTarget:self action:@selector(allButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    self.allButton = allButton;
     
     [self.view addSubview:allButton];
 }
@@ -103,22 +105,41 @@
 
 - (void)didReadBuffer:(NSString *)buffer
 {
-    XHRoomModel *roomModel = [self.roomTools roomModelWithString:buffer];
-    
-    if (roomModel.temperatureStatus) {
-        [self setButtonSelected:YES index:(roomModel.Id * 3)];
-    } else {
-        [self setButtonSelected:NO index:(roomModel.Id * 3)];
-    }
-    if (roomModel.humidityStatus) {
-        [self setButtonSelected:YES index:(roomModel.Id * 3 + 1)];
-    } else {
-        [self setButtonSelected:NO index:(roomModel.Id * 3 + 1)];
-    }
-    if (roomModel.smokeStatus) {
-        [self setButtonSelected:YES index:(roomModel.Id * 3 + 2)];
-    } else {
-        [self setButtonSelected:NO index:(roomModel.Id * 3 + 2)];
+//    XHRoomModel *roomModel = [self.roomTools roomModelWithString:buffer];
+//    
+//    if (roomModel.temperatureStatus) {
+//        [self setButtonSelected:YES index:(roomModel.Id * 3)];
+//    } else {
+//        [self setButtonSelected:NO index:(roomModel.Id * 3)];
+//    }
+//    if (roomModel.humidityStatus) {
+//        [self setButtonSelected:YES index:(roomModel.Id * 3 + 1)];
+//    } else {
+//        [self setButtonSelected:NO index:(roomModel.Id * 3 + 1)];
+//    }
+//    if (roomModel.smokeStatus) {
+//        [self setButtonSelected:YES index:(roomModel.Id * 3 + 2)];
+//    } else {
+//        [self setButtonSelected:NO index:(roomModel.Id * 3 + 2)];
+//    }
+    for (XHRoomModel *roomModel in [self.roomTools roomModelWithString:buffer]) {
+        if (roomModel) {
+            if (roomModel.temperatureStatus) {
+                [self setButtonSelected:YES index:(roomModel.Id * 3)];
+            } else {
+                [self setButtonSelected:NO index:(roomModel.Id * 3)];
+            }
+            if (roomModel.humidityStatus) {
+                [self setButtonSelected:YES index:(roomModel.Id * 3 + 1)];
+            } else {
+                [self setButtonSelected:NO index:(roomModel.Id * 3 + 1)];
+            }
+            if (roomModel.smokeStatus) {
+                [self setButtonSelected:YES index:(roomModel.Id * 3 + 2)];
+            } else {
+                [self setButtonSelected:NO index:(roomModel.Id * 3 + 2)];
+            }
+        }
     }
 }
 
@@ -236,6 +257,7 @@
 
 - (void)allButtonClicked
 {
+    
     for (UIButton *button in self.buttons) {
         [UIView animateWithDuration:.7f
                               delay:.0f
@@ -247,6 +269,7 @@
                          completion:nil];
     }
     self.allButtonSelected = !self.allButtonSelected;
+    self.allButton.backgroundColor = self.allButtonSelected ? ([[XHColorTools themeColor] colorWithAlphaComponent:0.98f]) : ([[XHColorTools themeColor] colorWithAlphaComponent:0.3f]);
 }
 
 @end

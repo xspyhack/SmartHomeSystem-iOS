@@ -98,7 +98,7 @@
     self.logoView = [[XHImageView alloc] initWithFrame:logoRect];
     self.logoView.color = self.themeColor;
     self.logoView.progress = 0.7f;
-    self.logoView.imageName = @"logo";
+    self.logoView.imageName = @"logo-white";
     self.logoView.userInteractionEnabled = YES; // must set user interaction enable
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLogoView:)];
@@ -178,7 +178,7 @@
 {
     CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 40);
     UIButton *linkout = [[UIButton alloc] initWithFrame:rect];
-    linkout.backgroundColor = [XHColorTools themeColor];
+    linkout.backgroundColor = [_themeColor colorWithAlphaComponent:.8f];
     [linkout setTitle:@"Link Out" forState:UIControlStateNormal];
     [linkout setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [linkout addTarget:self action:@selector(linkout) forControlEvents:UIControlEventTouchUpInside];
@@ -240,7 +240,7 @@
         view.backgroundColor = [UIColor whiteColor];
         
         UIView *subView = [[UIView alloc] initWithFrame:CGRectMake(0, 62.6, self.view.frame.size.width, 100)];
-        subView.backgroundColor = _themeColor;
+        subView.backgroundColor = [_themeColor colorWithAlphaComponent:.8f];
         
         UILabel *lbBio = [[UILabel alloc] initWithFrame:CGRectMake((subView.bounds.size.width-300)/2, 30, 300, 30)];
         lbBio.text = _gateway;

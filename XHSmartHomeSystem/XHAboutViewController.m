@@ -12,6 +12,7 @@
 #import "XHTableViewCellGroup.h"
 #import "XHTableViewCellArrowItem.h"
 #import "XHFeedbackViewController.h"
+#import "XHLicenseViewController.h"
 
 #define XHLogoViewWidthAndHeight 100
 
@@ -38,7 +39,7 @@
     XHImageView *logoView = [[XHImageView alloc] initWithFrame:logoRect];
     logoView.color = [XHColorTools themeColor];
     logoView.progress = 0.7f;
-    logoView.imageName = @"logo";
+    logoView.imageName = @"logo-white";
     logoView.userInteractionEnabled = YES; // must set user interaction enable
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLogoView:)];
@@ -63,7 +64,10 @@
     feedbackItem.destinationContorller = [XHFeedbackViewController class];
     XHTableViewCellArrowItem *helpItem = [XHTableViewCellArrowItem itemWithTitle:@"Help"];
     
-    self.group.items = @[ rateItem, aboutItem, feedbackItem, helpItem ];
+    XHTableViewCellArrowItem *licenseItem = [XHTableViewCellArrowItem itemWithTitle:@"License"];
+    licenseItem.destinationContorller = [XHLicenseViewController class];
+    
+    self.group.items = @[ rateItem, aboutItem, feedbackItem, helpItem, licenseItem ];
 }
 
 - (void)setupFooterView
