@@ -276,12 +276,24 @@
     }
     
     NSString *alertBody = [NSString stringWithFormat:@"My master, %@'s %@ now %.2f!", roomName, sensor, value];
-    XHLog(@"%@", alertBody);
+    
+    // push update message notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:XHDidAlertNotification
+                                                        object:nil
+                                                      userInfo:@{ @"strName" : roomName, @"strContent" : alertBody }];
+    
+    NSUserDefaults *defaluts = [NSUserDefaults standardUserDefaults];
+    if (![defaluts boolForKey:@"XHTemperatureAlertor"] && [sensor isEqualToString:@"temperature"]) {
+        return;
+    }
+    if (![defaluts boolForKey:@"XHHumidityAlertor"] && [sensor isEqualToString:@"humidity"]) {
+        return;
+    }
+    if (![defaluts boolForKey:@"XHSmokeAlertor"] && [sensor isEqualToString:@"smoke"]) {
+        return;
+    }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@""]) {
-            
-        }
         // define local notification object
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:7];
@@ -293,11 +305,6 @@
         notification.soundName = @"msg.caf";
         notification.userInfo = @{ @"id" : @1, @"user" : @"b233" };
         [[UIApplication sharedApplication] scheduleLocalNotification:notification]; // local notification
-        
-        // push update message notification
-        [[NSNotificationCenter defaultCenter] postNotificationName:XHDidAlertNotification
-                                                            object:nil
-                                                          userInfo:@{ @"strName" : roomName, @"strContent" : alertBody }];
     });
 }
 

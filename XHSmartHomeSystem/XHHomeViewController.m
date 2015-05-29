@@ -165,14 +165,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    XHRoomModel *model = self.roomModels[indexPath.row];
-    
-    // here use GCD to present ViewController, if not ,it will delay...
-    dispatch_async(dispatch_get_main_queue(), ^ {
-        XHGaugeViewController *gVC = [[XHGaugeViewController alloc] init];
-        gVC.roomId = model.Id;
-        [self presentViewController:gVC animated:YES completion:nil]; // modal
-    });
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"XHGaugeMode"]) {
+        XHRoomModel *model = self.roomModels[indexPath.row];
+        
+        // here use GCD to present ViewController, if not ,it will delay...
+        dispatch_async(dispatch_get_main_queue(), ^ {
+            XHGaugeViewController *gVC = [[XHGaugeViewController alloc] init];
+            gVC.roomId = model.Id;
+            [self presentViewController:gVC animated:YES completion:nil]; // modal
+        });
+    } else {
+        [self alertWithTitle:@"Failed" message:@"gauge mode is disable, if you want to use the mode you need to enable it via \"Settings\"->\"General\"->\"Display\" on this app."];
+    }
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -273,11 +277,15 @@
 
 - (void)chartButtonItemClicked
 {
-    XHRoomModel *model = self.roomModels[0];
-    XHChartViewController *chartVC = [[XHChartViewController alloc] init];
-    chartVC.roomId = model.Id;
-    chartVC.view.backgroundColor = [UIColor whiteColor];
-    [self.navigationController pushViewController:chartVC animated:YES];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"XHChartMode"]) {
+        XHRoomModel *model = self.roomModels[0];
+        XHChartViewController *chartVC = [[XHChartViewController alloc] init];
+        chartVC.roomId = model.Id;
+        chartVC.view.backgroundColor = [UIColor whiteColor];
+        [self.navigationController pushViewController:chartVC animated:YES];
+    } else {
+        [self alertWithTitle:@"Failed" message:@"chart mode is disable, if you want to use the mode you need to enable it via \"Settings\"->\"General\"->\"Display\" on this app."];
+    }
 }
 
 #pragma mark - private methods
@@ -288,6 +296,11 @@
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
+- (void)alertWithTitle:(NSString *)title message:(NSString *)message
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alertView show];
+}
 
 - (void)prepareVisibleCellsForAnimation {
     for (int i = 0; i < [self.tableView.visibleCells count]; i++) {

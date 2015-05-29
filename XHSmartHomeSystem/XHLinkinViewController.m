@@ -217,29 +217,34 @@
     } else {
         // check password
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *password = [defaults objectForKey:@"XHPassword"];
-        
-        if ([[XHCryptTools md5WithKey:self.passwordTextField.text] isEqualToString:password]) {
-            // save token to archiver data
-            NSMutableDictionary *tokenDict = [NSMutableDictionary dictionary];
-            [tokenDict setObject:self.gatewayTextField.text forKey:@"gateway"];
-            [tokenDict setObject:self.passwordTextField.text forKey:@"password"];
-            [tokenDict setObject:[NSDate distantFuture] forKey:@"expires_time"];
-            XHTokenModel *token = [XHTokenModel tokenModelWithDictionary:tokenDict];
-            [XHTokenTools save:token];
+        if ([defaults boolForKey:@"XHCheckIn"]) {
+            NSString *password = [defaults objectForKey:@"XHPassword"];
             
-            //NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-            //NSString *filePath = [doc stringByAppendingPathComponent:@"token.plist"];
-            //NSString *filePath = [[NSBundle mainBundle] pathForResource:@"token" ofType:@"plist"];
-            //[token writeToFile:filePath atomically:YES];
-            [defaults setObject:self.gatewayTextField.text forKey:@"XHGateway"];
-            
-            [self start];
+            if ([[XHCryptTools md5WithKey:self.passwordTextField.text] isEqualToString:password]) {
+                // save token to archiver data
+                NSMutableDictionary *tokenDict = [NSMutableDictionary dictionary];
+                [tokenDict setObject:self.gatewayTextField.text forKey:@"gateway"];
+                [tokenDict setObject:self.passwordTextField.text forKey:@"password"];
+                [tokenDict setObject:[NSDate distantFuture] forKey:@"expires_time"];
+                XHTokenModel *token = [XHTokenModel tokenModelWithDictionary:tokenDict];
+                [XHTokenTools save:token];
+                
+                //NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+                //NSString *filePath = [doc stringByAppendingPathComponent:@"token.plist"];
+                //NSString *filePath = [[NSBundle mainBundle] pathForResource:@"token" ofType:@"plist"];
+                //[token writeToFile:filePath atomically:YES];
+                [defaults setObject:self.gatewayTextField.text forKey:@"XHGateway"];
+                
+                [self start];
+            } else {
+                // show password error message
+                UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Password error, please check and try again." delegate:self cancelButtonTitle:@"Again" otherButtonTitles:nil, nil];
+                [errorAlert show];
+            }
         } else {
-            // show password error message
-            UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Password error, please check and try again." delegate:self cancelButtonTitle:@"Again" otherButtonTitles:nil, nil];
-            [errorAlert show];
+            [self start];
         }
+        
     }
 }
 

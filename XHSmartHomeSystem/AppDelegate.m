@@ -15,6 +15,7 @@
 #import "XHTokenTools.h"
 #import "XHColorTools.h"
 #import "XHSocketThread.h"
+#import "XHSplashView.h"
 
 @interface AppDelegate ()<XHSocketThreadDelegate>
 @property (nonatomic, getter=isEnterBackground) BOOL enterBackground;
@@ -23,7 +24,7 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOption {
     // Override point for customization after application launch.
     
     // create window
@@ -33,6 +34,10 @@
     
     self.enterBackground = NO;
     
+    XHSplashView *splashView = [[XHSplashView alloc] initWithFrame:self.window.bounds];
+//    [self.window addSubview:splashView];
+//    [self.window bringSubviewToFront:splashView];
+
     // set rootViewController
     /*
     NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -78,9 +83,9 @@
         self.window.rootViewController = [[XHLinkinViewController alloc] init];
     }
     
-    // show window
+    // make visible
     [self.window makeKeyAndVisible];
-    
+
     if ([[UIApplication sharedApplication] currentUserNotificationSettings].types != UIUserNotificationTypeNone) {
         //
         [defaults setObject:@"Enabled" forKey:@"XHNotificationEnabled"];
@@ -94,6 +99,24 @@
                                                  name:XHThemeDidChangeNotification
                                                object:nil];
 
+    self.window.rootViewController.view.alpha = 0;
+    [self.window addSubview:splashView];
+    [self.window bringSubviewToFront:splashView];
+    [UIView animateWithDuration:2.7
+                     animations:^{
+                         self.window.rootViewController.view.alpha = 1.0;
+                         //splashView.alpha = .3f;
+                         //[self.window addSubview:splashView];
+                         //[self.window bringSubviewToFront:splashView];
+                     }completion:^(BOOL finished) {
+                         [splashView remove];
+                         [UIView animateWithDuration:.7 animations:^{
+                             splashView.alpha = 0;
+                         }completion:^(BOOL finished) {
+                             [splashView removeFromSuperview];
+                         }];
+                     }];
+    
     return YES;
 }
 
