@@ -53,10 +53,10 @@ typedef enum _EMSwitch {
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    [self.defaults setBool:self.showSwitch forKey:@"XHShowSwitch"];
-    [self.defaults setBool:self.smokeSwitch forKey:@"XHSmokeAlertSwitch"];
-    [self.defaults setBool:self.humiditySwitch forKey:@"XHHumidityAlertSwitch"];
-    [self.defaults setBool:self.temperatureSwitch forKey:@"XHTemperatureAlertSwitch"];
+    [self.defaults setBool:self.showSwitch forKey:@"XHShowPreviewText"];
+    [self.defaults setBool:self.smokeSwitch forKey:@"XHSmokeAlertor"];
+    [self.defaults setBool:self.humiditySwitch forKey:@"XHHumidityAlertor"];
+    [self.defaults setBool:self.temperatureSwitch forKey:@"XHTemperatureAlertor"];
 }
 
 #pragma mark - setup View
@@ -96,9 +96,9 @@ typedef enum _EMSwitch {
     
     // read defaults settings
     
-    self.smokeSwitch = [self.defaults boolForKey:@"XHSmokeAlertSwitch"];
-    self.humiditySwitch = [self.defaults boolForKey:@"XHHumidityAlertSwitch"];
-    self.temperatureSwitch = [self.defaults boolForKey:@"XHTemperatureAlertSwitch"];
+    self.smokeSwitch = [self.defaults boolForKey:@"XHSmokeAlertor"];
+    self.humiditySwitch = [self.defaults boolForKey:@"XHHumidityAlertor"];
+    self.temperatureSwitch = [self.defaults boolForKey:@"XHTemperatureAlertor"];
     
     XHTableViewCellSwitchItem *smokeAlertItem = [XHTableViewCellSwitchItem itemWithTitle:@"Smoke"];
     smokeAlertItem.on = self.smokeSwitch;
@@ -160,7 +160,7 @@ typedef enum _EMSwitch {
     if (!_notificatonLabel) {
         _notificatonLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _notificatonLabel.textColor = [XHColorTools themeColor];
-        NSString *notification = [self.defaults objectForKey:@"NotificationEnabled"];
+        NSString *notification = [self.defaults objectForKey:@"XHNotificationEnabled"];
         _notificatonLabel.text = notification;
         [_notificatonLabel sizeToFit];
     }

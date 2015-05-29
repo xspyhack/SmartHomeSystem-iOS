@@ -84,6 +84,10 @@
 		78CB02DC1AF767A90004167E /* XHEncryptTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB02DB1AF767A90004167E /* XHEncryptTypeViewController.m */; };
 		78CC8D041B16E8B200B82F82 /* XHLicenseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC8D031B16E8B200B82F82 /* XHLicenseViewController.m */; };
 		78CC8D081B16F20E00B82F82 /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = 78CC8D071B16F20E00B82F82 /* license.html */; };
+		78CC8D0E1B17142A00B82F82 /* XHRoomStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC8D0D1B17142A00B82F82 /* XHRoomStatus.m */; };
+		78CC8D111B17453F00B82F82 /* MultiplePulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC8D101B17453F00B82F82 /* MultiplePulsingHaloLayer.m */; };
+		78CC8D151B1745A700B82F82 /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC8D141B1745A700B82F82 /* PulsingHaloLayer.m */; };
+		78CC8D181B17463C00B82F82 /* XHAboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC8D171B17463C00B82F82 /* XHAboutMeViewController.m */; };
 		78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5B9E1AD780B700DC9FA0 /* main.m */; };
 		78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5BA11AD780B700DC9FA0 /* AppDelegate.m */; };
 		78DD5BAA1AD780B700DC9FA0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78DD5BA91AD780B700DC9FA0 /* Images.xcassets */; };
@@ -264,6 +268,14 @@
 		78CC8D021B16E8B200B82F82 /* XHLicenseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHLicenseViewController.h; sourceTree = "<group>"; };
 		78CC8D031B16E8B200B82F82 /* XHLicenseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHLicenseViewController.m; sourceTree = "<group>"; };
 		78CC8D071B16F20E00B82F82 /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = license.html; sourceTree = "<group>"; };
+		78CC8D0C1B17142A00B82F82 /* XHRoomStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHRoomStatus.h; sourceTree = "<group>"; };
+		78CC8D0D1B17142A00B82F82 /* XHRoomStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHRoomStatus.m; sourceTree = "<group>"; };
+		78CC8D0F1B17453F00B82F82 /* MultiplePulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplePulsingHaloLayer.h; sourceTree = "<group>"; };
+		78CC8D101B17453F00B82F82 /* MultiplePulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplePulsingHaloLayer.m; sourceTree = "<group>"; };
+		78CC8D131B1745A700B82F82 /* PulsingHaloLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulsingHaloLayer.h; sourceTree = "<group>"; };
+		78CC8D141B1745A700B82F82 /* PulsingHaloLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulsingHaloLayer.m; sourceTree = "<group>"; };
+		78CC8D161B17463C00B82F82 /* XHAboutMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHAboutMeViewController.h; sourceTree = "<group>"; };
+		78CC8D171B17463C00B82F82 /* XHAboutMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHAboutMeViewController.m; sourceTree = "<group>"; };
 		78DD5B991AD780B700DC9FA0 /* XHSmartHomeSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XHSmartHomeSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DD5B9D1AD780B700DC9FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78DD5B9E1AD780B700DC9FA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -363,6 +375,8 @@
 			children = (
 				7825E78A1AF36E51008D6CF6 /* XHAboutViewController.h */,
 				7825E78B1AF36E51008D6CF6 /* XHAboutViewController.m */,
+				78CC8D161B17463C00B82F82 /* XHAboutMeViewController.h */,
+				78CC8D171B17463C00B82F82 /* XHAboutMeViewController.m */,
 				78266C351AF9E65300D9A584 /* XHFeedbackViewController.h */,
 				78266C361AF9E65300D9A584 /* XHFeedbackViewController.m */,
 				78CC8D021B16E8B200B82F82 /* XHLicenseViewController.h */,
@@ -576,6 +590,8 @@
 				7888C12A1B00FC24002AE1B7 /* XHRoomTools.m */,
 				784707EA1B0781E0004D9420 /* XHMessageTools.h */,
 				784707EB1B0781E0004D9420 /* XHMessageTools.m */,
+				78CC8D0C1B17142A00B82F82 /* XHRoomStatus.h */,
+				78CC8D0D1B17142A00B82F82 /* XHRoomStatus.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -583,6 +599,7 @@
 		78C13B9D1ADA6D430020AAFA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				78CC8D121B17454500B82F82 /* HaloLayer */,
 				786E90381ADBB50800A93675 /* XHRoomView.h */,
 				786E90391ADBB50800A93675 /* XHRoomView.m */,
 				78C13B9A1ADA6D370020AAFA /* XHImageView.h */,
@@ -603,6 +620,17 @@
 				784707E81B06F063004D9420 /* XHCoordinateView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		78CC8D121B17454500B82F82 /* HaloLayer */ = {
+			isa = PBXGroup;
+			children = (
+				78CC8D131B1745A700B82F82 /* PulsingHaloLayer.h */,
+				78CC8D141B1745A700B82F82 /* PulsingHaloLayer.m */,
+				78CC8D0F1B17453F00B82F82 /* MultiplePulsingHaloLayer.h */,
+				78CC8D101B17453F00B82F82 /* MultiplePulsingHaloLayer.m */,
+			);
+			name = HaloLayer;
 			sourceTree = "<group>";
 		};
 		78DD5B901AD780B700DC9FA0 = {
@@ -818,6 +846,7 @@
 				78E614D71AE6447100191132 /* XHGaugeView.m in Sources */,
 				784707E91B06F063004D9420 /* XHCoordinateView.m in Sources */,
 				78266C411AFB477400D9A584 /* XHCryptTools.m in Sources */,
+				78CC8D181B17463C00B82F82 /* XHAboutMeViewController.m in Sources */,
 				7866FAE41AE937A500250478 /* XHTableViewCellCheckmarkItem.m in Sources */,
 				785C20EA1AF8841E00F9CD1C /* XHInputView.m in Sources */,
 				78266C4E1AFB543600D9A584 /* FMDatabaseAdditions.m in Sources */,
@@ -829,9 +858,11 @@
 				78C11AE91AFC66F00006A2B3 /* XHSearchResultsViewController.m in Sources */,
 				7825E7921AF37993008D6CF6 /* XHButton.m in Sources */,
 				786E90321ADB966500A93675 /* XHRoomModel.m in Sources */,
+				78CC8D111B17453F00B82F82 /* MultiplePulsingHaloLayer.m in Sources */,
 				7889A91A1AF9153500E0DF89 /* XHSetupTools.m in Sources */,
 				7825E7861AF356C8008D6CF6 /* XHChatInfoViewController.m in Sources */,
 				786E904F1ADCBBAE00A93675 /* UUMessageCell.m in Sources */,
+				78CC8D151B1745A700B82F82 /* PulsingHaloLayer.m in Sources */,
 				78379E7B1AEE2A49008B5C87 /* XHTimePickerView.m in Sources */,
 				78E6149C1AE5ED7800191132 /* XHChart.m in Sources */,
 				786E904E1ADCBBAE00A93675 /* UUMessage.m in Sources */,
@@ -866,6 +897,7 @@
 				787F172D1AE9E578002B9DCD /* XHColorsView.m in Sources */,
 				787DECE81AD93FF70081ECEE /* XHNewFeatureViewController.m in Sources */,
 				78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */,
+				78CC8D0E1B17142A00B82F82 /* XHRoomStatus.m in Sources */,
 				781F1FED1AE0C10600ACEACC /* XHChartView.m in Sources */,
 				78266C3E1AFB41F300D9A584 /* NSData+CCCryptor.m in Sources */,
 				785531551ADF5C1F00080703 /* XHTableViewCellLabelItem.m in Sources */,

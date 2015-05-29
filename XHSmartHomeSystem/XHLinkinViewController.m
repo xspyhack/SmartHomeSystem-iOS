@@ -232,6 +232,7 @@
             //NSString *filePath = [doc stringByAppendingPathComponent:@"token.plist"];
             //NSString *filePath = [[NSBundle mainBundle] pathForResource:@"token" ofType:@"plist"];
             //[token writeToFile:filePath atomically:YES];
+            [defaults setObject:self.gatewayTextField.text forKey:@"XHGateway"];
             
             [self start];
         } else {

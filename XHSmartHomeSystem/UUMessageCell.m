@@ -41,7 +41,7 @@
         headImageBackView = [[UIView alloc]init];
         headImageBackView.layer.cornerRadius = 22;
         headImageBackView.layer.masksToBounds = YES;
-        headImageBackView.backgroundColor = [XHColorTools themeColor];
+        headImageBackView.backgroundColor = [[XHColorTools themeColor] colorWithAlphaComponent:.8f];
         [self.contentView addSubview:headImageBackView];
         self.btnHeadImage = [UIButton buttonWithType:UIButtonTypeCustom];
         self.btnHeadImage.layer.cornerRadius = 20;

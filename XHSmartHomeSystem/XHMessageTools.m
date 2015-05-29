@@ -48,7 +48,7 @@
 {
     if (dictionary) {
         XHDatabase *db = [[XHDatabase alloc] init];
-        NSString *sql = [NSString stringWithFormat:@"INSERT INTO XHMessage('strName', 'strIcon', 'strContent', 'strTime') VALUES('%@', '%@', '%@', '%@')", dictionary[@"strName"], dictionary[@"strIcon"], dictionary[@"strContent"], dictionary[@"strTime"]];
+        NSString *sql = [NSString stringWithFormat:@"INSERT INTO XHMessage('strId', 'strName', 'strIcon', 'strContent', 'strTime') VALUES(1, '%@', '%@',\"%@\", '%@')", dictionary[@"strName"], dictionary[@"strIcon"], dictionary[@"strContent"], dictionary[@"strTime"]];
         [db executeNonQuery:sql];
     }
 }

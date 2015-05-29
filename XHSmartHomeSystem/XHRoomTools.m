@@ -8,6 +8,7 @@
 
 #import "XHRoomTools.h"
 #import "XHRoomModel.h"
+#import "XHRoomStatus.h"
 #import "XHDatabase.h"
 #import "NSDate+Utils.h"
 
@@ -16,10 +17,7 @@
 @property (nonatomic, assign) CGFloat humidityAlertValue;
 @property (nonatomic, assign) CGFloat smokeAlertValue;
 @property (nonatomic, assign) NSTimeInterval *timer;
-@property (nonatomic, assign) NSUInteger parlourStatus;
-@property (nonatomic, assign) NSUInteger kitchenStatus;
-@property (nonatomic, assign) NSUInteger bathroomStatus;
-@property (nonatomic, assign) NSUInteger bedroomStatus;
+@property (nonatomic, assign) XHRoomStatus *status;
 @end;
 
 @implementation XHRoomTools
@@ -31,9 +29,7 @@
         self.temperatureAlertValue = [defaults floatForKey:@"XHTemperatureAlertValue"];
         self.humidityAlertValue = [defaults floatForKey:@"XHHumidityAlertValue"];
         self.smokeAlertValue = [defaults floatForKey:@"XHSmokeAlertValue"];
-        self.parlourStatus = 0;
-        self.kitchenStatus = 0;
-        self.bedroomStatus = 0;
+        self.status = [XHRoomStatus shareInstance];
     }
     return self;
 }
@@ -283,6 +279,9 @@
     XHLog(@"%@", alertBody);
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@""]) {
+            
+        }
         // define local notification object
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:7];
@@ -293,8 +292,9 @@
         notification.alertLaunchImage = @"1";
         notification.soundName = @"msg.caf";
         notification.userInfo = @{ @"id" : @1, @"user" : @"b233" };
-        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification]; // local notification
         
+        // push update message notification
         [[NSNotificationCenter defaultCenter] postNotificationName:XHDidAlertNotification
                                                             object:nil
                                                           userInfo:@{ @"strName" : roomName, @"strContent" : alertBody }];
@@ -329,20 +329,20 @@
 {
     switch (Id) {
         case 0:
-            if ((self.parlourStatus % 2) == 1) return YES;
-            else self.parlourStatus += 1;
+            if ((self.status.parlourStatus & 1) == 1) return YES;
+            else self.status.parlourStatus += 1;
             break;
         case 1:
-            if ((self.kitchenStatus % 2) == 1) return YES;
-            else self.kitchenStatus += 1;
+            if ((self.status.kitchenStatus & 1) == 1) return YES;
+            else self.status.kitchenStatus += 1;
             break;
         case 2:
-            if ((self.bathroomStatus % 2) == 1) return YES;
-            else self.bathroomStatus += 1;
+            if ((self.status.bathroomStatus & 1) == 1) return YES;
+            else self.status.bathroomStatus += 1;
             break;
         case 3:
-            if ((self.bedroomStatus % 2) == 1) return YES;
-            else self.bedroomStatus += 1;
+            if ((self.status.bedroomStatus & 1) == 1) return YES;
+            else self.status.bedroomStatus += 1;
             break;
         default:
             break;
@@ -354,20 +354,22 @@
 {
     switch (Id) {
         case 0:
-            if (self.parlourStatus == 2 || self.parlourStatus == 3 || self.parlourStatus >= 6) return YES;
-            else self.parlourStatus += 2;
+            if ((self.status.parlourStatus & 2) == 2) return YES;
+            else self.status.parlourStatus += 2;
             break;
         case 1:
-            if (self.kitchenStatus == 2 || self.kitchenStatus == 3 || self.kitchenStatus >= 6) return YES;
-            else self.kitchenStatus += 2;
+            if ((self.status.kitchenStatus & 2) == 2) return YES;
+            else self.status.kitchenStatus += 2;
             break;
         case 2:
-            if (self.bathroomStatus == 2 || self.bathroomStatus == 3 || self.bathroomStatus >= 6) return YES;
-            else self.bathroomStatus += 2;
+            if ((self.status.bathroomStatus & 2) == 2) return YES;
+            else self.status.bathroomStatus += 2;
             break;
         case 3:
-            if (self.bedroomStatus == 2 || self.bedroomStatus == 3 || self.bedroomStatus >= 6) return YES;
-            else self.bedroomStatus += 2;
+            if ((self.status.bedroomStatus & 2) == 2) return YES;
+            else self.status.bedroomStatus += 2;
+            break;
+        default:
             break;
     }
     return NO;
@@ -377,20 +379,22 @@
 {
     switch (Id) {
         case 0:
-            if (self.parlourStatus >=4) return YES;
-            else self.parlourStatus += 4;
+            if ((self.status.parlourStatus & 4) == 4) return YES;
+            else self.status.parlourStatus += 4;
             break;
         case 1:
-            if (self.kitchenStatus >=4) return YES;
-            else self.kitchenStatus += 4;
+            if ((self.status.kitchenStatus & 4) == 4) return YES;
+            else self.status.kitchenStatus += 4;
             break;
         case 2:
-            if (self.bathroomStatus >=4) return YES;
-            else self.bathroomStatus += 4;
+            if ((self.status.bathroomStatus & 4) == 4) return YES;
+            else self.status.bathroomStatus += 1;
             break;
         case 3:
-            if (self.bedroomStatus >= 4) return YES;
-            else self.bedroomStatus += 4;
+            if ((self.status.bedroomStatus & 4) == 4) return YES;
+            else self.status.bedroomStatus += 4;
+            break;
+        default:
             break;
     }
     return NO;

@@ -103,8 +103,10 @@ enum _DisconnectByWho {
 //        [[NSNotificationCenter defaultCenter] postNotificationName:XHUpdateRoomModelNotification object:nil userInfo:@{@"BUFFER" : butter}];
 //    });
     
-    if ([self.delegate respondsToSelector:@selector(didReadBuffer:)]) {
-        [self.delegate didReadBuffer:buffer];
+    if (self.delegate) {
+        if ([self.delegate respondsToSelector:@selector(didReadBuffer:)]) {
+            [self.delegate didReadBuffer:buffer];
+        }
     }
     // wait and read next buffer
     [self.socket readDataWithTimeout:-1 tag:0];

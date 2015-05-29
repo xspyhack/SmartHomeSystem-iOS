@@ -25,6 +25,7 @@
 @property (nonatomic, getter=isFirstTimeTodayReadData) BOOL firstTimeTodayReadData;
 @property (nonatomic, strong) NSMutableArray *array;
 @property (nonatomic, strong) XHRoomTools *roomTools;
+@property (nonatomic, assign) NSUInteger displayCellCount;
 
 @end
 
@@ -45,6 +46,7 @@
     // Do any additional setup after loading the view.
     
     self.firstTimeTodayReadData = YES;
+    self.displayCellCount = 0;
     
     // set navigationbar button
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_chart_highLighted" target:self action:@selector(chartButtonItemClicked)];
@@ -63,7 +65,10 @@
     [XHSocketThread shareInstance].delegate = self;
     //[[XHSocketThread shareInstance] disconnect];
     //[[XHSocketThread shareInstance] connect];
+    
     self.roomTools = [[XHRoomTools alloc] init];
+
+    [self prepareVisibleCellsForAnimation];
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"XHCmdLineMode"]) {
         UILongPressGestureRecognizer *longPressGuesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(barButtonItemLongPress:)];
@@ -76,6 +81,13 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self animateVisibleCells];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
@@ -84,7 +96,7 @@
 
 - (void)dealloc
 {
-    XHLocate();
+    //XHLocate();
     //[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -163,18 +175,56 @@
     });
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (self.displayCellCount < self.roomModels.count) {
+        CATransform3D rotation;
+        rotation = CATransform3DMakeRotation( (90.0*M_PI)/180, 0.0, .9, 0.4);
+        rotation.m34 = 1.0/ -600;
+        
+        cell.layer.shadowColor = [[UIColor blackColor]CGColor];
+        cell.layer.shadowOffset = CGSizeMake(10, 10);
+        cell.alpha = 0;
+        cell.layer.transform = rotation;
+        cell.layer.anchorPoint = CGPointMake(0, 0.5);
+        
+        
+        [UIView beginAnimations:@"XHRotation" context:NULL];
+        [UIView setAnimationDuration:0.8];
+        cell.layer.transform = CATransform3DIdentity;
+        cell.alpha = 1;
+        cell.layer.shadowOffset = CGSizeMake(0, 0);
+        [UIView commitAnimations];
+        self.displayCellCount++;
+    }
+}
+
+#pragma mark - XHSocketThreadDelegate
+
 - (void)didReadBuffer:(NSString *)buffer
 {
+    int i = 1;
     for (XHRoomModel *model in [self.roomTools roomModelWithString:buffer]) {
         if (model) {
             XHRoomModel *roomModel = self.roomModels[model.Id];
             if (roomModel) {
                 roomModel.temperature = model.temperature;
                 roomModel.humidity = model.humidity;
-                NSIndexPath *path = [NSIndexPath indexPathForRow:model.Id inSection:0];
-                [self.tableView reloadRowsAtIndexPaths:@[ path ] withRowAnimation:UITableViewRowAnimationRight];
+                
+//                NSIndexPath *path = [NSIndexPath indexPathForRow:model.Id inSection:0];
+//                [self.tableView reloadRowsAtIndexPaths:@[ path ] withRowAnimation:UITableViewRowAnimationNone];
+                
+                [UIView animateWithDuration:.5f
+                                      delay:i * .1f
+                                    options:UIViewAnimationOptionTransitionCurlUp
+                                 animations:^{
+                                     NSIndexPath *path = [NSIndexPath indexPathForRow:model.Id inSection:0];
+                                     [self.tableView reloadRowsAtIndexPaths:@[ path ] withRowAnimation:UITableViewRowAnimationRight];
+                                 }
+                                 completion:nil];
             }
         }
+        i++;
     }
     
 ////    if (![self isExists:model.Id]) {
@@ -236,6 +286,30 @@
 - (void)deselect
 {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
+
+- (void)prepareVisibleCellsForAnimation {
+    for (int i = 0; i < [self.tableView.visibleCells count]; i++) {
+        XHRoomTableViewCell *cell = (XHRoomTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        cell.frame = CGRectMake(-CGRectGetWidth(cell.bounds), cell.frame.origin.y, CGRectGetWidth(cell.bounds), CGRectGetHeight(cell.bounds));
+        cell.alpha = 0.f;
+    }
+}
+
+- (void)animateVisibleCells {
+    for (int i = 0; i < [self.tableView.visibleCells count]; i++) {
+        XHRoomTableViewCell *cell = (XHRoomTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        cell.alpha = 1.f;
+        
+        [UIView animateWithDuration:.25f
+                              delay:i * .1f
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             cell.frame = CGRectMake(0.f, cell.frame.origin.y, CGRectGetWidth(cell.bounds), CGRectGetHeight(cell.bounds));
+                         }
+                         completion:nil];
+    }
 }
 
 - (BOOL)isExists:(NSUInteger)roomId

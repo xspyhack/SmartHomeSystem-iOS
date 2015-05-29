@@ -65,8 +65,8 @@ typedef enum _EMSwitch {
     [super viewWillDisappear:animated];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:self.chartSwitch forKey:@"XHChartModeSwitch"];
-    [defaults setBool:self.gaugeSwitch forKey:@"XHGaugeModeSwitch"];
+    [defaults setBool:self.chartSwitch forKey:@"XHChartMode"];
+    [defaults setBool:self.gaugeSwitch forKey:@"XHGaugeMode"];
 }
 
 #pragma mark - setup methods
@@ -94,8 +94,8 @@ typedef enum _EMSwitch {
     
     // read user defaults settings
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    self.chartSwitch = [defaults boolForKey:@"XHChartModeSwitch"];
-    self.gaugeSwitch = [defaults boolForKey:@"XHGaugeModeSwitch"];
+    self.chartSwitch = [defaults boolForKey:@"XHChartMode"];
+    self.gaugeSwitch = [defaults boolForKey:@"XHGaugeMode"];
     
     XHTableViewCellSwitchItem *chartItem = [XHTableViewCellSwitchItem itemWithTitle:@"Line Chart Mode"];
     chartItem.on = self.chartSwitch;

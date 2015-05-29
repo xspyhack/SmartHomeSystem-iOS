@@ -32,7 +32,7 @@ typedef enum _EMLanguage{
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSInteger index = [defaults integerForKey:@"Language"];
+    NSInteger index = [defaults integerForKey:@"XHLanguage"];
     
     XHTableViewCellCheckmarkItem *englishCheckmark = [XHTableViewCellCheckmarkItem itemWithTitle:@"English"];
     englishCheckmark.clicked = ^{ [self setCheckmark:EMEnglish]; };
@@ -59,13 +59,13 @@ typedef enum _EMLanguage{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     switch (index) {
         case EMEnglish:
-            [defaults setInteger:EMEnglish forKey:@"Language"];
+            [defaults setInteger:EMEnglish forKey:@"XHLanguage"];
             break;
         case EMChinese:
-            [defaults setInteger:EMChinese forKey:@"Language"];
+            [defaults setInteger:EMChinese forKey:@"XHLanguage"];
             break;
         case EMSystem:
-            [defaults setInteger:EMSystem forKey:@"Language"];
+            [defaults setInteger:EMSystem forKey:@"XHLanguage"];
             break;
         default:
             break;

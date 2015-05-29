@@ -11,6 +11,7 @@
 #import "XHColorTools.h"
 #import "XHTableViewCellGroup.h"
 #import "XHTableViewCellArrowItem.h"
+#import "XHAboutMeViewController.h"
 #import "XHFeedbackViewController.h"
 #import "XHLicenseViewController.h"
 
@@ -59,10 +60,22 @@
     self.group = [XHTableViewCellGroup group];
     
     XHTableViewCellArrowItem *rateItem = [XHTableViewCellArrowItem itemWithTitle:@"Rate"];
+    rateItem.clicked = ^{
+        NSURL *url = [NSURL URLWithString:@"https://github.com/xspyhack/SmartHomeSystem-iOS"];
+        [[UIApplication sharedApplication] openURL:url];
+    };
+    
     XHTableViewCellArrowItem *aboutItem = [XHTableViewCellArrowItem itemWithTitle:@"About"];
+    aboutItem.destinationContorller = [XHAboutMeViewController class];
+    
     XHTableViewCellArrowItem *feedbackItem = [XHTableViewCellArrowItem itemWithTitle:@"Feedback"];
     feedbackItem.destinationContorller = [XHFeedbackViewController class];
+    
     XHTableViewCellArrowItem *helpItem = [XHTableViewCellArrowItem itemWithTitle:@"Help"];
+    helpItem.clicked = ^{
+        NSURL *url = [NSURL URLWithString:@"https://github.com/xspyhack/SmartHomeSystem-iOS"];
+        [[UIApplication sharedApplication] openURL:url];
+    };
     
     XHTableViewCellArrowItem *licenseItem = [XHTableViewCellArrowItem itemWithTitle:@"License"];
     licenseItem.destinationContorller = [XHLicenseViewController class];
@@ -80,7 +93,7 @@
     [self.view addSubview:version];
 }
 
-#pragma mark - set group cell
+#pragma mark
 
 - (void)tapLogoView:(UIGestureRecognizer *)gesture
 {

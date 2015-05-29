@@ -83,11 +83,11 @@
     
     if ([[UIApplication sharedApplication] currentUserNotificationSettings].types != UIUserNotificationTypeNone) {
         //
-        [defaults setObject:@"Enabled" forKey:@"NotificationEnabled"];
+        [defaults setObject:@"Enabled" forKey:@"XHNotificationEnabled"];
         [self addLocalNotification];
     } else {
         [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
-        [defaults setObject:@"Disabled" forKey:@"NotificationEnabled"];
+        [defaults setObject:@"Disabled" forKey:@"XHNotificationEnabled"];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onNotificationReceived:)

@@ -46,17 +46,48 @@
     
     [defaults setInteger:12345 forKey:@"XHPort"];
     [defaults setObject:[XHCryptTools md5WithKey:@"admin"] forKey:@"XHPassword"];
-    [defaults setFloat:60.0f forKey:@"XHTemperatureMaxValue"];
-    [defaults setFloat:-40.0f forKey:@"XHTemperatureMinValue"];
     
-    [defaults setFloat:40.0f forKey:@"XHHumidityMinValue"];
-    [defaults setFloat:60.0f forKey:@"XHHumidityMaxValue"];
-    
-    [defaults setFloat:20.0f forKey:@"XHSmokeMinValue"];
-    [defaults setFloat:60.0f forKey:@"XHSmokeMaxValue"];
-    
+    // display
+    [defaults setBool:YES forKey:@"XHChartMode"];
+    [defaults setBool:YES forKey:@"XHGaugeMode"];
+    [defaults setBool:NO forKey:@"XHCmdLineMode"];
     [defaults setFloat:1.0f forKey:@"XHLineWidth"];
     
+    // color
+    [defaults setInteger:3 forKey:@"XHTemperatureColor"];
+    [defaults setInteger:13 forKey:@"XHHumidityColor"];
+    [defaults setInteger:18 forKey:@"XHSmokeColor"];
+    
+    // values
+    [defaults setFloat:60.0f forKey:@"XHTemperatureMaxValue"];
+    [defaults setFloat:-40.0f forKey:@"XHTemperatureMinValue"];
+    [defaults setFloat:40.0f forKey:@"XHHumidityMinValue"];
+    [defaults setFloat:60.0f forKey:@"XHHumidityMaxValue"];
+    [defaults setFloat:0.0f forKey:@"XHSmokeMinValue"];
+    [defaults setFloat:30.0f forKey:@"XHSmokeMaxValue"];
+    
+    // language
+    [defaults setInteger:0 forKey:@"XHLanguage"];
+    
+    // notification
+    [defaults setBool:YES forKey:@"XHShowPreviewText"];
+    [defaults setBool:YES forKey:@"XHTemperatureAlertor"];
+    [defaults setBool:NO forKey:@"XHHumidityAlertor"];
+    [defaults setBool:YES forKey:@"XHSmokeAlertor"];
+    // alert values
+    [defaults setFloat:35.0f forKey:@"XHTemperatureAlertValue"];
+    [defaults setFloat:60.0f forKey:@"XHHumidityAlertValue"];
+    [defaults setFloat:10.0f forKey:@"XHSmokeAlertValue"];
+    [defaults setInteger:0 forKey:@"XHMessageType"];
+    // alert time
+    [defaults setObject:@"9:00" forKey:@"XHNotificationStartTime"];
+    [defaults setObject:@"23:00" forKey:@"XHNotificationEndTime"];
+    
+    // security
+    [defaults setBool:YES forKey:@"XHCheckIn"];
+    [defaults setInteger:1 forKey:@"XHEncryptType"];
+    
+    // is first time use this app
     [defaults setObject:@"XH" forKey:@"XH"];
 }
 

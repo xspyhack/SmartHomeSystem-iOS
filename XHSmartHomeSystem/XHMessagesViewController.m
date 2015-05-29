@@ -15,6 +15,7 @@
 #import "XHSearchResultsViewController.h"
 #import "XHChatInfoViewController.h"
 
+#define XHTableViewScrollToBottom (@"XHTableViewScrollToBottom")
 @interface XHMessagesViewController ()<UISearchBarDelegate, UUMessageCellDelegate>
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) UISearchController *navItemSearchController;
@@ -29,6 +30,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.tabBarItem.badgeValue = nil;
     // set navigation bar button item
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_settings" highLightedImageName:@"nav_settings_highLighted" target:self action:@selector(settings)];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_search" highLightedImageName:@"nav_search_highLighted" target:self action:@selector(searchButtonClicked)];
@@ -40,18 +42,33 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:XHDidAlertNotification object:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    //add notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tableViewScrollToBottom) name:XHTableViewScrollToBottom object:nil];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.tabBarItem.badgeValue = nil;
     
-    //add notification
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(tableViewScrollToBottom) name:UIKeyboardDidShowNotification object:nil];
+    XHLocate();
+    [[NSNotificationCenter defaultCenter] postNotificationName:XHTableViewScrollToBottom object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:XHTableViewScrollToBottom object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - setup Method
@@ -150,9 +167,16 @@
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
         [dict setObject:dict[@"strName"] forKey:@"strIcon"];
         
-        [self tableViewScrollToBottom];
         [self.messageModel addMessageItem:dict];
         [self.tableView reloadData];
+        //[self tableViewScrollToBottom];
+        if (self.tabBarItem.badgeValue) {
+            NSInteger badge = [self.tabBarItem.badgeValue integerValue];
+            self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", badge + 1];
+        } else {
+            self.tabBarItem.badgeValue = @"1";
+            XHLog(@"1");
+        }
     }
 }
 
@@ -184,7 +208,6 @@
 
 - (void)settings
 {
-    XHLog(@"settings.");
     XHMessageSettingViewController *settingVC = [[XHMessageSettingViewController alloc] init];
     [self.navigationController pushViewController:settingVC animated:YES];
 }
