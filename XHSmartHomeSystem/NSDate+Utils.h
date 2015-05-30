@@ -31,7 +31,7 @@
 - (NSInteger)minute;
 - (NSInteger)second;
 - (NSString *)weekday;
-
+- (NSUInteger)weekdayIndex;
 
 #pragma mark - Time string
 - (NSString *)timeHourMinute;

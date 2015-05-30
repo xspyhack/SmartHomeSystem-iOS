@@ -54,7 +54,13 @@
 
 - (void)remove
 {
-    [self.logoView removeFromSuperview];
+    [UIView animateWithDuration:.5f
+                     animations:^{
+                         [self.logoView setFrame:CGRectMake(self.logoView.center.x, self.logoView.center.y, 0, 0)];
+                         self.logoView.alpha = 0;
+                     } completion:^(BOOL finished) {
+                         [self.logoView removeFromSuperview];
+                     }];
 }
 
 - (MultiplePulsingHaloLayer *)mutiHalo

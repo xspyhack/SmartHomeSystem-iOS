@@ -175,7 +175,6 @@
             self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", badge + 1];
         } else {
             self.tabBarItem.badgeValue = @"1";
-            XHLog(@"1");
         }
     }
 }

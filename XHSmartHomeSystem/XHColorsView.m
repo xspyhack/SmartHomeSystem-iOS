@@ -116,9 +116,10 @@
     */
     
     // use block
-    [UIView animateWithDuration:animationDuration animations:^{
-        self.frame = CGRectMake(0, 90, self.frame.size.width, XHColorsViewHeight);
-    }];
+    [UIView animateWithDuration:animationDuration
+                     animations:^{
+                         self.frame = CGRectMake(0, 90, self.frame.size.width, XHColorsViewHeight);
+                     }];
 }
 
 - (void)pullUp
@@ -140,9 +141,10 @@
         */
         
         // use block
-        [UIView animateWithDuration:0.5f animations:^{
-            self.frame = CGRectMake(0, -XHColorsViewHeight-66, self.frame.size.width, XHColorsViewHeight);
-        }];
+        [UIView animateWithDuration:0.5f
+                         animations:^{
+                             self.frame = CGRectMake(0, -XHColorsViewHeight-66, self.frame.size.width, XHColorsViewHeight);
+                         }];
     }
 }
 

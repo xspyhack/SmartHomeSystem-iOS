@@ -88,47 +88,6 @@
     [self.lineChartContentView refreshData:dataSource];
 }
 
-#pragma mark - setters
-
-- (void)setInflexionPointWidth:(CGFloat)inflexionPointWidth
-{
-    _inflexionPointWidth = inflexionPointWidth;
-    self.lineChartContentView.inflexionPointWidth = inflexionPointWidth;
-}
-
-- (void)setLineWidth:(CGFloat)lineWidth
-{
-    if (lineWidth < 1) {
-        lineWidth = 1;
-    }
-    _lineWidth = lineWidth;
-    self.lineChartContentView.lineWidth = lineWidth;
-}
-
-- (void)setY1LineColor:(UIColor *)y1LineColor
-{
-    _y1LineColor = y1LineColor;
-    self.lineChartContentView.y1LineColor = y1LineColor;
-}
-
-- (void)setY2LineColor:(UIColor *)y2LineColor
-{
-    _y2LineColor = y2LineColor;
-    self.lineChartContentView.y2LineColor = y2LineColor;
-}
-
-- (void)setAlpha:(CGFloat)alpha
-{
-    _alpha = alpha;
-    self.lineChartContentView.alpha = alpha;
-}
-
-- (void)setDataSource:(NSArray *)dataSource
-{
-    _dataSource = dataSource;
-    self.lineChartContentView.dataSource = dataSource;
-}
-
 #pragma mark - private methods
 
 - (void)setupDefaultValues
@@ -242,6 +201,47 @@
     [self.xTitle drawInRect:titleXRect withAttributes:@{ NSFontAttributeName : titleXFont,
                                                          NSForegroundColorAttributeName : [XHColorTools themeColor],
                                                          NSParagraphStyleAttributeName : paragraph2 }];
+}
+
+#pragma mark - setters
+
+- (void)setInflexionPointWidth:(CGFloat)inflexionPointWidth
+{
+    _inflexionPointWidth = inflexionPointWidth;
+    self.lineChartContentView.inflexionPointWidth = inflexionPointWidth;
+}
+
+- (void)setLineWidth:(CGFloat)lineWidth
+{
+    if (lineWidth < 1) {
+        lineWidth = 1;
+    }
+    _lineWidth = lineWidth;
+    self.lineChartContentView.lineWidth = lineWidth;
+}
+
+- (void)setY1LineColor:(UIColor *)y1LineColor
+{
+    _y1LineColor = y1LineColor;
+    self.lineChartContentView.y1LineColor = y1LineColor;
+}
+
+- (void)setY2LineColor:(UIColor *)y2LineColor
+{
+    _y2LineColor = y2LineColor;
+    self.lineChartContentView.y2LineColor = y2LineColor;
+}
+
+- (void)setAlpha:(CGFloat)alpha
+{
+    _alpha = alpha;
+    self.lineChartContentView.alpha = alpha;
+}
+
+- (void)setDataSource:(NSArray *)dataSource
+{
+    _dataSource = dataSource;
+    self.lineChartContentView.dataSource = dataSource;
 }
 
 @end

@@ -82,7 +82,7 @@
     CGFloat updateTimeLabelY = CGRectGetMaxY(iconViewRect) - xhTableViewCellLabelHeight;
     CGRect updateTimeRect = CGRectMake(updateTimeLabelX, updateTimeLabelY, xhTableViewCellLabelWidth, xhTableViewCellLabelHeight);
     self.updateTimeLabel = [[UILabel alloc] initWithFrame:updateTimeRect];
-    self.updateTimeLabel.textColor = XHOrangeColor;
+    self.updateTimeLabel.textColor = XHColor;
     self.updateTimeLabel.font = [UIFont systemFontOfSize:xhTableViewCellUpdateTimeFontSize];
     [self addSubview:self.updateTimeLabel];
     

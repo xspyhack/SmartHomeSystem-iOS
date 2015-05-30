@@ -47,6 +47,8 @@
     [defaults setInteger:12345 forKey:@"XHPort"];
     [defaults setObject:[XHCryptTools md5WithKey:@"admin"] forKey:@"XHPassword"];
     
+    [defaults setInteger:0 forKey:@"XHThemeColor"];
+    
     // display
     [defaults setBool:YES forKey:@"XHChartMode"];
     [defaults setBool:YES forKey:@"XHGaugeMode"];
@@ -54,7 +56,7 @@
     [defaults setFloat:1.0f forKey:@"XHLineWidth"];
     
     // color
-    [defaults setInteger:3 forKey:@"XHTemperatureColor"];
+    [defaults setInteger:4 forKey:@"XHTemperatureColor"];
     [defaults setInteger:13 forKey:@"XHHumidityColor"];
     [defaults setInteger:18 forKey:@"XHSmokeColor"];
     

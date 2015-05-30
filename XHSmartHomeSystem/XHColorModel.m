@@ -14,12 +14,12 @@
 {
     UIColor *color = [[UIColor alloc] init];
     switch (index) {
-        case 0: color = XHPomegranateColor; break;
-        case 1: color = XHAlizarinColor; break;
-        case 2: color = XHPumpkinColor; break;
-        case 3: color = XHCarrotColor; break;
-        case 4: color = XHOrangeColor; break;
-        case 5: color = XHSunFlowerColor; break;
+        case 0: color = XHSunFlowerColor; break;
+        case 1: color = XHPomegranateColor; break;
+        case 2: color = XHAlizarinColor; break;
+        case 3: color = XHPumpkinColor; break;
+        case 4: color = XHCarrotColor; break;
+        case 5: color = XHOrangeColor; break;
         case 6: color = XHNephritisColor; break;
         case 7: color = XHEmeraldColor; break;
         case 8: color = XHGreenSeaColor; break;

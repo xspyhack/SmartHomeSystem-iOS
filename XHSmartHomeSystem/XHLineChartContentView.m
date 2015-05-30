@@ -484,12 +484,19 @@
     UIFont *xyTextFont = [UIFont systemFontOfSize:8];
     UIColor *xyTextColor = [UIColor lightGrayColor];
     UIColor *dataLineColor = [UIColor lightGrayColor];
+    
+    NSUInteger today = [[NSDate alloc] weekdayIndex]; // 1 < today < 7
    
     // x axis
     for (NSInteger index = 0; index < self.xArray.count; index++) {
         
-        NSNumber *num = [self.xArray objectAtIndex:index];
-        NSString *valStr = [NSString stringWithFormat:@"%.3lf", [num doubleValue]]; //四舍五入保留2位
+        NSUInteger weekday = (today + index) % 7;
+        NSString *valStr = [self weekdayWithIndex:weekday];
+        if (index == self.xArray.count - 1) {
+            valStr = @"Today";
+        }
+        //NSNumber *num = [self.xArray objectAtIndex:index];
+        //NSString *valStr = [NSString stringWithFormat:@"%.3lf", [num doubleValue]];
         
         float xPosition = self.originPoint.x + (index+1)* self.xPerStepWidth + self.contentScroll.x;
         
@@ -519,6 +526,7 @@
             }
         }
     }
+    
     NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
     paragraph.alignment = NSTextAlignmentRight;
     
@@ -617,6 +625,37 @@
                       lineColor:dataLineColor];
     
     [super drawRect:rect];
+}
+
+- (NSString *)weekdayWithIndex:(NSUInteger)index
+{
+    NSString *weekday = @"";
+    switch (index) {
+        case 0:
+            weekday = @"Sun";
+            break;
+        case 1:
+            weekday = @"Mon";
+            break;
+        case 2:
+            weekday = @"Tue";
+            break;
+        case 3:
+            weekday = @"Wed";
+            break;
+        case 4:
+            weekday = @"Thu";
+            break;
+        case 5:
+            weekday = @"Fri";
+            break;
+        case 6:
+            weekday = @"Sat";
+            break;
+        default:
+            break;
+    }
+    return weekday;
 }
 
 @end

@@ -32,6 +32,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"Control Center";
     
     [self setup];
 }
@@ -265,8 +266,7 @@
                          animations:^{
                              button.selected = self.isAllButtonSelected ? YES : NO;
                              [self buttonClicked:button];
-                         }
-                         completion:nil];
+                         } completion:nil];
     }
     self.allButtonSelected = !self.allButtonSelected;
     self.allButton.backgroundColor = self.allButtonSelected ? ([[XHColorTools themeColor] colorWithAlphaComponent:0.98f]) : ([[XHColorTools themeColor] colorWithAlphaComponent:0.3f]);

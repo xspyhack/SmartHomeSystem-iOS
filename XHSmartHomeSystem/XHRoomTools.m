@@ -221,7 +221,7 @@
     return nil;
 }
 
-+ (BOOL)saveIfIsFirstDataToday:(XHRoomModel *)model
++ (BOOL)saveIfIsFirstDataOfToday:(XHRoomModel *)model
 {
     // read the lastest data from database
     XHDatabase *db = [[XHDatabase alloc] init];
@@ -231,15 +231,18 @@
     dict = array.lastObject;
     NSString *date = dict[@"date"];
     
-    if (![date isEqualToString:[NSDate stringYearMonthDayWithDate:nil]]) {
+    NSString *today = [NSDate stringYearMonthDayWithDate:nil];
+    if (![date isEqualToString:today]) {
         // save to database
-        NSString *sql = [NSString stringWithFormat:@"INSERT INTO XHRoom('roomId', 'roomName', 'temperature', 'humidity', 'smoke') VALUES(%ld, '%@', '%@', '%@', '%@')",
+        NSString *sql = [NSString stringWithFormat:@"INSERT INTO XHRoom('roomId', 'roomName', 'temperature', 'humidity', 'smoke', 'date') VALUES(%ld, '%@', '%@', '%@', '%@', '%@')",
                          (long)model.Id,
                          model.name,
                          model.temperature,
                          model.humidity,
-                         model.smoke];
+                         model.smoke,
+                         today];
         [db executeNonQuery:sql];
+        XHLog(@"save first data, id: %ld", model.Id);
         return YES;
     }
     return NO;
@@ -249,9 +252,6 @@
 
 - (void)pushLocalNotificationWithRoomId:(NSUInteger)roomId sensor:(NSUInteger)index value:(CGFloat)value
 {
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"NotificationEnabled"] isEqualToString:@"Disabled"]) {
-        return;
-    }
     NSString *sensor = @"";
     switch (index) {
         case 0:
@@ -281,6 +281,10 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:XHDidAlertNotification
                                                         object:nil
                                                       userInfo:@{ @"strName" : roomName, @"strContent" : alertBody }];
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"NotificationEnabled"] isEqualToString:@"Disabled"]) {
+        return;
+    }
     
     NSUserDefaults *defaluts = [NSUserDefaults standardUserDefaults];
     if (![defaluts boolForKey:@"XHTemperatureAlertor"] && [sensor isEqualToString:@"temperature"]) {
@@ -395,7 +399,7 @@
             break;
         case 2:
             if ((self.status.bathroomStatus & 4) == 4) return YES;
-            else self.status.bathroomStatus += 1;
+            else self.status.bathroomStatus += 4;
             break;
         case 3:
             if ((self.status.bedroomStatus & 4) == 4) return YES;

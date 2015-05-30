@@ -108,13 +108,14 @@
                          //splashView.alpha = .3f;
                          //[self.window addSubview:splashView];
                          //[self.window bringSubviewToFront:splashView];
-                     }completion:^(BOOL finished) {
+                     } completion:^(BOOL finished) {
                          [splashView remove];
-                         [UIView animateWithDuration:.7 animations:^{
-                             splashView.alpha = 0;
-                         }completion:^(BOOL finished) {
-                             [splashView removeFromSuperview];
-                         }];
+                         [UIView animateWithDuration:.7
+                                          animations:^{
+                                              splashView.alpha = 0;
+                                          } completion:^(BOOL finished) {
+                                              [splashView removeFromSuperview];
+                                          }];
                      }];
     
     return YES;

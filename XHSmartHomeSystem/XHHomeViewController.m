@@ -23,7 +23,7 @@
 @property (nonatomic, copy) NSMutableArray *modelCells;
 @property (nonatomic, copy) NSMutableArray *roomModels;
 @property (nonatomic, getter=isFirstTimeTodayReadData) BOOL firstTimeTodayReadData;
-@property (nonatomic, strong) NSMutableArray *array;
+@property (nonatomic, assign) NSUInteger existRoom;
 @property (nonatomic, strong) XHRoomTools *roomTools;
 @property (nonatomic, assign) NSUInteger displayCellCount;
 
@@ -47,6 +47,7 @@
     
     self.firstTimeTodayReadData = YES;
     self.displayCellCount = 0;
+    self.existRoom = 0;
     
     // set navigationbar button
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_chart" highLightedImageName:@"nav_chart_highLighted" target:self action:@selector(chartButtonItemClicked)];
@@ -210,7 +211,7 @@
     int i = 1;
     for (XHRoomModel *model in [self.roomTools roomModelWithString:buffer]) {
         if (model) {
-            XHRoomModel *roomModel = self.roomModels[model.Id];
+            XHRoomModel *roomModel = self.roomModels[model.Id]; // cell room model
             if (roomModel) {
                 roomModel.temperature = model.temperature;
                 roomModel.humidity = model.humidity;
@@ -222,22 +223,23 @@
                                       delay:i * .1f
                                     options:UIViewAnimationOptionTransitionCurlUp
                                  animations:^{
+                                     // update one row at once
                                      NSIndexPath *path = [NSIndexPath indexPathForRow:model.Id inSection:0];
                                      [self.tableView reloadRowsAtIndexPaths:@[ path ] withRowAnimation:UITableViewRowAnimationRight];
                                  }
                                  completion:nil];
+                // save
+                if (![self isExists:model.Id]) {
+                    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                        if ([XHRoomTools saveIfIsFirstDataOfToday:model]) {
+                            //XHLog(@"first data today");
+                        }
+                    });
+                }
             }
         }
         i++;
     }
-    
-////    if (![self isExists:model.Id]) {
-////        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-////            if ([XHRoomTools saveIfIsFirstDataToday:model]) {
-////                XHLog(@"first data today");
-////            }
-////        });
-////    }
 }
 
 #pragma mark - event
@@ -327,16 +329,13 @@
 
 - (BOOL)isExists:(NSUInteger)roomId
 {
-    NSNumber *room = [NSNumber numberWithInteger:roomId];
-    for (NSNumber *number in self.array) {
-        if ([number isEqualToNumber:room]) {
-            return YES;
-        }
+    NSUInteger temp = (NSUInteger)pow(2, roomId);
+    if ((temp & self.existRoom) == temp) {
+        return YES;
+    } else {
+        self.existRoom += temp;
+        return NO;
     }
-    [self.array addObject:room];
-    XHLog(@"addObject %@", room);
-    
-    return NO;
 }
 
 - (void)didReceiveMemoryWarning {
