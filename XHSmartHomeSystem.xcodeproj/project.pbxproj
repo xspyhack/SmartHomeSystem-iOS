@@ -89,7 +89,6 @@
 		78CC8D151B1745A700B82F82 /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC8D141B1745A700B82F82 /* PulsingHaloLayer.m */; };
 		78CC8D181B17463C00B82F82 /* XHAboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC8D171B17463C00B82F82 /* XHAboutMeViewController.m */; };
 		78CC8D1B1B184C6B00B82F82 /* XHSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC8D1A1B184C6B00B82F82 /* XHSplashView.m */; };
-		78CC8D211B19926800B82F82 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78CC8D1F1B19926800B82F82 /* LaunchScreen.xib */; };
 		78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5B9E1AD780B700DC9FA0 /* main.m */; };
 		78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5BA11AD780B700DC9FA0 /* AppDelegate.m */; };
 		78DD5BAA1AD780B700DC9FA0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78DD5BA91AD780B700DC9FA0 /* Images.xcassets */; };
@@ -279,7 +278,6 @@
 		78CC8D171B17463C00B82F82 /* XHAboutMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHAboutMeViewController.m; sourceTree = "<group>"; };
 		78CC8D191B184C6B00B82F82 /* XHSplashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSplashView.h; sourceTree = "<group>"; };
 		78CC8D1A1B184C6B00B82F82 /* XHSplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHSplashView.m; sourceTree = "<group>"; };
-		78CC8D201B19926800B82F82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = XHSmartHomeSystem/Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		78DD5B991AD780B700DC9FA0 /* XHSmartHomeSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XHSmartHomeSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DD5B9D1AD780B700DC9FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78DD5B9E1AD780B700DC9FA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -643,7 +641,6 @@
 			children = (
 				78DD5B9B1AD780B700DC9FA0 /* XHSmartHomeSystem */,
 				78DD5BA91AD780B700DC9FA0 /* Images.xcassets */,
-				78CC8D1F1B19926800B82F82 /* LaunchScreen.xib */,
 				78DD5BB51AD780B700DC9FA0 /* XHSmartHomeSystemTests */,
 				78DD5B9A1AD780B700DC9FA0 /* Products */,
 				78266C531AFB5F1E00D9A584 /* libsqlite3.0.dylib */,
@@ -805,7 +802,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78CC8D211B19926800B82F82 /* LaunchScreen.xib in Resources */,
 				786E90341ADBAD0A00A93675 /* data.plist in Resources */,
 				78CC8D081B16F20E00B82F82 /* license.html in Resources */,
 				78DD5BAA1AD780B700DC9FA0 /* Images.xcassets in Resources */,
@@ -936,17 +932,6 @@
 			targetProxy = 78DD5BB31AD780B700DC9FA0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		78CC8D1F1B19926800B82F82 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				78CC8D201B19926800B82F82 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		78DD5BBA1AD780B700DC9FA0 /* Debug */ = {
