@@ -60,7 +60,12 @@
     CGFloat lineWidth = [defaults floatForKey:@"XHLineWidth"];
     
     CGRect rect = CGRectMake(5, 30, self.frame.size.width - 10, 350);
-    self.lineChartView = [[XHLineChartView alloc] initWithFrame:rect xTitle:@"date" y1Title:@"temperature" y2Title:@"humidity" describe1:@"TEMP" describe2:@"HUMI"];
+    self.lineChartView = [[XHLineChartView alloc] initWithFrame:rect
+                                                         xTitle:NSLocalizedString(@"date", nil)
+                                                        y1Title:NSLocalizedString(@"temperature", nil)
+                                                        y2Title:NSLocalizedString(@"humidity", nil)
+                                                      describe1:NSLocalizedString(@"TEMP", nil)
+                                                      describe2:NSLocalizedString(@"HUMI", nil)];
     self.lineChartView.lineWidth = lineWidth;
     self.lineChartView.inflexionPointWidth = lineWidth * 3;
     self.lineChartView.y1LineColor = [XHColorTools temperatureColor];
@@ -93,13 +98,13 @@
     [self setupChartView];
     
     if (roomId == XHParlour) {
-        self.roomNameLabel.text = @"parlour";
+        self.roomNameLabel.text = NSLocalizedString(@"Parlour", nil);
     } else if (roomId == XHBedroom) {
-        self.roomNameLabel.text = @"bedroom";
+        self.roomNameLabel.text = NSLocalizedString(@"Bedroom", nil);
     } else if (roomId == XHKitchen) {
-        self.roomNameLabel.text = @"kitchen";
+        self.roomNameLabel.text = NSLocalizedString(@"Kitchen", nil);
     } else if (roomId == XHBathroom) {
-        self.roomNameLabel.text = @"bathroom";
+        self.roomNameLabel.text = NSLocalizedString(@"Bathroom", nil);
     }
 }
 

@@ -10,6 +10,7 @@
 #import "GCDAsyncSocket.h"
 #import "XHTokenTools.h"
 #import "XHTokenModel.h"
+#import "XHStatusBarTipsWindow.h"
 
 enum _DisconnectByWho {
     DisconnectByUser = 0,
@@ -47,7 +48,8 @@ enum _DisconnectByWho {
     NSError *err = nil;
     if (![self.socket connectToHost:self.host onPort:12345 error:&err]) {
         XHLog(@"connect failed");
-        [self showAlert:[NSString stringWithFormat:@"Connect to %@ failed. Error: %@", self.host, err.description]];
+        [[XHStatusBarTipsWindow shareTipsWindow] showTips:[NSString stringWithFormat:@"Connect to %@ failed!", self.host]
+                                           hideAfterDelay:2];
     } else {
         XHLog(@"connecting");
     }
@@ -60,7 +62,7 @@ enum _DisconnectByWho {
     XHLog(@"disconnect.");
     if ([self.socket isConnected]) {
         [self.socket disconnect];
-        XHLog(@"close");
+        XHLog(@"close socket.");
     }
 }
 
@@ -116,13 +118,15 @@ enum _DisconnectByWho {
 {
     //
     XHLog(@"write success");
+    [[XHStatusBarTipsWindow shareTipsWindow] showTips:@"Command send success!" hideAfterDelay:2];
     [self.socket readDataWithTimeout:-1 tag:0];
 }
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
 {
     XHLog(@"Disconnect with error: %@", err.description);
-    //[self showAlert:[NSString stringWithFormat:@"Disconnect with error: %@", err.description]];
+    [[XHStatusBarTipsWindow shareTipsWindow] showTips:[NSString stringWithFormat:@"Disconnect from %@ !", self.host]
+                                       hideAfterDelay:2];
 //    if ((int)sock.userData == DisconnectByServer) {
 //        // reconnect
 //        [self connect];
@@ -156,16 +160,6 @@ enum _DisconnectByWho {
         _port = [[NSUserDefaults standardUserDefaults] integerForKey:@"XHPort"];
     }
     return _port;
-}
-
-- (void)showAlert:(NSString *)message
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket"
-                                                    message:message
-                                                   delegate:self
-                                          cancelButtonTitle:nil
-                                          otherButtonTitles:@"OK", nil];
-    [alert show];
 }
 
 @end

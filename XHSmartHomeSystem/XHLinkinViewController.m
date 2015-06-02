@@ -79,7 +79,7 @@
     
     self.gatewayTextField = [[UITextField alloc] initWithFrame:gatewayFrame];
     self.gatewayTextField.borderStyle = UITextBorderStyleRoundedRect;
-    self.gatewayTextField.placeholder = @"Gateway IP";
+    self.gatewayTextField.placeholder = NSLocalizedString(@"Gateway IP", nil);
     self.gatewayTextField.textAlignment = NSTextAlignmentCenter;
     self.gatewayTextField.textColor = color;
     self.gatewayTextField.keyboardType = UIKeyboardTypeDecimalPad;
@@ -93,7 +93,7 @@
     self.passwordTextField = [[UITextField alloc] initWithFrame:passwordFrame];
     self.passwordTextField.borderStyle = UITextBorderStyleRoundedRect;
 
-    self.passwordTextField.placeholder = @"Password";
+    self.passwordTextField.placeholder = NSLocalizedString(@"Password", nil);
     self.passwordTextField.textAlignment = NSTextAlignmentCenter;
     self.passwordTextField.textColor = color;
     self.passwordTextField.keyboardType = UIKeyboardTypeASCIICapable;
@@ -109,7 +109,7 @@
     CGRect linkInFrame = CGRectMake(widgetX, CGRectGetMaxY(passwordFrame) + controlSpace/2, textFieldWidth, textFieldHeight);
     UIButton *linkInButton = [[UIButton alloc] initWithFrame:linkInFrame];
     linkInButton.backgroundColor = color;
-    [linkInButton setTitle:@"Link In" forState:UIControlStateNormal];
+    [linkInButton setTitle:NSLocalizedString(@"Link In", nil) forState:UIControlStateNormal];
     linkInButton.layer.cornerRadius = 5;
     
     [linkInButton addTarget:self action:@selector(linkIn) forControlEvents:UIControlEventTouchUpInside];

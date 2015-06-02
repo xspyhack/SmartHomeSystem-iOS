@@ -31,28 +31,28 @@
     
     CGRect parlousRect = CGRectMake(width/2+xFix, yFix, 80, 30);
     UILabel *parlous = [[UILabel alloc] initWithFrame:parlousRect];
-    parlous.text = @"parlous";
+    parlous.text = NSLocalizedString(@"Parlour", nil);
     parlous.font = [UIFont systemFontOfSize:13];
     parlous.textColor = [XHColorTools themeColor];
     parlous.textAlignment = NSTextAlignmentCenter;
     
     CGRect kitchenRect = CGRectMake(xFix, yFix, 80, 30);
     UILabel *kitchen = [[UILabel alloc] initWithFrame:kitchenRect];
-    kitchen.text = @"kitchen";
+    kitchen.text = NSLocalizedString(@"Kitchen", nil);
     kitchen.font = [UIFont systemFontOfSize:13];
     kitchen.textColor = [XHColorTools themeColor];
     kitchen.textAlignment = NSTextAlignmentCenter;
     
     CGRect bathroomRect = CGRectMake(xFix, height/2+yFix, 80, 30);
     UILabel *bathroom = [[UILabel alloc] initWithFrame:bathroomRect];
-    bathroom.text = @"bathroom";
+    bathroom.text = NSLocalizedString(@"Bathroom", nil);
     bathroom.font = [UIFont systemFontOfSize:13];
     bathroom.textColor = [XHColorTools themeColor];
     bathroom.textAlignment = NSTextAlignmentCenter;
     
     CGRect bedroomRect = CGRectMake(width/2+xFix, height/2+yFix, 80, 30);
     UILabel *bedroom = [[UILabel alloc] initWithFrame:bedroomRect];
-    bedroom.text = @"bedroom";
+    bedroom.text = NSLocalizedString(@"Bedroom", nil);
     bedroom.font = [UIFont systemFontOfSize:13];
     bedroom.textColor = [XHColorTools themeColor];
     bedroom.textAlignment = NSTextAlignmentCenter;

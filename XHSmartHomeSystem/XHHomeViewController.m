@@ -176,7 +176,7 @@
             [self presentViewController:gVC animated:YES completion:nil]; // modal
         });
     } else {
-        [self alertWithTitle:@"Failed" message:@"gauge mode is disable, if you want to use the mode you need to enable it via \"Settings\"->\"General\"->\"Display\" on this app."];
+        [self alertWithTitle:@"Failed" message:@"Gauge mode is disable, if you want to use the mode you need to enable it via \"Settings\"->\"General\"->\"Display\" on this app."];
     }
 }
 
@@ -286,7 +286,7 @@
         chartVC.view.backgroundColor = [UIColor whiteColor];
         [self.navigationController pushViewController:chartVC animated:YES];
     } else {
-        [self alertWithTitle:@"Failed" message:@"chart mode is disable, if you want to use the mode you need to enable it via \"Settings\"->\"General\"->\"Display\" on this app."];
+        [self alertWithTitle:@"Failed" message:@"Chart mode is disable, if you want to use the mode you need to enable it via \"Settings\"->\"General\"->\"Display\" on this app."];
     }
 }
 
@@ -300,7 +300,7 @@
 
 - (void)alertWithTitle:(NSString *)title message:(NSString *)message
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil, nil];
     [alertView show];
 }
 

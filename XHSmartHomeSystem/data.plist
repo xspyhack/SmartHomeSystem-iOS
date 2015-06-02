@@ -8,7 +8,7 @@
 		<key>iconName</key>
 		<string>parlour</string>
 		<key>name</key>
-		<string>parlour</string>
+		<string>Parlour</string>
 		<key>temperature</key>
 		<string>0.0</string>
 		<key>humidity</key>
@@ -20,7 +20,7 @@
 		<key>iconName</key>
 		<string>kitchen</string>
 		<key>name</key>
-		<string>kitchen</string>
+		<string>Kitchen</string>
 		<key>temperature</key>
 		<string>0.0</string>
 		<key>humidity</key>
@@ -32,7 +32,7 @@
 		<key>iconName</key>
 		<string>bathroom</string>
 		<key>name</key>
-		<string>bathroom</string>
+		<string>Bathroom</string>
 		<key>temperature</key>
 		<string>0.0</string>
 		<key>humidity</key>
@@ -44,7 +44,7 @@
 		<key>iconName</key>
 		<string>bedroom</string>
 		<key>name</key>
-		<string>bedroom</string>
+		<string>Bedroom</string>
 		<key>temperature</key>
 		<string>0.0</string>
 		<key>humidity</key>

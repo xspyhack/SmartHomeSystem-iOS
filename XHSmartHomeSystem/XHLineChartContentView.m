@@ -493,7 +493,7 @@
         NSUInteger weekday = (today + index) % 7;
         NSString *valStr = [self weekdayWithIndex:weekday];
         if (index == self.xArray.count - 1) {
-            valStr = @"Today";
+            valStr = NSLocalizedString(@"Today", nil);
         }
         //NSNumber *num = [self.xArray objectAtIndex:index];
         //NSString *valStr = [NSString stringWithFormat:@"%.3lf", [num doubleValue]];
@@ -632,25 +632,25 @@
     NSString *weekday = @"";
     switch (index) {
         case 0:
-            weekday = @"Sun";
+            weekday = NSLocalizedString(@"Sun", nil);
             break;
         case 1:
-            weekday = @"Mon";
+            weekday = NSLocalizedString(@"Mon", nil);
             break;
         case 2:
-            weekday = @"Tue";
+            weekday = NSLocalizedString(@"Tue", nil);
             break;
         case 3:
-            weekday = @"Wed";
+            weekday = NSLocalizedString(@"Wed", nil);
             break;
         case 4:
-            weekday = @"Thu";
+            weekday = NSLocalizedString(@"Thu", nil);
             break;
         case 5:
-            weekday = @"Fri";
+            weekday = NSLocalizedString(@"Fri", nil);
             break;
         case 6:
-            weekday = @"Sat";
+            weekday = NSLocalizedString(@"Sat", nil);
             break;
         default:
             break;

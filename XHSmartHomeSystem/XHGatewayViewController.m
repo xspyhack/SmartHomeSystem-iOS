@@ -45,15 +45,18 @@
 {
     NSString *gateway = [XHTokenTools tokenModel].gateway;
     NSString *password = [XHTokenTools tokenModel].password;
+    //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //NSString *gateway = [defaults objectForKey:@"XHGateway"];
+    //NSString *password = [defaults objectForKey:@"XHPassword"];
     
     CGRect hostRect = CGRectMake(0, 100, self.view.frame.size.width, 43);
     self.gatewayView = [[XHInputView alloc] initWithFrame:hostRect];
-    self.gatewayView.label.text = @"Gateway";
+    self.gatewayView.label.text = NSLocalizedString(@"Gateway", nil);
     self.gatewayView.value.text = gateway;
     
     CGRect portRect = CGRectMake(0, CGRectGetMaxY(hostRect), self.view.frame.size.width, 43);
     self.passwordView = [[XHInputView alloc] initWithFrame:portRect];
-    self.passwordView.label.text = @"Password";
+    self.passwordView.label.text = NSLocalizedString(@"Password", nil);
     self.passwordView.value.secureTextEntry = YES;
     self.passwordView.value.text = password;
     

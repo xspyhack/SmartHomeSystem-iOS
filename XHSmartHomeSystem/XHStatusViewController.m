@@ -32,7 +32,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"Control Center";
+    self.title = NSLocalizedString(@"Control Center", nil);
     
     [self setup];
 }

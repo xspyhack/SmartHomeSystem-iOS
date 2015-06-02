@@ -25,6 +25,19 @@ typedef enum _EMLanguage{
     [self setupGroup];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSInteger language = [defaults integerForKey:@"XHLanguage"];
+    if (language == 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"en" forKey:@"appLanguage"];
+    } else if (language == 1) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"zh-Hans" forKey:@"appLanguage"];
+    } else {
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"appLanguage"];
+    }
+}
+
 - (void)setupGroup
 {
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
@@ -40,7 +53,7 @@ typedef enum _EMLanguage{
     XHTableViewCellCheckmarkItem *chineseCheckmark = [XHTableViewCellCheckmarkItem itemWithTitle:@"简体中文"];
     chineseCheckmark.clicked = ^{ [self setCheckmark:EMChinese]; };
     
-    XHTableViewCellCheckmarkItem *systemCheckmark = [XHTableViewCellCheckmarkItem itemWithTitle:@"System Default"];
+    XHTableViewCellCheckmarkItem *systemCheckmark = [XHTableViewCellCheckmarkItem itemWithTitle:NSLocalizedString(@"System Default", nil)];
     systemCheckmark.clicked = ^{ [self setCheckmark:EMSystem]; };
     
     if (index == EMEnglish) {

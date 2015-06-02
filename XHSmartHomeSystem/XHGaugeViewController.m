@@ -196,16 +196,16 @@
 {
     switch (self.roomId) {
         case XHParlour:
-            self.roomNameLabel.text = @"Parlour";
+            self.roomNameLabel.text = NSLocalizedString(@"Parlour", nil);
             break;
         case XHBedroom:
-            self.roomNameLabel.text = @"Bedroom";
+            self.roomNameLabel.text = NSLocalizedString(@"Bedroom", nil);
             break;
         case XHKitchen:
-            self.roomNameLabel.text = @"Kitchen";
+            self.roomNameLabel.text = NSLocalizedString(@"Kitchen", nil);
             break;
         case XHBathroom:
-            self.roomNameLabel.text = @"Bathroom";
+            self.roomNameLabel.text = NSLocalizedString(@"Bathroom", nil);
             break;
         default:
             break;

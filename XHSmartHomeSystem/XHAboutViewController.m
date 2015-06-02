@@ -59,25 +59,25 @@
 {
     self.group = [XHTableViewCellGroup group];
     
-    XHTableViewCellArrowItem *rateItem = [XHTableViewCellArrowItem itemWithTitle:@"Rate"];
+    XHTableViewCellArrowItem *rateItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Rate", nil)];
     rateItem.clicked = ^{
         NSURL *url = [NSURL URLWithString:@"https://github.com/xspyhack/SmartHomeSystem-iOS"];
         [[UIApplication sharedApplication] openURL:url];
     };
     
-    XHTableViewCellArrowItem *aboutItem = [XHTableViewCellArrowItem itemWithTitle:@"About"];
+    XHTableViewCellArrowItem *aboutItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"About", nil)];
     aboutItem.destinationContorller = [XHAboutMeViewController class];
     
-    XHTableViewCellArrowItem *feedbackItem = [XHTableViewCellArrowItem itemWithTitle:@"Feedback"];
+    XHTableViewCellArrowItem *feedbackItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Feedback", nil)];
     feedbackItem.destinationContorller = [XHFeedbackViewController class];
     
-    XHTableViewCellArrowItem *helpItem = [XHTableViewCellArrowItem itemWithTitle:@"Help"];
+    XHTableViewCellArrowItem *helpItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Help", nil)];
     helpItem.clicked = ^{
         NSURL *url = [NSURL URLWithString:@"https://github.com/xspyhack/SmartHomeSystem-iOS"];
         [[UIApplication sharedApplication] openURL:url];
     };
     
-    XHTableViewCellArrowItem *licenseItem = [XHTableViewCellArrowItem itemWithTitle:@"License"];
+    XHTableViewCellArrowItem *licenseItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"License", nil)];
     licenseItem.destinationContorller = [XHLicenseViewController class];
     
     self.group.items = @[ rateItem, aboutItem, feedbackItem, helpItem, licenseItem ];

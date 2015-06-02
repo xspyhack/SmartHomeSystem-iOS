@@ -59,7 +59,7 @@
     CGRect btnRect = CGRectMake((self.frame.size.width - saveBtnWidth)/2, self.frame.size.height -saveBtnWidth - btnWidth/2, saveBtnWidth, saveBtnWidth);
     XHButton *saveBtn = [[XHButton alloc] initWithFrame:btnRect];
     [saveBtn addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
-    [saveBtn setTitle:@"Save" forState:UIControlStateNormal];
+    [saveBtn setTitle:NSLocalizedString(@"Save", nil) forState:UIControlStateNormal];
     [self addSubview:saveBtn];
 }
 
@@ -162,7 +162,7 @@
         
         // Configure for text only and offset down
         hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"Save";
+        hud.labelText = NSLocalizedString(@"Save", nil);
         hud.margin = 10.f;
         hud.removeFromSuperViewOnHide = YES;
         
@@ -177,6 +177,5 @@
     NSInteger index = [defaults integerForKey:_master];
     self.backgroundColor = [[XHColorModel colorModelAtIndex:index] colorWithAlphaComponent:0.85];
 }
-
 
 @end

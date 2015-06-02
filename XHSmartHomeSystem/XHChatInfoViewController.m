@@ -40,8 +40,8 @@
 {
     self.group = [XHTableViewCellGroup group];
     
-    XHTableViewCellSwitchItem *stickItem = [XHTableViewCellSwitchItem itemWithTitle:@"Stick To Top"];
-    XHTableViewCellSwitchItem *shieldItem = [XHTableViewCellSwitchItem itemWithTitle:@"Shield"];
+    XHTableViewCellSwitchItem *stickItem = [XHTableViewCellSwitchItem itemWithTitle:NSLocalizedString(@"Stick To Top", nil)];
+    XHTableViewCellSwitchItem *shieldItem = [XHTableViewCellSwitchItem itemWithTitle:NSLocalizedString(@"Shield", nil)];
     
     self.group.items = @[ stickItem, shieldItem ];
 }
@@ -69,7 +69,7 @@
     
     CGRect bioRect = CGRectMake((viewWidth-200)/2, CGRectGetMaxY(nameRect)+10, 200, 20);
     UILabel *bioLabel = [[UILabel alloc] initWithFrame:bioRect];
-    bioLabel.text = @"Bio: nothing else.";
+    bioLabel.text = NSLocalizedString(@"Bio: nothing else.", nil);
     bioLabel.textColor = color;
     bioLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -83,7 +83,7 @@
     CGRect rect = CGRectMake(0, 45, self.view.frame.size.width, 40);
     UIButton *block = [[UIButton alloc] initWithFrame:rect];
     block.backgroundColor = [[XHColorTools themeColor] colorWithAlphaComponent:.8f];
-    [block setTitle:@"Block" forState:UIControlStateNormal];
+    [block setTitle:NSLocalizedString(@"Block", nil) forState:UIControlStateNormal];
     [block setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [block addTarget:self action:@selector(blockButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     

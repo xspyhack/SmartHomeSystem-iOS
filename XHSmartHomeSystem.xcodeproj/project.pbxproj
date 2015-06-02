@@ -79,6 +79,9 @@
 		78C13B941ADA0EF90020AAFA /* XHTokenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B931ADA0EF90020AAFA /* XHTokenModel.m */; };
 		78C13B971ADA101C0020AAFA /* XHTokenTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B961ADA101C0020AAFA /* XHTokenTools.m */; };
 		78C13B9C1ADA6D370020AAFA /* XHImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C13B9B1ADA6D370020AAFA /* XHImageView.m */; };
+		78C9585C1B1C48E700F35459 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C9585B1B1C48E700F35459 /* Reachability.m */; };
+		78C9585F1B1C4A4100F35459 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C9585E1B1C4A4100F35459 /* SystemConfiguration.framework */; };
+		78C958661B1C9B6800F35459 /* XHStatusBarTipsWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C958651B1C9B6800F35459 /* XHStatusBarTipsWindow.m */; };
 		78CB02D01AF71EEC0004167E /* XHDataAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB02CF1AF71EEC0004167E /* XHDataAnalysisViewController.m */; };
 		78CB02D31AF73C720004167E /* XHTableViewCellTextFieldItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB02D21AF73C720004167E /* XHTableViewCellTextFieldItem.m */; };
 		78CB02DC1AF767A90004167E /* XHEncryptTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CB02DB1AF767A90004167E /* XHEncryptTypeViewController.m */; };
@@ -89,6 +92,7 @@
 		78CC8D151B1745A700B82F82 /* PulsingHaloLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC8D141B1745A700B82F82 /* PulsingHaloLayer.m */; };
 		78CC8D181B17463C00B82F82 /* XHAboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC8D171B17463C00B82F82 /* XHAboutMeViewController.m */; };
 		78CC8D1B1B184C6B00B82F82 /* XHSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC8D1A1B184C6B00B82F82 /* XHSplashView.m */; };
+		78CE72111B1D79C700D850AB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78CE72131B1D79C700D850AB /* Localizable.strings */; };
 		78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5B9E1AD780B700DC9FA0 /* main.m */; };
 		78DD5BA21AD780B700DC9FA0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD5BA11AD780B700DC9FA0 /* AppDelegate.m */; };
 		78DD5BAA1AD780B700DC9FA0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78DD5BA91AD780B700DC9FA0 /* Images.xcassets */; };
@@ -259,6 +263,11 @@
 		78C13B961ADA101C0020AAFA /* XHTokenTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHTokenTools.m; sourceTree = "<group>"; };
 		78C13B9A1ADA6D370020AAFA /* XHImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHImageView.h; sourceTree = "<group>"; };
 		78C13B9B1ADA6D370020AAFA /* XHImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHImageView.m; sourceTree = "<group>"; };
+		78C9585A1B1C48E700F35459 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		78C9585B1B1C48E700F35459 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		78C9585E1B1C4A4100F35459 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		78C958641B1C9B6800F35459 /* XHStatusBarTipsWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStatusBarTipsWindow.h; sourceTree = "<group>"; };
+		78C958651B1C9B6800F35459 /* XHStatusBarTipsWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStatusBarTipsWindow.m; sourceTree = "<group>"; };
 		78CB02CE1AF71EEC0004167E /* XHDataAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHDataAnalysisViewController.h; sourceTree = "<group>"; };
 		78CB02CF1AF71EEC0004167E /* XHDataAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHDataAnalysisViewController.m; sourceTree = "<group>"; };
 		78CB02D11AF73C720004167E /* XHTableViewCellTextFieldItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTableViewCellTextFieldItem.h; sourceTree = "<group>"; };
@@ -278,9 +287,11 @@
 		78CC8D171B17463C00B82F82 /* XHAboutMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHAboutMeViewController.m; sourceTree = "<group>"; };
 		78CC8D191B184C6B00B82F82 /* XHSplashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHSplashView.h; sourceTree = "<group>"; };
 		78CC8D1A1B184C6B00B82F82 /* XHSplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHSplashView.m; sourceTree = "<group>"; };
+		78CE72121B1D79C700D850AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		78CE72141B1D79EF00D850AB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		78CE72151B1D7D0900D850AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 		78DD5B991AD780B700DC9FA0 /* XHSmartHomeSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XHSmartHomeSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		78DD5B9D1AD780B700DC9FA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		78DD5B9E1AD780B700DC9FA0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		78DD5B9E1AD780B700DC9FA0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		78DD5BA01AD780B700DC9FA0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		78DD5BA11AD780B700DC9FA0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		78DD5BA91AD780B700DC9FA0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = XHSmartHomeSystem/Images.xcassets; sourceTree = "<group>"; };
@@ -312,6 +323,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78C9585F1B1C4A4100F35459 /* SystemConfiguration.framework in Frameworks */,
 				78266C541AFB5F1E00D9A584 /* libsqlite3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,8 +633,28 @@
 				784707E81B06F063004D9420 /* XHCoordinateView.m */,
 				78CC8D191B184C6B00B82F82 /* XHSplashView.h */,
 				78CC8D1A1B184C6B00B82F82 /* XHSplashView.m */,
+				78C958641B1C9B6800F35459 /* XHStatusBarTipsWindow.h */,
+				78C958651B1C9B6800F35459 /* XHStatusBarTipsWindow.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		78C9585D1B1C48EF00F35459 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				78C9585A1B1C48E700F35459 /* Reachability.h */,
+				78C9585B1B1C48E700F35459 /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
+		78C958601B1C50EC00F35459 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				78C9585E1B1C4A4100F35459 /* SystemConfiguration.framework */,
+				78266C531AFB5F1E00D9A584 /* libsqlite3.0.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		78CC8D121B17454500B82F82 /* HaloLayer */ = {
@@ -643,7 +675,7 @@
 				78DD5BA91AD780B700DC9FA0 /* Images.xcassets */,
 				78DD5BB51AD780B700DC9FA0 /* XHSmartHomeSystemTests */,
 				78DD5B9A1AD780B700DC9FA0 /* Products */,
-				78266C531AFB5F1E00D9A584 /* libsqlite3.0.dylib */,
+				78C958601B1C50EC00F35459 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -659,6 +691,7 @@
 		78DD5B9B1AD780B700DC9FA0 /* XHSmartHomeSystem */ = {
 			isa = PBXGroup;
 			children = (
+				78C9585D1B1C48EF00F35459 /* Reachability */,
 				78266C521AFB543E00D9A584 /* FMDB */,
 				7825E77D1AF32B41008D6CF6 /* Socket */,
 				78B08F391AE20B5400A26C53 /* MBProgressHUD */,
@@ -684,8 +717,9 @@
 				787FBB6C1AD90CD200316651 /* XHSmartHome-Prefix.pch */,
 				78DD5BA01AD780B700DC9FA0 /* AppDelegate.h */,
 				78DD5BA11AD780B700DC9FA0 /* AppDelegate.m */,
-				78DD5B9D1AD780B700DC9FA0 /* Info.plist */,
+				78CE720E1B1D78A100D850AB /* Info.plist */,
 				78DD5B9E1AD780B700DC9FA0 /* main.m */,
+				78CE72131B1D79C700D850AB /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -785,6 +819,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 78DD5B901AD780B700DC9FA0;
 			productRefGroup = 78DD5B9A1AD780B700DC9FA0 /* Products */;
@@ -803,6 +838,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				786E90341ADBAD0A00A93675 /* data.plist in Resources */,
+				78CE72111B1D79C700D850AB /* Localizable.strings in Resources */,
 				78CC8D081B16F20E00B82F82 /* license.html in Resources */,
 				78DD5BAA1AD780B700DC9FA0 /* Images.xcassets in Resources */,
 			);
@@ -874,6 +910,7 @@
 				78266C371AF9E65300D9A584 /* XHFeedbackViewController.m in Sources */,
 				78CB02DC1AF767A90004167E /* XHEncryptTypeViewController.m in Sources */,
 				7888C1251B00EC07002AE1B7 /* XHSocketThread.m in Sources */,
+				78C9585C1B1C48E700F35459 /* Reachability.m in Sources */,
 				785C20E71AF882BB00F9CD1C /* XHValueViewController.m in Sources */,
 				785531421ADE583B00080703 /* UIBarButtonItem+Extension.m in Sources */,
 				787FBB5D1AD8E99800316651 /* XHLinkinViewController.m in Sources */,
@@ -908,6 +945,7 @@
 				7866FADB1AE8C6A100250478 /* XHFeaturesViewController.m in Sources */,
 				78DD5B9F1AD780B700DC9FA0 /* main.m in Sources */,
 				784707EC1B0781E0004D9420 /* XHMessageTools.m in Sources */,
+				78C958661B1C9B6800F35459 /* XHStatusBarTipsWindow.m in Sources */,
 				78F456AD1B05E6F2008B4FC5 /* XHDatabase.m in Sources */,
 				78C13B9C1ADA6D370020AAFA /* XHImageView.m in Sources */,
 				7855315E1ADF907300080703 /* XHGeneralSettingsViewController.m in Sources */,
@@ -932,6 +970,26 @@
 			targetProxy = 78DD5BB31AD780B700DC9FA0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		78CE720E1B1D78A100D850AB /* Info.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				78CE72151B1D7D0900D850AB /* Base */,
+			);
+			name = Info.plist;
+			sourceTree = "<group>";
+		};
+		78CE72131B1D79C700D850AB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				78CE72121B1D79C700D850AB /* en */,
+				78CE72141B1D79EF00D850AB /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		78DD5BBA1AD780B700DC9FA0 /* Debug */ = {

@@ -97,11 +97,11 @@ typedef enum _EMSwitch {
     self.chartSwitch = [defaults boolForKey:@"XHChartMode"];
     self.gaugeSwitch = [defaults boolForKey:@"XHGaugeMode"];
     
-    XHTableViewCellSwitchItem *chartItem = [XHTableViewCellSwitchItem itemWithTitle:@"Line Chart Mode"];
+    XHTableViewCellSwitchItem *chartItem = [XHTableViewCellSwitchItem itemWithTitle:NSLocalizedString(@"Line Chart Mode", nil)];
     chartItem.on = self.chartSwitch;
     chartItem.tapSwitch = ^{ [self setSwitch:EMChartModeSwitch]; };
     
-    XHTableViewCellSwitchItem *gaugeItem = [XHTableViewCellSwitchItem itemWithTitle:@"Gauge Mode"];
+    XHTableViewCellSwitchItem *gaugeItem = [XHTableViewCellSwitchItem itemWithTitle:NSLocalizedString(@"Gauge Mode", nil)];
     gaugeItem.on = self.gaugeSwitch;
     gaugeItem.tapSwitch = ^{ [self setSwitch:EMGaugeModeSwitch]; };
     
@@ -116,29 +116,29 @@ typedef enum _EMSwitch {
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellArrowItem *lineWidthItem = [XHTableViewCellArrowItem itemWithTitle:@"Line Width"];
+    XHTableViewCellArrowItem *lineWidthItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Line Width", nil)];
     lineWidthItem.detail = [NSString stringWithFormat:@"%.2f", self.lineWidth];
     lineWidthItem.clicked = ^{ [self.lineView pullDown:0.5f]; };
     
-    XHTableViewCellArrowItem *tempColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Temperature Color"];
+    XHTableViewCellArrowItem *tempColorItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Temperature Color", nil)];
     tempColorItem.clicked = ^{
         self.colorsView.master = @"XHTemperatureColor";
         [self.colorsView pullDown:0.5f];
     };
     
-    XHTableViewCellArrowItem *humiColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Humidity Color"];
+    XHTableViewCellArrowItem *humiColorItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Humidity Color", nil)];
     humiColorItem.clicked = ^{
         self.colorsView.master = @"XHHumidityColor";
         [self.colorsView pullDown:0.5f];
     };
     
-    XHTableViewCellArrowItem *smokeColorItem = [XHTableViewCellArrowItem itemWithTitle:@"Smoke Color"];
+    XHTableViewCellArrowItem *smokeColorItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Smoke Color", nil)];
     smokeColorItem.clicked = ^{
         self.colorsView.master = @"XHSmokeColor";
         [self.colorsView pullDown:0.5f];
     };
     
-    group.groupHeader = @"Brush";
+    group.groupHeader = NSLocalizedString(@"Brush", nil);
     group.items = @[ lineWidthItem, tempColorItem, humiColorItem, smokeColorItem ];
 }
 
@@ -149,20 +149,20 @@ typedef enum _EMSwitch {
     
     [self getUserDefaults];
     
-    self.tempRangeItem = [XHTableViewCellArrowItem itemWithTitle:@"Temperature"];
+    self.tempRangeItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Temperature", nil)];
     self.tempRangeItem.detail = self.tempRange;
     self.tempRangeItem.destinationContorller = [XHValueViewController class];
     
-    self.humiRangeItem = [XHTableViewCellArrowItem itemWithTitle:@"Humidity"];
+    self.humiRangeItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Humidity", nil)];
     self.humiRangeItem.detail = self.humiRange;
     self.humiRangeItem.destinationContorller = [XHValueViewController class];
     
-    self.smokeRangeItem = [XHTableViewCellArrowItem itemWithTitle:@"Smoke"];
+    self.smokeRangeItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Smoke", nil)];
     self.smokeRangeItem.detail = self.smokeRange;
     self.smokeRangeItem.destinationContorller = [XHValueViewController class];
     
-    group.groupHeader = @"Range";
-    group.groupFooter = @"Setup max or min value which will show in line chart or gauge chart can help system more accurately to show data.";
+    group.groupHeader = NSLocalizedString(@"Range", nil);
+    group.groupFooter = NSLocalizedString(@"Setup max or min value which will show in line chart or gauge chart can help system more accurately to show data.", nil);
     group.items = @[ self.tempRangeItem, self.humiRangeItem, self.smokeRangeItem ];
 }
 

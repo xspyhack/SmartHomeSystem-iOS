@@ -47,7 +47,7 @@
         _value.textColor = [XHColorTools themeColor];
         _value.textAlignment = NSTextAlignmentRight;
         _value.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter; // vertical alignment
-        _value.placeholder = @"add value";
+        _value.placeholder = NSLocalizedString(@"add value", nil);
         _value.clearsOnBeginEditing = YES;
         _value.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         _value.returnKeyType = UIReturnKeyDone;

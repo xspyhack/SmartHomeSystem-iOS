@@ -49,10 +49,10 @@ typedef enum _EMMessageType {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSInteger index = [defaults integerForKey:@"XHMessageType"];
     
-    XHTableViewCellCheckmarkItem *alertItem = [XHTableViewCellCheckmarkItem itemWithTitle:@"Alertor"];
+    XHTableViewCellCheckmarkItem *alertItem = [XHTableViewCellCheckmarkItem itemWithTitle:NSLocalizedString(@"Alertor", nil)];
     alertItem.clicked = ^{ [self setCheckmark:EMAlert]; };
     
-    XHTableViewCellCheckmarkItem *textItem = [XHTableViewCellCheckmarkItem itemWithTitle:@"Message Text"];
+    XHTableViewCellCheckmarkItem *textItem = [XHTableViewCellCheckmarkItem itemWithTitle:NSLocalizedString(@"Message Text", nil)];
     textItem.clicked = ^{ [self setCheckmark:EMText]; };
     
     if (index == 0) {
@@ -61,7 +61,7 @@ typedef enum _EMMessageType {
         textItem.type = UITableViewCellAccessoryCheckmark;
     }
     
-    group.groupHeader = @"Notification Push Type";
+    group.groupHeader = NSLocalizedString(@"Notification Push Type", nil);
     group.items = @[ alertItem, textItem ];
 }
 
@@ -71,12 +71,12 @@ typedef enum _EMMessageType {
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellLabelItem *timeItem = [XHTableViewCellLabelItem itemWithTitle:@"Time"];
+    XHTableViewCellLabelItem *timeItem = [XHTableViewCellLabelItem itemWithTitle:NSLocalizedString(@"Time", nil)];
     timeItem.label = self.timeLabel;
     timeItem.clicked = ^{ [self setupTimePicker]; };
     
     group.items = @[ timeItem ];
-    group.groupHeader = @"Push Time Setting";
+    group.groupHeader = NSLocalizedString(@"Push Time Setting", nil);
 }
 
 - (void)setupTimePicker
@@ -102,7 +102,7 @@ typedef enum _EMMessageType {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *startTime = [defaults objectForKey:@"XHNotificationStartTime"];
     NSString *endTime = [defaults objectForKey:@"XHNotificationEndTime"];
-    self.timeLabel.text = [NSString stringWithFormat:@"Every day %@ to %@", startTime, endTime];
+    self.timeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Every day %@ to %@", nil), startTime, endTime];
     [self.timeLabel sizeToFit];
 }
 

@@ -58,17 +58,17 @@
     
     [self getUserDefaults];
     
-    XHTableViewCellSwitchItem *checkItem = [XHTableViewCellSwitchItem itemWithTitle:@"Check In"];
+    XHTableViewCellSwitchItem *checkItem = [XHTableViewCellSwitchItem itemWithTitle:NSLocalizedString(@"Check In", nil)];
     checkItem.on = [self isCheckin];
     checkItem.tapSwitch = ^{
         self.checkin = !self.checkin;
     };
     
-    self.encryptTypeItem = [XHTableViewCellArrowItem itemWithTitle:@"Encrypt Type"];
+    self.encryptTypeItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Encrypt Type", nil)];
     self.encryptTypeItem.detail = self.type;
     self.encryptTypeItem.destinationContorller = [XHEncryptTypeViewController class];
     
-    group.groupFooter = @"Enabling encrypt can improve security.";
+    group.groupFooter = NSLocalizedString(@"Enabling encrypt can improve security.", nil);
     group.items = @[ checkItem, self.encryptTypeItem ];
 }
 

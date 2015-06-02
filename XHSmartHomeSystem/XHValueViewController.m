@@ -50,12 +50,12 @@
     
     CGRect minRect = CGRectMake(0, 100, self.view.frame.size.width, 44);
     self.minView = [[XHInputView alloc] initWithFrame:minRect];
-    self.minView.label.text = @"Min";
+    self.minView.label.text = NSLocalizedString(@"Min", nil);
     self.minView.value.text = [NSString stringWithFormat:@"%.1f", minValue];
     
     CGRect maxRect = CGRectMake(0, CGRectGetMaxY(minRect), self.view.frame.size.width, 44);
     self.maxView = [[XHInputView alloc] initWithFrame:maxRect];
-    self.maxView.label.text = @"Max";
+    self.maxView.label.text = NSLocalizedString(@"Max", nil);
     self.maxView.value.text = [NSString stringWithFormat:@"%.1f", maxValue];
     
     [self.view addSubview:self.minView];

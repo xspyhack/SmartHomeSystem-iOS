@@ -80,7 +80,7 @@
     
     CGFloat updateTimeLabelX = roomNameLabelX;
     CGFloat updateTimeLabelY = CGRectGetMaxY(iconViewRect) - xhTableViewCellLabelHeight;
-    CGRect updateTimeRect = CGRectMake(updateTimeLabelX, updateTimeLabelY, xhTableViewCellLabelWidth, xhTableViewCellLabelHeight);
+    CGRect updateTimeRect = CGRectMake(updateTimeLabelX, updateTimeLabelY, xhTableViewCellLabelWidth + 10, xhTableViewCellLabelHeight);
     self.updateTimeLabel = [[UILabel alloc] initWithFrame:updateTimeRect];
     self.updateTimeLabel.textColor = XHColor;
     self.updateTimeLabel.font = [UIFont systemFontOfSize:xhTableViewCellUpdateTimeFontSize];
@@ -129,9 +129,11 @@
 {
     _roomModel = roomModel;
     _iconView.image = [UIImage imageNamed:roomModel.iconName];
-    _roomNameLabel.text = roomModel.name;
-    _temperatureLabel.text = [NSString stringWithFormat:@"temp: %@°C", roomModel.temperature];
-    _humidityLabel.text = [NSString stringWithFormat:@"humi: %@%%RH", roomModel.humidity];
+    _roomNameLabel.text = NSLocalizedString(roomModel.name, nil);
+    NSString *temp = NSLocalizedString(@"temp", nil);
+    NSString *humi = NSLocalizedString(@"humi", nil);
+    _temperatureLabel.text = [NSString stringWithFormat:@"%@: %@°C", temp, roomModel.temperature];
+    _humidityLabel.text = [NSString stringWithFormat:@"%@: %@%%RH", humi, roomModel.humidity];
 }
 
 - (void)setUpdateTime:(NSDate *)updateTime
@@ -139,7 +141,8 @@
     _updateTime = updateTime;
     NSDateFormatter *formater = [[NSDateFormatter alloc] init];
     [formater setTimeStyle:NSDateFormatterShortStyle];
-    _updateTimeLabel.text = [NSString stringWithFormat:@"update at %@", [formater stringFromDate:updateTime]];
+    NSString *update = NSLocalizedString(@"update at", nil);
+    _updateTimeLabel.text = [NSString stringWithFormat:@"%@ %@ ", update, [formater stringFromDate:updateTime]];
 }
 
 /*

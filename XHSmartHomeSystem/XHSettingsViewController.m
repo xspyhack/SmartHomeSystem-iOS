@@ -144,20 +144,20 @@
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellArrowItem *generalItem = [XHTableViewCellArrowItem itemWithTitle:@"General" iconName:@"general"];
+    XHTableViewCellArrowItem *generalItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"General", nil) iconName:@"general"];
     generalItem.destinationContorller = [XHGeneralSettingsViewController class];
     
-    XHTableViewCellArrowItem *themeItem = [XHTableViewCellArrowItem itemWithTitle:@"Theme" iconName:@"general"];
+    XHTableViewCellArrowItem *themeItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Theme", nil) iconName:@"general"];
     /**themeItem.operation = ^{
         XHThemeViewController *tVC = [[XHThemeViewController alloc] init];
         [self presentViewController:tVC animated:YES completion:nil];
     };*/
     themeItem.destinationContorller = [XHThemeViewController class];
     
-    XHTableViewCellArrowItem *notificationItem = [XHTableViewCellArrowItem itemWithTitle:@"Notifications" iconName:@"notification"];
+    XHTableViewCellArrowItem *notificationItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Notifications", nil) iconName:@"notification"];
     notificationItem.destinationContorller = [XHNotificationsViewController class];
     
-    XHTableViewCellArrowItem *securityItem = [XHTableViewCellArrowItem itemWithTitle:@"Security" iconName:@"security"];
+    XHTableViewCellArrowItem *securityItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Security", nil) iconName:@"security"];
     securityItem.destinationContorller = [XHSecurityViewController class];
     
     group.items = @[generalItem, themeItem, notificationItem, securityItem];
@@ -168,7 +168,7 @@
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellArrowItem *aboutItem = [XHTableViewCellArrowItem itemWithTitle:@"About" iconName:@"about"];
+    XHTableViewCellArrowItem *aboutItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"About", nil) iconName:@"about"];
     aboutItem.destinationContorller = [XHAboutViewController class];
     
     group.items = @[ aboutItem ];
@@ -179,7 +179,7 @@
     CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, 40);
     UIButton *linkout = [[UIButton alloc] initWithFrame:rect];
     linkout.backgroundColor = [_themeColor colorWithAlphaComponent:.8f];
-    [linkout setTitle:@"Link Out" forState:UIControlStateNormal];
+    [linkout setTitle:NSLocalizedString(@"Link Out", nil) forState:UIControlStateNormal];
     [linkout setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [linkout addTarget:self action:@selector(linkout) forControlEvents:UIControlEventTouchUpInside];
     
@@ -307,11 +307,11 @@
 
 - (void)linkout
 {
-    NSString *msg = @"Link out will not delete any data. You can still link in with this account.";
+    NSString *msg = NSLocalizedString(@"Link out will not delete any data. You can still link in with this account.", nil);
     
     if (IOS_8_OR_LATER) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:msg preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *linkout = [UIAlertAction actionWithTitle:@"Link out" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        UIAlertAction *linkout = [UIAlertAction actionWithTitle:NSLocalizedString(@"Link Out", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             // link out
             XHTokenModel *token = [XHTokenTools tokenModel];
             [XHTokenTools remove:token];
@@ -323,7 +323,7 @@
             window.rootViewController = [[XHLinkinViewController alloc] init];
         }];
         
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
         [alertController addAction:linkout];
         [alertController addAction:cancel];
         [alertController.view setTintColor:[UIColor grayColor]];
@@ -331,8 +331,8 @@
     } else {
         UIActionSheet *linkoutActionSheel = [[UIActionSheet alloc] initWithTitle:msg
                                                                         delegate:self
-                                                               cancelButtonTitle:@"Cancel"
-                                                          destructiveButtonTitle:@"Link out"
+                                                               cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                          destructiveButtonTitle:NSLocalizedString(@"Link Out", nil)
                                                                otherButtonTitles:nil];
         linkoutActionSheel.actionSheetStyle = UIActionSheetStyleDefault;
         
@@ -349,7 +349,7 @@
 
 - (void)alert
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Link out" message:@"Link out success." delegate:nil cancelButtonTitle:@"sure" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Link Out", nil) message:NSLocalizedString(@"Link out success.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Sure", nil) otherButtonTitles:nil];
     [alert show];
 }
 

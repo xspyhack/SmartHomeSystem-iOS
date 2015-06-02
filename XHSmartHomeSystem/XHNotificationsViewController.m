@@ -65,9 +65,9 @@ typedef enum _EMSwitch {
 {
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
-    group.groupFooter = @"Enable or disable XHSmartSystem Notifications via \"Settings\"->\"Notifications\" on your iPhone.";
+    group.groupFooter = NSLocalizedString(@"Enable or disable XHSmartSystem Notifications via \"Settings\"->\"Notifications\" on your iPhone.", nil);
     
-    XHTableViewCellLabelItem *notificationItem = [XHTableViewCellLabelItem itemWithTitle:@"Notifications"];
+    XHTableViewCellLabelItem *notificationItem = [XHTableViewCellLabelItem itemWithTitle:NSLocalizedString(@"Notifications", nil)];
     notificationItem.label = self.notificatonLabel;
     
     group.items = @[ notificationItem ];
@@ -77,11 +77,11 @@ typedef enum _EMSwitch {
 {
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
-    group.groupFooter = @"Message notifications will contain sender and summary when enabled.";
+    group.groupFooter = NSLocalizedString(@"Message notifications will contain sender and summary when enabled.", nil);
     
     self.showSwitch = [self.defaults boolForKey:@"XHShowPreviewText"];
     
-    XHTableViewCellSwitchItem *showItem = [XHTableViewCellSwitchItem itemWithTitle:@"Show Preview Text"];
+    XHTableViewCellSwitchItem *showItem = [XHTableViewCellSwitchItem itemWithTitle:NSLocalizedString(@"Show Preview Text", nil)];
     showItem.on = self.showSwitch;
     showItem.tapSwitch = ^{ [self setSwitch:EMShowSwitch]; }; // tap
     
@@ -92,7 +92,7 @@ typedef enum _EMSwitch {
 {
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
-    group.groupHeader = [@"Notifications Alertor" lowercaseString]; // it looks doesn't work well.
+    group.groupHeader = [NSLocalizedString(@"Notifications Alertor", nil) lowercaseString]; // it looks doesn't work well.
     
     // read defaults settings
     
@@ -100,22 +100,22 @@ typedef enum _EMSwitch {
     self.humiditySwitch = [self.defaults boolForKey:@"XHHumidityAlertor"];
     self.temperatureSwitch = [self.defaults boolForKey:@"XHTemperatureAlertor"];
     
-    XHTableViewCellSwitchItem *smokeAlertItem = [XHTableViewCellSwitchItem itemWithTitle:@"Smoke"];
+    XHTableViewCellSwitchItem *smokeAlertItem = [XHTableViewCellSwitchItem itemWithTitle:NSLocalizedString(@"Smoke", nil)];
     smokeAlertItem.on = self.smokeSwitch;
     smokeAlertItem.tapSwitch = ^{ [self setSwitch:EMSmokeAlertSwitch]; };
     
-    XHTableViewCellSwitchItem *humidityAlertItem = [XHTableViewCellSwitchItem itemWithTitle:@"Humidity"];
+    XHTableViewCellSwitchItem *humidityAlertItem = [XHTableViewCellSwitchItem itemWithTitle:NSLocalizedString(@"Humidity", nil)];
     humidityAlertItem.on = self.humiditySwitch;
     humidityAlertItem.tapSwitch = ^{ [self setSwitch:EMHumiAlertSwitch]; };
     
-    XHTableViewCellSwitchItem *temperatureAlertItem = [XHTableViewCellSwitchItem itemWithTitle:@"Temperature"];
+    XHTableViewCellSwitchItem *temperatureAlertItem = [XHTableViewCellSwitchItem itemWithTitle:NSLocalizedString(@"Temperature", nil)];
     temperatureAlertItem.on = self.temperatureSwitch;
     temperatureAlertItem.tapSwitch = ^{ [self setSwitch:EMTempAlertSwitch]; };
     
-    XHTableViewCellArrowItem *alertValuesItem = [XHTableViewCellArrowItem itemWithTitle:@"Alert Values"];
+    XHTableViewCellArrowItem *alertValuesItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Alert Values", nil)];
     alertValuesItem.destinationContorller = [XHAlertValuesViewController class];
     
-    group.groupFooter = @"If turn off alertor, you can't get important system notification at first.";
+    group.groupFooter = NSLocalizedString(@"If turn off alertor, you can't get important system notification at first.", nil);
     group.items = @[ smokeAlertItem, humidityAlertItem, temperatureAlertItem, alertValuesItem ];
 }
 
@@ -124,7 +124,7 @@ typedef enum _EMSwitch {
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellArrowItem *disturbItem = [XHTableViewCellArrowItem itemWithTitle:@"Don't Disturb"];
+    XHTableViewCellArrowItem *disturbItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Don't Disturb", nil)];
     disturbItem.destinationContorller = [XHDisturbViewController class];
     
     group.items = @[ disturbItem ];

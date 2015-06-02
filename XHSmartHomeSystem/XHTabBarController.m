@@ -40,13 +40,13 @@
 {
     // add sub viewController
     XHHomeViewController *hVC = [[XHHomeViewController alloc] init];
-    [self addSubViewController:hVC title:@"Home" imageName:@"tabbar_home" selectedImageName:@"tabbar_home_highlighted"];
+    [self addSubViewController:hVC title:NSLocalizedString(@"Home", nil) imageName:@"tabbar_home" selectedImageName:@"tabbar_home_highlighted"];
     
     XHMessagesViewController *mVC = [[XHMessagesViewController alloc] init];
-    [self addSubViewController:mVC title:@"Messages" imageName:@"tabbar_messages" selectedImageName:@"tabbar_messages_highlighted"];
+    [self addSubViewController:mVC title:NSLocalizedString(@"Messages", nil) imageName:@"tabbar_messages" selectedImageName:@"tabbar_messages_highlighted"];
     
     XHSettingsViewController *sVC = [[XHSettingsViewController alloc] init];
-    [self addSubViewController:sVC title:@"Settings" imageName:@"tabbar_settings" selectedImageName:@"tabbar_settings_highlighted"];
+    [self addSubViewController:sVC title:NSLocalizedString(@"Settings", nil) imageName:@"tabbar_settings" selectedImageName:@"tabbar_settings_highlighted"];
 }
 
 - (void)addSubViewController:(UIViewController *)subVC title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName

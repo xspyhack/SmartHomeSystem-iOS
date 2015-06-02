@@ -16,6 +16,7 @@
 #import "XHColorTools.h"
 #import "XHSocketThread.h"
 #import "XHSplashView.h"
+#import "XHStatusBarTipsWindow.h"
 
 @interface AppDelegate ()<XHSocketThreadDelegate>
 @property (nonatomic, getter=isEnterBackground) BOOL enterBackground;
@@ -59,8 +60,8 @@
     XHTokenModel *token = [XHTokenTools tokenModel];
     
     // if exists token
-    if (token) {
-        XHLog(@"%@", token.password);
+    if (token || ![defaults boolForKey:@"XHCheckIn"]) {
+        XHLog(@"password: %@", token.password);
         // first, if it is first time using this version, it will show the new version's feature.
         NSString *versionKey = @"CFBundleVersion";
         versionKey = (__bridge NSString *)kCFBundleVersionKey;
@@ -85,19 +86,27 @@
     
     // make visible
     [self.window makeKeyAndVisible];
-
+    
     if ([[UIApplication sharedApplication] currentUserNotificationSettings].types != UIUserNotificationTypeNone) {
         //
         [defaults setObject:@"Enabled" forKey:@"XHNotificationEnabled"];
         [self addLocalNotification];
     } else {
-        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil]];
         [defaults setObject:@"Disabled" forKey:@"XHNotificationEnabled"];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reachabilityChanged:)
+                                                 name:kReachabilityChangedNotification
+                                               object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onNotificationReceived:)
                                                  name:XHThemeDidChangeNotification
                                                object:nil];
+    self.reachability = [Reachability reachabilityWithHostName:@"www.guet.edu.cn"];
+    [self.reachability startNotifier];
 
     self.window.rootViewController.view.alpha = 0;
     [self.window addSubview:splashView];
@@ -157,6 +166,24 @@
     // Called when the application receive local notification.
 }
 
+- (void)reachabilityChanged:(NSNotification *)notification
+{
+    Reachability *reachabitity = [notification object];
+    NSParameterAssert([reachabitity isKindOfClass:[Reachability class]]);
+    NetworkStatus status = [reachabitity currentReachabilityStatus];
+    
+    if (status == NotReachable) {
+        [[XHStatusBarTipsWindow shareTipsWindow] showTips:@"Not Reachable!" hideAfterDelay:2];
+        XHLog(@"Not Reachable");
+    } else if (status == ReachableViaWiFi) {
+        [[XHStatusBarTipsWindow shareTipsWindow] showTips:@"Reachable Via WiFi" hideAfterDelay:2];
+        XHLog(@"Reachable Via WiFi");
+    } else if (status == ReachableViaWWAN) {
+        [[XHStatusBarTipsWindow shareTipsWindow] showTips:@"Reachable Via WWAN" hideAfterDelay:2];
+        XHLog(@"Reachable Via WWAN");
+    }
+}
+
 - (void)onNotificationReceived:(NSNotification *)notification
 {
     if ([notification.name isEqualToString:XHThemeDidChangeNotification]) {
@@ -196,16 +223,16 @@
     notification.repeatInterval = 2;
     notification.alertBody = @"your sex services has been called, hava a good time.";
     notification.applicationIconBadgeNumber = 1;
-    notification.alertAction = @"open";
+    notification.alertAction = @"Open";
     notification.alertLaunchImage = @"1";
     notification.soundName = @"msg.caf";
     notification.userInfo = @{@"id":@1,@"user":@"b233"};
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
-- (void)removeLocalNotification
+- (void)dealloc
 {
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

@@ -102,7 +102,7 @@
     CGRect btnRect = CGRectMake(saveBtnX, saveBtnY, saveBtnWidth, saveBtnWidth);
     self.saveBtn = [[XHButton alloc] initWithFrame:btnRect];
     [self.saveBtn addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
-    [self.saveBtn setTitle:@"Save" forState:UIControlStateNormal];
+    [self.saveBtn setTitle:NSLocalizedString(@"Save", nil) forState:UIControlStateNormal];
     [self addSubview:self.saveBtn];
 }
 

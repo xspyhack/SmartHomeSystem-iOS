@@ -52,17 +52,17 @@
     
     CGRect temperatureRect = CGRectMake(0, 100, width, INPUTVIEW_HEIGHT);
     self.temperatureView = [[XHInputView alloc] initWithFrame:temperatureRect];
-    self.temperatureView.label.text = @"Temperature";
+    self.temperatureView.label.text = NSLocalizedString(@"Temperature", nil);
     self.temperatureView.value.text = [NSString stringWithFormat:@"%.1f", temperatureValue];
     
     CGRect humidityRect = CGRectMake(0, CGRectGetMaxY(temperatureRect), width, INPUTVIEW_HEIGHT);
     self.humidityView = [[XHInputView alloc] initWithFrame:humidityRect];
-    self.humidityView.label.text = @"Humidity";
+    self.humidityView.label.text = NSLocalizedString(@"Humidity", nil);
     self.humidityView.value.text = [NSString stringWithFormat:@"%.1f", humidityValue];
     
     CGRect smokeRect = CGRectMake(0, CGRectGetMaxY(humidityRect), width, INPUTVIEW_HEIGHT);
     self.smokeView = [[XHInputView alloc] initWithFrame:smokeRect];
-    self.smokeView.label.text = @"Smoke";
+    self.smokeView.label.text = NSLocalizedString(@"Smoke", nil);
     self.smokeView.value.text = [NSString stringWithFormat:@"%.1f", smokeValue];
     
     [self.view addSubview:self.temperatureView];

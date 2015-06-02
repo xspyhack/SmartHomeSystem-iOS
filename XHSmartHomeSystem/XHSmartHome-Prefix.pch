@@ -14,6 +14,7 @@
 #import "UIBarButtonItem+Extension.h"
 #import "NSData+CCCryptor.h"
 #import "NSDate+Utils.h"
+#import "Reachability.h"
 
 
 #ifdef DEBUG
@@ -63,5 +64,9 @@
 
 #define XHNewFeatureImageCount 4
 #define XHTokenExpiresTime 1000
+
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define VIEW_WIDTH (self.view.frame.size.width)
+#define VIEW_HEIGHT (self.view.frame.size.height)
 
 #endif

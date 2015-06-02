@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Line Chart";
+    self.title = NSLocalizedString(@"Line Chart", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Data analysis" style:UIBarButtonItemStylePlain target:self action:@selector(dataAnalysis)];

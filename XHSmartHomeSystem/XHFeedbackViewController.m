@@ -28,7 +28,7 @@
     CGRect rect = CGRectMake(0, 0, 85, 85);
     XHButton *send = [[XHButton alloc] initWithFrame:rect];
     send.center = self.view.center;
-    [send setTitle:@"Send Mail" forState:UIControlStateNormal];
+    [send setTitle:NSLocalizedString(@"Send Mail", nil) forState:UIControlStateNormal];
     [send addTarget:self action:@selector(sendMailButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:send];
@@ -40,11 +40,11 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     if (result == MFMailComposeResultCancelled) {
-        [self showAlert:@"Cancelled"];
+        [self showAlert:NSLocalizedString(@"Cancelled", nil)];
     } else if (result == MFMailComposeResultSent) {
-        [self showAlert:@"Sent"];
+        [self showAlert:NSLocalizedString(@"Sent", nil)];
     } else if (result == MFMailComposeResultFailed) {
-        [self showAlert:@"Send email failed"];
+        [self showAlert:NSLocalizedString(@"Send email failed", nil)];
     } else {
         XHLog(@"nothing");
     }
@@ -69,12 +69,12 @@
     MFMailComposeViewController *mailComposeVC = [[MFMailComposeViewController alloc] init];
     if ([MFMailComposeViewController canSendMail]) {
         [mailComposeVC setToRecipients:@[@"xspyhack@gmail.com"]];
-        [mailComposeVC setSubject:@"bug feedback"];
-        [mailComposeVC setMessageBody:@"write feedback context here." isHTML:NO];
+        [mailComposeVC setSubject:NSLocalizedString(@"Bug Feedback", nil)];
+        [mailComposeVC setMessageBody:NSLocalizedString(@"Write feedback context here.", nil) isHTML:NO];
         mailComposeVC.mailComposeDelegate = self;
         [self presentViewController:mailComposeVC animated:YES completion:nil];
     } else {
-        XHLog(@"this device doesn't support send email.");
+        XHLog(NSLocalizedString(@"This device doesn't support send email.", nil));
     }
 }
 
@@ -99,7 +99,7 @@
 {
     NSString *message;
     if (!error) {
-        message = @"Saved";
+        message = NSLocalizedString(@"Saved", nil);
     } else {
         message = [error description];
     }
@@ -108,11 +108,11 @@
 
 - (void)showAlert:(NSString *)message
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Message", nil)
                                                     message:message
                                                    delegate:self
                                           cancelButtonTitle:nil
-                                          otherButtonTitles:@"OK", nil];
+                                          otherButtonTitles:NSLocalizedString(@"OK", nil), nil];
     [alert show];
 }
 

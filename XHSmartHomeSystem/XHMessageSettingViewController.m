@@ -28,8 +28,8 @@
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellArrowItem *backgroundItem = [XHTableViewCellArrowItem itemWithTitle:@"Background"];
-    XHTableViewCellArrowItem *searchItem = [XHTableViewCellArrowItem itemWithTitle:@"Search Histroy"];
+    XHTableViewCellArrowItem *backgroundItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Background", nil)];
+    XHTableViewCellArrowItem *searchItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Search History", nil)];
     searchItem.clicked = ^{
         //[self.navigationController popViewControllerAnimated:YES];
         UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController:self.parentViewController];
@@ -44,7 +44,7 @@
     CGRect rect = CGRectMake(0, 45, self.view.frame.size.width, 40);
     UIButton *clear = [[UIButton alloc] initWithFrame:rect];
     clear.backgroundColor = [[XHColorTools themeColor] colorWithAlphaComponent:.8f];
-    [clear setTitle:@"Clear Message History" forState:UIControlStateNormal];
+    [clear setTitle:NSLocalizedString(@"Clear Message History", nil) forState:UIControlStateNormal];
     [clear setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [clear addTarget:self action:@selector(clearButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     

@@ -40,13 +40,13 @@
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellArrowItem *gatewayItem = [XHTableViewCellArrowItem itemWithTitle:@"Gateway"];
+    XHTableViewCellArrowItem *gatewayItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Gateway", nil)];
     gatewayItem.destinationContorller = [XHGatewayViewController class];
     
-    XHTableViewCellArrowItem *displayItem = [XHTableViewCellArrowItem itemWithTitle:@"Display"];
+    XHTableViewCellArrowItem *displayItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Display", nil)];
     displayItem.destinationContorller = [XHDisplayViewController class];
     
-    XHTableViewCellArrowItem *featureItem = [XHTableViewCellArrowItem itemWithTitle:@"Features"];
+    XHTableViewCellArrowItem *featureItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Features", nil)];
     featureItem.destinationContorller = [XHFeaturesViewController class];
     
     group.items = @[ gatewayItem, displayItem, featureItem ];
@@ -57,7 +57,7 @@
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    self.languageItem = [XHTableViewCellArrowItem itemWithTitle:@"Language"];
+    self.languageItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Language", nil)];
     self.languageItem.destinationContorller = [XHLanguageViewController class];
     
     group.items = @[ self.languageItem ];
@@ -68,7 +68,7 @@
     CGRect rect = CGRectMake(0, 15, self.view.frame.size.width, 40);
     UIButton *wipeCacheButton = [[UIButton alloc] initWithFrame:rect];
     wipeCacheButton.backgroundColor = [[XHColorTools themeColor] colorWithAlphaComponent:.8f];
-    [wipeCacheButton setTitle:@"Wipe Cache Partition" forState:UIControlStateNormal];
+    [wipeCacheButton setTitle:NSLocalizedString(@"Wipe Cache Partition", nil) forState:UIControlStateNormal];
     [wipeCacheButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [wipeCacheButton addTarget:self action:@selector(wipeCacheButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
@@ -80,7 +80,11 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Wipe cache" message:@"Wipe cache partition success." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Wipe cache", nil)
+                                                        message:NSLocalizedString(@"Wipe cache partition success.", nil)
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                              otherButtonTitles:nil];
         [alert show];
     }
 }
@@ -114,15 +118,15 @@
 
 - (void)wipeCacheButtonClicked
 {
-    NSString *msg = @"It will wipe all your cache.";
+    NSString *msg = NSLocalizedString(@"It will wipe all your cache.", nil);
     
     if (IOS_8_OR_LATER) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:msg preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *wipeCache = [UIAlertAction actionWithTitle:@"Wipe" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        UIAlertAction *wipeCache = [UIAlertAction actionWithTitle:NSLocalizedString(@"Wipe", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             // link out
         }];
         
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
         [alertController addAction:wipeCache];
         [alertController addAction:cancel];
         [alertController.view setTintColor:[UIColor grayColor]];
@@ -130,8 +134,8 @@
     } else {
         UIActionSheet *linkoutActionSheel = [[UIActionSheet alloc] initWithTitle:msg
                                                                         delegate:self
-                                                               cancelButtonTitle:@"Cancel"
-                                                          destructiveButtonTitle:@"Wipe"
+                                                               cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                          destructiveButtonTitle:NSLocalizedString(@"Wipe", nil)
                                                                otherButtonTitles:nil];
         linkoutActionSheel.actionSheetStyle = UIActionSheetStyleDefault;
         

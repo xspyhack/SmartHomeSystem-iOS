@@ -44,10 +44,10 @@
     
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:5];
     
-    UIBarButtonItem *from = [[UIBarButtonItem alloc] initWithTitle:@"start" style:UIBarButtonItemStylePlain target:nil action:nil];
+    UIBarButtonItem *from = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"start", nil) style:UIBarButtonItemStylePlain target:nil action:nil];
     self.startTimeItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
 
-    UIBarButtonItem *to = [[UIBarButtonItem alloc] initWithTitle:@"to" style:UIBarButtonItemStylePlain target:nil action:nil];
+    UIBarButtonItem *to = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"to", nil) style:UIBarButtonItemStylePlain target:nil action:nil];
     self.endTimeItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     
     UIBarButtonItem *flexibleSpaceItem = [[UIBarButtonItem alloc]

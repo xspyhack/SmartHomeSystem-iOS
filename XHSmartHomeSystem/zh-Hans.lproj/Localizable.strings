@@ -1,0 +1,149 @@
+/* 
+  Localizable.strings
+  XHSmartHomeSystem
+
+  Created by bl4ckra1sond3tre on 6/2/15.
+  Copyright (c) 2015 bl4ckra1sond3tre. All rights reserved.
+*/
+
+"Link In" = "连入";
+"Open" = "打开";
+"Save" = "保存";
+"OK" = "好";
+"Sure" = "确定";
+"Cancel" = "取消";
+
+"Not Reachable" = "没有";
+"Reachable Via WiFi" = "通过WiFi连接";
+"Reachable Via WWAN" = "";
+
+// 
+"Parlour" = "大厅";
+"Kitchen" = "厨房";
+"Bathroom" = "浴室";
+"Bedroom" = "卧室";
+"parlour" = "大厅";
+"kitchen" = "厨房";
+"barthroom" = "浴室";
+"bedroom" = "卧室";
+
+"Temperature" = "温度";
+"temperature" = "温度";
+"Humidity" = "湿度";
+"humidity" = "湿度";
+"Smoke" = "烟雾浓度";
+"smoke" = "烟雾浓度";
+"TEMP" = "温度";
+"HUMI" = "湿度";
+"temp" = "温度";
+"humi" = "湿度";
+
+"date" = "日期";
+
+"Home" = "首页";
+"Messages" = "消息";
+"Settings" = "设置";
+
+// link in
+"Gateway" = "网关";
+"Password" = "密码";
+
+// home
+
+
+"update at" = "更新于";
+"Today" = "今天";
+"Sun" = "星期日";
+"Mon" = "星期一";
+"Tue" = "星期二";
+"Wed" = "星期三";
+"Thu" = "星期四";
+"Fri" = "星期五";
+"Sat" = "星期六";
+"Data analysis" = "数据分析";
+
+// chart
+"Line Chart" = "折线图";
+
+// status
+"Control Center" = "控制中心";
+
+// messages
+"Background" = "设置背景";
+"Search History" = "查找消息内容";
+"Clear Message History" = "清空消息记录";
+"Stick To Top" = "置顶";
+"Shield" = "屏蔽";
+"Block" = "加入黑名单";
+
+// settings
+"General" = "通用";
+"Theme" = "主题";
+"Notifications" = "新消息通知";
+"Security" = "安全";
+"About" = "关于";
+"Link Out" = "断开";
+"Link out success." = "断开";
+
+
+"Display" = "显示";
+"Features" = "插件";
+"Language" = "语言";
+"Wipe Cache Partition" = "清除缓存";
+"Wipe" = "清除";
+"Wipe cache" = "清除缓存";
+"Wipe cache partition success." = "清除缓存成功。";
+"It will wipe all your cache." = "这将清除应用中所有的缓存信息。";
+
+// display
+"Line Chart Mode" = "折线图模式";
+"Gauge Mode" = "仪表图模式";
+"Line Width" = "线条大小";
+
+"Temperature Color" = "温度表示颜色";
+"Humidity Color" = "湿度表示颜色";
+"Smoke Color" = "烟雾浓度表示颜色";
+"Brush" = "画刷";
+"Range" = "范围";
+"Setup max or min value which will show in line chart or gauge chart can help system more accurately to show data." = "";
+"Max" = "最大值";
+"Min" = "最小值";
+"Command Line Mode" = "命令行模式";
+"add value" = "添加";
+
+"System Default" = "系统默认";
+
+// notifications
+"Notification" = "通知";
+"Show Preview Text" = "通知显示消息详情";
+"Notifications Alertor" = "警报器设置";
+"Alert Values" = "报警值";
+"Don't Disturb" = "勿扰设置";
+"Alertor" = "警报器";
+"Notification Push Type" = "消息推送方式";
+"Push Time Setting" = "推送时间设置";
+"Message Text" = "普通文本";
+"Time" = "时间";
+"Every day %@ to %@" = "每天 %@ 到 %@";
+"start" = "从";
+"to" = "到";
+
+// security
+"Check In" = "连入验证";
+"Encrypt Type" = "加密方式";
+
+// about
+"Rate" = "评分";
+"Help" = "帮助";
+"Feedback" = "反馈";
+"License" = "开源组件许可";
+"Saved" = "已保存";
+"Message" = "消息";
+"Send Mail" = "发邮件";
+"Cancalled" = "已取消";
+"Sent" = "已发送";
+"Send email failed" = "发送电子邮件失败";
+"Bug Feedback" = "异常反馈";
+"Write feedback context here." = "在这里写下您要反馈的内容。";
+
+

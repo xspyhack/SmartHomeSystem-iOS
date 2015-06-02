@@ -43,11 +43,11 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.cmdLineMode = [defaults boolForKey:@"XHCmdLineMode"];
     
-    XHTableViewCellSwitchItem *clmItem = [XHTableViewCellSwitchItem itemWithTitle:@"Command Line Mode"];\
+    XHTableViewCellSwitchItem *clmItem = [XHTableViewCellSwitchItem itemWithTitle:NSLocalizedString(@"Command Line Mode", nil)];
     clmItem.on = [self isCmdLineMode];
     clmItem.tapSwitch = ^{ self.cmdLineMode = !self.cmdLineMode; };
     
-    group.groupFooter = @"Command line interface in a secret place. If you want to use it find it out first.";
+    group.groupFooter = NSLocalizedString(@"Command line interface in a secret place. If you want to use it find it out first.", nil);
     group.items = @[ clmItem ];
 }
 
