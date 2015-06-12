@@ -60,16 +60,16 @@
     
     
     if ([lastDate hour]>=5 && [lastDate hour]<12) {
-        period = @"AM";
+        period = NSLocalizedString(@"AM", nil);
         hour = [NSString stringWithFormat:@"%02d",(int)[lastDate hour]];
     }else if ([lastDate hour]>=12 && [lastDate hour]<=18){
-        period = @"PM";
+        period = NSLocalizedString(@"PM", nil);
         hour = [NSString stringWithFormat:@"%02d",(int)[lastDate hour]-12];
     }else if ([lastDate hour]>18 && [lastDate hour]<=23){
-        period = @"Night";
+        period = NSLocalizedString(@"Night", nil);
         hour = [NSString stringWithFormat:@"%02d",(int)[lastDate hour]-12];
     }else{
-        period = @"Dawn";
+        period = NSLocalizedString(@"Dawn", nil);
         hour = [NSString stringWithFormat:@"%02d",(int)[lastDate hour]];
     }
     return [NSString stringWithFormat:@"%@ %@ %@:%02d",dateStr,period,hour,(int)[lastDate minute]];

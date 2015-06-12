@@ -34,10 +34,10 @@
     self.window.tintColor = [XHColorTools themeColor]; // set theme color
     
     self.enterBackground = NO;
+    application.applicationIconBadgeNumber = 0; // when number is zero, it will remove Icon badge
     
+    // create splash animation view
     XHSplashView *splashView = [[XHSplashView alloc] initWithFrame:self.window.bounds];
-//    [self.window addSubview:splashView];
-//    [self.window bringSubviewToFront:splashView];
 
     // set rootViewController
     /*
@@ -173,13 +173,13 @@
     NetworkStatus status = [reachabitity currentReachabilityStatus];
     
     if (status == NotReachable) {
-        [[XHStatusBarTipsWindow shareTipsWindow] showTips:@"Not Reachable!" hideAfterDelay:2];
+        [[XHStatusBarTipsWindow shareTipsWindow] showTips:NSLocalizedString(@"No network!", nil) hideAfterDelay:2];
         XHLog(@"Not Reachable");
     } else if (status == ReachableViaWiFi) {
-        [[XHStatusBarTipsWindow shareTipsWindow] showTips:@"Reachable Via WiFi" hideAfterDelay:2];
+        [[XHStatusBarTipsWindow shareTipsWindow] showTips:NSLocalizedString(@"Reachable Via WiFi", nil) hideAfterDelay:2];
         XHLog(@"Reachable Via WiFi");
     } else if (status == ReachableViaWWAN) {
-        [[XHStatusBarTipsWindow shareTipsWindow] showTips:@"Reachable Via WWAN" hideAfterDelay:2];
+        [[XHStatusBarTipsWindow shareTipsWindow] showTips:NSLocalizedString(@"Reachable Via WWAN", nil) hideAfterDelay:2];
         XHLog(@"Reachable Via WWAN");
     }
 }
@@ -217,16 +217,18 @@
 
 - (void)addLocalNotification
 {
+    NSInteger number = [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
+    XHLog(@"badge: %ld", number);
     // define local notification object
     UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:100];
+    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:10];
     notification.repeatInterval = 2;
-    notification.alertBody = @"your sex services has been called, hava a good time.";
-    notification.applicationIconBadgeNumber = 1;
-    notification.alertAction = @"Open";
+    notification.alertBody = @"hava a good time.";
+    notification.applicationIconBadgeNumber = number;
+    notification.alertAction = @"open";
     notification.alertLaunchImage = @"1";
     notification.soundName = @"msg.caf";
-    notification.userInfo = @{@"id":@1,@"user":@"b233"};
+    notification.userInfo = @{ @"id" : @1, @"user" : @"b233" };
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 

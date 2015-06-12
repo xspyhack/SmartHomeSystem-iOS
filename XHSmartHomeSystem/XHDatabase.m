@@ -101,8 +101,8 @@
 - (NSString *)dbPath
 {
     if (!_dbPath) {
-        NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES) firstObject];
-        self.dbPath = [doc stringByAppendingString:@"xhsmarthomesystem.db"];
+        NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        self.dbPath = [doc stringByAppendingPathComponent:@"xhsmarthomesystem.db"];
     }
     return _dbPath;
 }

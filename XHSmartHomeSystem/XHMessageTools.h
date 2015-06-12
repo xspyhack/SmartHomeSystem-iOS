@@ -10,9 +10,19 @@
 
 @interface XHMessageTools : NSObject
 
-+ (NSArray *)latestMessageWithNumber:(NSUInteger)number;
-+ (NSArray *)latestMessageWithNumber:(NSUInteger)number userName:(NSString *)userName;
++ (NSArray *)latestMessagesWithNumber:(NSUInteger)number;
++ (NSArray *)latestMessagesWithNumber:(NSUInteger)number userName:(NSString *)userName;
++ (NSArray *)latestMessagesFrom:(NSUInteger)from number:(NSUInteger)number;
++ (NSArray *)messagesAtIndexes:(NSIndexSet *)indexes;
 
-+ (void)saveMessage:(NSDictionary *)dictionary;
++ (void)saveMessages:(NSDictionary *)dictionary;
+
+// select
++ (NSArray *)messages;
++ (NSArray *)messagesWithSearchString:(NSString *)searchString;
+
+// delete
++ (void)removeMessagesWithUserName:(NSString *)userName;
++ (void)removeMessages;
 
 @end

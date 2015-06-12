@@ -106,13 +106,13 @@
     //[startButtn setBackgroundImage:[UIImage imageNamed:@"new_feature_finish_button_highlighted"] forState:UIControlStateHighlighted];
     
     // set button frame
-    CGFloat width = 50;
+    CGFloat width = 60;
     CGFloat height = width;
     CGPoint center = CGPointMake(self.view.center.x, self.view.frame.size.height * 0.8);
     
     XHButton *startButton = [[XHButton alloc] initWithFrame:CGRectMake(0, 0, width, height)];
     [startButton setCenter:center];
-    [startButton setTitle:@"Go!" forState:UIControlStateNormal];
+    [startButton setTitle:NSLocalizedString(@"Go!", nil) forState:UIControlStateNormal];
     [startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [startButton addTarget:self action:@selector(startButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     

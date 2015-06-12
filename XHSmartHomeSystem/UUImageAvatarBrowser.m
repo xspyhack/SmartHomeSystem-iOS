@@ -11,7 +11,7 @@
 static UIImageView *orginImageView;
 @implementation UUImageAvatarBrowser
 
-+(void)showImage:(UIImageView *)avatarImageView{
++ (void)showImage:(UIImageView *)avatarImageView{
     UIImage *image=avatarImageView.image;
     orginImageView = avatarImageView;
     orginImageView.alpha = 0;
@@ -39,7 +39,7 @@ static UIImageView *orginImageView;
     }];
 }
 
-+(void)hideImage:(UITapGestureRecognizer*)tap{
++ (void)hideImage:(UITapGestureRecognizer*)tap{
     UIView *backgroundView=tap.view;
     UIImageView *imageView=(UIImageView*)[tap.view viewWithTag:1];
     [UIView animateWithDuration:0.3 animations:^{
@@ -50,4 +50,5 @@ static UIImageView *orginImageView;
         backgroundView.alpha=0;
     }];
 }
+
 @end

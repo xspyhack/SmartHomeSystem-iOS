@@ -114,25 +114,25 @@
     NSString *week = @"";
     switch (weekday) {
         case 1:
-            week = @"Sunday";
+            week = NSLocalizedString(@"Sunday", nil);
             break;
         case 2:
-            week = @"Monday";
+            week = NSLocalizedString(@"Monday", nil);
             break;
         case 3:
-            week = @"Tuesday";
+            week = NSLocalizedString(@"Tuesday", nil);
             break;
         case 4:
-            week = @"Wednesday";
+            week = NSLocalizedString(@"Wednesday", nil);
             break;
         case 5:
-            week = @"Thursday";
+            week = NSLocalizedString(@"Thursday", nil);
             break;
         case 6:
-            week = @"Friday";
+            week = NSLocalizedString(@"Friday", nil);
             break;
         case 7:
-            week = @"Saturday";
+            week = NSLocalizedString(@"Saturday", nil);
             break;
             
         default:
@@ -223,9 +223,9 @@
     if (chaDay == 0) {
         str = @""; // Today
     }else if (chaDay == 1){
-        str = @"Tomorrow";
+        str = NSLocalizedString(@"Tomorrow", nil);
     }else if (chaDay == -1){
-        str = @"Yesterday";
+        str = NSLocalizedString(@"Yesterday", nil);
     }else{
         str = [self stringYearMonthDay];
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7817D1E21B23EF5A009717A7 /* XHCircularView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7817D1E11B23EF5A009717A7 /* XHCircularView.m */; };
 		781F1FED1AE0C10600ACEACC /* XHChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FEC1AE0C10600ACEACC /* XHChartView.m */; };
 		781F1FF01AE0C97600ACEACC /* XHChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781F1FEF1AE0C97600ACEACC /* XHChartViewController.m */; };
 		7825E7801AF35031008D6CF6 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 7825E77F1AF35031008D6CF6 /* GCDAsyncSocket.m */; };
@@ -29,6 +30,8 @@
 		783AF3AC1AEB735D0090A81B /* XHNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783AF3AB1AEB735D0090A81B /* XHNavigationController.m */; };
 		784707E91B06F063004D9420 /* XHCoordinateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 784707E81B06F063004D9420 /* XHCoordinateView.m */; };
 		784707EC1B0781E0004D9420 /* XHMessageTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 784707EB1B0781E0004D9420 /* XHMessageTools.m */; };
+		7851529E1B21667F00242028 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7851529B1B21667F00242028 /* UIScrollView+SVInfiniteScrolling.m */; };
+		7851529F1B21667F00242028 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 7851529D1B21667F00242028 /* UIScrollView+SVPullToRefresh.m */; };
 		785531421ADE583B00080703 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531411ADE583B00080703 /* UIBarButtonItem+Extension.m */; };
 		785531461ADF501600080703 /* XHTableViewCellGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531451ADF501600080703 /* XHTableViewCellGroup.m */; };
 		785531491ADF50BE00080703 /* XHTableViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 785531481ADF50BE00080703 /* XHTableViewCellItem.m */; };
@@ -119,6 +122,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7817D1E01B23EF5A009717A7 /* XHCircularView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHCircularView.h; sourceTree = "<group>"; };
+		7817D1E11B23EF5A009717A7 /* XHCircularView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHCircularView.m; sourceTree = "<group>"; };
 		781F1FEB1AE0C10600ACEACC /* XHChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHChartView.h; sourceTree = "<group>"; };
 		781F1FEC1AE0C10600ACEACC /* XHChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHChartView.m; sourceTree = "<group>"; };
 		781F1FEE1AE0C97600ACEACC /* XHChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHChartViewController.h; sourceTree = "<group>"; };
@@ -163,6 +168,11 @@
 		784707E81B06F063004D9420 /* XHCoordinateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHCoordinateView.m; sourceTree = "<group>"; };
 		784707EA1B0781E0004D9420 /* XHMessageTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHMessageTools.h; sourceTree = "<group>"; };
 		784707EB1B0781E0004D9420 /* XHMessageTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHMessageTools.m; sourceTree = "<group>"; };
+		7851529A1B21667F00242028 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		7851529B1B21667F00242028 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		7851529C1B21667F00242028 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		7851529D1B21667F00242028 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
+		785152A11B2166A800242028 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
 		785531401ADE583B00080703 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		785531411ADE583B00080703 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		785531441ADF501600080703 /* XHTableViewCellGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHTableViewCellGroup.h; sourceTree = "<group>"; };
@@ -442,6 +452,18 @@
 			name = Notifications;
 			sourceTree = "<group>";
 		};
+		785152A01B21668600242028 /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				785152A11B2166A800242028 /* SVPullToRefresh.h */,
+				7851529A1B21667F00242028 /* UIScrollView+SVInfiniteScrolling.h */,
+				7851529B1B21667F00242028 /* UIScrollView+SVInfiniteScrolling.m */,
+				7851529C1B21667F00242028 /* UIScrollView+SVPullToRefresh.h */,
+				7851529D1B21667F00242028 /* UIScrollView+SVPullToRefresh.m */,
+			);
+			name = SVPullToRefresh;
+			sourceTree = "<group>";
+		};
 		785531431ADE5EE800080703 /* Categorys */ = {
 			isa = PBXGroup;
 			children = (
@@ -635,6 +657,8 @@
 				78CC8D1A1B184C6B00B82F82 /* XHSplashView.m */,
 				78C958641B1C9B6800F35459 /* XHStatusBarTipsWindow.h */,
 				78C958651B1C9B6800F35459 /* XHStatusBarTipsWindow.m */,
+				7817D1E01B23EF5A009717A7 /* XHCircularView.h */,
+				7817D1E11B23EF5A009717A7 /* XHCircularView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -691,6 +715,7 @@
 		78DD5B9B1AD780B700DC9FA0 /* XHSmartHomeSystem */ = {
 			isa = PBXGroup;
 			children = (
+				785152A01B21668600242028 /* SVPullToRefresh */,
 				78C9585D1B1C48EF00F35459 /* Reachability */,
 				78266C521AFB543E00D9A584 /* FMDB */,
 				7825E77D1AF32B41008D6CF6 /* Socket */,
@@ -920,12 +945,15 @@
 				78CB02D31AF73C720004167E /* XHTableViewCellTextFieldItem.m in Sources */,
 				78266C501AFB543600D9A584 /* FMDatabaseQueue.m in Sources */,
 				786E905A1ADCBE4700A93675 /* UUImageAvatarBrowser.m in Sources */,
+				7817D1E21B23EF5A009717A7 /* XHCircularView.m in Sources */,
 				785531491ADF50BE00080703 /* XHTableViewCellItem.m in Sources */,
 				785531461ADF501600080703 /* XHTableViewCellGroup.m in Sources */,
 				7888C12B1B00FC24002AE1B7 /* XHRoomTools.m in Sources */,
 				78C13B941ADA0EF90020AAFA /* XHTokenModel.m in Sources */,
 				78266C4D1AFB543600D9A584 /* FMDatabase.m in Sources */,
 				7825E7801AF35031008D6CF6 /* GCDAsyncSocket.m in Sources */,
+				7851529F1B21667F00242028 /* UIScrollView+SVPullToRefresh.m in Sources */,
+				7851529E1B21667F00242028 /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				7857C1DF1AF7A26300E1271F /* XHCmdLineViewController.m in Sources */,
 				7825E78C1AF36E51008D6CF6 /* XHAboutViewController.m in Sources */,
 				78CC8D041B16E8B200B82F82 /* XHLicenseViewController.m in Sources */,

@@ -22,6 +22,7 @@
 #define XHLocate() NSLog(@"Func: %s, Line: %d", __func__, __LINE__)
 #else
 #define XHLog(...)
+#define XHLocate()
 #endif
 
 
@@ -32,6 +33,7 @@
 #define XHColorDidChangeNotification (@"XHColorDidChangedNotification")
 #define XHUpdateRoomModelNotification (@"XHUpdateRoomModelNotification")
 #define XHDidAlertNotification (@"XHDidAlertNotification")
+#define XHClearMessagesNotification (@"XHClearMessagesNotification")
 
 #define XHColor ([UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1])
 #define XHBlackColor ([UIColor colorWithRed:26/255.0f green:26/255.0f blue:26/255.0f alpha:1])

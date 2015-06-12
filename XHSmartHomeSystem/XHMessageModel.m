@@ -13,9 +13,43 @@
 
 @implementation XHMessageModel
 
-- (void)populateRandomDataSource {
+- (void)populateDataSource
+{
     self.dataSource = [NSMutableArray array];
-    [self.dataSource addObjectsFromArray:[self getMessagesFromDB]];
+    [self.dataSource addObjectsFromArray:[self getMessagesFromDBFrom:0 number:10]];
+}
+
+- (void)insertDataSourceWithObject:(id)item
+{
+    [self.dataSource insertObject:item atIndex:0];
+}
+
+- (NSUInteger)insertDataSourceWithNumber:(NSUInteger)number
+{
+    // first get message from database
+    NSUInteger count = [self.dataSource count];
+    NSArray *array = [self getMessagesFromDBFrom:count number:number];
+    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, number)];
+    if ([array count]) {
+        [self.dataSource insertObjects:array atIndexes:indexes];
+    }
+    return [array count];
+}
+
+- (void)insertDataSource:(NSArray *)array
+{
+    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [array count])];
+    [self insertDataSource:array atIndexes:indexes];
+}
+
+- (void)insertDataSource:(NSArray *)array atIndexes:(NSIndexSet *)indexes
+{
+    [self.dataSource insertObjects:array atIndexes:indexes];
+}
+
+- (void)removeDataSource
+{
+    [self.dataSource removeAllObjects];
 }
 
 static NSString *previousTime = nil;
@@ -38,13 +72,13 @@ static NSString *previousTime = nil;
         previousTime = dataDict[@"strTime"];
     }
     [self.dataSource addObject:messageFrame];
-    [XHMessageTools saveMessage:dataDict];
+    [XHMessageTools saveMessages:dataDict];
 }
 
-- (NSArray *)getMessagesFromDB
+- (NSArray *)getMessagesFromDBFrom:(NSUInteger)from number:(NSUInteger)number
 {
     NSMutableArray *messages = [NSMutableArray array];
-    NSArray *arrays = [XHMessageTools latestMessageWithNumber:10]; // get the last 10 item
+    NSArray *arrays = [XHMessageTools latestMessagesFrom:from number:number];
     for (NSMutableDictionary *dict in arrays) {
         [dict setObject:@(UUMessageFromOther) forKey:@"from"];
         
@@ -62,6 +96,11 @@ static NSString *previousTime = nil;
         [messages addObject:messageFrame];
     }
     return messages;
+}
+
+- (void)dealloc
+{
+    [self.dataSource removeAllObjects];
 }
 
 @end

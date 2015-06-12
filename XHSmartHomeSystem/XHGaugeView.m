@@ -79,7 +79,7 @@
     
     while (temp >= 1.0) {
         temp = temp / 10.0;
-        power ++;
+        power++;
     }
     
     float exponent = pow(10, power);
@@ -142,8 +142,8 @@
             float textWidth = textHeight * [string length] / 2;
         
             CGPoint point = CGPointMake(centerX + cos(angle) * (radius - textInset) - textWidth / 2.0, centerY + sin(angle) * (radius - textInset) - textHeight / 2.0);
-            [string drawAtPoint:point withAttributes:@{NSFontAttributeName:self.textLabel.font,
-                                                       NSForegroundColorAttributeName:_tintColor}];
+            [string drawAtPoint:point withAttributes:@{ NSFontAttributeName : self.textLabel.font,
+                                                        NSForegroundColorAttributeName : _tintColor }];
         } else {
             myTickLength = self.minorTickLength;
         }
@@ -180,7 +180,7 @@
     self.minorTickLength = span / 16.0;
     self.tickInset = self.lineWidth;
     
-    self.labelFont = [UIFont systemFontOfSize:span / 17.77];
+    self.labelFont = [UIFont systemFontOfSize:span / 20.77];
     self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 3.0 * self.frame.size.height / 10.0, self.frame.size.width, self.frame.size.height / 10.0)];
     self.textLabel.textColor = [UIColor whiteColor];
     self.textLabel.backgroundColor = [UIColor clearColor];

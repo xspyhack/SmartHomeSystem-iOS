@@ -144,20 +144,20 @@
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellArrowItem *generalItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"General", nil) iconName:@"general"];
+    XHTableViewCellArrowItem *generalItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"General", nil) iconName:@"settings_general"];
     generalItem.destinationContorller = [XHGeneralSettingsViewController class];
     
-    XHTableViewCellArrowItem *themeItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Theme", nil) iconName:@"general"];
+    XHTableViewCellArrowItem *themeItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Theme", nil) iconName:@"settings_theme"];
     /**themeItem.operation = ^{
         XHThemeViewController *tVC = [[XHThemeViewController alloc] init];
         [self presentViewController:tVC animated:YES completion:nil];
     };*/
     themeItem.destinationContorller = [XHThemeViewController class];
     
-    XHTableViewCellArrowItem *notificationItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Notifications", nil) iconName:@"notification"];
+    XHTableViewCellArrowItem *notificationItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Notifications", nil) iconName:@"settings_notifications"];
     notificationItem.destinationContorller = [XHNotificationsViewController class];
     
-    XHTableViewCellArrowItem *securityItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Security", nil) iconName:@"security"];
+    XHTableViewCellArrowItem *securityItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"Security", nil) iconName:@"settings_security"];
     securityItem.destinationContorller = [XHSecurityViewController class];
     
     group.items = @[generalItem, themeItem, notificationItem, securityItem];
@@ -168,7 +168,7 @@
     XHTableViewCellGroup *group = [XHTableViewCellGroup group];
     [self.groups addObject:group];
     
-    XHTableViewCellArrowItem *aboutItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"About", nil) iconName:@"about"];
+    XHTableViewCellArrowItem *aboutItem = [XHTableViewCellArrowItem itemWithTitle:NSLocalizedString(@"About", nil) iconName:@"settings_about"];
     aboutItem.destinationContorller = [XHAboutViewController class];
     
     group.items = @[ aboutItem ];
@@ -184,21 +184,6 @@
     [linkout addTarget:self action:@selector(linkout) forControlEvents:UIControlEventTouchUpInside];
     
     self.tableView.tableFooterView = linkout;
-}
-
-#pragma mark - UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == [actionSheet destructiveButtonIndex]) {
-        // link out
-        XHTokenModel *token = [XHTokenTools tokenModel];
-        [XHTokenTools remove:token];
-        
-        UIWindow *window = [UIApplication sharedApplication].keyWindow;
-        window.backgroundColor = [UIColor whiteColor];
-        window.rootViewController = [[XHLinkinViewController alloc] init];
-    }
 }
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
@@ -296,6 +281,21 @@
     [self performSelector:@selector(deselect) withObject:nil afterDelay:0.1f]; // deselect
 }
 
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == [actionSheet destructiveButtonIndex]) {
+        // link out
+        XHTokenModel *token = [XHTokenTools tokenModel];
+        [XHTokenTools remove:token];
+        
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        window.backgroundColor = [UIColor whiteColor];
+        window.rootViewController = [[XHLinkinViewController alloc] init];
+    }
+}
+
 #pragma mark - event
 
 - (void)tapLogoView:(UITapGestureRecognizer *)gesture
@@ -347,11 +347,11 @@
 
 #pragma mark - private methods
 
-- (void)alert
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Link Out", nil) message:NSLocalizedString(@"Link out success.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Sure", nil) otherButtonTitles:nil];
-    [alert show];
-}
+//- (void)alert
+//{
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Link Out", nil) message:NSLocalizedString(@"Link out success.", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"Sure", nil) otherButtonTitles:nil];
+//    [alert show];
+//}
 
 - (void)deselect
 {

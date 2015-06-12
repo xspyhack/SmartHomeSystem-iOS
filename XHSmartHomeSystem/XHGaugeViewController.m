@@ -71,7 +71,7 @@
     self.temperatureView = [[XHGaugeView alloc] initWithFrame:tempRect];
     self.temperatureView.backgroundColor = self.view.backgroundColor;
     
-    self.temperatureView.textLabel.text = @"°C";
+    self.temperatureView.textLabel.text = NSLocalizedString(@"TEMP/°C", nil);
     self.temperatureView.minNumber = [defaults floatForKey:@"XHTemperatureMinValue"];
     self.temperatureView.maxNumber = [defaults floatForKey:@"XHTemperatureMaxValue"];
     self.temperatureView.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-BoldItalic" size:18.0];
@@ -89,7 +89,7 @@
     self.humidityView.backgroundColor = self.view.backgroundColor;
     self.humidityView.startAngle = -3 * M_PI / 4.0;
     self.humidityView.arcLength = M_PI / 2.0;
-    self.humidityView.textLabel.text = @"%RH";
+    self.humidityView.textLabel.text = NSLocalizedString(@"HUMI/%RH", nil);
     self.humidityView.minNumber = [defaults floatForKey:@"XHHumidityMinValue"];
     self.humidityView.maxNumber = [defaults floatForKey:@"XHHumidityMaxValue"];
     self.humidityView.textLabel.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:15.0];
@@ -106,7 +106,7 @@
     self.smokeView.backgroundColor = self.view.backgroundColor;
     self.smokeView.startAngle = -3.0 * M_PI / 4.0;
     self.smokeView.arcLength = M_PI / 2.0;
-    self.smokeView.textLabel.text = @"PPM";
+    self.smokeView.textLabel.text = NSLocalizedString(@"SMOK/PPM", nil);
     self.smokeView.minNumber = [defaults floatForKey:@"XHSmokeMinValue"];
     self.smokeView.maxNumber = [defaults floatForKey:@"XHSmokeMaxValue"];
     self.smokeView.textLabel.font = [UIFont fontWithName:@"Cochin-BoldItalic" size:15.0];
@@ -120,7 +120,7 @@
     
     XHButton *button = [[XHButton alloc] initWithFrame:CGRectMake((width - width*0.2)/2, height - width*0.3, width*0.2, width*0.2)];
     
-    [button setTitle:@"dismiss" forState:UIControlStateNormal];
+    [button setTitle:NSLocalizedString(@"dismiss", nil) forState:UIControlStateNormal];
     
     //[btn setTitleColor:[XHColorTools themeColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];

@@ -7,7 +7,7 @@
 //
 
 #define ChatMargin 10       //间隔
-#define ChatIconWH 44       //头像宽高height、width
+#define ChatIconWH 60       //头像宽高height、width
 #define ChatPicWH 200       //图片宽高
 #define ChatContentW 200    //内容宽度
 

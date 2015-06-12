@@ -58,7 +58,6 @@ enum _DisconnectByWho {
 - (void)disconnect
 {
     //self.socket.userData = DisconnectByUser;
-    //[self showAlert:@"Disconnection"];
     XHLog(@"disconnect.");
     if ([self.socket isConnected]) {
         [self.socket disconnect];
@@ -118,14 +117,14 @@ enum _DisconnectByWho {
 {
     //
     XHLog(@"write success");
-    [[XHStatusBarTipsWindow shareTipsWindow] showTips:@"Command send success!" hideAfterDelay:2];
+    [[XHStatusBarTipsWindow shareTipsWindow] showTips:NSLocalizedString(@"Command send success!", nil) hideAfterDelay:2];
     [self.socket readDataWithTimeout:-1 tag:0];
 }
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
 {
     XHLog(@"Disconnect with error: %@", err.description);
-    [[XHStatusBarTipsWindow shareTipsWindow] showTips:[NSString stringWithFormat:@"Disconnect from %@ !", self.host]
+    [[XHStatusBarTipsWindow shareTipsWindow] showTips:[NSString stringWithFormat:NSLocalizedString(@"Disconnect from %@ !", nil), self.host]
                                        hideAfterDelay:2];
 //    if ((int)sock.userData == DisconnectByServer) {
 //        // reconnect

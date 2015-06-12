@@ -39,12 +39,12 @@
         
         // 2、创建头像
         headImageBackView = [[UIView alloc]init];
-        headImageBackView.layer.cornerRadius = 22;
+        headImageBackView.layer.cornerRadius = ChatIconWH / 2;
         headImageBackView.layer.masksToBounds = YES;
         headImageBackView.backgroundColor = [[XHColorTools themeColor] colorWithAlphaComponent:.8f];
         [self.contentView addSubview:headImageBackView];
         self.btnHeadImage = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.btnHeadImage.layer.cornerRadius = 20;
+        self.btnHeadImage.layer.cornerRadius = (ChatIconWH - 4) / 2;
         self.btnHeadImage.layer.masksToBounds = YES;
         [self.btnHeadImage addTarget:self action:@selector(btnHeadImageClick:)  forControlEvents:UIControlEventTouchUpInside];
         [headImageBackView addSubview:self.btnHeadImage];
@@ -125,14 +125,16 @@
     [self.btnHeadImage setBackgroundImage:[UIImage imageNamed:message.strIcon] forState:UIControlStateNormal];
     
     // 3、设置下标
-    self.labelNum.text = message.strName;
-    if (messageFrame.nameF.origin.x > 160) {
-        self.labelNum.frame = CGRectMake(messageFrame.nameF.origin.x - 50, messageFrame.nameF.origin.y + 3, 100, messageFrame.nameF.size.height);
-        self.labelNum.textAlignment = NSTextAlignmentRight;
-    }else{
-        self.labelNum.frame = CGRectMake(messageFrame.nameF.origin.x, messageFrame.nameF.origin.y + 3, 80, messageFrame.nameF.size.height);
-        self.labelNum.textAlignment = NSTextAlignmentLeft;
-    }
+    self.labelNum.text = NSLocalizedString(message.strName, nil);
+//    if (messageFrame.nameF.origin.x > 160) {
+//        self.labelNum.frame = CGRectMake(messageFrame.nameF.origin.x - 50, messageFrame.nameF.origin.y + 3, 100, messageFrame.nameF.size.height);
+//        self.labelNum.textAlignment = NSTextAlignmentCenter;
+//    }else{
+//        self.labelNum.frame = CGRectMake(messageFrame.nameF.origin.x, messageFrame.nameF.origin.y + 3, 80, messageFrame.nameF.size.height);
+//        self.labelNum.textAlignment = NSTextAlignmentCenter;
+//    }
+    self.labelNum.frame = messageFrame.nameF;
+    self.labelNum.textAlignment = NSTextAlignmentCenter;
 
     // 4、设置内容
     

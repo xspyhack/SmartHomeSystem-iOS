@@ -64,8 +64,8 @@
                                                          xTitle:NSLocalizedString(@"date", nil)
                                                         y1Title:NSLocalizedString(@"temperature", nil)
                                                         y2Title:NSLocalizedString(@"humidity", nil)
-                                                      describe1:NSLocalizedString(@"TEMP", nil)
-                                                      describe2:NSLocalizedString(@"HUMI", nil)];
+                                                      describe1:NSLocalizedString(@"TEMP/°C", nil)
+                                                      describe2:NSLocalizedString(@"HUMI/%RH", nil)];
     self.lineChartView.lineWidth = lineWidth;
     self.lineChartView.inflexionPointWidth = lineWidth * 3;
     self.lineChartView.y1LineColor = [XHColorTools temperatureColor];

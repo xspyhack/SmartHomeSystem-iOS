@@ -29,7 +29,7 @@
     self.title = NSLocalizedString(@"Line Chart", nil);
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Data analysis" style:UIBarButtonItemStylePlain target:self action:@selector(dataAnalysis)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Data analysis", nil) style:UIBarButtonItemStylePlain target:self action:@selector(dataAnalysis)];
     
     // add UIScrollView
     [self setupScrollView];

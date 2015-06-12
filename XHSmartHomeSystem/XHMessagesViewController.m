@@ -14,6 +14,7 @@
 #import "XHMessageSettingViewController.h"
 #import "XHSearchResultsViewController.h"
 #import "XHChatInfoViewController.h"
+#import "SVPullToRefresh.h"
 
 #define XHTableViewScrollToBottom (@"XHTableViewScrollToBottom")
 @interface XHMessagesViewController ()<UISearchBarDelegate, UUMessageCellDelegate>
@@ -30,16 +31,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.edgesForExtendedLayout = UIRectEdgeNone; // iOS_7_LATER, it should set edges NO.
+    //self.automaticallyAdjustsScrollViewInsets = NO;
     self.tabBarItem.badgeValue = nil;
+    
     // set navigation bar button item
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_settings" highLightedImageName:@"nav_settings_highLighted" target:self action:@selector(settings)];
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"nav_search" highLightedImageName:@"nav_search_highLighted" target:self action:@selector(searchButtonClicked)];
     
     [self setupTabelView];
     //[self setupSearchController];
-    [self setupViewsAndData];
+    [self setupData];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification:) name:XHDidAlertNotification object:nil];
+    // setup pull to refresh
+    __weak XHMessagesViewController *weakSelf = self;
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf insertRowsAtTop];
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAlertNotification:) name:XHDidAlertNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleClearNotification:) name:XHClearMessagesNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -55,7 +66,7 @@
     [super viewDidAppear:animated];
     self.tabBarItem.badgeValue = nil;
     
-    XHLocate();
+    //XHLocate();
     [[NSNotificationCenter defaultCenter] postNotificationName:XHTableViewScrollToBottom object:nil];
 }
 
@@ -71,12 +82,13 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark - setup Method
+#pragma mark - setup method
 
 - (void)setupTabelView
 {
     // create Plain style UITableView
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    CGRect frame = CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT - 109); // tabBar height: 49
+    self.tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.autoresizesSubviews = UIViewAutoresizingFlexibleWidth;
@@ -86,10 +98,10 @@
     [self.view addSubview:self.tableView];
 }
 
-- (void)setupViewsAndData
+- (void)setupData
 {
     self.messageModel = [[XHMessageModel alloc] init];
-    [self.messageModel populateRandomDataSource];
+    [self.messageModel populateDataSource];
     
     [self.tableView reloadData];
     [self tableViewScrollToBottom];
@@ -159,9 +171,9 @@
     [self.navigationController pushViewController:chatInfoVC animated:YES];
 }
 
-#pragma mark - Event
+#pragma mark - Notifications
 
-- (void)handleNotification:(NSNotification *)notification
+- (void)handleAlertNotification:(NSNotification *)notification
 {
     if ([notification.name isEqualToString:XHDidAlertNotification]) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:notification.userInfo];
@@ -179,6 +191,15 @@
     }
 }
 
+- (void)handleClearNotification:(NSNotification *)notification
+{
+    if ([notification.name isEqualToString:XHClearMessagesNotification]) {
+        [self.messageModel removeDataSource];
+        self.messageModel = nil;
+        [self.tableView reloadData];
+    }
+}
+
 //tableView Scroll to bottom
 - (void)tableViewScrollToBottom
 {
@@ -187,6 +208,26 @@
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.messageModel.dataSource.count-1 inSection:0];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+#pragma mark - private methods
+
+- (void)insertRowsAtTop
+{
+    __weak XHMessagesViewController *weakSelf = self;
+    int64_t delayInSecond = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSecond * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf.tableView beginUpdates];
+        NSUInteger count = [weakSelf.messageModel insertDataSourceWithNumber:10];
+        NSMutableArray *indexPaths = [NSMutableArray array];
+        for (int i = 0; i < count; i++) {
+            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
+        [weakSelf.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
+        [weakSelf.tableView endUpdates];
+        [weakSelf.tableView.pullToRefreshView stopAnimating];
+    });
 }
 
 - (void)searchButtonClicked
@@ -224,6 +265,7 @@
     }
     return _searchBarView;
 }
+
 /*
 #pragma mark - Navigation
 

@@ -7,51 +7,25 @@
 */
 
 "Link In" = "连入";
+"Link Out" = "断开";
 "Open" = "打开";
+"open" = "打开";
 "Save" = "保存";
 "OK" = "好";
+"Go!" = "进入";
 "Sure" = "确定";
 "Cancel" = "取消";
+"dismiss" = "返回";
+"All" = "所有";
 
-"Not Reachable" = "没有";
-"Reachable Via WiFi" = "通过WiFi连接";
-"Reachable Via WWAN" = "";
-
-// 
-"Parlour" = "大厅";
-"Kitchen" = "厨房";
-"Bathroom" = "浴室";
-"Bedroom" = "卧室";
-"parlour" = "大厅";
-"kitchen" = "厨房";
-"barthroom" = "浴室";
-"bedroom" = "卧室";
-
-"Temperature" = "温度";
-"temperature" = "温度";
-"Humidity" = "湿度";
-"humidity" = "湿度";
-"Smoke" = "烟雾浓度";
-"smoke" = "烟雾浓度";
-"TEMP" = "温度";
-"HUMI" = "湿度";
-"temp" = "温度";
-"humi" = "湿度";
-
+// date
 "date" = "日期";
-
-"Home" = "首页";
-"Messages" = "消息";
-"Settings" = "设置";
-
-// link in
-"Gateway" = "网关";
-"Password" = "密码";
-
-// home
-
-
-"update at" = "更新于";
+"AM" = "上午";
+"PM" = "下午";
+"Night" = "晚上";
+"Dawn" = "黎明";
+"Tomorrow" = "明天";
+"Yesterday" = "昨天";
 "Today" = "今天";
 "Sun" = "星期日";
 "Mon" = "星期一";
@@ -60,7 +34,58 @@
 "Thu" = "星期四";
 "Fri" = "星期五";
 "Sat" = "星期六";
+"Sunday" = "星期日";
+"Monday" = "星期一";
+"Tuesday" = "星期二";
+"Wednesday" = "星期三";
+"Thursday" = "星期四";
+"Friday" = "星期五";
+"Saturday" = "星期六";
+
+// network
+"No network!" = "没有可用网络！";
+"Reachable Via WiFi" = "通过WiFi连接";
+"Reachable Via WWAN" = "通过蜂窝数据连接";
+
+// room
+"Parlour" = "大厅";
+"Kitchen" = "厨房";
+"Bathroom" = "浴室";
+"Bedroom" = "卧室";
+"parlour" = "大厅";
+"kitchen" = "厨房";
+"bathroom" = "浴室";
+"bedroom" = "卧室";
+
+"Temperature" = "温度";
+"temperature" = "温度";
+"Humidity" = "湿度";
+"humidity" = "湿度";
+"Smoke" = "烟雾浓度";
+"smoke" = "烟雾浓度";
+"TEMP/°C" = "温度/°C";
+"HUMI/%RH" = "湿度/%RH";
+"SMOK/PPM" = "烟雾/PPM";
+"temp" = "温度";
+"humi" = "湿度";
+"T" = "温";
+"H" = "湿";
+"S" = "烟";
+
+"Home" = "首页";
+"Messages" = "消息";
+"Settings" = "设置";
+
+// link in
+"Gateway" = "网关";
+"Gateway IP" = "网关地址";
+"Password" = "密码";
+
+// home
+"update at" = "更新于";
 "Data analysis" = "数据分析";
+"Command send success!" = "命令发送成功！";
+"Disconnect from %@ !" = "与%@断开连接！";
 
 // chart
 "Line Chart" = "折线图";
@@ -75,16 +100,17 @@
 "Stick To Top" = "置顶";
 "Shield" = "屏蔽";
 "Block" = "加入黑名单";
+"Bio: %@" = "简介: %@";
+"Clear" = "清除";
+"Clear all messages history" = "清空消息记录";
 
 // settings
 "General" = "通用";
 "Theme" = "主题";
-"Notifications" = "新消息通知";
+"Notifications" = "通知";
 "Security" = "安全";
 "About" = "关于";
-"Link Out" = "断开";
-"Link out success." = "断开";
-
+"Link out success." = "断开成功。";
 
 "Display" = "显示";
 "Features" = "插件";
@@ -92,8 +118,6 @@
 "Wipe Cache Partition" = "清除缓存";
 "Wipe" = "清除";
 "Wipe cache" = "清除缓存";
-"Wipe cache partition success." = "清除缓存成功。";
-"It will wipe all your cache." = "这将清除应用中所有的缓存信息。";
 
 // display
 "Line Chart Mode" = "折线图模式";
@@ -105,16 +129,20 @@
 "Smoke Color" = "烟雾浓度表示颜色";
 "Brush" = "画刷";
 "Range" = "范围";
-"Setup max or min value which will show in line chart or gauge chart can help system more accurately to show data." = "";
 "Max" = "最大值";
 "Min" = "最小值";
+"min" = "最低";
+"max" = "最高";
+"avg" = "平均";
 "Command Line Mode" = "命令行模式";
 "add value" = "添加";
 
-"System Default" = "系统默认";
+"System Default" = "跟随系统";
 
 // notifications
-"Notification" = "通知";
+"Notification" = "新消息通知";
+"Enabled" = "已开启";
+"Disabled" = "不可用";
 "Show Preview Text" = "通知显示消息详情";
 "Notifications Alertor" = "警报器设置";
 "Alert Values" = "报警值";
@@ -140,10 +168,22 @@
 "Saved" = "已保存";
 "Message" = "消息";
 "Send Mail" = "发邮件";
-"Cancalled" = "已取消";
+"Cancelled" = "已取消";
 "Sent" = "已发送";
 "Send email failed" = "发送电子邮件失败";
 "Bug Feedback" = "异常反馈";
+
+// text
+"Enable or disable XHSmartSystem Notifications via \"Settings\"->\"Notifications\" on your iPhone." = "如果您要开启或关闭XHSmartHomeSystem的新消息通知，请在iPhone的“设置”－“通知”功能中，找到应用程序更改。";
+"Message notifications will contain sender and summary when enabled." = "若关闭，当收到警报消息时，通知提示将不显示具体内容。";
+"If turn off alertor, you can't get important system notification at first." = "若关闭警报器，将无法在第一时间收到重要的警报信息。";
+"Command line interface in a secret place. If you want to use it find it out first." = "命令行界面隐藏在一个秘密的地方。如果您想使用请先找到它。";
+"My master, %@'s %@ now %.2f!" = "报告主人，%@的%@现在高达%.2f，请指示！";
 "Write feedback context here." = "在这里写下您要反馈的内容。";
+"Setup max or min value which will show in line chart or gauge chart can help system more accurately to show data." = "设置折线图或者仪表图的最大最小值能够使得系统显示更精准的数据的值。";
+"Wipe cache partition success." = "清除缓存成功。";
+"It will wipe all your cache." = "这将清除应用中所有的缓存信息。";
+"These data is from your house." = "这些数据来自您的住宅";
+
 
 

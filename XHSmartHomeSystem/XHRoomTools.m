@@ -160,8 +160,19 @@
 + (NSDictionary *)weekDataWithRoomId:(NSUInteger)roomId
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    //NSArray *array = [self recentWeekWithRoomId:roomId];
-    //dictionary[@"temperture"] = [self averageWithArray:array index:@"temperature"];
+    NSArray *array = [self recentWeekWithRoomId:roomId];
+    dictionary[@"temperature_average"] = [NSString stringWithFormat:@"%.2f", [self averageWithArray:array index:@"temperature"]];
+    dictionary[@"humidity_average"] = [NSString stringWithFormat:@"%.2f", [self averageWithArray:array index:@"humidity"]];
+    dictionary[@"smoke_average"] = [NSString stringWithFormat:@"%.2f", [self averageWithArray:array index:@"smoke"]];
+    
+    dictionary[@"temperature_max"] = [NSString stringWithFormat:@"%.2f", [self maxWithArray:array index:@"temperature"]];
+    dictionary[@"humidity_max"] = [NSString stringWithFormat:@"%.2f", [self maxWithArray:array index:@"humidity"]];
+    dictionary[@"smoke_max"] = [NSString stringWithFormat:@"%.2f", [self maxWithArray:array index:@"smoke"]];
+    
+    dictionary[@"temperature_min"] = [NSString stringWithFormat:@"%.2f", [self minWithArray:array index:@"temperature"]];
+    dictionary[@"humidity_min"] = [NSString stringWithFormat:@"%.2f", [self minWithArray:array index:@"humidity"]];
+    dictionary[@"smoke_min"] = [NSString stringWithFormat:@"%.2f", [self minWithArray:array index:@"smoke"]];
+    
     return dictionary;
 }
 
@@ -173,6 +184,19 @@
 + (NSDictionary *)yearDataWithRoomId:(NSUInteger)roomId
 {
     return nil;
+}
+
++ (NSArray *)limitsDataWithRoomId:(NSUInteger)roomId
+{
+    XHDatabase *db = [[XHDatabase alloc] init];
+    if (roomId > 3) {
+        // min, average, max
+        NSString *sql = @"SELECT MIN(temperature),AVG(temperature),MAX(temperature),MIN(humidity),AVG(humidity),MAX(humidity),MIN(smoke),AVG(smoke),MAX(smoke) FROM XHRoom";
+        return [db executeQuery:sql];
+    } else {
+        NSString *sql = [NSString stringWithFormat:@"SELECT MIN(temperature),AVG(temperature),MAX(temperature),MIN(humidity),AVG(humidity),MAX(humidity),MIN(smoke),AVG(smoke),MAX(smoke) FROM XHRoom WHERE roomId = %ld", roomId];
+        return [db executeQuery:sql];
+    }
 }
 
 + (NSUInteger)getCountWithRoomId:(NSUInteger)roomId
@@ -192,6 +216,7 @@
     return count / [array count];
 }
 
+// array: dictionary
 + (float)maxWithArray:(NSArray *)array index:(NSString *)index
 {
     float max = -100.0f;
@@ -256,15 +281,15 @@
     switch (index) {
         case 0:
             if ([self checkTemperatureStatusWithId:roomId]) return;
-            sensor = @"temperature";
+            sensor = NSLocalizedString(@"temperature", nil);
             break;
         case 1:
             if ([self checkHumidityStatusWithId:roomId]) return;
-            sensor = @"humidity";
+            sensor = NSLocalizedString(@"humidity", nil);
             break;
         case 2:
             if ([self checkSmokeStatusWithId:roomId]) return;
-            sensor = @"smoke";
+            sensor = NSLocalizedString(@"smoke", nil);
             break;
         default:
             break;
@@ -275,7 +300,7 @@
         return;
     }
     
-    NSString *alertBody = [NSString stringWithFormat:@"My master, %@'s %@ now %.2f!", roomName, sensor, value];
+    NSString *alertBody = [NSString stringWithFormat:NSLocalizedString(@"My master, %@'s %@ now %.2f!", nil), NSLocalizedString(roomName, nil), sensor, value];
     
     // push update message notification
     [[NSNotificationCenter defaultCenter] postNotificationName:XHDidAlertNotification
@@ -299,11 +324,12 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         // define local notification object
+        NSInteger number = [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:7];
         notification.repeatInterval = 2;
         notification.alertBody = alertBody;
-        notification.applicationIconBadgeNumber = 1;
+        notification.applicationIconBadgeNumber = number + 1;
         notification.alertAction = @"open";
         notification.alertLaunchImage = @"1";
         notification.soundName = @"msg.caf";
@@ -316,16 +342,16 @@
 {
     NSString *name = @"";
     switch (Id) {
-        case 0:
+        case XHParlour:
             name = @"parlour";
             break;
-        case 1:
+        case XHKitchen:
             name = @"kitchen";
             break;
-        case 2:
+        case XHBathroom:
             name = @"bathroom";
             break;
-        case 3:
+        case XHBedroom:
             name = @"bedroom";
             break;
         default:
@@ -339,19 +365,19 @@
 - (BOOL)checkTemperatureStatusWithId:(NSUInteger)Id
 {
     switch (Id) {
-        case 0:
+        case XHParlour:
             if ((self.status.parlourStatus & 1) == 1) return YES;
             else self.status.parlourStatus += 1;
             break;
-        case 1:
+        case XHKitchen:
             if ((self.status.kitchenStatus & 1) == 1) return YES;
             else self.status.kitchenStatus += 1;
             break;
-        case 2:
+        case XHBathroom:
             if ((self.status.bathroomStatus & 1) == 1) return YES;
             else self.status.bathroomStatus += 1;
             break;
-        case 3:
+        case XHBedroom:
             if ((self.status.bedroomStatus & 1) == 1) return YES;
             else self.status.bedroomStatus += 1;
             break;
@@ -364,19 +390,19 @@
 - (BOOL)checkHumidityStatusWithId:(NSUInteger)Id
 {
     switch (Id) {
-        case 0:
+        case XHParlour:
             if ((self.status.parlourStatus & 2) == 2) return YES;
             else self.status.parlourStatus += 2;
             break;
-        case 1:
+        case XHKitchen:
             if ((self.status.kitchenStatus & 2) == 2) return YES;
             else self.status.kitchenStatus += 2;
             break;
-        case 2:
+        case XHBathroom:
             if ((self.status.bathroomStatus & 2) == 2) return YES;
             else self.status.bathroomStatus += 2;
             break;
-        case 3:
+        case XHBedroom:
             if ((self.status.bedroomStatus & 2) == 2) return YES;
             else self.status.bedroomStatus += 2;
             break;
@@ -389,19 +415,19 @@
 - (BOOL)checkSmokeStatusWithId:(NSUInteger)Id
 {
     switch (Id) {
-        case 0:
+        case XHParlour:
             if ((self.status.parlourStatus & 4) == 4) return YES;
             else self.status.parlourStatus += 4;
             break;
-        case 1:
+        case XHKitchen:
             if ((self.status.kitchenStatus & 4) == 4) return YES;
             else self.status.kitchenStatus += 4;
             break;
-        case 2:
+        case XHBathroom:
             if ((self.status.bathroomStatus & 4) == 4) return YES;
             else self.status.bathroomStatus += 4;
             break;
-        case 3:
+        case XHBedroom:
             if ((self.status.bedroomStatus & 4) == 4) return YES;
             else self.status.bedroomStatus += 4;
             break;

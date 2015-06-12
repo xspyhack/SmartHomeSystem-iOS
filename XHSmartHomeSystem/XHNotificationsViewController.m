@@ -67,7 +67,7 @@ typedef enum _EMSwitch {
     [self.groups addObject:group];
     group.groupFooter = NSLocalizedString(@"Enable or disable XHSmartSystem Notifications via \"Settings\"->\"Notifications\" on your iPhone.", nil);
     
-    XHTableViewCellLabelItem *notificationItem = [XHTableViewCellLabelItem itemWithTitle:NSLocalizedString(@"Notifications", nil)];
+    XHTableViewCellLabelItem *notificationItem = [XHTableViewCellLabelItem itemWithTitle:NSLocalizedString(@"Notification", nil)];
     notificationItem.label = self.notificatonLabel;
     
     group.items = @[ notificationItem ];
@@ -161,11 +161,10 @@ typedef enum _EMSwitch {
         _notificatonLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _notificatonLabel.textColor = [XHColorTools themeColor];
         NSString *notification = [self.defaults objectForKey:@"XHNotificationEnabled"];
-        _notificatonLabel.text = notification;
+        _notificatonLabel.text = NSLocalizedString(notification, nil);
         [_notificatonLabel sizeToFit];
     }
     return _notificatonLabel;
 }
-
 
 @end

@@ -200,16 +200,16 @@
     NSString *title;
     switch (tag%3) {
         case 0:
-            title = @"T";
+            title = NSLocalizedString(@"T", nil);
             break;
         case 1:
-            title = @"H";
+            title = NSLocalizedString(@"H", nil);
             break;
         case 2:
-            title = @"S";
+            title = NSLocalizedString(@"S", nil);
             break;
         default:
-            title = @"X";
+            title = NSLocalizedString(@"X", nil);
             break;
     }
     button.layer.cornerRadius = BUTTON_WIDTH / 2;

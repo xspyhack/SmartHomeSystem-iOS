@@ -12,7 +12,14 @@
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
-- (void)populateRandomDataSource;
+- (void)populateDataSource;
+
+- (NSUInteger)insertDataSourceWithNumber:(NSUInteger)number;
+- (void)insertDataSourceWithObject:(id)item;
+- (void)insertDataSource:(NSArray *)array;
+- (void)insertDataSource:(NSArray *)array atIndexes:(NSIndexSet *)indexes;
+
+- (void)removeDataSource;
 
 - (void)addMessageItem:(NSDictionary *)dictionary;
 

@@ -69,7 +69,7 @@
     
     CGRect bioRect = CGRectMake((viewWidth-200)/2, CGRectGetMaxY(nameRect)+10, 200, 20);
     UILabel *bioLabel = [[UILabel alloc] initWithFrame:bioRect];
-    bioLabel.text = NSLocalizedString(@"Bio: nothing else.", nil);
+    bioLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Bio: %@", nil), @"nothing else"];
     bioLabel.textColor = color;
     bioLabel.textAlignment = NSTextAlignmentCenter;
     
